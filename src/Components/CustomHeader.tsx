@@ -1,5 +1,6 @@
 import { Flex, Paper, Space, Text, Divider } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
+import { customTheme } from "../customTheme"
 
 interface Props {
   isCustomLabel?: boolean
@@ -13,28 +14,33 @@ export const CustomHeader = ({ isCustomLabel, customLabel }: Props) => {
       p="xs"
       w={"auto"}
       h={"auto"}
-      bg="var(--mantine-color-gray-light)"
+      bg={customTheme.colours.bg.bgGray25}
       display="flex"
     >
       <Flex justify="flex-start" align="center" h={"100%"}>
-        <Paper h={30} w={30} bg="var(--mantine-color-gray-text)" radius={"xl"}>
+        <Paper
+          h={30}
+          w={30}
+          bg={customTheme.colours.font.primary}
+          radius={"xl"}
+        >
           <Flex justify="center" align="center" h={"100%"} w={"100%"}>
             <IconFlame
-              style={{ width: 25, height: 25 }}
-              stroke={1.5}
-              color="var(--mantine-color-white)"
-              fill="white"
-              fillOpacity={0.5}
+              width={20}
+              height={20}
+              fill={customTheme.colours.accents.char}
+              color={customTheme.colours.accents.char}
+              stroke={1}
             />
           </Flex>
         </Paper>
       </Flex>
       <Space w={10} />
       <Flex justify="flex-start" align="center" h={"100%"} w={"100%"}>
-        <Text fw={600} size="lg" c="var(--mantine-color-orange-text)">
+        <Text fw={600} size="lg" c={customTheme.colours.accents.char}>
           char
         </Text>
-        <Text fw={700} size="lg" c="var(--mantine-color-gray-text)">
+        <Text fw={700} size="lg" c={customTheme.colours.font.primary}>
           db
         </Text>
         {isCustomLabel && (
@@ -45,7 +51,7 @@ export const CustomHeader = ({ isCustomLabel, customLabel }: Props) => {
             <Text
               fw={700}
               size="lg"
-              c="var(--mantine-color-gray-text)"
+              c={customTheme.colours.font.primary}
               tt="uppercase"
             >
               {customLabel}

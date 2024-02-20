@@ -1,6 +1,7 @@
-import { Paper, Center, Space, Flex, SimpleGrid } from "@mantine/core"
+import { Paper, Center, Space, Flex } from "@mantine/core"
 import { CustomHeader } from "../Components/CustomHeader"
 import { CustomCard } from "../Components/CustomCard"
+import { customTheme } from "../customTheme"
 
 export const Index = () => {
   return (
@@ -24,7 +25,7 @@ export const Index = () => {
             m="auto"
             w="95%"
             h="92%"
-            bg="var(--mantine-color-gray-light)"
+            bg={customTheme.colours.bg.bgGray25}
           >
             <Flex justify="space-evenly" wrap="wrap" gap={50}>
               <CustomCard />
