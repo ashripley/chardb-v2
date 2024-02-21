@@ -1,7 +1,9 @@
-import { Paper, Center, Space, Flex } from "@mantine/core"
+import { Paper, Center, Space, Flex, ScrollArea } from "@mantine/core"
 import { CustomHeader } from "../Components/CustomHeader"
 import { customTheme } from "../customTheme"
+import { CustomList } from "../Components/CustomList"
 import { CustomTile } from "../Components/CustomTile"
+import { CustomCard } from "../Components/CustomCard"
 
 export const Index = () => {
   return (
@@ -27,28 +29,36 @@ export const Index = () => {
             h="92%"
             bg={customTheme.colours.bg.bgGray25}
           >
-            <Flex justify="space-evenly" wrap="wrap" gap={50}>
-              {/* <CustomCard />
-              <CustomCard />
-              <CustomCard />
-              <CustomCard /> */}
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-              <CustomTile />
-            </Flex>
+            <ScrollArea h={"100%"} type="scroll">
+              <Flex justify="space-evenly" wrap="wrap" gap={20}>
+                {/* <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard />
+                <CustomCard /> */}
+                <CustomTile />
+                <CustomTile />
+                <CustomTile />
+                <CustomTile />
+                <CustomTile />
+                <CustomTile />
+                <CustomTile />
+                {/* <CustomList />
+                <CustomList />
+                <CustomList />
+                <CustomList />
+                <CustomList />
+                <CustomList />
+                <CustomList />
+                <CustomList />
+                <CustomList /> */}
+              </Flex>
+            </ScrollArea>
           </Paper>
           <Space h="1%" />
         </Paper>
