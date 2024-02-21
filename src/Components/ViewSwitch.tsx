@@ -21,6 +21,7 @@ export const ViewSwitch = () => {
       orientation="vertical"
       withItemsBorders={false}
       size="sm"
+      mih={100}
       radius="lg"
       defaultValue="grid"
       bg={customTheme.colours.bg.bgGray75}
