@@ -1,7 +1,8 @@
 import { Paper, Center, Space, Flex } from "@mantine/core"
 import { CustomHeader } from "../Components/CustomHeader"
-import { CustomCard } from "../Components/CustomCard"
 import { customTheme } from "../customTheme"
+import { CustomFrontTile } from "../Components/CustomFrontTile"
+import { CustomBackTile } from "../Components/CustomBackTile"
 
 export const Index = () => {
   return (
@@ -28,10 +29,26 @@ export const Index = () => {
             bg={customTheme.colours.bg.bgGray25}
           >
             <Flex justify="space-evenly" wrap="wrap" gap={50}>
+              {/* <CustomCard />
               <CustomCard />
               <CustomCard />
-              <CustomCard />
-              <CustomCard />
+              <CustomCard /> */}
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
+              <CustomFrontTile />
+              <CustomBackTile />
             </Flex>
           </Paper>
           <Space h="1%" />

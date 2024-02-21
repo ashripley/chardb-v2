@@ -1,25 +1,5 @@
 // Pokemon Type Colours
 interface CustomTheme {
-  typeColours: {
-    normal: string
-    fire: string
-    water: string
-    grass: string
-    electric: string
-    ice: string
-    fighting: string
-    poison: string
-    ground: string
-    flying: string
-    psychic: string
-    bug: string
-    rock: string
-    ghost: string
-    dragon: string
-    dark: string
-    steel: string
-    fairy: string
-  }
   colours: {
     font: {
       primary: string
@@ -35,6 +15,26 @@ interface CustomTheme {
       bulb: string
       squir: string
     }
+    types: {
+      normal: string
+      fire: string
+      water: string
+      grass: string
+      electric: string
+      ice: string
+      fighting: string
+      poison: string
+      ground: string
+      flying: string
+      psychic: string
+      bug: string
+      rock: string
+      ghost: string
+      dragon: string
+      dark: string
+      steel: string
+      fairy: string
+    }
   }
   font: {
     primary: string
@@ -42,26 +42,6 @@ interface CustomTheme {
 }
 
 export const customTheme: CustomTheme = {
-  typeColours: {
-    normal: "#a8a878",
-    fire: "#f08030",
-    water: "#6790f0",
-    grass: "#78c84f",
-    electric: "#f9cf30",
-    ice: "#98d8d8",
-    fighting: "#c03028",
-    poison: "#9f40a0",
-    ground: "#e0c068",
-    flying: "#a890f0",
-    psychic: "#f85888",
-    bug: "#a8b720",
-    rock: "#b8a039",
-    ghost: "#705898",
-    dragon: "#7038f8",
-    dark: "#705848",
-    steel: "#b8b8d0",
-    fairy: "#f0b6bc",
-  },
   colours: {
     font: {
       primary: "#595959",
@@ -76,6 +56,26 @@ export const customTheme: CustomTheme = {
       char: "#ff8c00",
       bulb: "#78c84f",
       squir: "#62bbe0",
+    },
+    types: {
+      normal: "#a8a878",
+      fire: "#f08030",
+      water: "#6790f0",
+      grass: "#78c84f",
+      electric: "#f9cf30",
+      ice: "#98d8d8",
+      fighting: "#c03028",
+      poison: "#9f40a0",
+      ground: "#e0c068",
+      flying: "#a890f0",
+      psychic: "#f85888",
+      bug: "#a8b720",
+      rock: "#b8a039",
+      ghost: "#705898",
+      dragon: "#7038f8",
+      dark: "#705848",
+      steel: "#b8b8d0",
+      fairy: "#f0b6bc",
     },
   },
   font: {
