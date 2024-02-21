@@ -1,8 +1,7 @@
 import { Paper, Center, Space, Flex } from "@mantine/core"
 import { CustomHeader } from "../Components/CustomHeader"
 import { customTheme } from "../customTheme"
-import { CustomFrontTile } from "../Components/CustomFrontTile"
-import { CustomBackTile } from "../Components/CustomBackTile"
+import { CustomTile } from "../Components/CustomTile"
 
 export const Index = () => {
   return (
@@ -33,22 +32,22 @@ export const Index = () => {
               <CustomCard />
               <CustomCard />
               <CustomCard /> */}
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
-              <CustomFrontTile />
-              <CustomBackTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
+              <CustomTile />
             </Flex>
           </Paper>
           <Space h="1%" />
