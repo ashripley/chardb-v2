@@ -9,6 +9,10 @@ interface CustomTheme {
       bgGray50: string
       bgGray75: string
       bgGray100: string
+      bgDarkGray25: string
+      bgDarkGray50: string
+      bgDarkGray75: string
+      bgDarkGray100: string
     }
     accents: {
       char: string
@@ -51,6 +55,10 @@ export const customTheme: CustomTheme = {
       bgGray50: "rgba(191, 191, 191, 0.50)",
       bgGray75: "rgba(191, 191, 191, 0.75)",
       bgGray100: "rgba(191, 191, 191)",
+      bgDarkGray25: "rgba(89, 89, 89, 0.25)",
+      bgDarkGray50: "rgba(89, 89, 89, 0.50)",
+      bgDarkGray75: "rgba(89, 89, 89, 0.75)",
+      bgDarkGray100: "rgba(89, 89, 89)",
     },
     accents: {
       char: "#ff8c00",

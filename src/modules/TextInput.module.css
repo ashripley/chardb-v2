@@ -1,0 +1,7 @@
+.textInput {
+  background-color: rgba(89, 89, 89, 0.75);
+  color: white;
+  &::placeholder {
+    color: var(--mantine-color-white);
+  }
+}

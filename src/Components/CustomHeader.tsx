@@ -1,4 +1,4 @@
-import { Flex, Paper, Space, Text, Divider, Title } from "@mantine/core"
+import { Flex, Paper, Space, Divider, Title } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
 import { customTheme } from "../customTheme"
 
