@@ -4,7 +4,6 @@ import { ViewSwitch } from "../Components/ViewSwitch"
 import { FilterSwitch } from "../Components/FilterSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
-import { PokedexTile } from "../Components/PokedexTile"
 import { CustomTile } from "../Components/CustomTile"
 
 export const Gallery = () => {

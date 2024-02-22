@@ -1,8 +1,10 @@
 import { Paper, Flex } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { StudioSwitch } from "../Components/StudioSwitch"
-import { CreateCard } from "../Components/CreateCard"
+import { CardStudio } from "../Components/CardStudio"
 import { CustomCard } from "../Components/CustomCard"
+import { DataStudio } from "../Components/DataStudio"
+import { DataCard } from "../Components/DataCard"
 
 export const Studio = () => {
   return (
@@ -33,12 +35,12 @@ export const Studio = () => {
             h="95%"
             bg={customTheme.colours.bg.bgGray25}
           >
-            <Flex w={"100%"}>
+            <Flex w={"100%"} h="100%" align={"center"}>
               <Flex w={"60%"}>
-                <CreateCard />
+                <DataStudio />
               </Flex>
-              <Flex w={"40%"}>
-                <CustomCard />
+              <Flex w={"40%"} h={"60%"}>
+                <DataCard />
               </Flex>
             </Flex>
           </Paper>
