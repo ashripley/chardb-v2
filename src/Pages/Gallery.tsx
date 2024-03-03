@@ -5,6 +5,8 @@ import { FilterSwitch } from "../Components/FilterSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
 import { CustomTile } from "../Components/CustomTile"
+import { CustomCard } from "../Components/CustomCard"
+import { CustomList } from "../Components/CustomList"
 
 export const Gallery = () => {
   const icon = (
@@ -16,7 +18,7 @@ export const Gallery = () => {
       <Flex direction={"row"} w={"100%"} h={"95%"}>
         <Flex
           w={"5%"}
-          h={"100%"}
+          h={"calc(100% - 75px)"}
           align={"center"}
           justify={"center"}
           miw={70}
@@ -24,13 +26,7 @@ export const Gallery = () => {
         >
           <ViewSwitch />
         </Flex>
-        <Flex
-          direction={"column"}
-          h={"100%"}
-          w={"90%"}
-          justify={"center"}
-          align={"center"}
-        >
+        <Flex direction={"column"} h={"100%"} w={"90%"} align={"center"}>
           <Paper
             radius="xl"
             p="lg"
@@ -124,7 +120,7 @@ export const Gallery = () => {
                   style={{ borderRadius: 35 }}
                 >
                   <Flex justify="space-evenly" wrap="wrap" gap={20}>
-                    <CustomTile />
+                    <CustomList />
                   </Flex>
                 </ScrollArea>
               </Flex>

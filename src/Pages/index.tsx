@@ -1,6 +1,7 @@
 import { Paper, Center, Flex } from "@mantine/core"
 import { CustomHeader } from "../Components/CustomHeader"
 import { Studio } from "./Studio"
+import { Gallery } from "./Gallery"
 
 export const Index = () => {
   return (
@@ -10,7 +11,7 @@ export const Index = () => {
           <Flex
             w={"90%"}
             maw={"95%"}
-            h={"5%"}
+            h="75"
             justify="flex-start"
             align="center"
             m={"auto"}

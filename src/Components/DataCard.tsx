@@ -16,6 +16,8 @@ export const DataCard = () => {
       <Card
         miw={400}
         mih={500}
+        w={"auto"}
+        h={"auto"}
         radius="xl"
         bg={customTheme.colours.bg.bgGray100}
       >
