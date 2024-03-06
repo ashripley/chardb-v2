@@ -6,7 +6,7 @@ export const FilterSwitch = () => {
     <SegmentedControl
       withItemsBorders={false}
       size="sm"
-      radius="lg"
+      radius="xl"
       defaultValue="name"
       bg={customTheme.colours.bg.bgGray75}
       color={customTheme.colours.bg.bgDarkGray75}

@@ -10,8 +10,9 @@ export const ViewSwitch = () => {
   const iconProps = {
     style: {
       width: rem(20),
-      height: rem(20),
-      display: "block",
+      height: rem(30),
+      display: "flex",
+      alignItems: "center",
     },
     stroke: 1.5,
   }
@@ -22,7 +23,7 @@ export const ViewSwitch = () => {
       withItemsBorders={false}
       size="sm"
       mih={100}
-      radius="lg"
+      radius="xl"
       defaultValue="grid"
       bg={customTheme.colours.bg.bgGray75}
       color={customTheme.colours.bg.bgDarkGray75}

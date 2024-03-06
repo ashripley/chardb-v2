@@ -15,7 +15,7 @@ export const Gallery = () => {
 
   return (
     <>
-      <Flex direction={"row"} w={"100%"} h={"95%"}>
+      <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"}>
         <Flex
           w={"5%"}
           h={"calc(100% - 75px)"}
@@ -121,6 +121,8 @@ export const Gallery = () => {
                 >
                   <Flex justify="space-evenly" wrap="wrap" gap={20}>
                     <CustomList />
+                    <CustomTile />
+                    <CustomCard />
                   </Flex>
                 </ScrollArea>
               </Flex>

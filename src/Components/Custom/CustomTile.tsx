@@ -13,7 +13,7 @@ import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { Carousel } from "@mantine/carousel"
-import classes from "../modules/Carousel.module.css"
+import classes from "../../modules/Carousel.module.css"
 
 interface Props {
   pokemon?: Record<string, any>
