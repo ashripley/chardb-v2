@@ -1,12 +1,12 @@
 import { Paper, Flex, ScrollArea, Button, TextInput, rem } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { ViewSwitch } from "../Components/ViewSwitch"
-import { FilterSwitch } from "../Components/FilterSwitch"
+import { ViewSwitch } from "../components/ViewSwitch"
+import { FilterSwitch } from "../components/FilterSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
-import { CustomTile } from "../Components/CustomTile"
-import { CustomCard } from "../Components/CustomCard"
-import { CustomList } from "../Components/CustomList"
+import { CustomTile } from "../components/Custom/CustomTile"
+import { CustomCard } from "../components/Custom/CustomCard"
+import { CustomList } from "../components/Custom/CustomList"
 
 export const Gallery = () => {
   const icon = (

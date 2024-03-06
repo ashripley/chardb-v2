@@ -1,6 +1,6 @@
 import { Flex, Paper, Space, Divider, Title } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { customTheme } from "../customTheme"
+import { customTheme } from "../../customTheme"
 
 interface Props {
   isCustomLabel?: boolean

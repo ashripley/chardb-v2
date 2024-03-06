@@ -1,11 +1,11 @@
 import { Paper, Flex } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { StudioSwitch } from "../Components/StudioSwitch"
-import { CardStudio } from "../Components/CardStudio"
-import { CustomCard } from "../Components/CustomCard"
-import { DataStudio } from "../Components/DataStudio"
-import { DataCard } from "../Components/DataCard"
-import { FilterSwitch } from "../Components/FilterSwitch"
+import { StudioSwitch } from "../components/StudioSwitch"
+import { CardStudio } from "../components/CardStudio"
+import { CustomCard } from "../components/Custom/CustomCard"
+import { DataStudio } from "../components/DataStudio"
+import { DataCard } from "../components/DataCard"
+import { FilterSwitch } from "../components/FilterSwitch"
 
 export const Studio = () => {
   return (

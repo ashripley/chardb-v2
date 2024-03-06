@@ -1,7 +1,6 @@
 import { Paper, Center, Flex } from "@mantine/core"
-import { CustomHeader } from "../Components/CustomHeader"
+import { CustomHeader } from "../components/Custom/CustomHeader"
 import { Studio } from "./Studio"
-import { Gallery } from "./Gallery"
 
 export const Index = () => {
   return (

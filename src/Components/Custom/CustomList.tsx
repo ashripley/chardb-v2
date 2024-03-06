@@ -11,7 +11,7 @@ import {
 import { IconFlame } from "@tabler/icons-react"
 import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
-import { customTheme } from "../customTheme"
+import { customTheme } from "../../customTheme"
 
 interface Props {
   pokemon?: Record<string, any>
