@@ -1,13 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { StudioViewType } from "../config"
 
-interface StoreState {}
+interface StoreState {
+  view: StudioViewType
+}
 
-const initialState: StoreState = {}
+const initialState: StoreState = {
+  view: "create",
+}
 
 export const studioSlice = createSlice({
   name: "studio",
   initialState,
-  reducers: {},
+  reducers: {
+    updateView: (state, action: PayloadAction<StoreState["view"]>) => {
+      state.view = action.payload
+    },
+  },
 })
 
 export const {} = studioSlice.actions

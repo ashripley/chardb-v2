@@ -1,9 +1,12 @@
 import { Paper, Center, Flex } from "@mantine/core"
 import { CustomHeader } from "../components/Custom/CustomHeader"
-import { Studio } from "./Studio"
 import { Gallery } from "./Gallery"
+import { useSelector } from "react-redux"
+import { RootStore } from "../redux/store"
 
 export const Index = () => {
+  const { app } = useSelector((state: RootStore) => state.root)
+
   return (
     <>
       <Center h="100vh" w={"100vw"} display={"block"}>
@@ -16,7 +19,7 @@ export const Index = () => {
             align="center"
             m={"auto"}
           >
-            <CustomHeader isCustomLabel customLabel="studio" />
+            <CustomHeader isCustomLabel customLabel={app} />
           </Flex>
           <Gallery />
           {/* <Studio /> */}

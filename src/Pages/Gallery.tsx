@@ -1,12 +1,13 @@
 import { Paper, Flex, ScrollArea, Button, TextInput, rem } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { ViewSwitch } from "../components/ViewSwitch"
-import { FilterSwitch } from "../components/FilterSwitch"
+import { SortSwitch } from "../components/SortSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
 import { CustomTile } from "../components/Custom/CustomTile"
 import { CustomCard } from "../components/Custom/CustomCard"
 import { CustomList } from "../components/Custom/CustomList"
+import { GalleryContent } from "../components/GalleryContent"
 
 export const Gallery = () => {
   const icon = (
@@ -120,9 +121,7 @@ export const Gallery = () => {
                   style={{ borderRadius: 35 }}
                 >
                   <Flex justify="space-evenly" wrap="wrap" gap={20}>
-                    <CustomList />
-                    <CustomTile />
-                    <CustomCard />
+                    <GalleryContent />
                   </Flex>
                 </ScrollArea>
               </Flex>
@@ -135,7 +134,7 @@ export const Gallery = () => {
             align={"center"}
             justify={"center"}
           >
-            <FilterSwitch />
+            <SortSwitch />
           </Flex>
         </Flex>
       </Flex>

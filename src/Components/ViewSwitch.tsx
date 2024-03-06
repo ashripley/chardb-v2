@@ -5,8 +5,13 @@ import {
   IconLayoutList,
 } from "@tabler/icons-react"
 import { customTheme } from "../customTheme"
+import { updateView } from "../redux/gallery"
+import { GalleryViewType } from "../config"
+import { useDispatch } from "react-redux"
 
 export const ViewSwitch = () => {
+  const dispatch = useDispatch()
+
   const iconProps = {
     style: {
       width: rem(20),
@@ -17,6 +22,9 @@ export const ViewSwitch = () => {
     stroke: 1.5,
   }
 
+  const onViewChange = (value: string) =>
+    dispatch(updateView(value as GalleryViewType))
+
   return (
     <SegmentedControl
       orientation="vertical"
@@ -24,12 +32,10 @@ export const ViewSwitch = () => {
       size="sm"
       mih={100}
       radius="xl"
-      defaultValue="grid"
+      defaultValue="card"
       bg={customTheme.colours.bg.bgGray75}
       color={customTheme.colours.bg.bgDarkGray75}
-      onChange={(value) => {
-        console.log("value", value)
-      }}
+      onChange={onViewChange}
       data={[
         {
           value: "tile",
@@ -41,11 +47,11 @@ export const ViewSwitch = () => {
           ),
         },
         {
-          value: "grid",
+          value: "card",
           label: (
             <>
               <IconLayoutGrid color="white" fill="white" {...iconProps} />
-              <VisuallyHidden>Grid</VisuallyHidden>
+              <VisuallyHidden>Card</VisuallyHidden>
             </>
           ),
         },

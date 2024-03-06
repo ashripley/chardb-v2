@@ -5,7 +5,7 @@ import { CardStudio } from "../components/CardStudio"
 import { CustomCard } from "../components/Custom/CustomCard"
 import { DataStudio } from "../components/DataStudio"
 import { DataCard } from "../components/DataCard"
-import { FilterSwitch } from "../components/FilterSwitch"
+import { SortSwitch } from "../components/SortSwitch"
 
 export const Studio = () => {
   return (
@@ -46,7 +46,7 @@ export const Studio = () => {
             align={"center"}
             justify={"center"}
           >
-            <FilterSwitch />
+            <SortSwitch />
           </Flex>
         </Flex>
       </Flex>

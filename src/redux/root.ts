@@ -1,15 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { AppType } from "../config"
 
-interface StoreState {}
+interface StoreState {
+  app: AppType
+}
 
-const initialState: StoreState = {}
+const initialState: StoreState = {
+  app: "gallery",
+}
 
 export const rootSlice = createSlice({
   name: "root",
   initialState,
-  reducers: {},
+  reducers: {
+    updateApp: (state, action: PayloadAction<StoreState["app"]>) => {
+      state.app = action.payload
+    },
+  },
 })
 
-export const {} = rootSlice.actions
+export const { updateApp } = rootSlice.actions
 
 export default rootSlice.reducer

@@ -1,15 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { GalleryViewType } from "../config"
 
-interface StoreState {}
+interface StoreState {
+  view: GalleryViewType
+}
 
-const initialState: StoreState = {}
+const initialState: StoreState = {
+  view: "card",
+}
 
 export const gallerySlice = createSlice({
   name: "gallery",
   initialState,
-  reducers: {},
+  reducers: {
+    updateView: (state, action: PayloadAction<StoreState["view"]>) => {
+      state.view = action.payload
+      console.log("action.payload", action.payload)
+    },
+  },
 })
 
-export const {} = gallerySlice.actions
+export const { updateView } = gallerySlice.actions
 
 export default gallerySlice.reducer
