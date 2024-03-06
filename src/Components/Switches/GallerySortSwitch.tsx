@@ -1,7 +1,7 @@
 import { SegmentedControl, Text } from "@mantine/core"
-import { customTheme } from "../customTheme"
+import { customTheme } from "../../customTheme"
 
-export const SortSwitch = () => {
+export const GallerySortSwitch = () => {
   return (
     <SegmentedControl
       withItemsBorders={false}

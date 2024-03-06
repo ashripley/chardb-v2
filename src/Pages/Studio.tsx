@@ -1,13 +1,17 @@
 import { Paper, Flex } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { StudioSwitch } from "../components/StudioSwitch"
+import { StudioSwitch } from "../components/Switches/StudioSwitch"
 import { CardStudio } from "../components/CardStudio"
 import { CustomCard } from "../components/Custom/CustomCard"
 import { DataStudio } from "../components/DataStudio"
 import { DataCard } from "../components/DataCard"
-import { SortSwitch } from "../components/SortSwitch"
+import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
+import { StudioStore } from "../redux/store"
+import { useSelector } from "react-redux"
 
 export const Studio = () => {
+  const { view } = useSelector((state: StudioStore) => state.studio)
+
   return (
     <>
       <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"}>
@@ -32,10 +36,26 @@ export const Studio = () => {
           >
             <Flex w={"100%"} h="100%" align={"center"}>
               <Flex w={"60%"}>
-                <DataStudio />
+                {view === "create" ? (
+                  <CardStudio />
+                ) : view === "update" ? (
+                  <CardStudio />
+                ) : view === "db" ? (
+                  <DataStudio />
+                ) : (
+                  <></>
+                )}
               </Flex>
-              <Flex w={"40%"} h={"60%"}>
-                <DataCard />
+              <Flex w={"40%"} h={"60%"} mih={550}>
+                {view === "create" ? (
+                  <CustomCard />
+                ) : view === "update" ? (
+                  <CustomCard />
+                ) : view === "db" ? (
+                  <DataCard />
+                ) : (
+                  <></>
+                )}
               </Flex>
             </Flex>
           </Paper>
@@ -46,7 +66,7 @@ export const Studio = () => {
             align={"center"}
             justify={"center"}
           >
-            <SortSwitch />
+            <GallerySortSwitch />
           </Flex>
         </Flex>
       </Flex>

@@ -1,7 +1,7 @@
 import { Paper, Flex, ScrollArea, Button, TextInput, rem } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { ViewSwitch } from "../components/ViewSwitch"
-import { SortSwitch } from "../components/SortSwitch"
+import { ViewSwitch } from "../components/Switches/ViewSwitch"
+import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
 import { CustomTile } from "../components/Custom/CustomTile"
@@ -134,7 +134,7 @@ export const Gallery = () => {
             align={"center"}
             justify={"center"}
           >
-            <SortSwitch />
+            <GallerySortSwitch />
           </Flex>
         </Flex>
       </Flex>

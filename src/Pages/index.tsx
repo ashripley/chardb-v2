@@ -3,6 +3,7 @@ import { CustomHeader } from "../components/Custom/CustomHeader"
 import { Gallery } from "./Gallery"
 import { useSelector } from "react-redux"
 import { RootStore } from "../redux/store"
+import { Studio } from "./Studio"
 
 export const Index = () => {
   const { app } = useSelector((state: RootStore) => state.root)
@@ -21,8 +22,7 @@ export const Index = () => {
           >
             <CustomHeader isCustomLabel customLabel={app} />
           </Flex>
-          <Gallery />
-          {/* <Studio /> */}
+          {app === "gallery" ? <Gallery /> : <Studio />}
         </Paper>
       </Center>
     </>

@@ -12,35 +12,19 @@ import { IconFlame } from "@tabler/icons-react"
 import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
+import { useSelector } from "react-redux"
+import { CardStore } from "../../redux/store"
 
-interface Props {
-  pokemon?: Record<string, any>
-  set?: string
-  setNumber?: string
-  typeOfCard?: string
-  condition?: string
-  year?: string
-  quantity?: string
-  isGraded?: boolean
-  grading?: string
-}
+export const CustomCard = () => {
+  const { tempPokemon } = useSelector((state: CardStore) => state.card)
+  const pokemon = tempPokemon
 
-export const CustomCard = ({
-  pokemon,
-  set,
-  setNumber,
-  typeOfCard,
-  condition,
-  year,
-  quantity,
-  isGraded,
-  grading,
-}: Props) => {
   return (
     <>
       <Card
         miw={350}
         mih={450}
+        maw={350}
         radius="xl"
         bg={pokemon?.type ?? customTheme.colours.bg.bgGray100}
       >
@@ -102,57 +86,54 @@ export const CustomCard = ({
           </Grid.Col>
           <Grid.Col span={12}>
             <Group w="100%" m="auto" p={15} gap={5}>
-              {pokemon?.type ? (
-                <Text c="white" w="100%">
-                  {pokemon?.type}
+              {pokemon?.set ? (
+                <Text c="white" w="100%" mih={25}>
+                  Set: <b>{pokemon.set}</b>
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="70%" color="white" />
+                  <Divider size="xl" w="90%" color="white" mih={25} />
                 </Flex>
               )}
-              {condition ? (
-                <Text c="white" w="100%">
-                  {condition}
+              {pokemon?.typeOfCard ? (
+                <Text c="white" w="100%" mih={25}>
+                  Type Of Card: <b>{pokemon.typeOfCard}</b>
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="50%" color="white" />
+                  <Divider size="xl" w="60%" color="white" mih={25} />
                 </Flex>
               )}
-              {typeOfCard ? (
-                <Text c="white" w="100%">
-                  {typeOfCard}
+              {pokemon?.condition ? (
+                <Text c="white" w="100%" mih={25}>
+                  Condition: <b>{pokemon.condition}</b>
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="60%" color="white" />
+                  <Divider size="xl" w="50%" color="white" mih={25} />
                 </Flex>
               )}
-              {set ? (
-                <Text c="white" w="100%">
-                  {set}
+              {pokemon?.quantity ? (
+                <Text c="white" w="100%" mih={25}>
+                  Quantity: <b>{pokemon.quantity}</b>
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="90%" color="white" />
+                  <Divider
+                    size="xl"
+                    w="60%"
+                    color="white"
+                    mih={25}
+                    display={"flex"}
+                  />
                 </Flex>
               )}
-              {quantity ? (
-                <Text c="white" w="100%">
-                  {quantity}
+              {pokemon?.isGraded && pokemon?.grading ? (
+                <Text c="white" w="100%" mih={25}>
+                  Grading: <b>{pokemon.grading}</b>
                 </Text>
               ) : (
-                <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="60%" color="white" />
-                </Flex>
-              )}
-              {isGraded ? (
-                <Text c="white" w="100%">
-                  {grading}
-                </Text>
-              ) : (
-                <Divider size="xl" w="40%" color="white" />
+                <Divider size="xl" w="40%" color="white" mih={25} />
               )}
             </Group>
           </Grid.Col>
@@ -165,24 +146,24 @@ export const CustomCard = ({
               p={15}
               align="center"
             >
-              {pokemon?.id ? (
+              {pokemon?.name ? (
                 <Text c="white" w="100%">
-                  Pokemon
+                  3
                 </Text>
               ) : (
                 <Divider size="xl" w="30%" color="white" />
               )}
-              {year ? (
+              {pokemon?.year ? (
                 <Text c="white" w="100%">
-                  Pokemon
+                  {pokemon.year}
                 </Text>
               ) : (
                 <Divider size="xl" w="30%" color="white" />
               )}
-              {setNumber ? (
+              {pokemon?.setNumber ? (
                 <Flex align="center">
-                  <Text c="white">12</Text>
-                  <Text c="white">/84</Text>
+                  <Text c="white">{pokemon.setNumber}</Text>
+                  <Text c="white">{pokemon.setNumber && "/" + 83}</Text>
                   <Space w={10} />
                   <IconCircleFilled
                     width={10}

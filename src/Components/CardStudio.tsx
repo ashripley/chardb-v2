@@ -11,10 +11,13 @@ import {
 import classes from "../modules/Select.module.css"
 import numberClasses from "../modules/NumberInput.module.css"
 import { customTheme } from "../customTheme"
-import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { updatePokemon } from "../redux/card"
+import { CardStore } from "../redux/store"
 
 export const CardStudio = () => {
-  const [isGraded, setIsGraded] = useState(false)
+  const { tempPokemon } = useSelector((state: CardStore) => state.card)
+  const dispatch = useDispatch()
 
   return (
     <Center h={"100%"} w={"100%"}>
@@ -43,6 +46,7 @@ export const CardStudio = () => {
               rightSection
               variant="filled"
               classNames={{ input: classes.input }}
+              onChange={(val) => dispatch(updatePokemon({ name: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -55,6 +59,7 @@ export const CardStudio = () => {
               variant="filled"
               w={"45%"}
               classNames={{ input: classes.input }}
+              onChange={(val) => dispatch(updatePokemon({ set: val }))}
             />
             <NumberInput
               variant="filled"
@@ -63,6 +68,7 @@ export const CardStudio = () => {
               placeholder="Set Number"
               classNames={{ input: numberClasses.input }}
               hideControls
+              onChange={(val) => dispatch(updatePokemon({ setNumber: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -75,6 +81,7 @@ export const CardStudio = () => {
               rightSection
               variant="filled"
               classNames={{ input: classes.input }}
+              onChange={(val) => dispatch(updatePokemon({ typeOfCard: val }))}
             />
             <Select
               placeholder="Condition"
@@ -85,6 +92,7 @@ export const CardStudio = () => {
               rightSection
               variant="filled"
               classNames={{ input: classes.input }}
+              onChange={(val) => dispatch(updatePokemon({ condition: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -95,6 +103,7 @@ export const CardStudio = () => {
               classNames={{ input: numberClasses.input }}
               w={"45%"}
               hideControls
+              onChange={(val) => dispatch(updatePokemon({ year: val }))}
             />
             <NumberInput
               variant="filled"
@@ -103,6 +112,7 @@ export const CardStudio = () => {
               classNames={{ input: numberClasses.input }}
               w={"45%"}
               hideControls
+              onChange={(val) => dispatch(updatePokemon({ quantity: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -113,10 +123,12 @@ export const CardStudio = () => {
               label="Graded?"
               size="md"
               w={"45%"}
-              onChange={() => setIsGraded(!isGraded)}
+              onChange={(val) =>
+                dispatch(updatePokemon({ isGraded: val.target.checked }))
+              }
               h={"100%"}
             />
-            {isGraded && (
+            {tempPokemon?.isGraded && (
               <NumberInput
                 variant="filled"
                 radius="lg"
@@ -124,6 +136,7 @@ export const CardStudio = () => {
                 classNames={{ input: numberClasses.input }}
                 w={"45%"}
                 hideControls
+                onChange={(val) => dispatch(updatePokemon({ grading: val }))}
               />
             )}
           </Flex>

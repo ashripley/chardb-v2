@@ -4,9 +4,9 @@ import {
   IconLayoutGrid,
   IconLayoutList,
 } from "@tabler/icons-react"
-import { customTheme } from "../customTheme"
-import { updateView } from "../redux/gallery"
-import { GalleryViewType } from "../config"
+import { customTheme } from "../../customTheme"
+import { updateView } from "../../redux/gallery"
+import { GalleryViewType } from "../../config"
 import { useDispatch } from "react-redux"
 
 export const ViewSwitch = () => {

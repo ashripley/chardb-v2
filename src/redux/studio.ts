@@ -19,6 +19,6 @@ export const studioSlice = createSlice({
   },
 })
 
-export const {} = studioSlice.actions
+export const { updateView } = studioSlice.actions
 
 export default studioSlice.reducer

@@ -1,8 +1,13 @@
 import { SegmentedControl, VisuallyHidden, rem } from "@mantine/core"
 import { IconPlus, IconReload, IconDatabase } from "@tabler/icons-react"
-import { customTheme } from "../customTheme"
+import { customTheme } from "../../customTheme"
+import { useDispatch } from "react-redux"
+import { updateView } from "../../redux/studio"
+import { StudioViewType } from "../../config"
 
 export const StudioSwitch = () => {
+  const dispatch = useDispatch()
+
   const iconProps = {
     style: {
       width: rem(20),
@@ -22,9 +27,7 @@ export const StudioSwitch = () => {
       defaultValue="create"
       bg={customTheme.colours.bg.bgGray75}
       color={customTheme.colours.bg.bgDarkGray75}
-      onChange={(value) => {
-        console.log("value", value)
-      }}
+      onChange={(value) => dispatch(updateView(value as StudioViewType))}
       data={[
         {
           value: "create",

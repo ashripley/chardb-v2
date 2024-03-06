@@ -6,7 +6,7 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-  app: "gallery",
+  app: "studio",
 }
 
 export const rootSlice = createSlice({
