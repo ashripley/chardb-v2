@@ -2,7 +2,7 @@ import { Paper, Flex } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { StudioSwitch } from "../components/Switches/StudioSwitch"
 import { CardStudio } from "../components/CardStudio"
-import { CustomCard } from "../components/Custom/CustomCard"
+import { StudioCard } from "../components/Custom/StudioCard"
 import { DataStudio } from "../components/DataStudio"
 import { DataCard } from "../components/DataCard"
 import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
@@ -62,9 +62,9 @@ export const Studio = () => {
               </Flex>
               <Flex w={"40%"} h={550}>
                 {view === "create" ? (
-                  <CustomCard />
+                  <StudioCard />
                 ) : view === "update" ? (
-                  <CustomCard />
+                  <StudioCard />
                 ) : view === "db" ? (
                   <DataCard />
                 ) : (

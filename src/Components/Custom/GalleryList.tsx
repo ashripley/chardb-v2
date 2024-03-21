@@ -25,7 +25,7 @@ interface Props {
   grading?: string
 }
 
-export const CustomList = ({
+export const GalleryList = ({
   pokemon,
   set,
   setNumber,

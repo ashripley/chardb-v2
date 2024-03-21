@@ -1,49 +1,23 @@
-// Pokemon Type Colours
-// interface CustomTheme {
-//   colours: {
-//     font: {
-//       primary: string
-//     }
-//     bg: {
-//       bgGray25: string
-//       bgGray50: string
-//       bgGray75: string
-//       bgGray100: string
-//       bgDarkGray25: string
-//       bgDarkGray50: string
-//       bgDarkGray75: string
-//       bgDarkGray100: string
-//     }
-//     accents: {
-//       char: string
-//       bulb: string
-//       squir: string
-//     }
-//     types: {
-//       normal: string
-//       fire: string
-//       water: string
-//       grass: string
-//       electric: string
-//       ice: string
-//       fighting: string
-//       poison: string
-//       ground: string
-//       flying: string
-//       psychic: string
-//       bug: string
-//       rock: string
-//       ghost: string
-//       dragon: string
-//       dark: string
-//       steel: string
-//       fairy: string
-//     }
-//   }
-//   font: {
-//     primary: string
-//   }
-// }
+import {
+  IconDroplet,
+  IconFlame,
+  IconCircle,
+  IconLeaf,
+  IconBolt,
+  IconSnowflake,
+  IconHandGrab,
+  IconHexagons,
+  IconWorldLatitude,
+  IconFeather,
+  IconBug,
+  IconHexagon,
+  IconGhost2,
+  IconBat,
+  IconComet,
+  IconMoonStars,
+  IconSparkles,
+  IconEye,
+} from "@tabler/icons-react"
 
 export const customTheme: Record<string, any> = {
   colours: {
@@ -89,5 +63,25 @@ export const customTheme: Record<string, any> = {
   font: {
     primary:
       "ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif",
+  },
+  icons: {
+    normal: IconCircle,
+    fire: IconFlame,
+    water: IconDroplet,
+    grass: IconLeaf,
+    electric: IconBolt,
+    ice: IconSnowflake,
+    fighting: IconHandGrab,
+    poison: IconHexagons,
+    ground: IconWorldLatitude,
+    flying: IconFeather,
+    psychic: IconEye,
+    bug: IconBug,
+    rock: IconHexagon,
+    ghost: IconGhost2,
+    dragon: IconBat,
+    dark: IconMoonStars,
+    steel: IconComet,
+    fairy: IconSparkles,
   },
 }

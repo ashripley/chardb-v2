@@ -15,8 +15,9 @@ import { customTheme } from "../../customTheme"
 import { useSelector } from "react-redux"
 import { CardStore } from "../../redux/store"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
+import { createElement } from "react"
 
-export const CustomCard = () => {
+export const StudioCard = () => {
   const { tempPokemon } = useSelector((state: CardStore) => state.card)
   const pokemon = tempPokemon
 
@@ -48,14 +49,18 @@ export const CustomCard = () => {
               >
                 <Flex justify="center" align="center" h={"100%"} w={"100%"}>
                   {pokemon?.type ? (
+                    createElement(customTheme.icons[pokemon.type], {
+                      style: { width: 20, height: 20 },
+                      stroke: 1.5,
+                      color: customTheme.colours.types[pokemon.type],
+                    })
+                  ) : (
                     <IconFlame
                       style={{ width: 25, height: 25 }}
                       stroke={1.5}
                       color="var(--mantine-color-white)"
-                      fill={customTheme.colours.types[pokemon?.type]}
+                      fill={customTheme.colours.bg.bgGray100}
                     />
-                  ) : (
-                    <></>
                   )}
                 </Flex>
               </Paper>

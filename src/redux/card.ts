@@ -2,10 +2,12 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 interface StoreState {
   tempPokemon: Record<string, any> | null
+  cards: Record<string, any>[]
 }
 
 const initialState: StoreState = {
   tempPokemon: {},
+  cards: [],
 }
 
 export const cardSlice = createSlice({
@@ -16,13 +18,14 @@ export const cardSlice = createSlice({
       state,
       action: PayloadAction<StoreState["tempPokemon"]>
     ) => {
-      console.log("action.payload", action.payload)
       state.tempPokemon = { ...state.tempPokemon, ...action.payload }
-      console.log("state.tempPokemon", state.tempPokemon)
+    },
+    setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
+      state.cards = action.payload
     },
   },
 })
 
-export const { updatePokemon } = cardSlice.actions
+export const { updatePokemon, setCards } = cardSlice.actions
 
 export default cardSlice.reducer

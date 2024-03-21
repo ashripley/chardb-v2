@@ -4,12 +4,34 @@ import { ViewSwitch } from "../components/Switches/ViewSwitch"
 import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
-import { CustomTile } from "../components/Custom/CustomTile"
-import { CustomCard } from "../components/Custom/CustomCard"
-import { CustomList } from "../components/Custom/CustomList"
 import { GalleryContent } from "../components/GalleryContent"
+import { useEffect } from "react"
+import { allCards } from "../api/queries/allCards"
+import { useDispatch } from "react-redux"
+import { setCards } from "../redux/card"
 
 export const Gallery = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    fetchPokemonCards()
+  }, [])
+
+  const fetchPokemonCards = async () => {
+    let mappedCardsArray: Record<string, any>[] = []
+    const cards = await allCards()
+
+    Object.entries(cards[0]).forEach(
+      ([key, value]) =>
+        (mappedCardsArray = [
+          ...mappedCardsArray,
+          { ["cardId"]: key, ...value },
+        ])
+    )
+
+    dispatch(setCards(mappedCardsArray))
+  }
+
   const icon = (
     <IconSearch style={{ width: rem(15), height: rem(15) }} color="white" />
   )

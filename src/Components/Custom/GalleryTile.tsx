@@ -27,7 +27,7 @@ interface Props {
   grading?: string
 }
 
-export const CustomTile = ({
+export const GalleryTile = ({
   pokemon,
   set,
   setNumber,

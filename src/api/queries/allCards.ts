@@ -1,7 +1,7 @@
 import { collection, getDocs, query } from "firebase/firestore"
 import { firestore } from "../../services/firebase.config"
 
-export const AllCards = async () => {
+export const allCards = async () => {
   let snapshot: Record<string, any>[] = []
 
   const ref = await collection(firestore, "cards")

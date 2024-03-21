@@ -1,68 +1,30 @@
 import { useSelector } from "react-redux"
-import { GalleryStore } from "../redux/store"
-import { CustomCard } from "./Custom/CustomCard"
-import { CustomTile } from "./Custom/CustomTile"
-import { CustomList } from "./Custom/CustomList"
+import { CardStore, GalleryStore } from "../redux/store"
+import { GalleryTile } from "./Custom/GalleryTile"
+import { GalleryList } from "./Custom/GalleryList"
+import { GalleryCard } from "./Custom/GalleryCard"
 
 export const GalleryContent = () => {
   const { view } = useSelector((state: GalleryStore) => state.gallery)
+  const { cards } = useSelector((state: CardStore) => state.card)
+
+  console.log("cards", cards)
+
   return (
     <>
       {view === "card" ? (
         <>
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
-          <CustomCard />
+          {cards.map((card: Record<string, any>, index: number) => (
+            <GalleryCard key={index} card={card} />
+          ))}
         </>
       ) : view === "tile" ? (
         <>
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
-          <CustomTile />
+          <GalleryTile />
         </>
       ) : (
         <>
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
-          <CustomList />
+          <GalleryList />
         </>
       )}
     </>
