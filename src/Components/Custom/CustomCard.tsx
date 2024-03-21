@@ -14,6 +14,7 @@ import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { useSelector } from "react-redux"
 import { CardStore } from "../../redux/store"
+import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 
 export const CustomCard = () => {
   const { tempPokemon } = useSelector((state: CardStore) => state.card)
@@ -26,13 +27,16 @@ export const CustomCard = () => {
         mih={450}
         maw={350}
         radius="xl"
-        bg={pokemon?.type ?? customTheme.colours.bg.bgGray100}
+        bg={
+          customTheme.colours.types[pokemon?.type] ??
+          customTheme.colours.bg.bgGray100
+        }
       >
         <Grid w={"100%"}>
           <Grid.Col span={12}>
             <Flex justify="space-between" align="center" w="90%" m="auto">
               {pokemon?.name ? (
-                <Text c="white">{pokemon?.name}</Text>
+                <Text c="white">{upperCaseFirst(pokemon?.name)}</Text>
               ) : (
                 <Divider size="xl" w="40%" color="white" />
               )}
@@ -48,8 +52,7 @@ export const CustomCard = () => {
                       style={{ width: 25, height: 25 }}
                       stroke={1.5}
                       color="var(--mantine-color-white)"
-                      fill="white"
-                      fillOpacity={0.5}
+                      fill={customTheme.colours.types[pokemon?.type]}
                     />
                   ) : (
                     <></>
@@ -63,14 +66,14 @@ export const CustomCard = () => {
               <Flex direction="column" h="100%" justify={"center"}>
                 <Card h="90%" radius="lg" m="auto" top={5}>
                   {pokemon?.image ? (
+                    <img src={pokemon?.image} width={100} height={100} />
+                  ) : (
                     <IconFlame
                       width={100}
                       height={100}
                       stroke={1}
                       color={customTheme.colours.bg.bgGray100}
                     />
-                  ) : (
-                    <></>
                   )}
                 </Card>
                 <Flex h="10%" w="100%" justify={"flex-end"} align={"center"}>
@@ -146,9 +149,9 @@ export const CustomCard = () => {
               p={15}
               align="center"
             >
-              {pokemon?.name ? (
+              {pokemon?.id ? (
                 <Text c="white" w="100%">
-                  3
+                  #{pokemon.id}
                 </Text>
               ) : (
                 <Divider size="xl" w="30%" color="white" />

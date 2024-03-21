@@ -1,51 +1,51 @@
 // Pokemon Type Colours
-interface CustomTheme {
-  colours: {
-    font: {
-      primary: string
-    }
-    bg: {
-      bgGray25: string
-      bgGray50: string
-      bgGray75: string
-      bgGray100: string
-      bgDarkGray25: string
-      bgDarkGray50: string
-      bgDarkGray75: string
-      bgDarkGray100: string
-    }
-    accents: {
-      char: string
-      bulb: string
-      squir: string
-    }
-    types: {
-      normal: string
-      fire: string
-      water: string
-      grass: string
-      electric: string
-      ice: string
-      fighting: string
-      poison: string
-      ground: string
-      flying: string
-      psychic: string
-      bug: string
-      rock: string
-      ghost: string
-      dragon: string
-      dark: string
-      steel: string
-      fairy: string
-    }
-  }
-  font: {
-    primary: string
-  }
-}
+// interface CustomTheme {
+//   colours: {
+//     font: {
+//       primary: string
+//     }
+//     bg: {
+//       bgGray25: string
+//       bgGray50: string
+//       bgGray75: string
+//       bgGray100: string
+//       bgDarkGray25: string
+//       bgDarkGray50: string
+//       bgDarkGray75: string
+//       bgDarkGray100: string
+//     }
+//     accents: {
+//       char: string
+//       bulb: string
+//       squir: string
+//     }
+//     types: {
+//       normal: string
+//       fire: string
+//       water: string
+//       grass: string
+//       electric: string
+//       ice: string
+//       fighting: string
+//       poison: string
+//       ground: string
+//       flying: string
+//       psychic: string
+//       bug: string
+//       rock: string
+//       ghost: string
+//       dragon: string
+//       dark: string
+//       steel: string
+//       fairy: string
+//     }
+//   }
+//   font: {
+//     primary: string
+//   }
+// }
 
-export const customTheme: CustomTheme = {
+export const customTheme: Record<string, any> = {
   colours: {
     font: {
       primary: "#595959",

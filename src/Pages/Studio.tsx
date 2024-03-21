@@ -7,10 +7,24 @@ import { DataStudio } from "../components/DataStudio"
 import { DataCard } from "../components/DataCard"
 import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import { StudioStore } from "../redux/store"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { AllPokemon } from "../api/queries/allPokemon"
+import { setAllPokemon } from "../redux/studio"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    fetchPokemonData()
+  }, [])
+
+  const fetchPokemonData = async () => {
+    const fetchedPokemonData = await AllPokemon()
+
+    dispatch(setAllPokemon(fetchedPokemonData))
+  }
 
   return (
     <>
@@ -46,7 +60,7 @@ export const Studio = () => {
                   <></>
                 )}
               </Flex>
-              <Flex w={"40%"} h={"60%"} mih={550}>
+              <Flex w={"40%"} h={550}>
                 {view === "create" ? (
                   <CustomCard />
                 ) : view === "update" ? (

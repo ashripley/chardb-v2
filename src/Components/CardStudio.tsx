@@ -10,14 +10,44 @@ import {
 } from "@mantine/core"
 import classes from "../modules/Select.module.css"
 import numberClasses from "../modules/NumberInput.module.css"
-import { customTheme } from "../customTheme"
 import { useDispatch, useSelector } from "react-redux"
 import { updatePokemon } from "../redux/card"
-import { CardStore } from "../redux/store"
+import { CardStore, StudioStore } from "../redux/store"
+import { useState } from "react"
+import { upperCaseFirst } from "../helpers/upperCaseFirst"
+import { customTheme } from "../customTheme"
+import { addPokemonCard } from "../api/mutations/addCard"
 
 export const CardStudio = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const { tempPokemon } = useSelector((state: CardStore) => state.card)
+  const { allPokemon } = useSelector((state: StudioStore) => state.studio)
   const dispatch = useDispatch()
+
+  const pokemonNames = Object.keys(allPokemon)
+    .map((name) => upperCaseFirst(name))
+    .sort()
+
+  const onPokemonChange = (val: any) => {
+    console.log("val", val)
+
+    dispatch(updatePokemon({ ...allPokemon[val?.toLowerCase()] }))
+  }
+
+  const onCreate = async () => {
+    try {
+      setIsLoading(true)
+      // mutate the created card
+      console.log("tempPokemon", tempPokemon)
+      if (tempPokemon) {
+        await addPokemonCard(tempPokemon)
+      } else return
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <Center h={"100%"} w={"100%"}>
@@ -39,14 +69,14 @@ export const CardStudio = () => {
           <Flex w={"100%"}>
             <Select
               placeholder="Name"
-              data={["Bulbasaur", "Squirtle", "Charmander", "Pikachu"]}
+              data={pokemonNames}
               searchable
               radius={"lg"}
               w={"100%"}
               rightSection
               variant="filled"
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ name: val }))}
+              onChange={onPokemonChange}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -153,6 +183,12 @@ export const CardStudio = () => {
               label: {
                 color: customTheme.colours.bg.bgDarkGray100,
               },
+            }}
+            onClick={onCreate}
+            loading={isLoading}
+            loaderProps={{
+              type: "dots",
+              color: customTheme.colours.accents.char,
             }}
           >
             Create
