@@ -73,12 +73,7 @@ export const StudioCard = () => {
                   {pokemon?.image ? (
                     <img src={pokemon?.image} width={100} height={100} />
                   ) : (
-                    <IconFlame
-                      width={100}
-                      height={100}
-                      stroke={1}
-                      color={customTheme.colours.bg.bgGray100}
-                    />
+                    <></>
                   )}
                 </Card>
                 <Flex h="10%" w="100%" justify={"flex-end"} align={"center"}>

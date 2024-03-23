@@ -25,6 +25,7 @@ export const customTheme: Record<string, any> = {
       primary: "#595959",
     },
     bg: {
+      bgGray15: "rgba(191, 191, 191, 0.15)",
       bgGray25: "rgba(191, 191, 191, 0.25)",
       bgGray50: "rgba(191, 191, 191, 0.50)",
       bgGray75: "rgba(191, 191, 191, 0.75)",

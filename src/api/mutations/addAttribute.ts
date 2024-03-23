@@ -6,7 +6,6 @@ export const AddAttributeMutation = async (
   attribute: string,
   attributeObj: Record<string, any>
 ) => {
-  console.log("add att mutation")
   const uuid = uuidv4()
   const attributeRef = doc(firestore, "attributes", "data")
 

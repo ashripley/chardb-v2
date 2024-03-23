@@ -19,8 +19,6 @@ export const studioSlice = createSlice({
       state.view = action.payload
     },
     setAllPokemon: (state, action: PayloadAction<StoreState["allPokemon"]>) => {
-      console.log("state.allPokemon", state.allPokemon)
-      console.log("action.payload: all pokemon: ", action.payload)
       state.allPokemon = action.payload
     },
   },

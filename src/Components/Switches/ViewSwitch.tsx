@@ -15,9 +15,8 @@ export const ViewSwitch = () => {
   const iconProps = {
     style: {
       width: rem(20),
-      height: rem(30),
-      display: "flex",
-      alignItems: "center",
+      height: rem(20),
+      display: "block",
     },
     stroke: 1.5,
   }
@@ -27,13 +26,13 @@ export const ViewSwitch = () => {
 
   return (
     <SegmentedControl
-      orientation="vertical"
+      orientation="horizontal"
       withItemsBorders={false}
       size="sm"
-      mih={100}
+      w={"100%"}
       radius="xl"
       defaultValue="card"
-      bg={customTheme.colours.bg.bgGray75}
+      bg={"transparent"}
       color={customTheme.colours.bg.bgDarkGray75}
       onChange={onViewChange}
       data={[

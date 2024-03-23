@@ -39,7 +39,7 @@ export const GalleryList = ({
   return (
     <>
       <Card
-        w={"90%"}
+        w={"100%"}
         mih={120}
         h={"auto"}
         radius="xl"

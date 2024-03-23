@@ -1,29 +1,35 @@
-import { Flex, Paper, Space, Divider, Title } from "@mantine/core"
+import { Button, Chip, Flex, Group, Paper, Space } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
+import { useDispatch, useSelector } from "react-redux"
+import { RootStore } from "../../redux/store"
+import { updateApp } from "../../redux/root"
+import { AppType } from "../../config"
+import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 
-interface Props {
-  isCustomLabel?: boolean
-  customLabel?: string
-}
+export const CustomHeader = () => {
+  const apps = ["Gallery", "Studio", "Dashboard"]
+  const { app } = useSelector((state: RootStore) => state.root)
+  const dispatch = useDispatch()
 
-export const CustomHeader = ({ isCustomLabel, customLabel }: Props) => {
+  const onAppChange = (name: AppType) => {
+    console.log("name", name)
+    console.log("app", app)
+    dispatch(updateApp(name))
+  }
+
   return (
     <Paper
       radius="xl"
       p="xs"
       w={"auto"}
       h={"auto"}
-      // bg={customTheme.colours.bg.bgGray25}
       display="flex"
+      style={{ alignItems: "center" }}
     >
+      <Space w={10} />
       <Flex justify="flex-start" align="center" h={"100%"}>
-        <Paper
-          h={30}
-          w={30}
-          // bg={customTheme.colours.font.primary}
-          radius={"xl"}
-        >
+        <Paper h={30} w={30} radius={"xl"}>
           <Flex justify="center" align="center" h={"100%"} w={"100%"}>
             <IconFlame
               width={25}
@@ -35,29 +41,26 @@ export const CustomHeader = ({ isCustomLabel, customLabel }: Props) => {
           </Flex>
         </Paper>
       </Flex>
-      <Space w={10} />
-      <Flex justify="flex-start" align="baseline" h={"100%"} w={"100%"}>
-        <Title size="h3" fw={600} c={customTheme.colours.accents.char}>
-          char
-        </Title>
-        <Title size="h3" fw={600} c={customTheme.colours.font.primary}>
-          db
-        </Title>
-        {isCustomLabel && (
+      <Space w={25} />
+      <Flex justify="flex-start" h={"100%"} w={"100%"}>
+        {apps.map((appName: string, index: number) => (
           <>
-            <Space w={10} />
-            <Divider size="sm" orientation="vertical" />
-            <Space w={10} />
-            <Title
-              size="h4"
+            <Button
+              fz={14}
               fw={500}
-              c={customTheme.colours.font.primary}
-              tt="uppercase"
+              c={appName === app ? "white" : customTheme.colours.font.primary}
+              key={index}
+              variant={appName === app ? "filled" : "transparent"}
+              color={customTheme.colours.bg.bgDarkGray75}
+              radius={"xl"}
+              value={appName}
+              onClick={() => onAppChange(upperCaseFirst(appName) as AppType)}
             >
-              {customLabel}
-            </Title>
+              {appName}
+            </Button>
+            <Space w={25} />
           </>
-        )}
+        ))}
       </Flex>
     </Paper>
   )

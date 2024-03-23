@@ -46,6 +46,7 @@ export const CardStudio = () => {
       console.error(e)
     } finally {
       setIsLoading(false)
+      dispatch(updatePokemon({}))
     }
   }
 

@@ -1,13 +1,4 @@
-import {
-  Card,
-  Divider,
-  Flex,
-  Grid,
-  Group,
-  Paper,
-  Space,
-  Text,
-} from "@mantine/core"
+import { Card, Flex, Grid, Group, Paper, Space, Text } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
 import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
@@ -35,8 +26,6 @@ export const GalleryCard = ({ card }: Props) => {
     year,
   } = card
 
-  console.log("card", card)
-
   return (
     <>
       <Card
@@ -49,11 +38,7 @@ export const GalleryCard = ({ card }: Props) => {
         <Grid w={"100%"}>
           <Grid.Col span={12}>
             <Flex justify="space-between" align="center" w="90%" m="auto">
-              {name ? (
-                <Text c="white">{upperCaseFirst(name)}</Text>
-              ) : (
-                <Divider size="xl" w="40%" color="white" />
-              )}
+              <Text c="white">{upperCaseFirst(name)}</Text>
               <Paper
                 h={30}
                 w={30}
@@ -84,7 +69,7 @@ export const GalleryCard = ({ card }: Props) => {
               <Flex direction="column" h="100%" justify={"center"}>
                 <Card h="90%" radius="lg" m="auto" top={5}>
                   {image ? (
-                    <img src={image} width={100} height={100} />
+                    <img src={image} width={125} height={125} />
                   ) : (
                     <IconFlame
                       width={100}
@@ -107,54 +92,22 @@ export const GalleryCard = ({ card }: Props) => {
           </Grid.Col>
           <Grid.Col span={12}>
             <Group w="100%" m="auto" p={15} gap={5}>
-              {set ? (
-                <Text c="white" w="100%" mih={25}>
-                  Set: <b>{set}</b>
-                </Text>
-              ) : (
-                <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="90%" color="white" mih={25} />
-                </Flex>
-              )}
-              {typeOfCard ? (
-                <Text c="white" w="100%" mih={25}>
-                  Type Of Card: <b>{typeOfCard}</b>
-                </Text>
-              ) : (
-                <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="60%" color="white" mih={25} />
-                </Flex>
-              )}
-              {condition ? (
-                <Text c="white" w="100%" mih={25}>
-                  Condition: <b>{condition}</b>
-                </Text>
-              ) : (
-                <Flex w="100%" mih={25}>
-                  <Divider size="xl" w="50%" color="white" mih={25} />
-                </Flex>
-              )}
-              {quantity ? (
-                <Text c="white" w="100%" mih={25}>
-                  Quantity: <b>{quantity}</b>
-                </Text>
-              ) : (
-                <Flex w="100%" mih={25}>
-                  <Divider
-                    size="xl"
-                    w="60%"
-                    color="white"
-                    mih={25}
-                    display={"flex"}
-                  />
-                </Flex>
-              )}
-              {isGraded && grading ? (
+              <Text c="white" w="100%" mih={25}>
+                Set: <b>{set}</b>
+              </Text>
+              <Text c="white" w="100%" mih={25}>
+                Type Of Card: <b>{typeOfCard}</b>
+              </Text>
+              <Text c="white" w="100%" mih={25}>
+                Condition: <b>{condition}</b>
+              </Text>
+              <Text c="white" w="100%" mih={25}>
+                Quantity: <b>{quantity}</b>
+              </Text>
+              {isGraded && (
                 <Text c="white" w="100%" mih={25}>
                   Grading: <b>{grading}</b>
                 </Text>
-              ) : (
-                <Divider size="xl" w="40%" color="white" mih={25} />
               )}
             </Group>
           </Grid.Col>
@@ -167,34 +120,22 @@ export const GalleryCard = ({ card }: Props) => {
               p={15}
               align="center"
             >
-              {id ? (
-                <Text c="white" w="100%">
-                  #{id}
-                </Text>
-              ) : (
-                <Divider size="xl" w="30%" color="white" />
-              )}
-              {year ? (
-                <Text c="white" w="100%">
-                  {year}
-                </Text>
-              ) : (
-                <Divider size="xl" w="30%" color="white" />
-              )}
-              {setNumber ? (
-                <Flex align="center">
-                  <Text c="white">{setNumber}</Text>
-                  <Text c="white">{setNumber && "/" + 83}</Text>
-                  <Space w={10} />
-                  <IconCircleFilled
-                    width={10}
-                    height={10}
-                    style={{ color: "white" }}
-                  />
-                </Flex>
-              ) : (
-                <Divider size="xl" w="30%" color="white" />
-              )}
+              <Text c="white" w="100%">
+                #{id}
+              </Text>
+              <Text c="white" w="100%">
+                {year}
+              </Text>
+              <Flex align="center">
+                <Text c="white">{setNumber}</Text>
+                <Text c="white">{setNumber && "/" + 83}</Text>
+                <Space w={10} />
+                <IconCircleFilled
+                  width={10}
+                  height={10}
+                  style={{ color: "white" }}
+                />
+              </Flex>
             </Flex>
           </Grid.Col>
         </Grid>

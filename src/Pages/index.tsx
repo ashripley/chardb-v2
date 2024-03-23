@@ -4,25 +4,36 @@ import { Gallery } from "./Gallery"
 import { useSelector } from "react-redux"
 import { RootStore } from "../redux/store"
 import { Studio } from "./Studio"
+import { customTheme } from "../customTheme"
 
 export const Index = () => {
   const { app } = useSelector((state: RootStore) => state.root)
 
+  const apps: Record<string, JSX.Element> = {
+    Gallery: <Gallery />,
+    Studio: <Studio />,
+    // Dashboard: <Dashboard />
+  }
+
+  console.log("app", app)
+  console.log("apps", apps)
+  console.log("apps[app]", apps[app])
+
   return (
     <>
       <Center h="100vh" w={"100vw"} display={"block"}>
-        <Paper p="sm" m="auto" w={"100%"} h={"100%"} mah={"100%"}>
-          <Flex
-            w={"90%"}
-            maw={"95%"}
-            h={75}
-            justify="flex-start"
-            align="center"
-            m={"auto"}
-          >
-            <CustomHeader isCustomLabel customLabel={app} />
+        <Paper
+          p="sm"
+          m="auto"
+          w={"100%"}
+          h={"100%"}
+          mah={"100%"}
+          bg={customTheme.colours.bg.bgGray15}
+        >
+          <Flex w={"95%"} h={75} justify="center" align="center" m={"auto"}>
+            <CustomHeader />
           </Flex>
-          {app === "gallery" ? <Gallery /> : <Studio />}
+          {apps[app]}
         </Paper>
       </Center>
     </>

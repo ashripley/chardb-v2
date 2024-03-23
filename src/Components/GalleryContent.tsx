@@ -8,8 +8,6 @@ export const GalleryContent = () => {
   const { view } = useSelector((state: GalleryStore) => state.gallery)
   const { cards } = useSelector((state: CardStore) => state.card)
 
-  console.log("cards", cards)
-
   return (
     <>
       {view === "card" ? (
@@ -20,7 +18,9 @@ export const GalleryContent = () => {
         </>
       ) : view === "tile" ? (
         <>
-          <GalleryTile />
+          {cards.map((card: Record<string, any>, index: number) => (
+            <GalleryTile key={index} card={card} />
+          ))}
         </>
       ) : (
         <>

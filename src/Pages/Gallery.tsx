@@ -1,17 +1,26 @@
-import { Paper, Flex, ScrollArea, Button, TextInput, rem } from "@mantine/core"
+import {
+  Paper,
+  Flex,
+  ScrollArea,
+  Button,
+  TextInput,
+  rem,
+  Loader,
+} from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { ViewSwitch } from "../components/Switches/ViewSwitch"
-import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
 import { GalleryContent } from "../components/GalleryContent"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { allCards } from "../api/queries/allCards"
 import { useDispatch } from "react-redux"
 import { setCards } from "../redux/card"
+import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
+import { ViewSwitch } from "../components/Switches/ViewSwitch"
 
 export const Gallery = () => {
   const dispatch = useDispatch()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     fetchPokemonCards()
@@ -19,17 +28,25 @@ export const Gallery = () => {
 
   const fetchPokemonCards = async () => {
     let mappedCardsArray: Record<string, any>[] = []
-    const cards = await allCards()
 
-    Object.entries(cards[0]).forEach(
-      ([key, value]) =>
-        (mappedCardsArray = [
-          ...mappedCardsArray,
-          { ["cardId"]: key, ...value },
-        ])
-    )
+    try {
+      setIsLoading(true)
 
-    dispatch(setCards(mappedCardsArray))
+      const cards = await allCards()
+
+      Object.entries(cards[0]).forEach(
+        ([key, value]) =>
+          (mappedCardsArray = [
+            ...mappedCardsArray,
+            { ["cardId"]: key, ...value },
+          ])
+      )
+
+      dispatch(setCards(mappedCardsArray))
+    } catch (e) {
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const icon = (
@@ -38,24 +55,14 @@ export const Gallery = () => {
 
   return (
     <>
-      <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"}>
-        <Flex
-          w={"5%"}
-          h={"calc(100% - 75px)"}
-          align={"center"}
-          justify={"center"}
-          miw={70}
-          pr={10}
-        >
-          <ViewSwitch />
-        </Flex>
-        <Flex direction={"column"} h={"100%"} w={"90%"} align={"center"}>
+      <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"} p="xs">
+        <Flex direction={"column"} h={"100%"} w={"100%"} align={"center"}>
           <Paper
             radius="xl"
             p="lg"
             m="auto"
             w="100%"
-            h="90%"
+            h="100%"
             bg={customTheme.colours.bg.bgGray25}
           >
             <Flex w={"100%"} h={"100%"} justify={"center"}>
@@ -111,6 +118,7 @@ export const Gallery = () => {
                     </Button>
                   </Flex>
                   <Flex w={"auto"} justify={"flex-end"} gap={10}>
+                    <ViewSwitch />
                     <TextInput
                       radius="lg"
                       placeholder="Search for a Pokemon"
@@ -142,22 +150,23 @@ export const Gallery = () => {
                   type="never"
                   style={{ borderRadius: 35 }}
                 >
-                  <Flex justify="space-evenly" wrap="wrap" gap={20}>
-                    <GalleryContent />
-                  </Flex>
+                  {isLoading ? (
+                    <Flex justify="center" align={"center"} h={"65vh"}>
+                      <Loader
+                        color={customTheme.colours.accents.char}
+                        size="lg"
+                        type="dots"
+                      />
+                    </Flex>
+                  ) : (
+                    <Flex justify="space-evenly" wrap="wrap" gap={20}>
+                      <GalleryContent />
+                    </Flex>
+                  )}
                 </ScrollArea>
               </Flex>
             </Flex>
           </Paper>
-          <Flex
-            w={"100%"}
-            h={"auto"}
-            mih={100}
-            align={"center"}
-            justify={"center"}
-          >
-            <GallerySortSwitch />
-          </Flex>
         </Flex>
       </Flex>
     </>
