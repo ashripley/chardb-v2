@@ -17,7 +17,7 @@ interface Props {
   pokemon?: Record<string, any>
   set?: string
   setNumber?: string
-  typeOfCard?: string
+  cardType?: string
   condition?: string
   year?: string
   quantity?: string
@@ -29,7 +29,7 @@ export const GalleryList = ({
   pokemon,
   set,
   setNumber,
-  typeOfCard,
+  cardType,
   condition,
   year,
   quantity,
@@ -142,9 +142,9 @@ export const GalleryList = ({
                     <Divider size="xl" w="60%" color="white" />
                   </Flex>
                 )}
-                {typeOfCard ? (
+                {cardType ? (
                   <Text c="white" w="10%">
-                    {typeOfCard}
+                    {cardType}
                   </Text>
                 ) : (
                   <Flex w="10%" mih={25} align={"center"}>

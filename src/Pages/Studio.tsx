@@ -28,7 +28,7 @@ export const Studio = () => {
 
   return (
     <>
-      <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"}>
+      <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"} p="xs">
         <Flex
           w={"5%"}
           h={"95%"}
@@ -45,43 +45,53 @@ export const Studio = () => {
             p="lg"
             m="auto"
             w="100%"
-            h="90%"
+            h={"100%"}
             bg={customTheme.colours.bg.bgGray25}
           >
-            <Flex w={"100%"} h="100%" align={"center"}>
-              <Flex w={"60%"}>
-                {view === "create" ? (
-                  <CardStudio />
-                ) : view === "update" ? (
-                  <CardStudio />
-                ) : view === "db" ? (
-                  <DataStudio />
-                ) : (
-                  <></>
-                )}
+            <Flex w={"100%"} h="100%" align={"center"} direction={"column"}>
+              <Flex
+                w={"100%"}
+                h="100%"
+                justify={"center"}
+                align={"center"}
+                direction={"row"}
+              >
+                <Flex w={"60%"}>
+                  {view === "create" ? (
+                    <CardStudio />
+                  ) : view === "update" ? (
+                    <CardStudio />
+                  ) : view === "db" ? (
+                    <DataStudio />
+                  ) : (
+                    <></>
+                  )}
+                </Flex>
+                <Flex w={"40%"} h={550}>
+                  {view === "create" ? (
+                    <StudioCard />
+                  ) : view === "update" ? (
+                    <StudioCard />
+                  ) : view === "db" ? (
+                    <DataCard />
+                  ) : (
+                    <></>
+                  )}
+                </Flex>
               </Flex>
-              <Flex w={"40%"} h={550}>
-                {view === "create" ? (
-                  <StudioCard />
-                ) : view === "update" ? (
-                  <StudioCard />
-                ) : view === "db" ? (
-                  <DataCard />
-                ) : (
-                  <></>
-                )}
-              </Flex>
+              {view === "db" && (
+                <Flex
+                  w={"100%"}
+                  h={"auto"}
+                  mih={100}
+                  align={"center"}
+                  justify={"center"}
+                >
+                  <GallerySortSwitch />
+                </Flex>
+              )}
             </Flex>
           </Paper>
-          <Flex
-            w={"100%"}
-            h={"auto"}
-            mih={100}
-            align={"center"}
-            justify={"center"}
-          >
-            <GallerySortSwitch />
-          </Flex>
         </Flex>
       </Flex>
     </>

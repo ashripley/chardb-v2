@@ -18,8 +18,8 @@ import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { createElement } from "react"
 
 export const StudioCard = () => {
-  const { tempPokemon } = useSelector((state: CardStore) => state.card)
-  const pokemon = tempPokemon
+  const { tempPokemon, isDirty } = useSelector((state: CardStore) => state.card)
+  const pokemon = isDirty ? tempPokemon : {}
 
   return (
     <>
@@ -98,9 +98,9 @@ export const StudioCard = () => {
                   <Divider size="xl" w="90%" color="white" mih={25} />
                 </Flex>
               )}
-              {pokemon?.typeOfCard ? (
+              {pokemon?.cardType ? (
                 <Text c="white" w="100%" mih={25}>
-                  Type Of Card: <b>{pokemon.typeOfCard}</b>
+                  Card Type: <b>{pokemon.cardType}</b>
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
@@ -167,12 +167,6 @@ export const StudioCard = () => {
                 <Flex align="center">
                   <Text c="white">{pokemon.setNumber}</Text>
                   <Text c="white">{pokemon.setNumber && "/" + 83}</Text>
-                  <Space w={10} />
-                  <IconCircleFilled
-                    width={10}
-                    height={10}
-                    style={{ color: "white" }}
-                  />
                 </Flex>
               ) : (
                 <Divider size="xl" w="30%" color="white" />

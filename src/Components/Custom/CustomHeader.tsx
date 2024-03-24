@@ -13,8 +13,6 @@ export const CustomHeader = () => {
   const dispatch = useDispatch()
 
   const onAppChange = (name: AppType) => {
-    console.log("name", name)
-    console.log("app", app)
     dispatch(updateApp(name))
   }
 

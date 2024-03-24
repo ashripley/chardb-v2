@@ -15,10 +15,6 @@ export const Index = () => {
     // Dashboard: <Dashboard />
   }
 
-  console.log("app", app)
-  console.log("apps", apps)
-  console.log("apps[app]", apps[app])
-
   return (
     <>
       <Center h="100vh" w={"100vw"} display={"block"}>

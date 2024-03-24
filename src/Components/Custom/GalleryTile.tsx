@@ -19,6 +19,14 @@ const StyledGrid = styled(Grid)`
   }
 `
 
+const styles = {
+  text: {
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    "-webkit-line-clamp": 1,
+  },
+}
+
 export const GalleryTile = ({ card }: Props) => {
   const {
     name,
@@ -26,7 +34,7 @@ export const GalleryTile = ({ card }: Props) => {
     image,
     set,
     setNumber,
-    typeOfCard,
+    cardType,
     condition,
     quantity,
     isGraded,
@@ -121,20 +129,50 @@ export const GalleryTile = ({ card }: Props) => {
             <Carousel.Slide>
               <Grid.Col span={12}>
                 <Group w="100%" m="auto" p={"xs"} gap={0}>
-                  <Text c="white" w="100%" mih={15} fz={12}>
+                  <Text
+                    c="white"
+                    w="100%"
+                    mih={15}
+                    fz={12}
+                    style={{ ...styles.text }}
+                  >
                     Set: <b>{set}</b>
                   </Text>
-                  <Text c="white" w="100%" mih={15} fz={12}>
-                    Type Of Card: <b>{typeOfCard}</b>
+                  <Text
+                    c="white"
+                    w="100%"
+                    mih={15}
+                    fz={12}
+                    style={{ ...styles.text }}
+                  >
+                    Card Type: <b>{cardType}</b>
                   </Text>
-                  <Text c="white" w="100%" mih={15} fz={12}>
+                  <Text
+                    c="white"
+                    w="100%"
+                    mih={15}
+                    fz={12}
+                    style={{ ...styles.text }}
+                  >
                     Condition: <b>{condition}</b>
                   </Text>
-                  <Text c="white" w="100%" mih={15} fz={12}>
+                  <Text
+                    c="white"
+                    w="100%"
+                    mih={15}
+                    fz={12}
+                    style={{ ...styles.text }}
+                  >
                     Quantity: <b>{quantity}</b>
                   </Text>
                   {isGraded && (
-                    <Text c="white" w="100%" mih={15} fz={12}>
+                    <Text
+                      c="white"
+                      w="100%"
+                      mih={15}
+                      fz={12}
+                      style={{ ...styles.text }}
+                    >
                       Grading: <b>{grading}</b>
                     </Text>
                   )}
@@ -163,12 +201,6 @@ export const GalleryTile = ({ card }: Props) => {
                 <Text c="white" fz={12}>
                   /84
                 </Text>
-                <Space w={10} />
-                <IconCircleFilled
-                  width={10}
-                  height={10}
-                  style={{ color: "white" }}
-                />
               </Flex>
             </Flex>
           </Grid.Col>

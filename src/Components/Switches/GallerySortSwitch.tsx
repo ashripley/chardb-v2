@@ -15,28 +15,24 @@ export const GallerySortSwitch = () => {
       }}
       data={[
         {
-          value: "id",
-          label: <Text c={"white"}>Id</Text>,
+          value: "sets",
+          label: <Text c={"white"}>Sets</Text>,
         },
         {
-          value: "name",
-          label: <Text c={"white"}>Name</Text>,
+          value: "cardTypes",
+          label: <Text c={"white"}>Card Types</Text>,
         },
         {
-          value: "set",
-          label: <Text c={"white"}>Set</Text>,
+          value: "types",
+          label: <Text c={"white"}>Types</Text>,
         },
         {
-          value: "type",
-          label: <Text c={"white"}>Type</Text>,
+          value: "conditions",
+          label: <Text c={"white"}>Conditions</Text>,
         },
         {
-          value: "year",
-          label: <Text c={"white"}>Year</Text>,
-        },
-        {
-          value: "grade",
-          label: <Text c={"white"}>Grade</Text>,
+          value: "pokemon",
+          label: <Text c={"white"}>Pokemon</Text>,
         },
       ]}
     />

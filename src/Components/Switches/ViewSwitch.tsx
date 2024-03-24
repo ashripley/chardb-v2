@@ -1,9 +1,5 @@
 import { SegmentedControl, VisuallyHidden, rem } from "@mantine/core"
-import {
-  IconGridDots,
-  IconLayoutGrid,
-  IconLayoutList,
-} from "@tabler/icons-react"
+import { IconGridDots, IconLayoutGrid } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { updateView } from "../../redux/gallery"
 import { GalleryViewType } from "../../config"
@@ -51,15 +47,6 @@ export const ViewSwitch = () => {
             <>
               <IconLayoutGrid color="white" fill="white" {...iconProps} />
               <VisuallyHidden>Card</VisuallyHidden>
-            </>
-          ),
-        },
-        {
-          value: "list",
-          label: (
-            <>
-              <IconLayoutList color="white" fill="white" {...iconProps} />
-              <VisuallyHidden>List</VisuallyHidden>
             </>
           ),
         },

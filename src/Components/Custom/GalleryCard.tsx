@@ -1,6 +1,5 @@
 import { Card, Flex, Grid, Group, Paper, Space, Text } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
@@ -17,7 +16,7 @@ export const GalleryCard = ({ card }: Props) => {
     image,
     set,
     setNumber,
-    typeOfCard,
+    cardType,
     condition,
     quantity,
     isGraded,
@@ -96,7 +95,7 @@ export const GalleryCard = ({ card }: Props) => {
                 Set: <b>{set}</b>
               </Text>
               <Text c="white" w="100%" mih={25}>
-                Type Of Card: <b>{typeOfCard}</b>
+                Card Type: <b>{cardType}</b>
               </Text>
               <Text c="white" w="100%" mih={25}>
                 Condition: <b>{condition}</b>
@@ -104,10 +103,12 @@ export const GalleryCard = ({ card }: Props) => {
               <Text c="white" w="100%" mih={25}>
                 Quantity: <b>{quantity}</b>
               </Text>
-              {isGraded && (
+              {isGraded ? (
                 <Text c="white" w="100%" mih={25}>
                   Grading: <b>{grading}</b>
                 </Text>
+              ) : (
+                <Space h={25} />
               )}
             </Group>
           </Grid.Col>
@@ -129,12 +130,6 @@ export const GalleryCard = ({ card }: Props) => {
               <Flex align="center">
                 <Text c="white">{setNumber}</Text>
                 <Text c="white">{setNumber && "/" + 83}</Text>
-                <Space w={10} />
-                <IconCircleFilled
-                  width={10}
-                  height={10}
-                  style={{ color: "white" }}
-                />
               </Flex>
             </Flex>
           </Grid.Col>
