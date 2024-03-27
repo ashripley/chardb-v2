@@ -11,7 +11,7 @@ export const CardTypes = () => {
   return (
     <Flex h="80%" direction={"column"} gap={25}>
       <TextInput
-        placeholder="Card Type"
+        placeholder="Name"
         value={attribute["cardType"]?.name ?? ""}
         radius={"lg"}
         w={"100%"}

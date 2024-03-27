@@ -1,4 +1,4 @@
-import { Button, Center, Flex, Space } from "@mantine/core"
+import { Button, Center, Flex, Space, Title } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { Sets } from "./DB/Sets"
 import { CardTypes } from "./DB/CardTypes"
@@ -18,14 +18,14 @@ export const DataStudio = () => {
 
   const dispatch = useDispatch()
 
-  const dbTypeMap: Record<string, JSX.Element> = {
-    set: <Sets />,
-    cardType: <CardTypes />,
-    type: <Types />,
-    condition: <Conditions />,
+  const dbTypeMap: Record<string, any> = {
+    set: { label: "Set", component: <Sets /> },
+    cardType: { label: "Card Type", component: <CardTypes /> },
+    type: { label: "Type", component: <Types /> },
+    condition: { label: "Condition", component: <Conditions /> },
   }
 
-  const onCreate = async () => {
+  const onSave = async () => {
     try {
       setIsLoading(true)
 
@@ -54,8 +54,11 @@ export const DataStudio = () => {
         align={"center"}
         m="auto"
       >
+        <Title size="h3" fw={600} c={customTheme.colours.font.primary}>
+          Create {dbTypeMap[dbType].label}
+        </Title>
         <Space h={50} />
-        {dbTypeMap[dbType]}
+        {dbTypeMap[dbType].component}
         <Space h={50} />
         <Flex h="10%">
           <Button
@@ -69,7 +72,7 @@ export const DataStudio = () => {
                 color: customTheme.colours.bg.bgDarkGray100,
               },
             }}
-            onClick={onCreate}
+            onClick={onSave}
             loading={isLoading}
             loaderProps={{
               type: "dots",
@@ -77,7 +80,7 @@ export const DataStudio = () => {
             }}
             disabled={!isDirty}
           >
-            Create
+            Save
           </Button>
         </Flex>
       </Flex>

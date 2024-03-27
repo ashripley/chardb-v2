@@ -36,10 +36,10 @@ export const GallerySortSwitch = () => {
           value: "condition",
           label: <Text c={"white"}>Conditions</Text>,
         },
-        {
-          value: "pokemon",
-          label: <Text c={"white"}>Pokemon</Text>,
-        },
+        // {
+        //   value: "pokemon",
+        //   label: <Text c={"white"}>Pokemon</Text>,
+        // },
       ]}
     />
   )

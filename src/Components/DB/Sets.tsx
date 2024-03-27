@@ -12,7 +12,7 @@ export const Sets = () => {
     <>
       <Flex h="80%" direction={"column"} gap={25}>
         <TextInput
-          placeholder="Set"
+          placeholder="Name"
           value={attribute["set"]?.name ?? ""}
           radius={"lg"}
           w={"100%"}

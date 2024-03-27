@@ -12,7 +12,7 @@ export const Types = () => {
     <>
       <Flex h="80%" direction={"column"} gap={25}>
         <TextInput
-          placeholder="Type"
+          placeholder="Name"
           value={attribute["type"]?.name ?? ""}
           radius={"lg"}
           w={"100%"}

@@ -11,7 +11,7 @@ export const Conditions = () => {
   return (
     <Flex h="80%" direction={"column"} gap={25}>
       <TextInput
-        placeholder="Condition"
+        placeholder="Name"
         value={attribute["condition"]?.name ?? ""}
         radius={"lg"}
         w={"100%"}
