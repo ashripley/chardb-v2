@@ -48,8 +48,6 @@ export const CardStudio = () => {
     }
   }
 
-  console.log("tempPokemon", tempPokemon)
-
   return (
     <Center h={"100%"} w={"100%"}>
       <Flex

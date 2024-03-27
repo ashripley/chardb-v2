@@ -7,8 +7,6 @@ export const GallerySortSwitch = () => {
   const dispatch = useDispatch()
 
   const onChange = (val: any) => {
-    console.log("val", val)
-
     dispatch(setDBType(val))
   }
 

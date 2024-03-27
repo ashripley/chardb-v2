@@ -5,7 +5,6 @@ import { firestore } from "../../services/firebase.config"
 import { AllPokemon } from "../queries/allPokemon"
 
 export const BulkAddPokemonMutation = async () => {
-  console.log("bulk add pokemon mutation")
   const uuid = uuidv4()
   const currentPokemonDb = await AllPokemon()
   const pokemonRef = doc(firestore, "pokemon", "data")
@@ -18,7 +17,6 @@ export const BulkAddPokemonMutation = async () => {
   ]
 
   try {
-    console.log("try")
     const response = await axios.get(
       "https://pokeapi.co/api/v2/pokemon?limit=151"
     )
@@ -28,8 +26,6 @@ export const BulkAddPokemonMutation = async () => {
     )
 
     const pokemonDetailsResponses = await Promise.all(pokemonDetailsPromises)
-
-    console.log("pokemonDetailsResponses", pokemonDetailsResponses)
 
     const allPokemon = pokemonDetailsResponses.map((response: any) => {
       const { data } = response
@@ -44,33 +40,22 @@ export const BulkAddPokemonMutation = async () => {
     })
 
     for (const pokemon of allPokemon) {
-      console.log("inside for")
-      console.log("pokemon", pokemon)
       if (!pokemon.name) continue
-
-      console.log("after continue")
 
       // if (
       //   currentPokemonDb &&
       //   Object.keys(currentPokemonDb).includes(pokemon.name)
       // )
       //   continue
-      console.log("after second continue")
 
       // fetch pokemon blob from pokeapi
       const data = await fetchPokemon(pokemon.name)
 
-      console.log("data", data)
-      console.log("before chain")
-
       // fetch evolution chain url from pokeapi
       const chainUrl = await fetchEvolutionChainUrl(pokemon.name)
-      console.log("chainUrl", chainUrl)
 
       // fetch evolution chain from pokeapi
       const chain = await fetchEvolutionChain(chainUrl.url)
-
-      console.log("chain", chain)
 
       const firstEvolution = chain.chain.species
       const secondEvolution = chain.chain.evolves_to?.[0]?.species
@@ -108,8 +93,6 @@ export const BulkAddPokemonMutation = async () => {
         evolutions: { ...evolutionChainObj },
       }
 
-      console.log("pokemonObj", pokemonObj)
-
       // write to db
       try {
         setDoc(
@@ -117,7 +100,6 @@ export const BulkAddPokemonMutation = async () => {
           { [pokemon.name]: { ...pokemonObj } },
           { merge: true }
         )
-        console.log("after set doc")
       } catch (e) {
         console.error("Error adding the pokemon to the db: ", e)
       }

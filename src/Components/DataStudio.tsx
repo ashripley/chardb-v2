@@ -8,7 +8,7 @@ import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { AddAttributeMutation } from "../api/mutations/addAttribute"
-import { updateAttribute } from "../redux/studio"
+import { setAttributes, updateAttribute } from "../redux/studio"
 
 export const DataStudio = () => {
   const { dbType, attribute, isDirty } = useSelector(
@@ -17,8 +17,6 @@ export const DataStudio = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const dispatch = useDispatch()
-
-  console.log("dbType", dbType)
 
   const dbTypeMap: Record<string, JSX.Element> = {
     set: <Sets />,
@@ -31,9 +29,6 @@ export const DataStudio = () => {
     try {
       setIsLoading(true)
 
-      console.log("dbType", dbType)
-      console.log("attribute[dbType]", attribute[dbType])
-      console.log("attribute", attribute)
       await AddAttributeMutation(dbType, {
         ...attribute[dbType],
       })
@@ -43,12 +38,11 @@ export const DataStudio = () => {
     } finally {
       setTimeout(() => {
         dispatch(updateAttribute({}))
+        dispatch(setAttributes({ isCreate: true, ...attribute }))
         setIsLoading(false)
       }, 1000)
     }
   }
-
-  console.log("dbTypeMap[dbType]", dbTypeMap[dbType])
 
   return (
     <Center h={"100%"} w={"100%"}>

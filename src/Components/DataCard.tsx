@@ -9,8 +9,163 @@ import {
 } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { IconTrashFilled } from "@tabler/icons-react"
+import { StudioStore } from "../redux/store"
+import { useSelector } from "react-redux"
+import { upperCaseFirst } from "../helpers/upperCaseFirst"
+import { useEffect, useMemo } from "react"
 
 export const DataCard = () => {
+  const { attributes, dbType } = useSelector(
+    (state: StudioStore) => state.studio
+  )
+
+  useEffect(
+    () => console.log("type attributes: ", attributes.type),
+    [attributes.type]
+  )
+
+  console.log("attributes", attributes)
+
+  const Sets = useMemo(
+    () => (
+      <Flex justify={"flex-start"} direction={"column"} gap={15}>
+        {attributes?.set.map((att: Record<string, any>, index: number) => (
+          <Flex justify={"space-between"} w={"100%"} key={index}>
+            <Flex w={"80%"} direction={"column"} justify={"center"}>
+              <Text c={"white"}>Name: {upperCaseFirst(att.name)}</Text>
+              <Text c={"white"}>Total Cards: {att.totalCards}</Text>
+            </Flex>
+            <Flex w={"10%"} align={"center"}>
+              <ActionIcon
+                variant="transparent"
+                size="xl"
+                radius="lg"
+                aria-label="delete"
+              >
+                <IconTrashFilled
+                  style={{
+                    width: "50%",
+                    height: "70%",
+                    color: "white",
+                  }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </Flex>
+          </Flex>
+        ))}
+      </Flex>
+    ),
+    [attributes.set]
+  )
+
+  const CardTypes = useMemo(
+    () => (
+      <Flex justify={"flex-start"} direction={"column"}>
+        {attributes?.cardType.map((att: Record<string, any>, index: number) => (
+          <Flex justify={"space-between"} w={"100%"} key={index}>
+            <Flex w={"80%"} direction={"column"} justify={"center"}>
+              <Text c={"white"}>Name: {upperCaseFirst(att.name)}</Text>
+            </Flex>
+            <Flex w={"10%"} align={"center"}>
+              <ActionIcon
+                variant="transparent"
+                size="xl"
+                radius="lg"
+                aria-label="delete"
+              >
+                <IconTrashFilled
+                  style={{
+                    width: "50%",
+                    height: "70%",
+                    color: "white",
+                  }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </Flex>
+          </Flex>
+        ))}
+      </Flex>
+    ),
+    [attributes.cardType]
+  )
+
+  const Conditions = useMemo(
+    () => (
+      <Flex justify={"flex-start"} direction={"column"}>
+        {attributes?.condition.map(
+          (att: Record<string, any>, index: number) => (
+            <Flex justify={"space-between"} w={"100%"} key={index}>
+              <Flex w={"80%"} direction={"column"} justify={"center"}>
+                <Text c={"white"}>Name: {upperCaseFirst(att.name)}</Text>
+              </Flex>
+              <Flex w={"10%"} align={"center"}>
+                <ActionIcon
+                  variant="transparent"
+                  size="xl"
+                  radius="lg"
+                  aria-label="delete"
+                >
+                  <IconTrashFilled
+                    style={{
+                      width: "50%",
+                      height: "70%",
+                      color: "white",
+                    }}
+                    stroke={1.5}
+                  />
+                </ActionIcon>
+              </Flex>
+            </Flex>
+          )
+        )}
+      </Flex>
+    ),
+    [attributes.condition]
+  )
+
+  const Types = useMemo(
+    () => (
+      <Flex justify={"flex-start"} direction={"column"} gap={15}>
+        {attributes?.type.map((att: Record<string, any>, index: number) => (
+          <Flex justify={"space-between"} w={"100%"} key={index}>
+            <Flex w={"80%"} direction={"column"} justify={"center"}>
+              <Text c={"white"}>Name: {upperCaseFirst(att.name)}</Text>
+              <Text c={"white"}>Colour: {att.colour}</Text>
+            </Flex>
+            <Flex w={"10%"} align={"center"}>
+              <ActionIcon
+                variant="transparent"
+                size="xl"
+                radius="lg"
+                aria-label="delete"
+              >
+                <IconTrashFilled
+                  style={{
+                    width: "50%",
+                    height: "70%",
+                    color: "white",
+                  }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </Flex>
+          </Flex>
+        ))}
+      </Flex>
+    ),
+    [attributes.type]
+  )
+
+  const componentMap: Record<string, JSX.Element> = {
+    set: Sets,
+    cardType: CardTypes,
+    type: Types,
+    condition: Conditions,
+  }
+
+  console.log("attributes", attributes)
   return (
     <>
       <Card
@@ -37,29 +192,9 @@ export const DataCard = () => {
             h={"90%"}
             w={"100%"}
             type="never"
-            style={{ borderRadius: 15 }}
+            style={{ borderRadius: 5 }}
           >
-            <Flex justify={"flex-start"} direction={"column"} gap={15}>
-              <Flex justify={"space-between"} w={"100%"}>
-                <Flex w={"80%"} direction={"column"}>
-                  <Text c={"white"}>Base Set 2</Text>
-                  <Text c={"white"}>Total Cards: 10</Text>
-                </Flex>
-                <Flex w={"10%"} align={"center"}>
-                  <ActionIcon
-                    variant="transparent"
-                    size="xl"
-                    radius="lg"
-                    aria-label="delete"
-                  >
-                    <IconTrashFilled
-                      style={{ width: "50%", height: "70%", color: "white" }}
-                      stroke={1.5}
-                    />
-                  </ActionIcon>
-                </Flex>
-              </Flex>
-            </Flex>
+            {componentMap[dbType]}
           </ScrollArea>
         </Flex>
       </Card>

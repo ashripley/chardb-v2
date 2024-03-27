@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { DBType, StudioViewType } from "../config"
+import { omit } from "../helpers/omit"
 
 interface StoreState {
   view: StudioViewType
@@ -8,6 +9,7 @@ interface StoreState {
   dbType: DBType
   attribute: Record<string, any>
   isDirty: boolean
+  isCreate: boolean
 }
 
 const initialState: StoreState = {
@@ -17,6 +19,7 @@ const initialState: StoreState = {
   dbType: "set",
   attribute: {},
   isDirty: false,
+  isCreate: false,
 }
 
 export const studioSlice = createSlice({
@@ -30,7 +33,23 @@ export const studioSlice = createSlice({
       state.allPokemon = action.payload
     },
     setAttributes: (state, action: PayloadAction<StoreState["attributes"]>) => {
-      state.attributes = action.payload
+      const isCreate = action.payload["isCreate"]
+
+      const payload = omit(["isCreate"], action.payload)
+
+      const attribute: string = isCreate && Object.keys(payload)[0]
+
+      if (!isCreate) {
+        state.attributes = payload
+      } else {
+        state.attributes = {
+          ...state.attributes,
+          [attribute]: [
+            ...state.attributes[attribute],
+            Object.values(payload)[0],
+          ],
+        }
+      }
     },
     setDBType: (state, action: PayloadAction<StoreState["dbType"]>) => {
       state.dbType = action.payload

@@ -29,22 +29,22 @@ export const Studio = () => {
   }
 
   const fetchAttributes = async () => {
-    // let tempAttributeData: Record<string, any> = {}
     const fetchedAttributes: Record<string, any> = await AllAttributes()
+    const res = Object.values(fetchedAttributes)
 
-    console.log("fetchedAttributes", fetchedAttributes)
+    const attributes: Record<string, any>[] = res.reduce((acc, att) => {
+      const { attribute, name, ...rest } = att
 
-    // Object.values(fetchedAttributes).map((att: Record<string, any>) => {s
-    //   console.log("attribute", att)
+      if (!acc[attribute]) {
+        acc[attribute] = [{ name, attribute, ...rest }]
+      } else {
+        acc[attribute].push({ name, attribute, ...rest })
+      }
 
-    //   tempAttributeData = {
-    //     ...tempAttributeData,
-    //     [att.attribute]: [...tempAttributeData[att.attribute], att],
-    //   }
-    //   console.log("tempAttributeData", tempAttributeData)
-    // })
+      return acc
+    }, [])
 
-    // dispatch(setAttributes(fetchedAttributes))
+    dispatch(setAttributes({ isCreate: false, ...attributes }))
   }
 
   return (
