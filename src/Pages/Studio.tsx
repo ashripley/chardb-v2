@@ -10,7 +10,8 @@ import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { AllPokemon } from "../api/queries/allPokemon"
-import { setAllPokemon } from "../redux/studio"
+import { setAllPokemon, setAttributes } from "../redux/studio"
+import { AllAttributes } from "../api/queries/allAttributes"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
@@ -18,12 +19,32 @@ export const Studio = () => {
 
   useEffect(() => {
     fetchPokemonData()
+    fetchAttributes()
   }, [])
 
   const fetchPokemonData = async () => {
     const fetchedPokemonData = await AllPokemon()
 
     dispatch(setAllPokemon(fetchedPokemonData))
+  }
+
+  const fetchAttributes = async () => {
+    // let tempAttributeData: Record<string, any> = {}
+    const fetchedAttributes: Record<string, any> = await AllAttributes()
+
+    console.log("fetchedAttributes", fetchedAttributes)
+
+    // Object.values(fetchedAttributes).map((att: Record<string, any>) => {s
+    //   console.log("attribute", att)
+
+    //   tempAttributeData = {
+    //     ...tempAttributeData,
+    //     [att.attribute]: [...tempAttributeData[att.attribute], att],
+    //   }
+    //   console.log("tempAttributeData", tempAttributeData)
+    // })
+
+    // dispatch(setAttributes(fetchedAttributes))
   }
 
   return (

@@ -15,7 +15,6 @@ import { useEffect, useState } from "react"
 import { allCards } from "../api/queries/allCards"
 import { useDispatch } from "react-redux"
 import { setCards } from "../redux/card"
-import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import { ViewSwitch } from "../components/Switches/ViewSwitch"
 
 export const Gallery = () => {

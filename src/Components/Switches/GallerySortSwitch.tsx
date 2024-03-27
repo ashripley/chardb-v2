@@ -1,33 +1,41 @@
 import { SegmentedControl, Text } from "@mantine/core"
 import { customTheme } from "../../customTheme"
+import { useDispatch } from "react-redux"
+import { setDBType } from "../../redux/studio"
 
 export const GallerySortSwitch = () => {
+  const dispatch = useDispatch()
+
+  const onChange = (val: any) => {
+    console.log("val", val)
+
+    dispatch(setDBType(val))
+  }
+
   return (
     <SegmentedControl
       withItemsBorders={false}
       size="sm"
       radius="xl"
-      defaultValue="name"
+      defaultValue="set"
       bg={customTheme.colours.bg.bgGray75}
       color={customTheme.colours.bg.bgDarkGray75}
-      onChange={(value) => {
-        console.log("value", value)
-      }}
+      onChange={onChange}
       data={[
         {
-          value: "sets",
+          value: "set",
           label: <Text c={"white"}>Sets</Text>,
         },
         {
-          value: "cardTypes",
+          value: "cardType",
           label: <Text c={"white"}>Card Types</Text>,
         },
         {
-          value: "types",
+          value: "type",
           label: <Text c={"white"}>Types</Text>,
         },
         {
-          value: "conditions",
+          value: "condition",
           label: <Text c={"white"}>Conditions</Text>,
         },
         {

@@ -9,7 +9,6 @@ import {
   Text,
 } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { useSelector } from "react-redux"

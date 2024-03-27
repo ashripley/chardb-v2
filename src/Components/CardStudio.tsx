@@ -42,7 +42,7 @@ export const CardStudio = () => {
     } finally {
       setTimeout(() => {
         setIsLoading(false)
-        setIsDirty(false)
+        dispatch(setIsDirty(false))
         dispatch(updatePokemon({}))
       }, 1000)
     }

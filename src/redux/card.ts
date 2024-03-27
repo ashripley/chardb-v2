@@ -27,7 +27,9 @@ export const cardSlice = createSlice({
         state.isDirty = false
       }
 
+      console.log("action.payload", action.payload)
       state.tempPokemon = { ...state.tempPokemon, ...action.payload }
+      console.log("state.tempPokemon", state.tempPokemon)
     },
     setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
       state.cards = action.payload

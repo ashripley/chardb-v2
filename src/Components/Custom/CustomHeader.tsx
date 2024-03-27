@@ -1,4 +1,4 @@
-import { Button, Chip, Flex, Group, Paper, Space } from "@mantine/core"
+import { Button, Flex, Paper, Space } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { useDispatch, useSelector } from "react-redux"
