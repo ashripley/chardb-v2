@@ -5,19 +5,21 @@ import {
   ScrollArea,
   Title,
   Space,
-  ActionIcon,
+  CloseButton,
 } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { IconX } from "@tabler/icons-react"
 import { StudioStore } from "../redux/store"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { upperCaseFirst } from "../helpers/upperCaseFirst"
 import { useEffect } from "react"
+import { deleteAttribute } from "../api/mutations/deleteAttribute"
+import { setAttributes } from "../redux/studio"
 
 export const DataCard = () => {
   const { attributes, dbType } = useSelector(
     (state: StudioStore) => state.studio
   )
+  const dispatch = useDispatch()
 
   useEffect(
     () => console.log("type attributes: ", attributes.type),
@@ -25,12 +27,31 @@ export const DataCard = () => {
   )
 
   const excludedKeys = ["name", "attribute", "attributeId"]
+  const keysToGap = ["set", "type"]
 
   const labelMap: Record<string, string> = {
     set: "Sets",
     cardType: "Card Types",
     type: "Types",
     condition: "Conditions",
+    totalCards: "Total Cards",
+    colour: "Colour",
+  }
+
+  const onDelete = (att: Record<string, any>) => {
+    const { attribute, name, attributeId } = att
+
+    const filteredAttributes = attributes[attribute].filter(
+      (att: Record<string, any>) => att.attributeId !== attributeId
+    )
+    deleteAttribute(`${attribute}_${name}`)
+    dispatch(
+      setAttributes({
+        isCreate: false,
+        ...attributes,
+        ...{ [attribute]: filteredAttributes },
+      })
+    )
   }
 
   const AttributeCard = () => (
@@ -38,32 +59,32 @@ export const DataCard = () => {
       {attributes?.[dbType].map((att: Record<string, any>, index: number) => (
         <Flex justify={"space-between"} w={"100%"}>
           <Flex w={"80%"} direction={"column"} justify={"center"} key={index}>
-            <Text c={"white"}>Name: {upperCaseFirst(att.name)}</Text>
+            <Flex w={"100%"} direction={"row"} gap={5}>
+              <Text fw={600} c={"white"}>
+                Name:{" "}
+              </Text>
+              <Text c={"white"}>{upperCaseFirst(att.name)}</Text>
+            </Flex>
             {Object.entries(att)?.map(
               ([key, value]: any, index: number) =>
                 !excludedKeys.includes(key) && (
-                  <Text c={"white"} key={index}>
-                    {key}: {value}
-                  </Text>
+                  <Flex w={"100%"} direction={"row"} gap={5}>
+                    <Text fw={600} c={"white"} key={index}>
+                      {labelMap[key]}:
+                    </Text>
+                    <Text c={"white"} key={index}>
+                      {value}
+                    </Text>
+                  </Flex>
                 )
             )}
           </Flex>
           <Flex w={"10%"} align={"center"}>
-            <ActionIcon
+            <CloseButton
+              c={"white"}
               variant="transparent"
-              size="xl"
-              radius="lg"
-              aria-label="delete"
-            >
-              <IconX
-                style={{
-                  width: "50%",
-                  height: "70%",
-                  color: "white",
-                }}
-                stroke={1.5}
-              />
-            </ActionIcon>
+              onClick={() => onDelete(att)}
+            />
           </Flex>
         </Flex>
       ))}
@@ -77,6 +98,7 @@ export const DataCard = () => {
         mih={500}
         w={"auto"}
         h={"auto"}
+        p={"lg"}
         radius="xl"
         bg={customTheme.colours.bg.bgGray100}
       >
@@ -98,7 +120,11 @@ export const DataCard = () => {
             type="never"
             style={{ borderRadius: 5 }}
           >
-            <Flex justify={"flex-start"} direction={"column"} gap={15}>
+            <Flex
+              justify={"flex-start"}
+              direction={"column"}
+              gap={keysToGap.includes(dbType) ? 15 : 0}
+            >
               <AttributeCard />
             </Flex>
           </ScrollArea>

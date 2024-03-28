@@ -10,14 +10,17 @@ import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { AllPokemon } from "../api/queries/allPokemon"
-import { setAllPokemon, setAttributes } from "../redux/studio"
+import { setAllPokemon, setAttributes, setView } from "../redux/studio"
 import { AllAttributes } from "../api/queries/allAttributes"
+import { updatePokemon } from "../redux/card"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setView("create"))
+    dispatch(updatePokemon({}))
     fetchPokemonData()
     fetchAttributes()
   }, [])

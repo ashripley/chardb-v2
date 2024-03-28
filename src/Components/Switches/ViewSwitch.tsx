@@ -1,7 +1,7 @@
 import { SegmentedControl, VisuallyHidden, rem } from "@mantine/core"
 import { IconGridDots, IconLayoutGrid } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
-import { updateView } from "../../redux/gallery"
+import { setView } from "../../redux/gallery"
 import { GalleryViewType } from "../../config"
 import { useDispatch } from "react-redux"
 
@@ -18,7 +18,7 @@ export const ViewSwitch = () => {
   }
 
   const onViewChange = (value: string) =>
-    dispatch(updateView(value as GalleryViewType))
+    dispatch(setView(value as GalleryViewType))
 
   return (
     <SegmentedControl

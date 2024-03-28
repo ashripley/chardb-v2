@@ -13,12 +13,12 @@ export const gallerySlice = createSlice({
   name: "gallery",
   initialState,
   reducers: {
-    updateView: (state, action: PayloadAction<StoreState["view"]>) => {
+    setView: (state, action: PayloadAction<StoreState["view"]>) => {
       state.view = action.payload
     },
   },
 })
 
-export const { updateView } = gallerySlice.actions
+export const { setView } = gallerySlice.actions
 
 export default gallerySlice.reducer

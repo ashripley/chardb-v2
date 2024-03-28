@@ -26,13 +26,14 @@ export const studioSlice = createSlice({
   name: "studio",
   initialState,
   reducers: {
-    updateView: (state, action: PayloadAction<StoreState["view"]>) => {
+    setView: (state, action: PayloadAction<StoreState["view"]>) => {
       state.view = action.payload
     },
     setAllPokemon: (state, action: PayloadAction<StoreState["allPokemon"]>) => {
       state.allPokemon = action.payload
     },
     setAttributes: (state, action: PayloadAction<StoreState["attributes"]>) => {
+      console.log("action.payload", action.payload)
       const isCreate = action.payload["isCreate"]
 
       const payload = omit(["isCreate"], action.payload)
@@ -75,7 +76,7 @@ export const studioSlice = createSlice({
 })
 
 export const {
-  updateView,
+  setView,
   setAllPokemon,
   setDBType,
   updateAttribute,
