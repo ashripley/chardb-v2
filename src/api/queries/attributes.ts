@@ -1,4 +1,4 @@
-import { AllAttributes } from "../queries/allAttributes"
+import { AllAttributes } from "./allAttributes"
 import { setAttributes } from "../../redux/studio"
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit"
 

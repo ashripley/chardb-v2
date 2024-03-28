@@ -13,17 +13,23 @@ import { IconSearch } from "@tabler/icons-react"
 import { GalleryContent } from "../components/GalleryContent"
 import { useEffect, useState } from "react"
 import { allCards } from "../api/queries/allCards"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setCards } from "../redux/card"
 import { ViewSwitch } from "../components/Switches/ViewSwitch"
-import { fetchAttributes } from "../api/mutations/attributes"
+import { fetchAttributes } from "../api/queries/attributes"
+import { setApp } from "../redux/gallery"
+import { GalleryApp } from "../config"
+import { GalleryStore } from "../redux/store"
+import { fetchPokemonData } from "../api/queries/pokemon"
 
 export const Gallery = () => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { app } = useSelector((state: GalleryStore) => state.gallery)
 
   useEffect(() => {
     fetchPokemonCards()
+    fetchPokemonData(dispatch)
     fetchAttributes(dispatch)
   }, [])
 
@@ -48,6 +54,10 @@ export const Gallery = () => {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const onGalleryChange = (name: GalleryApp) => {
+    dispatch(setApp(name))
   }
 
   const icon = (
@@ -91,10 +101,11 @@ export const Gallery = () => {
                   >
                     <Button
                       variant="filled"
-                      bg={"white"}
+                      bg={app === "cards" ? "white" : "transparent"}
                       radius="lg"
                       w={"40%"}
                       miw={120}
+                      onClick={() => onGalleryChange("cards")}
                       styles={{
                         label: {
                           color: customTheme.colours.bg.bgDarkGray100,
@@ -105,10 +116,11 @@ export const Gallery = () => {
                     </Button>
                     <Button
                       variant="filled"
-                      bg={"transparent"}
+                      bg={app === "pokedex" ? "white" : "transparent"}
                       radius="lg"
                       w={"40%"}
                       miw={120}
+                      onClick={() => onGalleryChange("pokedex")}
                       styles={{
                         label: {
                           color: customTheme.colours.bg.bgDarkGray100,
@@ -119,7 +131,7 @@ export const Gallery = () => {
                     </Button>
                   </Flex>
                   <Flex w={"auto"} justify={"flex-end"} gap={10}>
-                    <ViewSwitch />
+                    {app === "cards" && <ViewSwitch />}
                     <TextInput
                       radius="lg"
                       placeholder="Search for a Pokemon"

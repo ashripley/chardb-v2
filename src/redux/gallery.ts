@@ -1,12 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { GalleryViewType } from "../config"
+import { GalleryApp, GalleryViewType } from "../config"
 
 interface StoreState {
   view: GalleryViewType
+  app: GalleryApp
 }
 
 const initialState: StoreState = {
   view: "card",
+  app: "cards",
 }
 
 export const gallerySlice = createSlice({
@@ -16,9 +18,12 @@ export const gallerySlice = createSlice({
     setView: (state, action: PayloadAction<StoreState["view"]>) => {
       state.view = action.payload
     },
+    setApp: (state, action: PayloadAction<StoreState["app"]>) => {
+      state.app = action.payload
+    },
   },
 })
 
-export const { setView } = gallerySlice.actions
+export const { setView, setApp } = gallerySlice.actions
 
 export default gallerySlice.reducer

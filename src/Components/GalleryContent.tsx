@@ -1,31 +1,28 @@
 import { useSelector } from "react-redux"
 import { CardStore, GalleryStore } from "../redux/store"
 import { GalleryTile } from "./Custom/GalleryTile"
-import { GalleryList } from "./Custom/GalleryList"
 import { GalleryCard } from "./Custom/GalleryCard"
+import { Pokedex } from "./Pokedex"
 
 export const GalleryContent = () => {
-  const { view } = useSelector((state: GalleryStore) => state.gallery)
+  const { view, app } = useSelector((state: GalleryStore) => state.gallery)
   const { cards } = useSelector((state: CardStore) => state.card)
+
+  const viewMap: Record<string, any> = {
+    card: GalleryCard,
+    tile: GalleryTile,
+  }
+
+  const GalleryViewComponent = viewMap[view]
 
   return (
     <>
-      {view === "card" ? (
-        <>
-          {cards.map((card: Record<string, any>, index: number) => (
-            <GalleryCard key={index} card={card} />
-          ))}
-        </>
-      ) : view === "tile" ? (
-        <>
-          {cards.map((card: Record<string, any>, index: number) => (
-            <GalleryTile key={index} card={card} />
-          ))}
-        </>
+      {app === "cards" ? (
+        cards.map((card: Record<string, any>, index: number) => (
+          <GalleryViewComponent key={index} card={card} />
+        ))
       ) : (
-        <>
-          <GalleryList />
-        </>
+        <Pokedex />
       )}
     </>
   )
