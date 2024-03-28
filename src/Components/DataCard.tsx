@@ -57,8 +57,8 @@ export const DataCard = () => {
   const AttributeCard = () => (
     <>
       {attributes?.[dbType].map((att: Record<string, any>, index: number) => (
-        <Flex justify={"space-between"} w={"100%"}>
-          <Flex w={"80%"} direction={"column"} justify={"center"} key={index}>
+        <Flex justify={"space-between"} w={"100%"} key={index}>
+          <Flex w={"80%"} direction={"column"} justify={"center"}>
             <Flex w={"100%"} direction={"row"} gap={5}>
               <Text fw={600} c={"white"}>
                 Name:{" "}
@@ -68,13 +68,11 @@ export const DataCard = () => {
             {Object.entries(att)?.map(
               ([key, value]: any, index: number) =>
                 !excludedKeys.includes(key) && (
-                  <Flex w={"100%"} direction={"row"} gap={5}>
-                    <Text fw={600} c={"white"} key={index}>
+                  <Flex w={"100%"} direction={"row"} gap={5} key={index}>
+                    <Text fw={600} c={"white"}>
                       {labelMap[key]}:
                     </Text>
-                    <Text c={"white"} key={index}>
-                      {value}
-                    </Text>
+                    <Text c={"white"}>{value}</Text>
                   </Flex>
                 )
             )}

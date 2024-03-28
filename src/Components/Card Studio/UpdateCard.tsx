@@ -8,42 +8,67 @@ import {
   Switch,
   Title,
 } from "@mantine/core"
-import classes from "../modules/Select.module.css"
-import numberClasses from "../modules/NumberInput.module.css"
+import classes from "../../modules/Select.module.css"
+import numberClasses from "../../modules/NumberInput.module.css"
 import { useDispatch, useSelector } from "react-redux"
-import { setIsDirty, updatePokemon } from "../redux/card"
-import { CardStore, StudioStore } from "../redux/store"
-import { useState } from "react"
-import { upperCaseFirst } from "../helpers/upperCaseFirst"
-import { customTheme } from "../customTheme"
-import { addPokemonCard } from "../api/mutations/addCard"
+import {
+  setCards,
+  setIsDirty,
+  updateCard,
+  updatePokemon,
+} from "../../redux/card"
+import { CardStore, StudioStore } from "../../redux/store"
+import { useEffect, useState } from "react"
+import { upperCaseFirst } from "../../helpers/upperCaseFirst"
+import { customTheme } from "../../customTheme"
+import { updateCardMutation } from "../../api/mutations/updateCard"
 
-export const CardStudio = () => {
+export const UpdateCard = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const { tempPokemon, isDirty } = useSelector((state: CardStore) => state.card)
-  const { allPokemon } = useSelector((state: StudioStore) => state.studio)
+  const { isDirty, cards, card } = useSelector((state: CardStore) => state.card)
+  const { attributes } = useSelector((state: StudioStore) => state.studio)
+
   const dispatch = useDispatch()
 
-  const pokemonNames = Object.keys(allPokemon)
-    .map((name) => upperCaseFirst(name))
+  useEffect(() => {
+    dispatch(updateCard({}))
+    dispatch(updatePokemon({}))
+  }, [])
+
+  const cardNames = Object.values(cards)
+    .map((card) => upperCaseFirst(card.name))
     .sort()
 
-  const onPokemonChange = (val: any) => {
-    dispatch(updatePokemon({ ...allPokemon[val?.toLowerCase()] }))
+  const onCardChange = (val: any) => {
+    let cardToUpdate: Record<string, any> = {}
+    Object.values(cards)?.forEach((card) => {
+      if (card.name === val.toLowerCase()) {
+        cardToUpdate = card
+      }
+    })
+
+    dispatch(updateCard(cardToUpdate))
   }
 
-  const onCreate = async () => {
+  const onUpdate = async () => {
+    const updatedCards = cards.map((c) => {
+      if (c.cardId === card.cardId) {
+        return card
+      } else return c
+    })
+
     try {
       setIsLoading(true)
-      // mutate the created card
-      tempPokemon && (await addPokemonCard(tempPokemon))
+
+      card && (await updateCardMutation(card))
     } catch (e) {
       console.error(e)
     } finally {
       setTimeout(() => {
         setIsLoading(false)
         dispatch(setIsDirty(false))
-        dispatch(updatePokemon({}))
+        dispatch(setCards(updatedCards))
+        dispatch(updateCard({}))
       }, 1000)
     }
   }
@@ -60,15 +85,15 @@ export const CardStudio = () => {
       >
         <Flex h="10%">
           <Title size="h3" fw={600} c={customTheme.colours.font.primary}>
-            Create Your Card
+            Update Your Card
           </Title>
         </Flex>
         <Space h={50} />
         <Flex h="80%" direction={"column"} gap={25}>
           <Flex w={"100%"}>
             <Select
-              placeholder="Name"
-              data={pokemonNames}
+              placeholder={"Choose a Card..."}
+              data={cardNames}
               searchable
               radius={"lg"}
               w={"100%"}
@@ -76,22 +101,24 @@ export const CardStudio = () => {
               required
               variant="filled"
               classNames={{ input: classes.input }}
-              onChange={onPokemonChange}
+              onChange={onCardChange}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
             <Select
               placeholder="Set"
-              data={["Base", "Base Set 2", "Jungle", "Fossil"]}
+              data={attributes["set"].map((att: Record<string, any>) =>
+                upperCaseFirst(att.name)
+              )}
               searchable
               rightSection
-              value={tempPokemon.set ?? null}
+              value={card.set ?? ""}
               radius={"lg"}
               variant="filled"
               w={"45%"}
               required
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ set: val }))}
+              onChange={(val) => dispatch(updateCard({ set: val }))}
             />
             <NumberInput
               variant="filled"
@@ -101,36 +128,40 @@ export const CardStudio = () => {
               classNames={{ input: numberClasses.input }}
               hideControls
               required
-              value={tempPokemon.setNumber ?? ""}
-              onChange={(val) => dispatch(updatePokemon({ setNumber: val }))}
+              value={card.setNumber ?? ""}
+              onChange={(val) => dispatch(updateCard({ setNumber: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
             <Select
               placeholder="Card Type"
-              data={["Holo", "Standard", "Full Art", "Shadowless"]}
+              data={attributes["cardType"].map((att: Record<string, any>) =>
+                upperCaseFirst(att.name)
+              )}
               searchable
               radius={"lg"}
               w={"45%"}
               rightSection
               variant="filled"
               required
-              value={tempPokemon.cardType ?? null}
+              value={card.cardType ?? ""}
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ cardType: val }))}
+              onChange={(val) => dispatch(updateCard({ cardType: val }))}
             />
             <Select
               placeholder="Condition"
-              data={["Excellent", "Good", "Great", "Poor"]}
+              data={attributes["condition"].map((att: Record<string, any>) =>
+                upperCaseFirst(att.name)
+              )}
               searchable
               radius={"lg"}
               w={"45%"}
               rightSection
               variant="filled"
               required
-              value={tempPokemon.condition ?? null}
+              value={card.condition ?? ""}
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ condition: val }))}
+              onChange={(val) => dispatch(updateCard({ condition: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -142,8 +173,8 @@ export const CardStudio = () => {
               w={"45%"}
               hideControls
               required
-              value={tempPokemon.year ?? ""}
-              onChange={(val) => dispatch(updatePokemon({ year: val }))}
+              value={card.year ?? ""}
+              onChange={(val) => dispatch(updateCard({ year: val }))}
             />
             <NumberInput
               variant="filled"
@@ -153,8 +184,8 @@ export const CardStudio = () => {
               w={"45%"}
               hideControls
               required
-              value={tempPokemon.quantity ?? ""}
-              onChange={(val) => dispatch(updatePokemon({ quantity: val }))}
+              value={card.quantity ?? ""}
+              onChange={(val) => dispatch(updateCard({ quantity: val }))}
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -165,13 +196,13 @@ export const CardStudio = () => {
               label="Graded?"
               size="md"
               w={"45%"}
-              value={tempPokemon.isGraded ?? null}
+              checked={card.isGraded ?? false}
               onChange={(val) =>
-                dispatch(updatePokemon({ isGraded: val.target.checked }))
+                dispatch(updateCard({ isGraded: val.target.checked }))
               }
               h={"100%"}
             />
-            {tempPokemon?.isGraded && (
+            {card?.isGraded && (
               <NumberInput
                 variant="filled"
                 radius="lg"
@@ -180,8 +211,8 @@ export const CardStudio = () => {
                 w={"45%"}
                 hideControls
                 required
-                value={tempPokemon.grading ?? ""}
-                onChange={(val) => dispatch(updatePokemon({ grading: val }))}
+                value={card.grading ?? ""}
+                onChange={(val) => dispatch(updateCard({ grading: val }))}
               />
             )}
           </Flex>
@@ -199,7 +230,7 @@ export const CardStudio = () => {
                 color: customTheme.colours.bg.bgDarkGray100,
               },
             }}
-            onClick={onCreate}
+            onClick={onUpdate}
             loading={isLoading}
             loaderProps={{
               type: "dots",
@@ -207,7 +238,7 @@ export const CardStudio = () => {
             }}
             disabled={!isDirty}
           >
-            Create
+            Update
           </Button>
         </Flex>
       </Flex>

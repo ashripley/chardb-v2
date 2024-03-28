@@ -4,6 +4,8 @@ import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { createElement } from "react"
+import { StudioStore } from "../../redux/store"
+import { useSelector } from "react-redux"
 
 interface Props {
   card: Record<string, any>
@@ -24,6 +26,16 @@ export const GalleryCard = ({ card }: Props) => {
     id,
     year,
   } = card
+
+  const { attributes } = useSelector((state: StudioStore) => state.studio)
+
+  console.log("attributes", attributes)
+  console.log(
+    "filteredAttribute",
+    attributes["set"]?.filter((att: Record<string, any>) => {
+      return att.name === set
+    })[0].totalCards
+  )
 
   return (
     <>
@@ -129,7 +141,13 @@ export const GalleryCard = ({ card }: Props) => {
               </Text>
               <Flex align="center">
                 <Text c="white">{setNumber}</Text>
-                <Text c="white">{setNumber && "/" + 83}</Text>
+                <Text c="white">
+                  {setNumber &&
+                    "/" +
+                      attributes["set"]?.filter((att: Record<string, any>) => {
+                        return att.name === set
+                      })[0].totalCards}
+                </Text>
               </Flex>
             </Flex>
           </Grid.Col>

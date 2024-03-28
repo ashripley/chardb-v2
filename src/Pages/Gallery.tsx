@@ -16,6 +16,7 @@ import { allCards } from "../api/queries/allCards"
 import { useDispatch } from "react-redux"
 import { setCards } from "../redux/card"
 import { ViewSwitch } from "../components/Switches/ViewSwitch"
+import { fetchAttributes } from "../api/mutations/attributes"
 
 export const Gallery = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ export const Gallery = () => {
 
   useEffect(() => {
     fetchPokemonCards()
+    fetchAttributes(dispatch)
   }, [])
 
   const fetchPokemonCards = async () => {

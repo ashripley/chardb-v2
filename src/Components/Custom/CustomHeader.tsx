@@ -6,6 +6,7 @@ import { RootStore } from "../../redux/store"
 import { updateApp } from "../../redux/root"
 import { AppType } from "../../config"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
+import { Fragment } from "react"
 
 export const CustomHeader = () => {
   const apps = ["Gallery", "Studio", "Dashboard"]
@@ -41,13 +42,12 @@ export const CustomHeader = () => {
       </Flex>
       <Space w={25} />
       <Flex justify="flex-start" h={"100%"} w={"100%"}>
-        {apps.map((appName: string, index: number) => (
-          <>
+        {apps.map((appName: string) => (
+          <Fragment key={appName}>
             <Button
               fz={14}
               fw={500}
               c={appName === app ? "white" : customTheme.colours.font.primary}
-              key={index}
               variant={appName === app ? "filled" : "transparent"}
               color={customTheme.colours.bg.bgDarkGray75}
               radius={"xl"}
@@ -57,7 +57,7 @@ export const CustomHeader = () => {
               {appName}
             </Button>
             <Space w={25} />
-          </>
+          </Fragment>
         ))}
       </Flex>
     </Paper>

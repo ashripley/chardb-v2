@@ -1,6 +1,5 @@
-import { Card, Flex, Grid, Group, Paper, Space, Text } from "@mantine/core"
+import { Card, Flex, Grid, Group, Paper, Text } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { IconCircleFilled } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { Carousel } from "@mantine/carousel"
@@ -23,7 +22,7 @@ const styles = {
   text: {
     whiteSpace: "nowrap",
     textOverflow: "ellipsis",
-    "-webkit-line-clamp": 1,
+    WebkitLineClamp: 1,
   },
 }
 

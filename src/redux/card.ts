@@ -2,12 +2,14 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 interface StoreState {
   tempPokemon: Record<string, any>
+  card: Record<string, any>
   cards: Record<string, any>[]
   isDirty: boolean
 }
 
 const initialState: StoreState = {
   tempPokemon: {},
+  card: {},
   cards: [],
   isDirty: false,
 }
@@ -28,6 +30,17 @@ export const cardSlice = createSlice({
       }
       state.tempPokemon = { ...state.tempPokemon, ...action.payload }
     },
+    updateCard: (state, action: PayloadAction<StoreState["card"]>) => {
+      state.isDirty = true
+
+      if (!Object.keys(action.payload).length) {
+        state.card = {}
+        state.isDirty = false
+      }
+      state.card = { ...state.card, ...action.payload }
+
+      console.log("card state", state.card)
+    },
     setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
       state.cards = action.payload
     },
@@ -37,6 +50,7 @@ export const cardSlice = createSlice({
   },
 })
 
-export const { updatePokemon, setCards, setIsDirty } = cardSlice.actions
+export const { updatePokemon, setCards, setIsDirty, updateCard } =
+  cardSlice.actions
 
 export default cardSlice.reducer

@@ -12,13 +12,17 @@ import { IconFlame } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { useSelector } from "react-redux"
-import { CardStore } from "../../redux/store"
+import { CardStore, StudioStore } from "../../redux/store"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { createElement } from "react"
 
 export const StudioCard = () => {
-  const { tempPokemon, isDirty } = useSelector((state: CardStore) => state.card)
-  const pokemon = isDirty ? tempPokemon : {}
+  const { tempPokemon, isDirty, card } = useSelector(
+    (state: CardStore) => state.card
+  )
+  const { attributes, view } = useSelector((state: StudioStore) => state.studio)
+
+  const pokemon = isDirty && view === "create" ? tempPokemon : card
 
   return (
     <>
@@ -165,7 +169,15 @@ export const StudioCard = () => {
               {pokemon?.setNumber ? (
                 <Flex align="center">
                   <Text c="white">{pokemon.setNumber}</Text>
-                  <Text c="white">{pokemon.setNumber && "/" + 83}</Text>
+                  <Text c="white">
+                    {pokemon.setNumber &&
+                      "/" +
+                        attributes["set"]?.filter(
+                          (att: Record<string, any>) => {
+                            return att.name === pokemon.set
+                          }
+                        )[0]?.totalCards}
+                  </Text>
                 </Flex>
               ) : (
                 <Divider size="xl" w="30%" color="white" />

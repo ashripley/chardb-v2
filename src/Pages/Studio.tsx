@@ -1,7 +1,6 @@
 import { Paper, Flex } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { StudioSwitch } from "../components/Switches/StudioSwitch"
-import { CardStudio } from "../components/CardStudio"
 import { StudioCard } from "../components/Custom/StudioCard"
 import { DataStudio } from "../components/DataStudio"
 import { DataCard } from "../components/DataCard"
@@ -10,9 +9,11 @@ import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { AllPokemon } from "../api/queries/allPokemon"
-import { setAllPokemon, setAttributes, setView } from "../redux/studio"
-import { AllAttributes } from "../api/queries/allAttributes"
+import { setAllPokemon, setView } from "../redux/studio"
 import { updatePokemon } from "../redux/card"
+import { CreateCard } from "../components/Card Studio/CreateCard"
+import { UpdateCard } from "../components/Card Studio/UpdateCard"
+import { fetchAttributes } from "../api/mutations/attributes"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
@@ -22,32 +23,13 @@ export const Studio = () => {
     dispatch(setView("create"))
     dispatch(updatePokemon({}))
     fetchPokemonData()
-    fetchAttributes()
+    fetchAttributes(dispatch)
   }, [])
 
   const fetchPokemonData = async () => {
     const fetchedPokemonData = await AllPokemon()
 
     dispatch(setAllPokemon(fetchedPokemonData))
-  }
-
-  const fetchAttributes = async () => {
-    const fetchedAttributes: Record<string, any> = await AllAttributes()
-    const res = Object.values(fetchedAttributes)
-
-    const attributes: Record<string, any>[] = res.reduce((acc, att) => {
-      const { attribute, name, ...rest } = att
-
-      if (!acc[attribute]) {
-        acc[attribute] = [{ name, attribute, ...rest }]
-      } else {
-        acc[attribute].push({ name, attribute, ...rest })
-      }
-
-      return acc
-    }, [])
-
-    dispatch(setAttributes({ isCreate: false, ...attributes }))
   }
 
   return (
@@ -82,9 +64,9 @@ export const Studio = () => {
               >
                 <Flex w={"60%"}>
                   {view === "create" ? (
-                    <CardStudio />
+                    <CreateCard />
                   ) : view === "update" ? (
-                    <CardStudio />
+                    <UpdateCard />
                   ) : view === "db" ? (
                     <DataStudio />
                   ) : (
