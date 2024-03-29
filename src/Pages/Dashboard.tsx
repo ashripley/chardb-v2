@@ -1,30 +1,22 @@
-import {
-  Paper,
-  Flex,
-  ScrollArea,
-  Button,
-  TextInput,
-  rem,
-  Loader,
-} from "@mantine/core"
+import { Paper, Flex, ScrollArea, Button, Loader } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import classes from "../modules/TextInput.module.css"
-import { IconSearch } from "@tabler/icons-react"
-import { GalleryContent } from "../components/GalleryContent"
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { ViewSwitch } from "../components/Switches/ViewSwitch"
+import { useDispatch } from "react-redux"
 import { fetchAttributes } from "../api/queries/attributes"
-import { setApp } from "../redux/gallery"
-import { GalleryApp } from "../config"
-import { GalleryStore } from "../redux/store"
 import { fetchPokemonData } from "../api/queries/pokemon"
 import { fetchCards } from "../api/queries/cards"
+import { DashboardContent } from "../components/DashboardContent"
+import styled from "styled-components"
 
-export const Gallery = () => {
+const StyledScrollArea = styled(ScrollArea)`
+  & > div > div {
+    height: 95%;
+  }
+`
+
+export const Dashboard = () => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const { app } = useSelector((state: GalleryStore) => state.gallery)
 
   useEffect(() => {
     try {
@@ -38,14 +30,6 @@ export const Gallery = () => {
       setIsLoading(false)
     }
   }, [])
-
-  const onGalleryChange = (name: GalleryApp) => {
-    dispatch(setApp(name))
-  }
-
-  const icon = (
-    <IconSearch style={{ width: rem(15), height: rem(15) }} color="white" />
-  )
 
   return (
     <>
@@ -84,67 +68,26 @@ export const Gallery = () => {
                   >
                     <Button
                       variant="filled"
-                      bg={app === "cards" ? "white" : "transparent"}
-                      radius="lg"
-                      w={"40%"}
-                      miw={120}
-                      onClick={() => onGalleryChange("cards")}
-                      styles={{
-                        label: {
-                          color: customTheme.colours.bg.bgDarkGray100,
-                        },
-                      }}
-                    >
-                      Cards
-                    </Button>
-                    <Button
-                      variant="filled"
-                      bg={app === "pokedex" ? "white" : "transparent"}
-                      radius="lg"
-                      w={"40%"}
-                      miw={120}
-                      onClick={() => onGalleryChange("pokedex")}
-                      styles={{
-                        label: {
-                          color: customTheme.colours.bg.bgDarkGray100,
-                        },
-                      }}
-                    >
-                      Pokedex
-                    </Button>
-                  </Flex>
-                  <Flex w={"auto"} justify={"flex-end"} gap={10}>
-                    {app === "cards" && <ViewSwitch />}
-                    <TextInput
-                      radius="lg"
-                      placeholder="Search for a Pokemon"
-                      variant="filled"
-                      classNames={{ input: classes.textInput }}
-                      w={"70%"}
-                      leftSection={icon}
-                      miw={300}
-                    />
-                    <Button
-                      variant="filled"
                       bg={"white"}
                       radius="lg"
-                      w={"20%"}
+                      w={"40%"}
                       miw={120}
+                      onClick={() => {}}
                       styles={{
                         label: {
                           color: customTheme.colours.bg.bgDarkGray100,
                         },
                       }}
                     >
-                      Search
+                      Analytics
                     </Button>
                   </Flex>
                 </Flex>
-                <ScrollArea
+                <StyledScrollArea
                   h={"90%"}
                   w={"95%"}
                   type="never"
-                  style={{ borderRadius: 35 }}
+                  style={{ borderRadius: 15 }}
                 >
                   {isLoading ? (
                     <Flex justify="center" align={"center"} h={"65vh"}>
@@ -155,11 +98,16 @@ export const Gallery = () => {
                       />
                     </Flex>
                   ) : (
-                    <Flex justify="space-evenly" wrap="wrap" gap={20}>
-                      <GalleryContent />
+                    <Flex
+                      justify="space-evenly"
+                      wrap="wrap"
+                      gap={20}
+                      h={"100%"}
+                    >
+                      <DashboardContent />
                     </Flex>
                   )}
-                </ScrollArea>
+                </StyledScrollArea>
               </Flex>
             </Flex>
           </Paper>

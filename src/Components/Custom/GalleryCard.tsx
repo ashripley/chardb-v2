@@ -1,9 +1,18 @@
-import { Card, Flex, Grid, Group, Paper, Space, Text } from "@mantine/core"
+import {
+  ActionIcon,
+  Card,
+  Flex,
+  Grid,
+  Group,
+  Paper,
+  Space,
+  Text,
+} from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
 import { customTheme } from "../../customTheme"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
-import { createElement } from "react"
+import { createElement, useState } from "react"
 import { StudioStore } from "../../redux/store"
 import { useSelector } from "react-redux"
 
@@ -12,6 +21,8 @@ interface Props {
 }
 
 export const GalleryCard = ({ card }: Props) => {
+  const [isEvolutions, setIsEvolutions] = useState<boolean>(false)
+
   const {
     name,
     type,
@@ -36,6 +47,8 @@ export const GalleryCard = ({ card }: Props) => {
       return att.name === set
     })[0].totalCards
   )
+
+  console.log("card", card)
 
   return (
     <>
@@ -79,24 +92,40 @@ export const GalleryCard = ({ card }: Props) => {
             <Card w="90%" h={180} radius="lg" m="auto" p={"sm"}>
               <Flex direction="column" h="100%" justify={"center"}>
                 <Card h="90%" radius="lg" m="auto" top={5}>
-                  {image ? (
-                    <img src={image} width={125} height={125} />
+                  {isEvolutions ? (
+                    <Flex
+                      direction={"row"}
+                      h={"100%"}
+                      w={"100%"}
+                      justify={"center"}
+                      align={"center"}
+                    >
+                      {Object.values(card.evolutions).map(
+                        (evo: any) =>
+                          evo?.image !== "" && (
+                            <img src={evo.image} width={85} height={85} />
+                          )
+                      )}
+                    </Flex>
                   ) : (
-                    <IconFlame
-                      width={100}
-                      height={100}
-                      stroke={1}
-                      color={customTheme.colours.bg.bgGray100}
-                    />
+                    <img src={image} width={125} height={125} />
                   )}
                 </Card>
                 <Flex h="10%" w="100%" justify={"flex-end"} align={"center"}>
-                  <IconChartBubble
-                    height={25}
-                    width={25}
-                    stroke={1}
-                    color={customTheme.colours.bg.bgGray100}
-                  />
+                  <ActionIcon
+                    variant="transparent"
+                    color="gray"
+                    size="sm"
+                    aria-label="evolutions"
+                    onClick={() => setIsEvolutions(!isEvolutions)}
+                  >
+                    <IconChartBubble
+                      height={25}
+                      width={25}
+                      stroke={1}
+                      color={customTheme.colours.bg.bgGray100}
+                    />
+                  </ActionIcon>
                 </Flex>
               </Flex>
             </Card>
