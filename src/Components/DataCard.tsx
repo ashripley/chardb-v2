@@ -102,8 +102,15 @@ export const DataCard = () => {
           h="100%"
           m="auto"
         >
-          <Title size="h3" h={"5%"} fw={600} w={"100%"} c="white">
-            Current {labelMap[dbType]}
+          <Title
+            size="h3"
+            h={"5%"}
+            fw={600}
+            w={"100%"}
+            display={"contents"}
+            c="white"
+          >
+            {labelMap[dbType]}
           </Title>
           <Space h={20} />
           <ScrollArea

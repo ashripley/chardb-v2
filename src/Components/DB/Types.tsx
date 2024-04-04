@@ -1,4 +1,4 @@
-import { Flex, NumberInput, TextInput } from "@mantine/core"
+import { Flex, TextInput } from "@mantine/core"
 import numberClasses from "../../modules/NumberInput.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { StudioStore } from "../../redux/store"

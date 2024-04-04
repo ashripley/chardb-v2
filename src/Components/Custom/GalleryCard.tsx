@@ -165,7 +165,7 @@ export const GalleryCard = ({ card }: Props) => {
                     "/" +
                       attributes["set"]?.filter((att: Record<string, any>) => {
                         return att.name === set
-                      })[0].totalCards}
+                      })?.[0]?.totalCards}
                 </Text>
               </Flex>
             </Flex>
