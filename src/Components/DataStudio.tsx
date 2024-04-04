@@ -7,7 +7,7 @@ import { Conditions } from "./DB/Conditions"
 import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
-import { AddAttributeMutation } from "../api/mutations/addAttribute"
+import { addAttributeMutation } from "../api/attributes"
 import { setAttributes, updateAttribute } from "../redux/studio"
 
 export const DataStudio = () => {
@@ -29,7 +29,7 @@ export const DataStudio = () => {
     try {
       setIsLoading(true)
 
-      await AddAttributeMutation(dbType, {
+      await addAttributeMutation(dbType, {
         ...attribute[dbType],
       })
       // clearFields()

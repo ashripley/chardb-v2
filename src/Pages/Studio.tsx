@@ -12,8 +12,8 @@ import { setView } from "../redux/studio"
 import { updatePokemon } from "../redux/card"
 import { CreateCard } from "../components/Card Studio/CreateCard"
 import { UpdateCard } from "../components/Card Studio/UpdateCard"
-import { fetchAttributes } from "../api/queries/attributes"
-import { fetchPokemonData } from "../api/queries/pokemon"
+import { allAttributes } from "../api/attributes"
+import { allPokemon } from "../api/pokemon"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
@@ -22,8 +22,8 @@ export const Studio = () => {
   useEffect(() => {
     dispatch(setView("create"))
     dispatch(updatePokemon({}))
-    fetchPokemonData(dispatch)
-    fetchAttributes(dispatch)
+    allPokemon(dispatch)
+    allAttributes(dispatch)
   }, [])
 
   return (

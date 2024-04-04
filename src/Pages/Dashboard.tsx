@@ -2,11 +2,11 @@ import { Paper, Flex, ScrollArea, Button, Loader } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { fetchAttributes } from "../api/queries/attributes"
-import { fetchPokemonData } from "../api/queries/pokemon"
-import { fetchCards } from "../api/queries/cards"
 import { DashboardContent } from "../components/DashboardContent"
 import styled from "styled-components"
+import { allAttributes } from "../api/attributes"
+import { allCards } from "../api/cards"
+import { allPokemon } from "../api/pokemon"
 
 const StyledScrollArea = styled(ScrollArea)`
   & > div > div {
@@ -21,9 +21,9 @@ export const Dashboard = () => {
   useEffect(() => {
     try {
       setIsLoading(true)
-      fetchCards(dispatch)
-      fetchPokemonData(dispatch)
-      fetchAttributes(dispatch)
+      allCards(dispatch)
+      allPokemon(dispatch)
+      allAttributes(dispatch)
     } catch (e) {
       console.error(e)
     } finally {

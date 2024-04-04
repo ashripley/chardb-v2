@@ -38,8 +38,6 @@ export const cardSlice = createSlice({
         state.isDirty = false
       }
       state.card = { ...state.card, ...action.payload }
-
-      console.log("card state", state.card)
     },
     setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
       state.cards = action.payload

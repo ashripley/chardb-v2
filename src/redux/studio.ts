@@ -33,7 +33,6 @@ export const studioSlice = createSlice({
       state.allPokemon = action.payload
     },
     setAttributes: (state, action: PayloadAction<StoreState["attributes"]>) => {
-      console.log("action.payload", action.payload)
       const isCreate = action.payload["isCreate"]
 
       const payload = omit(["isCreate"], action.payload)
@@ -65,9 +64,6 @@ export const studioSlice = createSlice({
       } else {
         state.attribute = {}
       }
-
-      console.log("action.payload", action.payload)
-      console.log("state.attribute", state.attribute)
     },
     setIsDirty: (state, action: PayloadAction<StoreState["isDirty"]>) => {
       state.isDirty = action.payload

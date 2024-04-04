@@ -16,7 +16,7 @@ import { CardStore, StudioStore } from "../../redux/store"
 import { useEffect, useState } from "react"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { customTheme } from "../../customTheme"
-import { addPokemonCard } from "../../api/mutations/addCard"
+import { addCardMutation } from "../../api/cards"
 
 export const CreateCard = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -45,7 +45,7 @@ export const CreateCard = () => {
     try {
       setIsLoading(true)
 
-      tempPokemon && (await addPokemonCard(tempPokemon))
+      tempPokemon && (await addCardMutation(tempPokemon))
     } catch (e) {
       console.error(e)
     } finally {

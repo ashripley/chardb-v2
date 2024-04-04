@@ -13,6 +13,8 @@ export const GalleryContent = () => {
     tile: GalleryTile,
   }
 
+  console.log("cards", cards)
+
   const GalleryViewComponent = viewMap[view]
 
   return (

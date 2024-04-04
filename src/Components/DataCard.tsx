@@ -11,20 +11,14 @@ import { customTheme } from "../customTheme"
 import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { upperCaseFirst } from "../helpers/upperCaseFirst"
-import { useEffect } from "react"
-import { deleteAttribute } from "../api/mutations/deleteAttribute"
 import { setAttributes } from "../redux/studio"
+import { deleteAttributeMutation } from "../api/attributes"
 
 export const DataCard = () => {
   const { attributes, dbType } = useSelector(
     (state: StudioStore) => state.studio
   )
   const dispatch = useDispatch()
-
-  useEffect(
-    () => console.log("type attributes: ", attributes.type),
-    [attributes.type]
-  )
 
   const excludedKeys = ["name", "attribute", "attributeId"]
   const keysToGap = ["set", "type"]
@@ -44,7 +38,7 @@ export const DataCard = () => {
     const filteredAttributes = attributes[attribute].filter(
       (att: Record<string, any>) => att.attributeId !== attributeId
     )
-    deleteAttribute(`${attribute}_${name}`)
+    deleteAttributeMutation(`${attribute}_${name}`)
     dispatch(
       setAttributes({
         isCreate: false,

@@ -40,16 +40,6 @@ export const GalleryCard = ({ card }: Props) => {
 
   const { attributes } = useSelector((state: StudioStore) => state.studio)
 
-  console.log("attributes", attributes)
-  console.log(
-    "filteredAttribute",
-    attributes["set"]?.filter((att: Record<string, any>) => {
-      return att.name === set
-    })[0].totalCards
-  )
-
-  console.log("card", card)
-
   return (
     <>
       <Card

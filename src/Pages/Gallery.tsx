@@ -14,12 +14,12 @@ import { GalleryContent } from "../components/GalleryContent"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ViewSwitch } from "../components/Switches/ViewSwitch"
-import { fetchAttributes } from "../api/queries/attributes"
 import { setApp } from "../redux/gallery"
 import { GalleryApp } from "../config"
 import { GalleryStore } from "../redux/store"
-import { fetchPokemonData } from "../api/queries/pokemon"
-import { fetchCards } from "../api/queries/cards"
+import { allAttributes } from "../api/attributes"
+import { allCards } from "../api/cards"
+import { allPokemon } from "../api/pokemon"
 
 export const Gallery = () => {
   const dispatch = useDispatch()
@@ -29,9 +29,9 @@ export const Gallery = () => {
   useEffect(() => {
     try {
       setIsLoading(true)
-      fetchCards(dispatch)
-      fetchPokemonData(dispatch)
-      fetchAttributes(dispatch)
+      allCards(dispatch)
+      allPokemon(dispatch)
+      allAttributes(dispatch)
     } catch (e) {
       console.error(e)
     } finally {

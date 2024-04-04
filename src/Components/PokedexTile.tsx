@@ -9,7 +9,6 @@ interface Props {
 }
 
 export const PokedexTile = ({ pokemon }: Props) => {
-  console.log("pokemon", pokemon)
   return (
     <>
       <Card

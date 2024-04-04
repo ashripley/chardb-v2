@@ -21,7 +21,7 @@ import { CardStore, StudioStore } from "../../redux/store"
 import { useEffect, useState } from "react"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { customTheme } from "../../customTheme"
-import { updateCardMutation } from "../../api/mutations/updateCard"
+import { updateCardMutation } from "../../api/cards"
 
 export const UpdateCard = () => {
   const [isLoading, setIsLoading] = useState(false)
