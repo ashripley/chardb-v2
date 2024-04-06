@@ -113,7 +113,16 @@ export const GalleryTile = ({ card }: Props) => {
             </Carousel.Slide>
             <Carousel.Slide>
               <Grid.Col span={12}>
-                <Group w="100%" m="auto" p={"xs"} gap={0}>
+                <Group w="100%" m="auto" pl={8} gap={0}>
+                  <Text
+                    c="white"
+                    w="100%"
+                    mih={15}
+                    fz={12}
+                    style={{ ...styles.text }}
+                  >
+                    Type: <b>{upperCaseFirst(type)}</b>
+                  </Text>
                   <Text
                     c="white"
                     w="100%"

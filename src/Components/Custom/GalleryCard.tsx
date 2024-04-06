@@ -136,6 +136,9 @@ export const GalleryCard = ({ card }: Props) => {
           <Grid.Col span={12}>
             <Group w="100%" m="auto" p={15} gap={5}>
               <Text c="white" w="100%" mih={25}>
+                Type: <b>{upperCaseFirst(type)}</b>
+              </Text>
+              <Text c="white" w="100%" mih={25}>
                 Set: <b>{set}</b>
               </Text>
               <Text c="white" w="100%" mih={25}>
@@ -157,7 +160,6 @@ export const GalleryCard = ({ card }: Props) => {
             </Group>
           </Grid.Col>
           <Grid.Col span={12}>
-            <Space h={30} />
             <Flex
               m="auto"
               w="100%"
