@@ -111,7 +111,7 @@ export const GalleryCard = ({ card }: Props) => {
                         })}
                     </Flex>
                   ) : (
-                    <img src={image} width={125} height={125} />
+                    <img src={image} width={135} height={135} />
                   )}
                 </Card>
                 <Flex h="10%" w="100%" justify={"flex-end"} align={"center"}>

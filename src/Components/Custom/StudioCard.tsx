@@ -72,21 +72,13 @@ export const StudioCard = () => {
           <Grid.Col span={12}>
             <Card w="90%" h={180} radius="lg" m="auto" p={"sm"}>
               <Flex direction="column" h="100%" justify={"center"}>
-                <Card h="90%" radius="lg" m="auto" top={5}>
+                <Card h="100%" radius="lg" m="auto">
                   {pokemon?.image ? (
-                    <img src={pokemon?.image} width={100} height={100} />
+                    <img src={pokemon?.image} width={135} height={135} />
                   ) : (
                     <></>
                   )}
                 </Card>
-                <Flex h="10%" w="100%" justify={"flex-end"} align={"center"}>
-                  <IconChartBubble
-                    height={25}
-                    width={25}
-                    stroke={1}
-                    color={customTheme.colours.bg.bgGray100}
-                  />
-                </Flex>
               </Flex>
             </Card>
           </Grid.Col>
