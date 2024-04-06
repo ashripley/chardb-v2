@@ -86,14 +86,13 @@ export const GalleryTile = ({ card }: Props) => {
             classNames={classes}
           >
             <Carousel.Slide>
-              <Grid.Col span={12} h={"80%"}>
-                <Card w="90%" h={"90%"} radius="lg" m="auto" p={"sm"}>
+              <Grid.Col span={12} h={"85%"}>
+                <Card w="90%" h={"100%"} radius="lg" m="auto" p={"sm"}>
                   <Flex direction="column" h={"100%"} justify={"center"}>
                     <Card
-                      h="90%"
+                      h="100%"
                       radius="lg"
                       m="auto"
-                      top={5}
                       display={"flex"}
                       style={{ justifyContent: "center" }}
                     >
@@ -108,19 +107,6 @@ export const GalleryTile = ({ card }: Props) => {
                         />
                       )}
                     </Card>
-                    <Flex
-                      h="10%"
-                      w="100%"
-                      justify={"flex-end"}
-                      align={"center"}
-                    >
-                      <IconChartBubble
-                        height={15}
-                        width={15}
-                        stroke={1}
-                        color={customTheme.colours.bg.bgDarkGray100}
-                      />
-                    </Flex>
                   </Flex>
                 </Card>
               </Grid.Col>

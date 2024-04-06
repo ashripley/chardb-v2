@@ -81,7 +81,12 @@ export const GalleryCard = ({ card }: Props) => {
           <Grid.Col span={12}>
             <Card w="90%" h={180} radius="lg" m="auto" p={"sm"}>
               <Flex direction="column" h="100%" justify={"center"}>
-                <Card h="90%" radius="lg" m="auto" top={5}>
+                <Card
+                  h="90%"
+                  radius="lg"
+                  top={5}
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
                   {isEvolutions ? (
                     <Flex
                       direction={"row"}
@@ -90,12 +95,20 @@ export const GalleryCard = ({ card }: Props) => {
                       justify={"center"}
                       align={"center"}
                     >
-                      {Object.values(card.evolutions).map(
-                        (evo: any) =>
-                          evo?.image !== "" && (
-                            <img src={evo.image} width={85} height={85} />
+                      {Object.keys(card.evolutions)
+                        .sort()
+                        .map((evo: any) => {
+                          const evolution = card.evolutions[evo]
+                          return (
+                            evolution?.image !== "" && (
+                              <img
+                                src={evolution.image}
+                                width={85}
+                                height={85}
+                              />
+                            )
                           )
-                      )}
+                        })}
                     </Flex>
                   ) : (
                     <img src={image} width={125} height={125} />
