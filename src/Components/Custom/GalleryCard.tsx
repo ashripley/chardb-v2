@@ -136,23 +136,23 @@ export const GalleryCard = ({ card }: Props) => {
           <Grid.Col span={12}>
             <Group w="100%" m="auto" p={15} gap={5}>
               <Text c="white" w="100%" mih={25}>
-                Type: <b>{upperCaseFirst(type)}</b>
+                Type: {upperCaseFirst(type)}
               </Text>
               <Text c="white" w="100%" mih={25}>
-                Set: <b>{set}</b>
+                Set: {set}
               </Text>
               <Text c="white" w="100%" mih={25}>
-                Card Type: <b>{cardType}</b>
+                Card Type: {cardType}
               </Text>
               <Text c="white" w="100%" mih={25}>
-                Condition: <b>{condition}</b>
+                Condition: {condition}
               </Text>
               <Text c="white" w="100%" mih={25}>
-                Quantity: <b>{quantity}</b>
+                Quantity: {quantity}
               </Text>
               {isGraded ? (
                 <Text c="white" w="100%" mih={25}>
-                  Grading: <b>{grading}</b>
+                  Grading: {grading}
                 </Text>
               ) : (
                 <Space h={25} />

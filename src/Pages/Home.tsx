@@ -209,9 +209,17 @@ export const Home = () => {
                 </Paper>
               </Flex>
               <Space h={20} />
-              <Flex w={"100%"} justify={"center"} h={"70%"}>
+              <Flex
+                w={"100%"}
+                justify={"center"}
+                h={"70%"}
+                m={"auto"}
+                p={"xl"}
+                pb={0}
+                pt={0}
+              >
                 <Paper
-                  w={"90%"}
+                  w={"100%"}
                   h={"100%"}
                   bg={"white"}
                   radius={"lg"}

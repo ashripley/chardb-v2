@@ -121,7 +121,7 @@ export const GalleryTile = ({ card }: Props) => {
                     fz={12}
                     style={{ ...styles.text }}
                   >
-                    Type: <b>{upperCaseFirst(type)}</b>
+                    Type: {upperCaseFirst(type)}
                   </Text>
                   <Text
                     c="white"
@@ -130,7 +130,7 @@ export const GalleryTile = ({ card }: Props) => {
                     fz={12}
                     style={{ ...styles.text }}
                   >
-                    Set: <b>{set}</b>
+                    Set: {set}
                   </Text>
                   <Text
                     c="white"
@@ -139,7 +139,7 @@ export const GalleryTile = ({ card }: Props) => {
                     fz={12}
                     style={{ ...styles.text }}
                   >
-                    Card Type: <b>{cardType}</b>
+                    Card Type: {cardType}
                   </Text>
                   <Text
                     c="white"
@@ -148,7 +148,7 @@ export const GalleryTile = ({ card }: Props) => {
                     fz={12}
                     style={{ ...styles.text }}
                   >
-                    Condition: <b>{condition}</b>
+                    Condition: {condition}
                   </Text>
                   <Text
                     c="white"
@@ -157,7 +157,7 @@ export const GalleryTile = ({ card }: Props) => {
                     fz={12}
                     style={{ ...styles.text }}
                   >
-                    Quantity: <b>{quantity}</b>
+                    Quantity: {quantity}
                   </Text>
                   {isGraded && (
                     <Text
@@ -167,7 +167,7 @@ export const GalleryTile = ({ card }: Props) => {
                       fz={12}
                       style={{ ...styles.text }}
                     >
-                      Grading: <b>{grading}</b>
+                      Grading: {grading}
                     </Text>
                   )}
                 </Group>
