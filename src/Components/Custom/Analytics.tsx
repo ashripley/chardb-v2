@@ -33,6 +33,7 @@ export const Analytics = () => {
               fw={600}
               c={customTheme.colours.font.primary}
               style={{ ...styles.title }}
+              ff={customTheme.font.primary}
             >
               Cards
             </Title>
@@ -60,6 +61,7 @@ export const Analytics = () => {
               fw={600}
               c={customTheme.colours.font.primary}
               style={{ ...styles.title }}
+              ff={customTheme.font.primary}
             >
               Attributes
             </Title>
@@ -89,6 +91,7 @@ export const Analytics = () => {
               fw={600}
               c={customTheme.colours.font.primary}
               style={{ ...styles.title }}
+              ff={customTheme.font.primary}
             >
               Pokémon
             </Title>

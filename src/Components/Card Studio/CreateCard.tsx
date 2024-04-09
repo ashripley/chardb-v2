@@ -86,6 +86,7 @@ export const CreateCard = () => {
               variant="filled"
               classNames={{ input: classes.input }}
               onChange={onPokemonChange}
+              nothingFoundMessage="No Pokemon found..."
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>

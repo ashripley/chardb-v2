@@ -6,6 +6,7 @@ import { RootStore } from "../redux/store"
 import { Studio } from "./Studio"
 import { customTheme } from "../customTheme"
 import { Dashboard } from "./Dashboard"
+import { Home } from "./Home"
 
 export const Index = () => {
   const { app } = useSelector((state: RootStore) => state.root)
@@ -14,6 +15,7 @@ export const Index = () => {
     Gallery: <Gallery />,
     Studio: <Studio />,
     Dashboard: <Dashboard />,
+    Home: <Home />,
   }
 
   return (

@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'SF Pro';
+  src: url('../src/assets/fonts/SF-Pro.ttf') format('truetype');
+  /* Repeat the above declaration for each font weight/style you have */
+}
+
+/* Apply the SF Pro font to the entire body */
+body {
+  font-family: 'SF Pro', sans-serif;
+}

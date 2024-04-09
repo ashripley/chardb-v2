@@ -62,8 +62,7 @@ export const customTheme: Record<string, any> = {
     },
   },
   font: {
-    primary:
-      "ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif",
+    primary: "SF Pro",
   },
   icons: {
     normal: IconCircle,
