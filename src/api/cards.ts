@@ -2,7 +2,7 @@ import { Dispatch, UnknownAction } from "@reduxjs/toolkit"
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { firestore } from "../services/firebase.config"
 import { Card, setCards } from "../redux/card"
-import { theme } from "../customTheme"
+import { theme } from "../theme/theme"
 import { v4 as uuidv4 } from "uuid"
 
 export const allCards = async (dispatch: Dispatch<UnknownAction>) => {

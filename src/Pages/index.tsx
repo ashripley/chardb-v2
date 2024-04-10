@@ -1,12 +1,12 @@
 import { Paper, Center, Flex } from "@mantine/core"
-import { NavigationBar } from "../components/NavigationBar"
-import { Gallery } from "./Gallery"
+import { NavigationBar } from "../components/Common/NavigationBar"
+import { Gallery } from "./Gallery/Gallery"
 import { useSelector } from "react-redux"
 import { RootStore } from "../redux/store"
-import { Studio } from "./Studio"
-import { theme } from "../customTheme"
-import { Dashboard } from "./Dashboard"
-import { Home } from "./Home"
+import { Studio } from "./Studio/Studio"
+import { theme } from "../theme/theme"
+import { Dashboard } from "./Dashboard/Dashboard"
+import { Home } from "./Home/Home"
 
 export const Index = () => {
   const { page } = useSelector((state: RootStore) => state.root)
