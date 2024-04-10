@@ -95,7 +95,8 @@ export const Home = () => {
             h={"60%"}
           >
             <Card
-              h={100}
+              h={"auto"}
+              mih={100}
               w={"70%"}
               bg={theme.colours.accents.squir}
               style={{ ...styles.borderRadius }}
@@ -128,7 +129,8 @@ export const Home = () => {
               </Flex>
             </Card>
             <Card
-              h={100}
+              h={"auto"}
+              mih={100}
               w={"80%"}
               bg={theme.colours.accents.bulb}
               style={{ ...styles.borderRadius }}
@@ -161,7 +163,8 @@ export const Home = () => {
               </Flex>
             </Card>
             <Card
-              h={300}
+              h={"auto"}
+              mih={300}
               w={"90%"}
               bg={theme.colours.accents.char}
               style={{ ...styles.borderRadius }}
