@@ -24,7 +24,7 @@ import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { theme } from "../../customTheme"
 import { updateCardMutation } from "../../api/cards"
 
-export const StudioUpdateCardEntry = () => {
+export const StudioUpdateCardDetails = () => {
   const [isLoading, setIsLoading] = useState(false)
   const { isDirty, cards, card } = useSelector((state: CardStore) => state.card)
   const { attributes } = useSelector((state: StudioStore) => state.studio)

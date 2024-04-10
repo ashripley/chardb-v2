@@ -18,7 +18,7 @@ import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { theme } from "../../customTheme"
 import { addCardMutation } from "../../api/cards"
 
-export const StudioCardEntry = () => {
+export const StudioCardDetails = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {

@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { setView } from "../redux/studio"
 import { updatePokemon } from "../redux/card"
-import { StudioCardEntry } from "../components/Cards/StudioCardEntry"
-import { StudioUpdateCardEntry } from "../components/Cards/StudioUpdateCardEntry"
+import { StudioCardDetails } from "../components/Details/StudioCardDetails"
+import { StudioUpdateCardDetails } from "../components/Details/StudioUpdateCardDetails"
 import { allAttributes } from "../api/attributes"
 import { allPokemon } from "../api/pokemon"
 import { StudioDatabaseCanvas } from "../components/Cards/StudioDatabaseCanvas"
@@ -28,11 +28,11 @@ export const Studio = () => {
 
   const viewComponentContent = {
     create: {
-      left: <StudioCardEntry />,
+      left: <StudioCardDetails />,
       right: <StudioCard />,
     },
     update: {
-      left: <StudioUpdateCardEntry />,
+      left: <StudioUpdateCardDetails />,
       right: <StudioCard />,
     },
     db: {
