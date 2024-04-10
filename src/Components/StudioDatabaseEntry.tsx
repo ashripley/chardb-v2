@@ -1,5 +1,5 @@
 import { Button, Center, Flex, Space, Title } from "@mantine/core"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import { Sets } from "./Sections/Sets"
 import { CardTypes } from "./Sections/CardTypes"
 import { Types } from "./Sections/Types"
@@ -54,7 +54,7 @@ export const StudioDatabaseEntry = () => {
         align={"center"}
         m="auto"
       >
-        <Title size="h3" fw={600} c={customTheme.colours.font.primary}>
+        <Title size="h3" fw={600} c={theme.colours.fonts.primary}>
           Create {dbTypeMap[dbType].label}
         </Title>
         <Space h={50} />
@@ -69,14 +69,14 @@ export const StudioDatabaseEntry = () => {
             miw={250}
             styles={{
               label: {
-                color: customTheme.colours.bg.bgDarkGray100,
+                color: theme.colours.bg.bgDarkGray100,
               },
             }}
             onClick={onSave}
             loading={isLoading}
             loaderProps={{
               type: "dots",
-              color: customTheme.colours.accents.char,
+              color: theme.colours.accents.char,
             }}
             disabled={!isDirty}
           >

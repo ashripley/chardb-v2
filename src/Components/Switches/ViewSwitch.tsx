@@ -1,6 +1,6 @@
 import { SegmentedControl, VisuallyHidden, rem } from "@mantine/core"
 import { IconGridDots, IconLayoutGrid } from "@tabler/icons-react"
-import { customTheme } from "../../customTheme"
+import { theme } from "../../customTheme"
 import { setView } from "../../redux/gallery"
 import { GalleryViewType } from "../../config"
 import { useDispatch } from "react-redux"
@@ -29,7 +29,7 @@ export const ViewSwitch = () => {
       radius="xl"
       defaultValue="card"
       bg={"transparent"}
-      color={customTheme.colours.bg.bgDarkGray75}
+      color={theme.colours.bg.bgDarkGray75}
       onChange={onViewChange}
       data={[
         {

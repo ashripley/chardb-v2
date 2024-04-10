@@ -7,7 +7,7 @@ import {
   rem,
   Loader,
 } from "@mantine/core"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import classes from "../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
 import { GalleryContent } from "../components/GalleryContent"
@@ -57,7 +57,7 @@ export const Gallery = () => {
             m="auto"
             w="100%"
             h="100%"
-            bg={customTheme.colours.bg.bgGray25}
+            bg={theme.colours.bg.bgGray25}
           >
             <Flex w={"100%"} h={"100%"} justify={"center"}>
               <Flex
@@ -91,7 +91,7 @@ export const Gallery = () => {
                       onClick={() => onGalleryChange("cards")}
                       styles={{
                         label: {
-                          color: customTheme.colours.bg.bgDarkGray100,
+                          color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
                     >
@@ -106,7 +106,7 @@ export const Gallery = () => {
                       onClick={() => onGalleryChange("pokedex")}
                       styles={{
                         label: {
-                          color: customTheme.colours.bg.bgDarkGray100,
+                          color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
                     >
@@ -132,7 +132,7 @@ export const Gallery = () => {
                       miw={120}
                       styles={{
                         label: {
-                          color: customTheme.colours.bg.bgDarkGray100,
+                          color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
                     >
@@ -149,7 +149,7 @@ export const Gallery = () => {
                   {isLoading ? (
                     <Flex justify="center" align={"center"} h={"65vh"}>
                       <Loader
-                        color={customTheme.colours.accents.char}
+                        color={theme.colours.accents.char}
                         size="lg"
                         type="dots"
                       />

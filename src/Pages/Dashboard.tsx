@@ -1,5 +1,5 @@
 import { Paper, Flex, ScrollArea, Button, Loader } from "@mantine/core"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
@@ -41,7 +41,7 @@ export const Dashboard = () => {
             m="auto"
             w="100%"
             h="100%"
-            bg={customTheme.colours.bg.bgGray25}
+            bg={theme.colours.bg.bgGray25}
           >
             <Flex w={"100%"} h={"100%"} justify={"center"}>
               <Flex
@@ -75,7 +75,7 @@ export const Dashboard = () => {
                       onClick={() => {}}
                       styles={{
                         label: {
-                          color: customTheme.colours.bg.bgDarkGray100,
+                          color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
                     >
@@ -92,7 +92,7 @@ export const Dashboard = () => {
                   {isLoading ? (
                     <Flex justify="center" align={"center"} h={"65vh"}>
                       <Loader
-                        color={customTheme.colours.accents.char}
+                        color={theme.colours.accents.char}
                         size="lg"
                         type="dots"
                       />

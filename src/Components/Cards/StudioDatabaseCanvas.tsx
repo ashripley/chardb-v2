@@ -12,7 +12,7 @@ import { StudioStore } from "../../redux/store"
 import { deleteAttributeMutation } from "../../api/attributes"
 import { setAttributes } from "../../redux/studio"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
-import { customTheme } from "../../customTheme"
+import { theme } from "../../customTheme"
 
 export const StudioDatabaseCanvas = () => {
   const { attributes, dbType } = useSelector(
@@ -92,7 +92,7 @@ export const StudioDatabaseCanvas = () => {
         h={"auto"}
         p={"lg"}
         radius="xl"
-        bg={customTheme.colours.bg.bgGray100}
+        bg={theme.colours.bg.bgGray100}
       >
         <Flex
           justify="flex-start"

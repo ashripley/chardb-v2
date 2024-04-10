@@ -1,6 +1,5 @@
 import { Card, Flex, Paper, Space, Text } from "@mantine/core"
-import { IconChartBubble } from "@tabler/icons-react"
-import { customTheme } from "../../customTheme"
+import { Theme, theme } from "../../customTheme"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { createElement } from "react"
 
@@ -15,7 +14,9 @@ export const PokedexTile = ({ pokemon }: Props) => {
         w={"200px"}
         h={"200px"}
         radius="xl"
-        bg={customTheme.colours.types[pokemon.type]}
+        bg={
+          theme.colours.types[pokemon.type as keyof Theme["colours"]["types"]]
+        }
       >
         <Flex justify="space-between" align="center" w="90%" m="auto">
           <Text c="white">{upperCaseFirst(pokemon.name)}</Text>
@@ -27,10 +28,13 @@ export const PokedexTile = ({ pokemon }: Props) => {
             display={"flex"}
             style={{ justifyContent: "center", alignItems: "center" }}
           >
-            {createElement(customTheme.icons[pokemon.type], {
+            {createElement(theme.icons[pokemon.type as keyof Theme["icons"]], {
               style: { width: 15, height: 15 },
               stroke: 1.5,
-              color: customTheme.colours.types[pokemon.type],
+              color:
+                theme.colours.types[
+                  pokemon.type as keyof Theme["colours"]["types"]
+                ],
             })}
           </Paper>
         </Flex>

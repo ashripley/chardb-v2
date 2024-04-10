@@ -4,7 +4,7 @@ import { Gallery } from "./Gallery"
 import { useSelector } from "react-redux"
 import { RootStore } from "../redux/store"
 import { Studio } from "./Studio"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import { Dashboard } from "./Dashboard"
 import { Home } from "./Home"
 
@@ -27,7 +27,7 @@ export const Index = () => {
           w={"100%"}
           h={"100%"}
           mah={"100%"}
-          bg={customTheme.colours.bg.bgGray15}
+          bg={theme.colours.bg.bgGray15}
         >
           <Flex w={"95%"} h={75} justify="center" align="center" m={"auto"}>
             <NavigationBar />

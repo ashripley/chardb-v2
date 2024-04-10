@@ -1,9 +1,40 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
+export interface Card {
+  cardId: string
+  cardType: string
+  condition: string
+  evolutions: {
+    first: {
+      image: string
+      name: string
+    }
+    second?: {
+      image: string
+      name: string
+    }
+    third?: {
+      image: string
+      name: string
+    }
+  }
+  id: number
+  image: string
+  name: string
+  pokemonId: string
+  quantity: number
+  set: string
+  setNumber: string
+  type: string
+  year: number
+  isGraded?: boolean
+  grading?: number
+}
+
 interface StoreState {
   tempPokemon: Record<string, any>
-  card: Record<string, any>
-  cards: Record<string, any>[]
+  card: Card | Record<string, any>
+  cards: Card[] | Record<string, any>[]
   isDirty: boolean
 }
 

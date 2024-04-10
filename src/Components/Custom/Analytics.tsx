@@ -1,5 +1,5 @@
 import { Card, Flex, Title, Text } from "@mantine/core"
-import { customTheme } from "../../customTheme"
+import { theme } from "../../customTheme"
 import { CardStore, StudioStore } from "../../redux/store"
 import { useSelector } from "react-redux"
 
@@ -31,21 +31,21 @@ export const Analytics = () => {
             <Title
               size="h4"
               fw={600}
-              c={customTheme.colours.font.primary}
+              c={theme.colours.fonts.primary}
               style={{ ...styles.title }}
-              ff={customTheme.font.primary}
+              ff={theme.fonts.primary}
             >
               Cards
             </Title>
             <Flex direction={"column"} gap={10}>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Cards: {cards.length}
               </Text>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Graded Cards: {cards.filter((card) => !!card?.grading).length}
               </Text>
               {Object.values(attributes["set"]).map((set: any) => (
-                <Text fw={400} c={customTheme.colours.font.primary}>
+                <Text fw={400} c={theme.colours.fonts.primary}>
                   {set.name}:{" "}
                   {cards.filter((card) => card.set === set.name).length}/
                   {set.totalCards}
@@ -59,26 +59,26 @@ export const Analytics = () => {
             <Title
               size="h4"
               fw={600}
-              c={customTheme.colours.font.primary}
+              c={theme.colours.fonts.primary}
               style={{ ...styles.title }}
-              ff={customTheme.font.primary}
+              ff={theme.fonts.primary}
             >
               Attributes
             </Title>
             <Flex direction={"column"} gap={10}>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Types: {attributes["type"]?.length}
               </Text>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Conditions: {attributes["condition"]?.length}
               </Text>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Card Types: {attributes["cardType"]?.length}
               </Text>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Sets: {attributes["set"]?.length}
               </Text>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Attributes: {Object.keys(attributes)?.length}
               </Text>
             </Flex>
@@ -89,14 +89,14 @@ export const Analytics = () => {
             <Title
               size="h4"
               fw={600}
-              c={customTheme.colours.font.primary}
+              c={theme.colours.fonts.primary}
               style={{ ...styles.title }}
-              ff={customTheme.font.primary}
+              ff={theme.fonts.primary}
             >
               Pokémon
             </Title>
             <Flex direction={"column"}>
-              <Text fw={400} c={customTheme.colours.font.primary}>
+              <Text fw={400} c={theme.colours.fonts.primary}>
                 Pokémon: {Object.keys(allPokemon).length}
               </Text>
             </Flex>

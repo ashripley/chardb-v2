@@ -9,8 +9,7 @@ import {
   Text,
 } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { IconChartBubble } from "@tabler/icons-react"
-import { customTheme } from "../../customTheme"
+import { Theme, theme } from "../../customTheme"
 import { useSelector } from "react-redux"
 import { CardStore, StudioStore } from "../../redux/store"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
@@ -32,8 +31,9 @@ export const StudioCard = () => {
         maw={350}
         radius="xl"
         bg={
-          customTheme.colours.types[pokemon?.type] ??
-          customTheme.colours.bg.bgGray100
+          theme.colours.types[
+            pokemon?.type as keyof Theme["colours"]["types"]
+          ] ?? theme.colours.bg.bgGray100
         }
       >
         <Grid w={"100%"}>
@@ -52,17 +52,23 @@ export const StudioCard = () => {
               >
                 <Flex justify="center" align="center" h={"100%"} w={"100%"}>
                   {pokemon?.type ? (
-                    createElement(customTheme.icons[pokemon.type], {
-                      style: { width: 20, height: 20 },
-                      stroke: 1.5,
-                      color: customTheme.colours.types[pokemon.type],
-                    })
+                    createElement(
+                      theme.icons[pokemon.type as keyof Theme["icons"]],
+                      {
+                        style: { width: 20, height: 20 },
+                        stroke: 1.5,
+                        color:
+                          theme.colours.types[
+                            pokemon.type as keyof Theme["colours"]["types"]
+                          ],
+                      }
+                    )
                   ) : (
                     <IconFlame
                       style={{ width: 25, height: 25 }}
                       stroke={1.5}
                       color="var(--mantine-color-white)"
-                      fill={customTheme.colours.bg.bgGray100}
+                      fill={theme.colours.bg.bgGray100}
                     />
                   )}
                 </Flex>

@@ -12,7 +12,7 @@ import {
 } from "@mantine/core"
 import { IconSearch } from "@tabler/icons-react"
 import classes from "../modules/TextInput.module.css"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import { createElement } from "react"
 
 const icon = (
@@ -48,8 +48,8 @@ export const Home = () => {
             <Title
               order={1}
               fw={600}
-              c={customTheme.colours.font.primary}
-              ff={customTheme.font.primary}
+              c={theme.colours.fonts.primary}
+              ff={theme.fonts.primary}
             >
               A Place To Store Your Nostalgia
             </Title>
@@ -57,8 +57,8 @@ export const Home = () => {
             <Text
               size="md"
               fw={400}
-              c={customTheme.colours.font.primary}
-              ff={customTheme.font.primary}
+              c={theme.colours.fonts.primary}
+              ff={theme.fonts.primary}
             >
               Welcome to chardb. A collection site for your Pokémon cards.
             </Text>
@@ -74,7 +74,7 @@ export const Home = () => {
               />
               <Button
                 variant="filled"
-                bg={customTheme.colours.accents.char}
+                bg={theme.colours.accents.char}
                 radius="lg"
                 w={100}
                 styles={{
@@ -97,7 +97,7 @@ export const Home = () => {
             <Card
               h={100}
               w={"70%"}
-              bg={customTheme.colours.accents.squir}
+              bg={theme.colours.accents.squir}
               style={{ ...styles.borderRadius }}
             >
               <Flex
@@ -108,12 +108,7 @@ export const Home = () => {
                 h={"100%"}
                 align={"center"}
               >
-                <Title
-                  order={3}
-                  fw={600}
-                  c={"white"}
-                  ff={customTheme.font.primary}
-                >
+                <Title order={3} fw={600} c={"white"} ff={theme.fonts.primary}>
                   Squirtle
                 </Title>
                 <Paper
@@ -123,10 +118,10 @@ export const Home = () => {
                   radius={"xl"}
                 >
                   <Flex justify="center" align="center" h={"100%"} w={"100%"}>
-                    {createElement(customTheme.icons.water, {
+                    {createElement(theme.icons.water, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
-                      color: customTheme.colours.types.water,
+                      color: theme.colours.types.water,
                     })}
                   </Flex>
                 </Paper>
@@ -135,7 +130,7 @@ export const Home = () => {
             <Card
               h={100}
               w={"80%"}
-              bg={customTheme.colours.accents.bulb}
+              bg={theme.colours.accents.bulb}
               style={{ ...styles.borderRadius }}
             >
               <Flex
@@ -146,12 +141,7 @@ export const Home = () => {
                 h={"100%"}
                 align={"center"}
               >
-                <Title
-                  order={3}
-                  fw={600}
-                  c={"white"}
-                  ff={customTheme.font.primary}
-                >
+                <Title order={3} fw={600} c={"white"} ff={theme.fonts.primary}>
                   Bulbasaur
                 </Title>
                 <Paper
@@ -161,10 +151,10 @@ export const Home = () => {
                   radius={"xl"}
                 >
                   <Flex justify="center" align="center" h={"100%"} w={"100%"}>
-                    {createElement(customTheme.icons.grass, {
+                    {createElement(theme.icons.grass, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
-                      color: customTheme.colours.types.grass,
+                      color: theme.colours.types.grass,
                     })}
                   </Flex>
                 </Paper>
@@ -173,7 +163,7 @@ export const Home = () => {
             <Card
               h={300}
               w={"90%"}
-              bg={customTheme.colours.accents.char}
+              bg={theme.colours.accents.char}
               style={{ ...styles.borderRadius }}
               pb={0}
             >
@@ -185,12 +175,7 @@ export const Home = () => {
                 align={"flex-start"}
                 h={"30%"}
               >
-                <Title
-                  order={3}
-                  fw={600}
-                  c={"white"}
-                  ff={customTheme.font.primary}
-                >
+                <Title order={3} fw={600} c={"white"} ff={theme.fonts.primary}>
                   Charmander
                 </Title>
                 <Paper
@@ -200,10 +185,10 @@ export const Home = () => {
                   radius={"xl"}
                 >
                   <Flex justify="center" align="center" h={"100%"} w={"100%"}>
-                    {createElement(customTheme.icons.fire, {
+                    {createElement(theme.icons.fire, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
-                      color: customTheme.colours.types.fire,
+                      color: theme.colours.types.fire,
                     })}
                   </Flex>
                 </Paper>

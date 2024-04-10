@@ -1,19 +1,19 @@
 import { Paper, Flex } from "@mantine/core"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import { StudioSwitch } from "../components/Switches/StudioSwitch"
 import { StudioCard } from "../components/Cards/StudioCard"
-import { StudioDatabaseEntry } from "../components/DataStudio"
+import { StudioDatabaseEntry } from "../components/StudioDatabaseEntry"
 import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { setView } from "../redux/studio"
 import { updatePokemon } from "../redux/card"
-import { StudioCardEntry } from "../components/Cards/CreateCard"
-import { StudioUpdateCardEntry } from "../components/Cards/UpdateCard"
+import { StudioCardEntry } from "../components/Cards/StudioCardEntry"
+import { StudioUpdateCardEntry } from "../components/Cards/StudioUpdateCardEntry"
 import { allAttributes } from "../api/attributes"
 import { allPokemon } from "../api/pokemon"
-import { StudioDatabaseCanvas } from "../components/Cards/DataCard"
+import { StudioDatabaseCanvas } from "../components/Cards/StudioDatabaseCanvas"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
@@ -61,7 +61,7 @@ export const Studio = () => {
             m="auto"
             w="100%"
             h={"100%"}
-            bg={customTheme.colours.bg.bgGray25}
+            bg={theme.colours.bg.bgGray25}
           >
             <Flex w={"100%"} h="100%" align={"center"} direction={"column"}>
               <Flex

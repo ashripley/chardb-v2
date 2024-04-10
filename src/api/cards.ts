@@ -1,19 +1,12 @@
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit"
-import {
-  deleteDoc,
-  deleteField,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore"
+import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { firestore } from "../services/firebase.config"
-import { setCards } from "../redux/card"
-import { customTheme } from "../customTheme"
+import { Card, setCards } from "../redux/card"
+import { theme } from "../customTheme"
 import { v4 as uuidv4 } from "uuid"
 
 export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
-  let mappedCardsArray: Record<string, any>[] = []
+  let mappedCardsArray: Card[] = []
 
   try {
     const docRef = doc(firestore, "cards", "data")
@@ -43,7 +36,7 @@ export const addCardMutation = (pokemon: Record<string, any>) => {
   const pokemonRef = doc(firestore, "cards", "data")
 
   const uniqueId = uuidv4()
-  const colour = customTheme.colours.types.normal
+  const colour = theme.colours.types.normal
 
   if (!["trainer", "energy"].includes(attribute)) {
     // write to db

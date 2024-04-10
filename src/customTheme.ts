@@ -17,11 +17,79 @@ import {
   IconMoonStars,
   IconSparkles,
   IconEye,
+  TablerIconsProps,
 } from "@tabler/icons-react"
 
-export const customTheme: Record<string, any> = {
+export interface Theme {
   colours: {
-    font: {
+    fonts: {
+      primary: string
+    }
+    bg: {
+      bgGray15: string
+      bgGray25: string
+      bgGray50: string
+      bgGray75: string
+      bgGray100: string
+      bgDarkGray25: string
+      bgDarkGray50: string
+      bgDarkGray75: string
+      bgDarkGray100: string
+    }
+    accents: {
+      char: string
+      bulb: string
+      squir: string
+    }
+    types: {
+      normal: string
+      fire: string
+      water: string
+      grass: string
+      electric: string
+      ice: string
+      fighting: string
+      poison: string
+      ground: string
+      flying: string
+      psychic: string
+      bug: string
+      rock: string
+      ghost: string
+      dragon: string
+      dark: string
+      steel: string
+      fairy: string
+    }
+  }
+  fonts: {
+    primary: string
+  }
+  icons: {
+    normal: (props: TablerIconsProps) => JSX.Element
+    fire: (props: TablerIconsProps) => JSX.Element
+    water: (props: TablerIconsProps) => JSX.Element
+    grass: (props: TablerIconsProps) => JSX.Element
+    electric: (props: TablerIconsProps) => JSX.Element
+    ice: (props: TablerIconsProps) => JSX.Element
+    fighting: (props: TablerIconsProps) => JSX.Element
+    poison: (props: TablerIconsProps) => JSX.Element
+    ground: (props: TablerIconsProps) => JSX.Element
+    flying: (props: TablerIconsProps) => JSX.Element
+    psychic: (props: TablerIconsProps) => JSX.Element
+    bug: (props: TablerIconsProps) => JSX.Element
+    rock: (props: TablerIconsProps) => JSX.Element
+    ghost: (props: TablerIconsProps) => JSX.Element
+    dragon: (props: TablerIconsProps) => JSX.Element
+    dark: (props: TablerIconsProps) => JSX.Element
+    steel: (props: TablerIconsProps) => JSX.Element
+    fairy: (props: TablerIconsProps) => JSX.Element
+  }
+}
+
+export const theme: Theme = {
+  colours: {
+    fonts: {
       primary: "#595959",
     },
     bg: {
@@ -61,7 +129,7 @@ export const customTheme: Record<string, any> = {
       fairy: "#f0b6bc",
     },
   },
-  font: {
+  fonts: {
     primary: "SF Pro",
   },
   icons: {

@@ -10,14 +10,15 @@ import {
 } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
 import { IconChartBubble } from "@tabler/icons-react"
-import { customTheme } from "../../customTheme"
+import { Theme, theme } from "../../customTheme"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { createElement, useState } from "react"
 import { StudioStore } from "../../redux/store"
 import { useSelector } from "react-redux"
+import { Card as CardType } from "../../redux/card"
 
 interface Props {
-  card: Record<string, any>
+  card: CardType
 }
 
 export const GalleryCard = ({ card }: Props) => {
@@ -47,7 +48,10 @@ export const GalleryCard = ({ card }: Props) => {
         mih={450}
         maw={350}
         radius="xl"
-        bg={customTheme.colours.types[type] ?? customTheme.colours.bg.bgGray100}
+        bg={
+          theme.colours.types[type as keyof Theme["colours"]["types"]] ??
+          theme.colours.bg.bgGray100
+        }
       >
         <Grid w={"100%"}>
           <Grid.Col span={12}>
@@ -61,17 +65,27 @@ export const GalleryCard = ({ card }: Props) => {
               >
                 <Flex justify="center" align="center" h={"100%"} w={"100%"}>
                   {type ? (
-                    createElement(customTheme.icons[type], {
-                      style: { width: 20, height: 20 },
-                      stroke: 1.5,
-                      color: customTheme.colours.types[type],
-                    })
+                    createElement(
+                      theme.icons[type as keyof Theme["colours"]["types"]],
+                      {
+                        style: { width: 20, height: 20 },
+                        stroke: 1.5,
+                        color:
+                          theme.colours.types[
+                            type as keyof Theme["colours"]["types"]
+                          ],
+                      }
+                    )
                   ) : (
                     <IconFlame
                       style={{ width: 25, height: 25 }}
                       stroke={1.5}
                       color="var(--mantine-color-white)"
-                      fill={customTheme.colours.types[type]}
+                      fill={
+                        theme.colours.types[
+                          type as keyof Theme["colours"]["types"]
+                        ]
+                      }
                     />
                   )}
                 </Flex>
@@ -97,12 +111,13 @@ export const GalleryCard = ({ card }: Props) => {
                     >
                       {Object.keys(card.evolutions)
                         .sort()
-                        .map((evo: any) => {
-                          const evolution = card.evolutions[evo]
+                        .map((evo: string) => {
+                          const evolution =
+                            card.evolutions[evo as keyof CardType["evolutions"]]
                           return (
                             evolution?.image !== "" && (
                               <img
-                                src={evolution.image}
+                                src={evolution?.image}
                                 width={85}
                                 height={85}
                               />
@@ -126,7 +141,7 @@ export const GalleryCard = ({ card }: Props) => {
                       height={25}
                       width={25}
                       stroke={1}
-                      color={customTheme.colours.bg.bgGray100}
+                      color={theme.colours.bg.bgGray100}
                     />
                   </ActionIcon>
                 </Flex>

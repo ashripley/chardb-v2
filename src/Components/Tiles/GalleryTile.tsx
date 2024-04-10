@@ -1,7 +1,6 @@
 import { Card, Flex, Grid, Group, Paper, Text } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { IconChartBubble } from "@tabler/icons-react"
-import { customTheme } from "../../customTheme"
+import { Theme, theme } from "../../customTheme"
 import { Carousel } from "@mantine/carousel"
 import classes from "../../modules/Carousel.module.css"
 import { createElement } from "react"
@@ -48,7 +47,7 @@ export const GalleryTile = ({ card }: Props) => {
         w={"200px"}
         h={"200px"}
         radius="xl"
-        bg={customTheme.colours.types[type]}
+        bg={theme.colours.types[type as keyof Theme["colours"]["types"]]}
       >
         <StyledGrid w={"100%"} h={"100%"}>
           <Grid.Col span={12} h={"20%"}>
@@ -63,17 +62,24 @@ export const GalleryTile = ({ card }: Props) => {
                 style={{ justifyContent: "center", alignItems: "center" }}
               >
                 {type ? (
-                  createElement(customTheme.icons[type], {
+                  createElement(theme.icons[type as keyof Theme["icons"]], {
                     style: { width: 15, height: 15 },
                     stroke: 1.5,
-                    color: customTheme.colours.types[type],
+                    color:
+                      theme.colours.types[
+                        type as keyof Theme["colours"]["types"]
+                      ],
                   })
                 ) : (
                   <IconFlame
                     style={{ width: 15, height: 15 }}
                     stroke={1.5}
                     color="var(--mantine-color-white)"
-                    fill={customTheme.colours.types[type]}
+                    fill={
+                      theme.colours.types[
+                        type as keyof Theme["colours"]["types"]
+                      ]
+                    }
                   />
                 )}
               </Paper>
@@ -103,7 +109,7 @@ export const GalleryTile = ({ card }: Props) => {
                           width={100}
                           height={100}
                           stroke={1}
-                          color={customTheme.colours.bg.bgGray100}
+                          color={theme.colours.bg.bgGray100}
                         />
                       )}
                     </Card>

@@ -12,6 +12,7 @@ import classes from "../../modules/Select.module.css"
 import numberClasses from "../../modules/NumberInput.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  Card,
   setCards,
   setIsDirty,
   updateCard,
@@ -20,7 +21,7 @@ import {
 import { CardStore, StudioStore } from "../../redux/store"
 import { useEffect, useState } from "react"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
-import { customTheme } from "../../customTheme"
+import { theme } from "../../customTheme"
 import { updateCardMutation } from "../../api/cards"
 
 export const StudioUpdateCardEntry = () => {
@@ -51,7 +52,7 @@ export const StudioUpdateCardEntry = () => {
   }
 
   const onUpdate = async () => {
-    const updatedCards = cards.map((c) => {
+    const updatedCards = cards.map((c: Card | Record<string, any>) => {
       if (c.cardId === card.cardId) {
         return card
       } else return c
@@ -84,7 +85,7 @@ export const StudioUpdateCardEntry = () => {
         m="auto"
       >
         <Flex h="10%">
-          <Title size="h3" fw={600} c={customTheme.colours.font.primary}>
+          <Title size="h3" fw={600} c={theme.colours.fonts.primary}>
             Update Your Card
           </Title>
         </Flex>
@@ -227,14 +228,14 @@ export const StudioUpdateCardEntry = () => {
             miw={250}
             styles={{
               label: {
-                color: customTheme.colours.bg.bgDarkGray100,
+                color: theme.colours.bg.bgDarkGray100,
               },
             }}
             onClick={onUpdate}
             loading={isLoading}
             loaderProps={{
               type: "dots",
-              color: customTheme.colours.accents.char,
+              color: theme.colours.accents.char,
             }}
             disabled={!isDirty}
           >

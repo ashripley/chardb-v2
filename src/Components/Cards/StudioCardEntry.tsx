@@ -15,7 +15,7 @@ import { setIsDirty, updateCard, updatePokemon } from "../../redux/card"
 import { CardStore, StudioStore } from "../../redux/store"
 import { useEffect, useState } from "react"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
-import { customTheme } from "../../customTheme"
+import { theme } from "../../customTheme"
 import { addCardMutation } from "../../api/cards"
 
 export const StudioCardEntry = () => {
@@ -68,7 +68,7 @@ export const StudioCardEntry = () => {
         m="auto"
       >
         <Flex h="10%">
-          <Title size="h3" fw={600} c={customTheme.colours.font.primary}>
+          <Title size="h3" fw={600} c={theme.colours.fonts.primary}>
             Create Your Card
           </Title>
         </Flex>
@@ -212,14 +212,14 @@ export const StudioCardEntry = () => {
             miw={250}
             styles={{
               label: {
-                color: customTheme.colours.bg.bgDarkGray100,
+                color: theme.colours.bg.bgDarkGray100,
               },
             }}
             onClick={onCreate}
             loading={isLoading}
             loaderProps={{
               type: "dots",
-              color: customTheme.colours.accents.char,
+              color: theme.colours.accents.char,
             }}
             disabled={!isDirty}
           >

@@ -1,5 +1,5 @@
 import { SegmentedControl, Text } from "@mantine/core"
-import { customTheme } from "../../customTheme"
+import { theme } from "../../customTheme"
 import { useDispatch } from "react-redux"
 import { setDBType } from "../../redux/studio"
 
@@ -16,8 +16,8 @@ export const GallerySortSwitch = () => {
       size="sm"
       radius="xl"
       defaultValue="set"
-      bg={customTheme.colours.bg.bgGray75}
-      color={customTheme.colours.bg.bgDarkGray75}
+      bg={theme.colours.bg.bgGray75}
+      color={theme.colours.bg.bgDarkGray75}
       onChange={onChange}
       data={[
         {

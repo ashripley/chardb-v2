@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Flex, Paper, Space } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { customTheme } from "../customTheme"
+import { theme } from "../customTheme"
 import { useDispatch, useSelector } from "react-redux"
 import { RootStore } from "../redux/store"
 import { updateApp } from "../redux/root"
@@ -39,8 +39,8 @@ export const NavigationBar = () => {
               <IconFlame
                 width={25}
                 height={25}
-                fill={customTheme.colours.accents.char}
-                color={customTheme.colours.accents.char}
+                fill={theme.colours.accents.char}
+                color={theme.colours.accents.char}
                 stroke={1}
               />
             </ActionIcon>
@@ -54,9 +54,9 @@ export const NavigationBar = () => {
             <Button
               fz={14}
               fw={500}
-              c={appName === app ? "white" : customTheme.colours.font.primary}
+              c={appName === app ? "white" : theme.colours.fonts.primary}
               variant={appName === app ? "filled" : "transparent"}
-              color={customTheme.colours.bg.bgDarkGray75}
+              color={theme.colours.bg.bgDarkGray75}
               radius={"xl"}
               value={appName}
               onClick={() => onAppChange(upperCaseFirst(appName) as AppType)}
