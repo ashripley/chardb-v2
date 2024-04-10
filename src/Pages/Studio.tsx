@@ -1,19 +1,19 @@
 import { Paper, Flex } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { StudioSwitch } from "../components/Switches/StudioSwitch"
-import { StudioCard } from "../components/Custom/StudioCard"
-import { DataStudio } from "../components/DataStudio"
-import { DataCard } from "../components/DataCard"
+import { StudioCard } from "../components/Cards/StudioCard"
+import { StudioDatabaseEntry } from "../components/DataStudio"
 import { GallerySortSwitch } from "../components/Switches/GallerySortSwitch"
 import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { setView } from "../redux/studio"
 import { updatePokemon } from "../redux/card"
-import { CreateCard } from "../components/Card Studio/CreateCard"
-import { UpdateCard } from "../components/Card Studio/UpdateCard"
+import { StudioCardEntry } from "../components/Cards/CreateCard"
+import { StudioUpdateCardEntry } from "../components/Cards/UpdateCard"
 import { allAttributes } from "../api/attributes"
 import { allPokemon } from "../api/pokemon"
+import { StudioDatabaseCanvas } from "../components/Cards/DataCard"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
@@ -25,6 +25,21 @@ export const Studio = () => {
     allPokemon(dispatch)
     allAttributes(dispatch)
   }, [])
+
+  const viewComponentContent = {
+    create: {
+      left: <StudioCardEntry />,
+      right: <StudioCard />,
+    },
+    update: {
+      left: <StudioUpdateCardEntry />,
+      right: <StudioCard />,
+    },
+    db: {
+      left: <StudioDatabaseEntry />,
+      right: <StudioDatabaseCanvas />,
+    },
+  }
 
   return (
     <>
@@ -56,27 +71,9 @@ export const Studio = () => {
                 align={"center"}
                 direction={"row"}
               >
-                <Flex w={"60%"}>
-                  {view === "create" ? (
-                    <CreateCard />
-                  ) : view === "update" ? (
-                    <UpdateCard />
-                  ) : view === "db" ? (
-                    <DataStudio />
-                  ) : (
-                    <></>
-                  )}
-                </Flex>
+                <Flex w={"60%"}>{viewComponentContent[view].left}</Flex>
                 <Flex w={"40%"} h={550}>
-                  {view === "create" ? (
-                    <StudioCard />
-                  ) : view === "update" ? (
-                    <StudioCard />
-                  ) : view === "db" ? (
-                    <DataCard />
-                  ) : (
-                    <></>
-                  )}
+                  {viewComponentContent[view].right}
                 </Flex>
               </Flex>
               {view === "db" && (

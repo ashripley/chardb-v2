@@ -1,5 +1,12 @@
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit"
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import {
+  deleteDoc,
+  deleteField,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore"
 import { firestore } from "../services/firebase.config"
 import { setCards } from "../redux/card"
 import { customTheme } from "../customTheme"
@@ -80,5 +87,17 @@ export const updateCardMutation = async (card: Record<string, any>) => {
     })
   } catch (e) {
     console.error("Error updating the pokemon card in the db: ", e)
+  }
+}
+
+export const deleteCardMutation = async (card: Record<string, any>) => {
+  const cardRef = doc(firestore, "cards", "data")
+
+  try {
+    await updateDoc(cardRef, {
+      [card.cardId]: deleteField(),
+    })
+  } catch (e) {
+    console.error("Error deleting the pokemon card in the db: ", e)
   }
 }

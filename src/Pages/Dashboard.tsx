@@ -2,11 +2,11 @@ import { Paper, Flex, ScrollArea, Button, Loader } from "@mantine/core"
 import { customTheme } from "../customTheme"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { DashboardContent } from "../components/DashboardContent"
 import styled from "styled-components"
 import { allAttributes } from "../api/attributes"
 import { allCards } from "../api/cards"
 import { allPokemon } from "../api/pokemon"
+import { Analytics } from "../components/Custom/Analytics"
 
 const StyledScrollArea = styled(ScrollArea)`
   & > div > div {
@@ -104,7 +104,7 @@ export const Dashboard = () => {
                       gap={20}
                       h={"100%"}
                     >
-                      <DashboardContent />
+                      <Analytics />
                     </Flex>
                   )}
                 </StyledScrollArea>

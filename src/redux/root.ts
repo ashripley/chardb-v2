@@ -2,19 +2,19 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { AppType } from "../config"
 
 interface StoreState {
-  app: AppType
+  page: AppType
 }
 
 const initialState: StoreState = {
-  app: "Home",
+  page: "Home",
 }
 
 export const rootSlice = createSlice({
   name: "root",
   initialState,
   reducers: {
-    updateApp: (state, action: PayloadAction<StoreState["app"]>) => {
-      state.app = action.payload
+    updateApp: (state, action: PayloadAction<StoreState["page"]>) => {
+      state.page = action.payload
     },
   },
 })

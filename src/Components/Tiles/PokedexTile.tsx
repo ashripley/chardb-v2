@@ -1,7 +1,7 @@
 import { Card, Flex, Paper, Space, Text } from "@mantine/core"
 import { IconChartBubble } from "@tabler/icons-react"
-import { customTheme } from "../customTheme"
-import { upperCaseFirst } from "../helpers/upperCaseFirst"
+import { customTheme } from "../../customTheme"
+import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { createElement } from "react"
 
 interface Props {

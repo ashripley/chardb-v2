@@ -1,16 +1,16 @@
 import { Button, Center, Flex, Space, Title } from "@mantine/core"
 import { customTheme } from "../customTheme"
-import { Sets } from "./DB/Sets"
-import { CardTypes } from "./DB/CardTypes"
-import { Types } from "./DB/Types"
-import { Conditions } from "./DB/Conditions"
+import { Sets } from "./Sections/Sets"
+import { CardTypes } from "./Sections/CardTypes"
+import { Types } from "./Sections/Types"
+import { Conditions } from "./Sections/Conditions"
 import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { addAttributeMutation } from "../api/attributes"
 import { setAttributes, updateAttribute } from "../redux/studio"
 
-export const DataStudio = () => {
+export const StudioDatabaseEntry = () => {
   const { dbType, attribute, isDirty } = useSelector(
     (state: StudioStore) => state.studio
   )

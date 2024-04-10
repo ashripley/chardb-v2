@@ -1,5 +1,5 @@
 import { Paper, Center, Flex } from "@mantine/core"
-import { CustomHeader } from "../components/Custom/CustomHeader"
+import { NavigationBar } from "../components/NavigationBar"
 import { Gallery } from "./Gallery"
 import { useSelector } from "react-redux"
 import { RootStore } from "../redux/store"
@@ -9,9 +9,9 @@ import { Dashboard } from "./Dashboard"
 import { Home } from "./Home"
 
 export const Index = () => {
-  const { app } = useSelector((state: RootStore) => state.root)
+  const { page } = useSelector((state: RootStore) => state.root)
 
-  const apps: Record<string, JSX.Element> = {
+  const pages: Record<string, JSX.Element> = {
     Gallery: <Gallery />,
     Studio: <Studio />,
     Dashboard: <Dashboard />,
@@ -30,9 +30,9 @@ export const Index = () => {
           bg={customTheme.colours.bg.bgGray15}
         >
           <Flex w={"95%"} h={75} justify="center" align="center" m={"auto"}>
-            <CustomHeader />
+            <NavigationBar />
           </Flex>
-          {apps[app]}
+          {pages[page]}
         </Paper>
       </Center>
     </>

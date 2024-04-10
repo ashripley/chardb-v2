@@ -1,16 +1,16 @@
 import { ActionIcon, Button, Flex, Paper, Space } from "@mantine/core"
 import { IconFlame } from "@tabler/icons-react"
-import { customTheme } from "../../customTheme"
+import { customTheme } from "../customTheme"
 import { useDispatch, useSelector } from "react-redux"
-import { RootStore } from "../../redux/store"
-import { updateApp } from "../../redux/root"
-import { AppType } from "../../config"
-import { upperCaseFirst } from "../../helpers/upperCaseFirst"
+import { RootStore } from "../redux/store"
+import { updateApp } from "../redux/root"
+import { AppType } from "../config"
+import { upperCaseFirst } from "../helpers/upperCaseFirst"
 import { Fragment } from "react"
 
-export const CustomHeader = () => {
+export const NavigationBar = () => {
   const apps = ["Gallery", "Studio", "Dashboard"]
-  const { app } = useSelector((state: RootStore) => state.root)
+  const { page: app } = useSelector((state: RootStore) => state.root)
   const dispatch = useDispatch()
 
   const onAppChange = (name: AppType) => {

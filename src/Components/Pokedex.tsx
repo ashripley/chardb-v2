@@ -1,6 +1,6 @@
 import { StudioStore } from "../redux/store"
 import { useSelector } from "react-redux"
-import { PokedexTile } from "./PokedexTile"
+import { PokedexTile } from "./Tiles/PokedexTile"
 
 export const Pokedex = () => {
   const { allPokemon } = useSelector((state: StudioStore) => state.studio)

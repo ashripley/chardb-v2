@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { CardStore, GalleryStore } from "../redux/store"
-import { GalleryTile } from "./Custom/GalleryTile"
-import { GalleryCard } from "./Custom/GalleryCard"
+import { GalleryTile } from "./Tiles/GalleryTile"
+import { GalleryCard } from "./Cards/GalleryCard"
 import { Pokedex } from "./Pokedex"
 
 export const GalleryContent = () => {

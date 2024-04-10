@@ -7,14 +7,14 @@ import {
   Space,
   CloseButton,
 } from "@mantine/core"
-import { customTheme } from "../customTheme"
-import { StudioStore } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
-import { upperCaseFirst } from "../helpers/upperCaseFirst"
-import { setAttributes } from "../redux/studio"
-import { deleteAttributeMutation } from "../api/attributes"
+import { StudioStore } from "../../redux/store"
+import { deleteAttributeMutation } from "../../api/attributes"
+import { setAttributes } from "../../redux/studio"
+import { upperCaseFirst } from "../../helpers/upperCaseFirst"
+import { customTheme } from "../../customTheme"
 
-export const DataCard = () => {
+export const StudioDatabaseCanvas = () => {
   const { attributes, dbType } = useSelector(
     (state: StudioStore) => state.studio
   )

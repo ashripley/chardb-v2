@@ -18,7 +18,7 @@ import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { customTheme } from "../../customTheme"
 import { addCardMutation } from "../../api/cards"
 
-export const CreateCard = () => {
+export const StudioCardEntry = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export const CreateCard = () => {
           <Flex w={"100%"} justify={"space-between"}>
             <Select
               placeholder="Set"
-              data={attributes["set"].map((att: Record<string, any>) =>
+              data={attributes["set"]?.map((att: Record<string, any>) =>
                 upperCaseFirst(att.name)
               )}
               searchable
@@ -120,7 +120,7 @@ export const CreateCard = () => {
           <Flex w={"100%"} justify={"space-between"}>
             <Select
               placeholder="Card Type"
-              data={attributes["cardType"].map((att: Record<string, any>) =>
+              data={attributes["cardType"]?.map((att: Record<string, any>) =>
                 upperCaseFirst(att.name)
               )}
               searchable
@@ -135,7 +135,7 @@ export const CreateCard = () => {
             />
             <Select
               placeholder="Condition"
-              data={attributes["condition"].map((att: Record<string, any>) =>
+              data={attributes["condition"]?.map((att: Record<string, any>) =>
                 upperCaseFirst(att.name)
               )}
               searchable
