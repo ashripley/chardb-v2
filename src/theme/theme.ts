@@ -22,6 +22,11 @@ import {
 
 export interface Theme {
   colours: {
+    status: {
+      error: string
+      success: string
+      info: string
+    }
     fonts: {
       primary: string
     }
@@ -90,6 +95,11 @@ export interface Theme {
 
 export const theme: Theme = {
   colours: {
+    status: {
+      error: "rgb(226 54 54)",
+      success: "rgb(130 221 85)",
+      info: "rgb(74 144 226)",
+    },
     fonts: {
       primary: "#595959",
     },

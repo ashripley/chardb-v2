@@ -2,11 +2,15 @@ import {
   Button,
   Center,
   Flex,
+  Group,
+  HoverCard,
   NumberInput,
   Select,
   Space,
   Switch,
   Title,
+  Text,
+  Tooltip,
 } from "@mantine/core"
 import classes from "../../../modules/Select.module.css"
 import numberClasses from "../../../modules/NumberInput.module.css"
@@ -22,10 +26,21 @@ import { CardStore, StudioStore } from "../../../redux/store"
 import { useEffect, useState } from "react"
 import { upperCaseFirst } from "../../../helpers/upperCaseFirst"
 import { theme } from "../../../theme/theme"
-import { updateCardMutation } from "../../../api/cards"
+import { deleteCardMutation, updateCardMutation } from "../../../api/cards"
+
+interface ActionButtonProps {
+  bg: string
+  w: number
+  c: string
+  actionLoading: boolean
+  label: string
+  loaderColour: string
+}
 
 export const UpdateCardDetails = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [cardName, setCardName] = useState<string>("")
   const { isDirty, cards, card } = useSelector((state: CardStore) => state.card)
   const { attributes } = useSelector((state: StudioStore) => state.studio)
 
@@ -48,10 +63,11 @@ export const UpdateCardDetails = () => {
       }
     })
 
+    setCardName(cardToUpdate.name)
     dispatch(updateCard(cardToUpdate))
   }
 
-  const onUpdate = async () => {
+  const onUpdate = async (action: "update" | "delete") => {
     const updatedCards = cards.map((c: Card | Record<string, any>) => {
       if (c.cardId === card.cardId) {
         return card
@@ -59,20 +75,54 @@ export const UpdateCardDetails = () => {
     })
 
     try {
-      setIsLoading(true)
+      action === "update" ? setIsUpdating(true) : setIsDeleting(true)
 
-      card && (await updateCardMutation(card))
+      card &&
+        (action === "update"
+          ? await updateCardMutation(card)
+          : await deleteCardMutation(card))
     } catch (e) {
       console.error(e)
     } finally {
       setTimeout(() => {
-        setIsLoading(false)
+        action === "update" ? setIsUpdating(false) : setIsDeleting(false)
         dispatch(setIsDirty(false))
         dispatch(setCards(updatedCards))
         dispatch(updateCard({}))
       }, 1000)
     }
   }
+
+  const ActionButton: React.FC<ActionButtonProps> = ({
+    bg,
+    actionLoading,
+    c,
+    label,
+    w,
+    loaderColour,
+  }) => (
+    <Button
+      variant="filled"
+      bg={bg}
+      radius="lg"
+      size="lg"
+      miw={w}
+      styles={{
+        label: {
+          color: c,
+        },
+      }}
+      onClick={() => onUpdate(label.toLowerCase() as "update" | "delete")}
+      loading={actionLoading}
+      loaderProps={{
+        type: "dots",
+        color: loaderColour,
+      }}
+      disabled={!isDirty}
+    >
+      {label}
+    </Button>
+  )
 
   return (
     <Center h={"100%"} w={"100%"}>
@@ -219,28 +269,23 @@ export const UpdateCardDetails = () => {
           </Flex>
         </Flex>
         <Space h={50} />
-        <Flex h="10%">
-          <Button
-            variant="filled"
+        <Flex h="10%" gap={25}>
+          <ActionButton
             bg={"white"}
-            radius="lg"
-            size="lg"
-            miw={250}
-            styles={{
-              label: {
-                color: theme.colours.bg.bgDarkGray100,
-              },
-            }}
-            onClick={onUpdate}
-            loading={isLoading}
-            loaderProps={{
-              type: "dots",
-              color: theme.colours.accents.char,
-            }}
-            disabled={!isDirty}
-          >
-            Update
-          </Button>
+            c={theme.colours.bg.bgDarkGray100}
+            label="Update"
+            w={150}
+            actionLoading={isUpdating}
+            loaderColour={theme.colours.accents.char}
+          />
+          <ActionButton
+            bg={theme.colours.status.error}
+            c="white"
+            label="Delete"
+            w={150}
+            actionLoading={isDeleting}
+            loaderColour="white"
+          />
         </Flex>
       </Flex>
     </Center>
