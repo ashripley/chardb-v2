@@ -15,7 +15,7 @@ import classes from "../../modules/TextInput.module.css"
 import { theme } from "../../theme/theme"
 import { createElement, useState } from "react"
 import { useDispatch } from "react-redux"
-import { setApp, setSearchTerm } from "../../redux/gallery"
+import { setSearchTerm } from "../../redux/gallery"
 import { updateApp } from "../../redux/root"
 import { Link } from "react-router-dom"
 
