@@ -26,6 +26,7 @@ export interface Theme {
       primary: string
     }
     bg: {
+      bgGray0: string
       bgGray15: string
       bgGray25: string
       bgGray50: string
@@ -93,6 +94,7 @@ export const theme: Theme = {
       primary: "#595959",
     },
     bg: {
+      bgGray0: "rgba(191, 191, 191, 0)",
       bgGray15: "rgba(191, 191, 191, 0.15)",
       bgGray25: "rgba(191, 191, 191, 0.25)",
       bgGray50: "rgba(191, 191, 191, 0.50)",

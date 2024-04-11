@@ -4,22 +4,38 @@ import { GalleryTile } from "../Tiles/GalleryTile"
 import { GalleryCard } from "../Cards/GalleryCard"
 import { Flex, Space } from "@mantine/core"
 import { CustomPagination } from "../../Common/CustomPagination"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Card } from "../../../redux/card"
+import { NoResultsFound } from "../../Common/NoResultsFound"
 
-export const Cards = () => {
+interface Props {
+  searchedTerm: string
+}
+
+export const Cards = ({ searchedTerm }: Props) => {
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [filteredCards, setFilteredCards] = useState<Card[]>([])
   const { view } = useSelector((state: GalleryStore) => state.gallery)
   const { cards } = useSelector((state: CardStore) => state.card)
 
-  const [currentPage, setCurrentPage] = useState<number>(1)
-
-  const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber)
-
   const cardsPerPage = 50
-  const totalCards = cards.length
+  const totalCards = filteredCards.length
   const totalPages = Math.ceil(totalCards / cardsPerPage)
 
   const startIndex = (currentPage - 1) * cardsPerPage
   const endIndex = Math.min(startIndex + cardsPerPage, totalCards)
+
+  useEffect(() => {
+    if (searchedTerm !== "") {
+      const filteredCards: Record<string, any>[] = cards.filter((card) =>
+        card.name.toLowerCase().includes(searchedTerm)
+      )
+
+      setFilteredCards(filteredCards as Card[])
+    } else setFilteredCards(cards as Card[])
+  }, [searchedTerm])
+
+  const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber)
 
   const CardsMap: Record<string, any> = {
     card: GalleryCard,
@@ -30,19 +46,25 @@ export const Cards = () => {
 
   return (
     <>
-      <Flex justify="space-evenly" wrap="wrap" gap={20}>
-        {cards
-          .slice(startIndex, endIndex)
-          .map((card: Record<string, any>, index: number) => (
-            <CardsView key={index} card={card} />
-          ))}
-      </Flex>
-      <Space h={25} />
-      <CustomPagination
-        total={totalPages}
-        currentPage={currentPage}
-        handlePageChange={handlePageChange}
-      />
+      {filteredCards.length ? (
+        <>
+          <Flex justify="space-evenly" wrap="wrap" gap={20}>
+            {filteredCards
+              .slice(startIndex, endIndex)
+              .map((card: Record<string, any>, index: number) => (
+                <CardsView key={index} card={card} />
+              ))}
+          </Flex>
+          <Space h={25} />
+          <CustomPagination
+            total={totalPages}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </>
+      ) : (
+        <NoResultsFound />
+      )}
     </>
   )
 }

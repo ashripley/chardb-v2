@@ -25,6 +25,8 @@ import { Pokedex } from "../../components/Gallery/Views/Pokedex"
 export const Gallery = () => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [searchedTerm, setSearchedTerm] = useState<string>("")
   const { app } = useSelector((state: GalleryStore) => state.gallery)
 
   useEffect(() => {
@@ -37,12 +39,20 @@ export const Gallery = () => {
     } catch (e) {
       console.error(e)
     } finally {
-      setTimeout(() => setIsLoading(false), 1000)
+      setTimeout(() => setIsLoading(false), 500)
     }
   }, [])
 
   const onGalleryChange = (name: GalleryApp) => {
     dispatch(setApp(name))
+  }
+
+  const onSearchInput = (input: string) => {
+    setSearchTerm(input)
+  }
+
+  const onSearch = () => {
+    setSearchedTerm(searchTerm)
   }
 
   const icon = (
@@ -125,6 +135,9 @@ export const Gallery = () => {
                       w={"70%"}
                       leftSection={icon}
                       miw={300}
+                      onChange={(event: any) =>
+                        onSearchInput(event.currentTarget.value)
+                      }
                     />
                     <Button
                       variant="filled"
@@ -137,6 +150,7 @@ export const Gallery = () => {
                           color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
+                      onClick={onSearch}
                     >
                       Search
                     </Button>
@@ -157,9 +171,9 @@ export const Gallery = () => {
                       />
                     </Flex>
                   ) : app === "cards" ? (
-                    <Cards />
+                    <Cards searchedTerm={searchedTerm} />
                   ) : (
-                    <Pokedex />
+                    <Pokedex searchedTerm={searchedTerm} />
                   )}
                 </ScrollArea>
               </Flex>
