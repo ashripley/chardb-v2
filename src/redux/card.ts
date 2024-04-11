@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice, current } from "@reduxjs/toolkit"
 
 export interface Card {
   cardId: string
@@ -68,7 +68,10 @@ export const cardSlice = createSlice({
         state.card = {}
         state.isDirty = false
       }
-      state.card = { ...state.card, ...action.payload }
+
+      if (!action.payload["cardId"])
+        state.card = { ...state.card, ...action.payload }
+      else state.card = { ...action.payload }
     },
     setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
       state.cards = action.payload

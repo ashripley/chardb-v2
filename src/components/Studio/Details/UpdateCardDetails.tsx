@@ -40,7 +40,10 @@ interface ActionButtonProps {
 export const UpdateCardDetails = () => {
   const [isDeleting, setIsDeleting] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
-  const [cardName, setCardName] = useState<string>("")
+  const [cardNames, setCardNames] = useState<string[]>([])
+  const [cardNamesWithIds, setCardNamesWithIds] = useState<
+    Record<string, any>[]
+  >([])
   const { isDirty, cards, card } = useSelector((state: CardStore) => state.card)
   const { attributes } = useSelector((state: StudioStore) => state.studio)
 
@@ -49,22 +52,43 @@ export const UpdateCardDetails = () => {
   useEffect(() => {
     dispatch(updateCard({}))
     dispatch(updatePokemon({}))
+    sortCardsForMapping()
   }, [])
 
-  const cardNames = Object.values(cards)
-    .map((card) => upperCaseFirst(card.name))
-    .sort()
+  const sortCardsForMapping = () => {
+    const cardNamesWithIds: Record<string, any>[] = []
+    const nameCounts: Record<string, number> = {}
+
+    try {
+      Object.values(cards)
+        .map((card) => {
+          const name = upperCaseFirst(card.name)
+          const count = nameCounts[name] || 1
+          const uniqueName =
+            count > 1
+              ? `${name} - ${card.set} (${count})`
+              : name + " - " + card.set
+          cardNamesWithIds.push({
+            id: card.cardId,
+            name: upperCaseFirst(uniqueName),
+          })
+          nameCounts[name] = count + 1
+        })
+        .sort()
+    } catch (e) {
+      console.error(e)
+    } finally {
+      const cardNames = Object.values(cardNamesWithIds).map((card) => card.name)
+      setCardNames(cardNames)
+      setCardNamesWithIds(cardNamesWithIds)
+    }
+  }
 
   const onCardChange = (val: any) => {
-    let cardToUpdate: Record<string, any> = {}
-    Object.values(cards)?.forEach((card) => {
-      if (card.name === val.toLowerCase()) {
-        cardToUpdate = card
-      }
-    })
+    const selectedCard = cardNamesWithIds.find((card) => card.name === val)
+    const cardToUpdate = cards.find((card) => card.cardId === selectedCard?.id)
 
-    setCardName(cardToUpdate.name)
-    dispatch(updateCard(cardToUpdate))
+    cardToUpdate && dispatch(updateCard(cardToUpdate))
   }
 
   const onUpdate = async (action: "update" | "delete") => {
