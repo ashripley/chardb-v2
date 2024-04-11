@@ -7,6 +7,7 @@ import { updateApp } from "../../redux/root"
 import { AppType } from "../../config"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { Fragment } from "react"
+import { Link } from "react-router-dom"
 
 export const NavigationBar = () => {
   const apps = ["Gallery", "Studio", "Dashboard"]
@@ -29,41 +30,42 @@ export const NavigationBar = () => {
       <Space w={10} />
       <Flex justify="flex-start" align="center" h={"100%"}>
         <Paper h={30} w={30} radius={"xl"}>
-          <Flex justify="center" align="center" h={"100%"} w={"100%"}>
-            <ActionIcon
-              radius={"xl"}
-              bg={"white"}
-              variant="subtle"
-              onClick={() => onAppChange("Home" as AppType)}
-            >
-              <IconFlame
-                width={25}
-                height={25}
-                fill={theme.colours.accents.char}
-                color={theme.colours.accents.char}
-                stroke={1}
-              />
-            </ActionIcon>
+          <Flex justify="center" align="flex-start" h={"100%"} w={"100%"}>
+            <Link to={"/"} onClick={() => onAppChange("Home" as AppType)}>
+              <ActionIcon radius={"xl"} bg={"white"} variant="subtle">
+                <IconFlame
+                  width={25}
+                  height={25}
+                  fill={theme.colours.accents.char}
+                  color={theme.colours.accents.char}
+                  stroke={1}
+                />
+              </ActionIcon>
+            </Link>
           </Flex>
         </Paper>
       </Flex>
-      <Space w={25} />
+      <Space w={10} />
       <Flex justify="flex-start" h={"100%"} w={"100%"}>
         {apps.map((appName: string) => (
           <Fragment key={appName}>
-            <Button
-              fz={14}
-              fw={500}
-              c={appName === app ? "white" : theme.colours.fonts.primary}
-              variant={appName === app ? "filled" : "transparent"}
-              color={theme.colours.bg.bgDarkGray75}
-              radius={"xl"}
-              value={appName}
+            <Link
+              to={`/${appName.toLowerCase()}`}
               onClick={() => onAppChange(upperCaseFirst(appName) as AppType)}
             >
-              {appName}
-            </Button>
-            <Space w={25} />
+              <Button
+                fz={14}
+                fw={500}
+                c={appName === app ? "white" : theme.colours.fonts.primary}
+                variant={appName === app ? "filled" : "transparent"}
+                color={theme.colours.bg.bgDarkGray75}
+                radius={"xl"}
+                value={appName}
+              >
+                {appName}
+              </Button>
+              <Space w={25} />
+            </Link>
           </Fragment>
         ))}
       </Flex>
