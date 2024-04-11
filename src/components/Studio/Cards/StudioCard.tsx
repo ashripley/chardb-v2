@@ -23,6 +23,8 @@ export const StudioCard = () => {
 
   const pokemon = isDirty && view === "create" ? tempPokemon : card
 
+  console.log("attributes[set]", attributes["set"])
+
   return (
     <>
       <Card
@@ -150,35 +152,33 @@ export const StudioCard = () => {
               p={15}
               align="center"
             >
-              {pokemon?.id ? (
-                <Text c="white" w="100%">
-                  #{pokemon.id}
-                </Text>
-              ) : (
-                <Divider size="xl" w="30%" color="white" />
-              )}
-              {pokemon?.year ? (
-                <Text c="white" w="100%">
-                  {pokemon.year}
-                </Text>
-              ) : (
-                <Divider size="xl" w="30%" color="white" />
-              )}
-              {pokemon?.setNumber ? (
-                <Flex align="center">
-                  <Text c="white">{pokemon.setNumber}</Text>
-                  <Text c="white">
-                    {pokemon.setNumber &&
-                      "/" +
-                        attributes["set"]?.filter(
-                          (att: Record<string, any>) => {
-                            return att.name === pokemon.set
-                          }
-                        )[0]?.totalCards}
+              {pokemon?.id || pokemon?.set ? (
+                <>
+                  <Text c="white" w="100%">
+                    #{pokemon.id}
                   </Text>
-                </Flex>
+                  <Text c="white" w="100%">
+                    {pokemon.set
+                      ? attributes["set"]?.find(
+                          (set: Record<string, any>) => set.name === pokemon.set
+                        )?.year
+                      : ""}
+                  </Text>
+                  <Flex align="center">
+                    <Text c="white">{pokemon.setNumber ?? ""}</Text>
+                    <Text c="white">
+                      {pokemon.set
+                        ? "/" +
+                          attributes["set"]?.find(
+                            (set: Record<string, any>) =>
+                              set.name === pokemon.set
+                          )?.totalCards
+                        : ""}
+                    </Text>
+                  </Flex>
+                </>
               ) : (
-                <Divider size="xl" w="30%" color="white" />
+                <Divider size="xl" w={"100%"} color="white" />
               )}
             </Flex>
           </Grid.Col>

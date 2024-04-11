@@ -30,6 +30,7 @@ export const DBCard = () => {
     condition: "Conditions",
     totalCards: "Total Cards",
     colour: "Colour",
+    year: "Year",
   }
 
   const onDelete = (att: Record<string, any>) => {
@@ -47,6 +48,8 @@ export const DBCard = () => {
       })
     )
   }
+
+  console.log("attributes?.[dbType]", attributes?.[dbType])
 
   const AttributeCard = () => (
     <>

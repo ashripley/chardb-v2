@@ -43,6 +43,22 @@ export const Sets = () => {
             )
           }
         />
+        <NumberInput
+          variant="filled"
+          radius="lg"
+          placeholder="Year"
+          value={attribute["set"]?.year ?? ""}
+          classNames={{ input: numberClasses.input }}
+          w={"100%"}
+          hideControls
+          onChange={(val) =>
+            dispatch(
+              updateAttribute({
+                set: { ...attribute["set"], year: val },
+              })
+            )
+          }
+        />
       </Flex>
     </>
   )

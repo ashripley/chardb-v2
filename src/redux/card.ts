@@ -55,6 +55,8 @@ export const cardSlice = createSlice({
     ) => {
       state.isDirty = true
 
+      console.log("action.payload", action.payload)
+
       if (!Object.keys(action.payload).length) {
         state.tempPokemon = {}
         state.isDirty = false

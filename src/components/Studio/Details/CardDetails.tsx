@@ -103,7 +103,16 @@ export const CardDetails = () => {
               w={"45%"}
               required
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ set: val }))}
+              onChange={(val) =>
+                dispatch(
+                  updatePokemon({
+                    set: val,
+                    year: attributes["set"].find(
+                      (set: Record<string, any>) => set.name === val
+                    ).year,
+                  })
+                )
+              }
             />
             <NumberInput
               variant="filled"
@@ -153,17 +162,6 @@ export const CardDetails = () => {
             <NumberInput
               variant="filled"
               radius="lg"
-              placeholder="Year"
-              classNames={{ input: numberClasses.input }}
-              w={"45%"}
-              hideControls
-              required
-              value={tempPokemon.year ?? ""}
-              onChange={(val) => dispatch(updatePokemon({ year: val }))}
-            />
-            <NumberInput
-              variant="filled"
-              radius="lg"
               placeholder="Quantity"
               classNames={{ input: numberClasses.input }}
               w={"45%"}
@@ -172,8 +170,6 @@ export const CardDetails = () => {
               value={tempPokemon.quantity ?? ""}
               onChange={(val) => dispatch(updatePokemon({ quantity: val }))}
             />
-          </Flex>
-          <Flex w={"100%"} justify={"space-between"}>
             <Switch
               defaultChecked={false}
               color="gray"
@@ -187,6 +183,8 @@ export const CardDetails = () => {
               }
               h={"100%"}
             />
+          </Flex>
+          <Flex w={"100%"} justify={"space-between"}>
             {tempPokemon?.isGraded && (
               <NumberInput
                 variant="filled"

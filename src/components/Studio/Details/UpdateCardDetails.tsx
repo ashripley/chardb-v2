@@ -239,17 +239,6 @@ export const UpdateCardDetails = () => {
             <NumberInput
               variant="filled"
               radius="lg"
-              placeholder="Year"
-              classNames={{ input: numberClasses.input }}
-              w={"45%"}
-              hideControls
-              required
-              value={card.year ?? ""}
-              onChange={(val) => dispatch(updateCard({ year: val }))}
-            />
-            <NumberInput
-              variant="filled"
-              radius="lg"
               placeholder="Quantity"
               classNames={{ input: numberClasses.input }}
               w={"45%"}
@@ -258,8 +247,6 @@ export const UpdateCardDetails = () => {
               value={card.quantity ?? ""}
               onChange={(val) => dispatch(updateCard({ quantity: val }))}
             />
-          </Flex>
-          <Flex w={"100%"} justify={"space-between"}>
             <Switch
               defaultChecked={false}
               color="gray"
@@ -273,6 +260,8 @@ export const UpdateCardDetails = () => {
               }
               h={"100%"}
             />
+          </Flex>
+          <Flex w={"100%"} justify={"space-between"}>
             {card?.isGraded && (
               <NumberInput
                 variant="filled"
