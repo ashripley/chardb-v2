@@ -156,6 +156,7 @@ export const Gallery = () => {
                         },
                       }}
                       onClick={onSearch}
+                      disabled={input === ""}
                     >
                       Search
                     </Button>

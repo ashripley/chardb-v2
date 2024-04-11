@@ -6,7 +6,7 @@
   }
   &:focus {
     outline: none; /* Remove default focus outline */
-    border: 1px solid rgba(89, 89, 89, 0.75); /* Add custom focus border */
+    border: 2px solid rgba(89, 89, 89, 0.3); /* Add custom focus border */
     /* Add any other styles you want for the focused state */
   }
 }

@@ -26,7 +26,7 @@ export const CardDetails = () => {
     dispatch(updateCard({}))
   }, [])
 
-  const { tempPokemon, isDirty } = useSelector((state: CardStore) => state.card)
+  const { tempPokemon } = useSelector((state: CardStore) => state.card)
   const { allPokemon, attributes } = useSelector(
     (state: StudioStore) => state.studio
   )
@@ -56,6 +56,17 @@ export const CardDetails = () => {
       }, 1000)
     }
   }
+
+  const requiredFields = [
+    "name",
+    "set",
+    "setNumber",
+    "cardType",
+    "quantity",
+    "condition",
+  ]
+
+  const isCreateDisabled = !requiredFields.every((field) => tempPokemon[field])
 
   return (
     <Center h={"100%"} w={"100%"}>
@@ -219,7 +230,7 @@ export const CardDetails = () => {
               type: "dots",
               color: theme.colours.accents.char,
             }}
-            disabled={!isDirty}
+            disabled={isCreateDisabled}
           >
             Create
           </Button>

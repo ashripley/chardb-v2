@@ -94,7 +94,7 @@ export const StudioCard = () => {
             <Group w="100%" m="auto" p={15} gap={5}>
               {pokemon?.set ? (
                 <Text c="white" w="100%" mih={25}>
-                  Set: <b>{pokemon.set}</b>
+                  Set: {pokemon.set}
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
@@ -103,7 +103,7 @@ export const StudioCard = () => {
               )}
               {pokemon?.cardType ? (
                 <Text c="white" w="100%" mih={25}>
-                  Card Type: <b>{pokemon.cardType}</b>
+                  Card Type: {pokemon.cardType}
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
@@ -112,7 +112,7 @@ export const StudioCard = () => {
               )}
               {pokemon?.condition ? (
                 <Text c="white" w="100%" mih={25}>
-                  Condition: <b>{pokemon.condition}</b>
+                  Condition: {pokemon.condition}
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
@@ -121,7 +121,7 @@ export const StudioCard = () => {
               )}
               {pokemon?.quantity ? (
                 <Text c="white" w="100%" mih={25}>
-                  Quantity: <b>{pokemon.quantity}</b>
+                  Quantity: {pokemon.quantity}
                 </Text>
               ) : (
                 <Flex w="100%" mih={25}>
@@ -136,10 +136,10 @@ export const StudioCard = () => {
               )}
               {pokemon?.isGraded && pokemon?.grading ? (
                 <Text c="white" w="100%" mih={25}>
-                  Grading: <b>{pokemon.grading}</b>
+                  Grading: {pokemon.grading}
                 </Text>
               ) : (
-                <Divider size="xl" w="40%" color="white" mih={25} />
+                <Space h={25} />
               )}
             </Group>
           </Grid.Col>
