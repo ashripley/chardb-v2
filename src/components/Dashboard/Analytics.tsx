@@ -37,20 +37,21 @@ export const Analytics = () => {
             >
               Cards
             </Title>
-            <Flex direction={"column"} gap={10}>
+            <Flex direction={"column"} gap={5}>
               <Text fw={400} c={theme.colours.fonts.primary}>
                 Cards: {cards.length}
               </Text>
               <Text fw={400} c={theme.colours.fonts.primary}>
                 Graded Cards: {cards.filter((card) => !!card?.grading).length}
               </Text>
-              {Object.values(attributes["set"]).map((set: any) => (
-                <Text fw={400} c={theme.colours.fonts.primary}>
-                  {set.name}:{" "}
-                  {cards.filter((card) => card.set === set.name).length}/
-                  {set.totalCards}
-                </Text>
-              ))}
+              {attributes["set"] &&
+                Object.values(attributes["set"]).map((set: any) => (
+                  <Text fw={400} c={theme.colours.fonts.primary}>
+                    {set.name}:{" "}
+                    {cards.filter((card) => card.set === set.name).length}/
+                    {set.totalCards}
+                  </Text>
+                ))}
             </Flex>
           </Flex>
         </Card>

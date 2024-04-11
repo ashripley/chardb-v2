@@ -16,6 +16,7 @@ export const gallerySlice = createSlice({
   initialState,
   reducers: {
     setView: (state, action: PayloadAction<StoreState["view"]>) => {
+      console.log("action.payload", action.payload)
       state.view = action.payload
     },
     setApp: (state, action: PayloadAction<StoreState["app"]>) => {

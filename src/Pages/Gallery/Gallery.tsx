@@ -13,7 +13,7 @@ import { IconSearch } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CardViewSegment } from "../../components/Gallery/Segments/CardView"
-import { setApp } from "../../redux/gallery"
+import { setApp, setView } from "../../redux/gallery"
 import { GalleryApp } from "../../config"
 import { GalleryStore } from "../../redux/store"
 import { allAttributes } from "../../api/attributes"
@@ -27,10 +27,13 @@ export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState<string>("")
   const [searchedTerm, setSearchedTerm] = useState<string>("")
-  const { app } = useSelector((state: GalleryStore) => state.gallery)
+  const { app, view } = useSelector((state: GalleryStore) => state.gallery)
 
   useEffect(() => {
+    console.log("view", view)
     setIsLoading(true)
+    onGalleryChange("cards")
+    setView("card")
 
     try {
       allCards(dispatch)
