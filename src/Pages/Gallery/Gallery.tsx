@@ -10,7 +10,6 @@ import {
 import { theme } from "../../theme/theme"
 import classes from "../../modules/TextInput.module.css"
 import { IconSearch } from "@tabler/icons-react"
-import { GalleryView } from "../../components/Gallery/Views/GalleryView"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CardViewSegment } from "../../components/Gallery/Segments/CardView"
@@ -20,6 +19,8 @@ import { GalleryStore } from "../../redux/store"
 import { allAttributes } from "../../api/attributes"
 import { allCards } from "../../api/cards"
 import { allPokemon } from "../../api/pokemon"
+import { Cards } from "../../components/Gallery/Views/Cards"
+import { Pokedex } from "../../components/Gallery/Views/Pokedex"
 
 export const Gallery = () => {
   const dispatch = useDispatch()
@@ -155,10 +156,10 @@ export const Gallery = () => {
                         type="dots"
                       />
                     </Flex>
+                  ) : app === "cards" ? (
+                    <Cards />
                   ) : (
-                    <Flex justify="space-evenly" wrap="wrap" gap={20}>
-                      <GalleryView />
-                    </Flex>
+                    <Pokedex />
                   )}
                 </ScrollArea>
               </Flex>

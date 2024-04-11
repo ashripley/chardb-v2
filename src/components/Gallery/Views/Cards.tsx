@@ -1,39 +1,40 @@
-import { StudioStore } from "../../../redux/store"
 import { useSelector } from "react-redux"
-import { PokedexTile } from "../Tiles/PokedexTile"
+import { CardStore, GalleryStore } from "../../../redux/store"
+import { GalleryTile } from "../Tiles/GalleryTile"
+import { GalleryCard } from "../Cards/GalleryCard"
 import { Flex, Space } from "@mantine/core"
 import { CustomPagination } from "../../Common/CustomPagination"
 import { useState } from "react"
 
-export const Pokedex = () => {
-  const { allPokemon } = useSelector((state: StudioStore) => state.studio)
+export const Cards = () => {
+  const { view } = useSelector((state: GalleryStore) => state.gallery)
+  const { cards } = useSelector((state: CardStore) => state.card)
 
   const [currentPage, setCurrentPage] = useState<number>(1)
 
   const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber)
 
-  const sortedPokedexById = Object.fromEntries(
-    Object.entries(allPokemon).sort(
-      ([, { id: idA }], [, { id: idB }]) => idA - idB
-    )
-  )
-
-  const pokedex = Object.values(sortedPokedexById)
-
   const cardsPerPage = 50
-  const totalCards = pokedex.length
+  const totalCards = cards.length
   const totalPages = Math.ceil(totalCards / cardsPerPage)
 
   const startIndex = (currentPage - 1) * cardsPerPage
   const endIndex = Math.min(startIndex + cardsPerPage, totalCards)
 
+  const CardsMap: Record<string, any> = {
+    card: GalleryCard,
+    tile: GalleryTile,
+  }
+
+  const CardsView = CardsMap[view]
+
   return (
     <>
       <Flex justify="space-evenly" wrap="wrap" gap={20}>
-        {pokedex
+        {cards
           .slice(startIndex, endIndex)
-          .map((pokemon: Record<string, any>, index: number) => (
-            <PokedexTile pokemon={pokemon} key={index} />
+          .map((card: Record<string, any>, index: number) => (
+            <CardsView key={index} card={card} />
           ))}
       </Flex>
       <Space h={25} />
