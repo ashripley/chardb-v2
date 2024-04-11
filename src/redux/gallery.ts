@@ -4,11 +4,13 @@ import { GalleryApp, GalleryViewType } from "../config"
 interface StoreState {
   view: GalleryViewType
   app: GalleryApp
+  searchTerm: string
 }
 
 const initialState: StoreState = {
   view: "card",
   app: "cards",
+  searchTerm: "",
 }
 
 export const gallerySlice = createSlice({
@@ -22,9 +24,12 @@ export const gallerySlice = createSlice({
     setApp: (state, action: PayloadAction<StoreState["app"]>) => {
       state.app = action.payload
     },
+    setSearchTerm: (state, action: PayloadAction<StoreState["searchTerm"]>) => {
+      state.searchTerm = action.payload
+    },
   },
 })
 
-export const { setView, setApp } = gallerySlice.actions
+export const { setView, setApp, setSearchTerm } = gallerySlice.actions
 
 export default gallerySlice.reducer

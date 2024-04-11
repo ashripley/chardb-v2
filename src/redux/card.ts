@@ -74,6 +74,7 @@ export const cardSlice = createSlice({
       else state.card = { ...action.payload }
     },
     setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
+      console.log("action.payload", action.payload)
       state.cards = action.payload
     },
     setIsDirty: (state, action: PayloadAction<StoreState["isDirty"]>) => {

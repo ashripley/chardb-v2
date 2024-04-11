@@ -3,7 +3,8 @@ import "@mantine/carousel/styles.css"
 import "./styles.css"
 import { Center, Flex, MantineProvider, Paper } from "@mantine/core"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-// import { Index } from "./pages"
+import "@mantine/notifications/styles.css"
+import { Notifications } from "@mantine/notifications"
 import { theme } from "./theme"
 import { theme as customTheme } from "../src/theme/theme"
 import { Home } from "./pages/Home/Home"
@@ -15,6 +16,7 @@ import { NavigationBar } from "./components/Common/NavigationBar"
 export default function App() {
   return (
     <MantineProvider theme={theme}>
+      <Notifications />
       <Router>
         <Center h="100vh" w={"100vw"} display={"block"}>
           <Paper

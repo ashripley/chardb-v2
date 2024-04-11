@@ -14,6 +14,7 @@ import { UpdateCardDetails } from "../../components/Studio/Details/UpdateCardDet
 import { allAttributes } from "../../api/attributes"
 import { allPokemon } from "../../api/pokemon"
 import { DBCard } from "../../components/Studio/Cards/DBCard"
+import { allCards } from "../../api/cards"
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio)
@@ -24,6 +25,7 @@ export const Studio = () => {
     dispatch(updatePokemon({}))
     allPokemon(dispatch)
     allAttributes(dispatch)
+    allCards(dispatch)
   }, [])
 
   const viewComponentContent = {

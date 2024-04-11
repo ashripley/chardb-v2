@@ -4,6 +4,8 @@ import { firestore } from "../services/firebase.config"
 import { Card, setCards } from "../redux/card"
 import { theme } from "../theme/theme"
 import { v4 as uuidv4 } from "uuid"
+import { notifications } from "@mantine/notifications"
+import { upperCaseFirst } from "../helpers/upperCaseFirst"
 
 export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
   let mappedCardsArray: Card[] = []
@@ -23,6 +25,8 @@ export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
             { ["cardId"]: key, ...value },
           ])
       )
+
+    console.log("mappedCardsArray", mappedCardsArray)
 
     dispatch(setCards(mappedCardsArray))
   } catch (e) {
@@ -46,7 +50,20 @@ export const addCardMutation = (pokemon: Record<string, any>) => {
         { [name + "-" + uniqueId]: { ...pokemon } },
         { merge: true }
       )
+
+      notifications.show({
+        title: "Successfully Created!",
+        message: `${upperCaseFirst(
+          name
+        )} has successfully been created. Please see your card in the Gallery.`,
+        color: "lime",
+      })
     } catch (e) {
+      notifications.show({
+        title: "Error Creating Card!",
+        message: "Please check the card details and try again.",
+        color: "red",
+      })
       console.error("Error adding the pokemon card to the db: ", e)
     }
   } else {
@@ -78,7 +95,19 @@ export const updateCardMutation = async (card: Record<string, any>) => {
     await updateDoc(cardRef, {
       [card.cardId]: card,
     })
+    notifications.show({
+      title: "Successfully Updated!",
+      message: `${upperCaseFirst(
+        card.name
+      )} has successfully been updated. Please see your card in the Gallery.`,
+      color: "lime",
+    })
   } catch (e) {
+    notifications.show({
+      title: "Error Updating Card!",
+      message: "Please check the card details and try again.",
+      color: "red",
+    })
     console.error("Error updating the pokemon card in the db: ", e)
   }
 }
@@ -90,7 +119,18 @@ export const deleteCardMutation = async (card: Record<string, any>) => {
     await updateDoc(cardRef, {
       [card.cardId]: deleteField(),
     })
+
+    notifications.show({
+      title: "Successfully Deleted!",
+      message: `${upperCaseFirst(card.name)} has successfully been deleted.`,
+      color: "lime",
+    })
   } catch (e) {
+    notifications.show({
+      title: "Error Deleting Card!",
+      message: "Please check the card details and try again.",
+      color: "red",
+    })
     console.error("Error deleting the pokemon card in the db: ", e)
   }
 }

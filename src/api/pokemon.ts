@@ -2,6 +2,8 @@ import { Dispatch, UnknownAction } from "@reduxjs/toolkit"
 import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import { firestore } from "../services/firebase.config"
 import { setAllPokemon } from "../redux/studio"
+import { notifications } from "@mantine/notifications"
+import { upperCaseFirst } from "../helpers/upperCaseFirst"
 
 export const allPokemon = async (dispatch: Dispatch<UnknownAction>) => {
   const docRef = doc(firestore, "pokemon", "data")
@@ -17,7 +19,20 @@ export const addPokemonMutation = async (pokemon: Record<string, any>) => {
 
   try {
     setDoc(pokemonRef, { [pokemon.name]: { ...pokemon } }, { merge: true })
+
+    notifications.show({
+      title: "Successfully Created!",
+      message: `${upperCaseFirst(
+        pokemon.name
+      )} has successfully been created. Please see your pokemon in the Studio.`,
+      color: "lime",
+    })
   } catch (e) {
+    notifications.show({
+      title: "Error Creating Pokemon!",
+      message: "Please check the pokemon details and try again.",
+      color: "red",
+    })
     console.error("Error adding the pokemon to the db: ", e)
   }
 }
@@ -31,7 +46,18 @@ export const deletePokemonMutation = async (name: string) => {
     await updateDoc(pokemonRef, {
       [name]: deleteField(),
     })
+
+    notifications.show({
+      title: "Successfully Deleted!",
+      message: `${upperCaseFirst(name)} has successfully been deleted.`,
+      color: "lime",
+    })
   } catch (e) {
+    notifications.show({
+      title: "Error Deleting Pokemon!",
+      message: "Please check the pokemon details and try again.",
+      color: "red",
+    })
     console.error("Error removing the pokemon from the db: ", e)
   }
 }

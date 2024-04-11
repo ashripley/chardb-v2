@@ -1,4 +1,4 @@
-import { StudioStore } from "../../../redux/store"
+import { GalleryStore, StudioStore } from "../../../redux/store"
 import { useSelector } from "react-redux"
 import { PokedexTile } from "../Tiles/PokedexTile"
 import { Flex, Space } from "@mantine/core"
@@ -6,12 +6,9 @@ import { CustomPagination } from "../../Common/CustomPagination"
 import { useEffect, useState } from "react"
 import { NoResultsFound } from "../../Common/NoResultsFound"
 
-interface Props {
-  searchedTerm: string
-}
-
-export const Pokedex = ({ searchedTerm }: Props) => {
+export const Pokedex = () => {
   const { allPokemon } = useSelector((state: StudioStore) => state.studio)
+  const { searchTerm } = useSelector((state: GalleryStore) => state.gallery)
 
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [filteredPokedex, setFilteredPokedex] = useState<Record<string, any>[]>(
@@ -36,14 +33,14 @@ export const Pokedex = ({ searchedTerm }: Props) => {
   const endIndex = Math.min(startIndex + cardsPerPage, totalCards)
 
   useEffect(() => {
-    if (searchedTerm !== "") {
+    if (searchTerm !== "") {
       const filteredPokedexCards = pokedex.filter((card) =>
-        card.name.toLowerCase().includes(searchedTerm)
+        card.name.toLowerCase().includes(searchTerm)
       )
 
       setFilteredPokedex(filteredPokedexCards)
     } else setFilteredPokedex(pokedex)
-  }, [searchedTerm])
+  }, [searchTerm])
 
   return (
     <>

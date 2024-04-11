@@ -2,15 +2,12 @@ import {
   Button,
   Center,
   Flex,
-  Group,
-  HoverCard,
+  Loader,
   NumberInput,
   Select,
   Space,
   Switch,
   Title,
-  Text,
-  Tooltip,
 } from "@mantine/core"
 import classes from "../../../modules/Select.module.css"
 import numberClasses from "../../../modules/NumberInput.module.css"
@@ -108,12 +105,10 @@ export const UpdateCardDetails = () => {
     } catch (e) {
       console.error(e)
     } finally {
-      setTimeout(() => {
-        action === "update" ? setIsUpdating(false) : setIsDeleting(false)
-        dispatch(setIsDirty(false))
-        dispatch(setCards(updatedCards))
-        dispatch(updateCard({}))
-      }, 1000)
+      action === "update" ? setIsUpdating(false) : setIsDeleting(false)
+      dispatch(setIsDirty(false))
+      dispatch(setCards(updatedCards))
+      dispatch(updateCard({}))
     }
   }
 
@@ -177,6 +172,7 @@ export const UpdateCardDetails = () => {
               variant="filled"
               classNames={{ input: classes.input }}
               onChange={onCardChange}
+              nothingFoundMessage="No Cards Found..."
             />
           </Flex>
           <Flex w={"100%"} justify={"space-between"}>
@@ -295,20 +291,20 @@ export const UpdateCardDetails = () => {
         <Space h={50} />
         <Flex h="10%" gap={25}>
           <ActionButton
-            bg={"white"}
-            c={theme.colours.bg.bgDarkGray100}
-            label="Update"
-            w={150}
-            actionLoading={isUpdating}
-            loaderColour={theme.colours.accents.char}
-          />
-          <ActionButton
             bg={theme.colours.status.error}
             c="white"
             label="Delete"
             w={150}
             actionLoading={isDeleting}
             loaderColour="white"
+          />
+          <ActionButton
+            bg={"white"}
+            c={theme.colours.bg.bgDarkGray100}
+            label="Update"
+            w={150}
+            actionLoading={isUpdating}
+            loaderColour={theme.colours.accents.char}
           />
         </Flex>
       </Flex>

@@ -2,21 +2,28 @@ import { useSelector } from "react-redux"
 import { CardStore, GalleryStore } from "../../../redux/store"
 import { GalleryTile } from "../Tiles/GalleryTile"
 import { GalleryCard } from "../Cards/GalleryCard"
-import { Flex, Space } from "@mantine/core"
+import { Flex, Loader, Space } from "@mantine/core"
 import { CustomPagination } from "../../Common/CustomPagination"
 import { useEffect, useState } from "react"
 import { Card } from "../../../redux/card"
 import { NoResultsFound } from "../../Common/NoResultsFound"
+import { theme } from "../../../theme/theme"
 
-interface Props {
-  searchedTerm: string
-}
-
-export const Cards = ({ searchedTerm }: Props) => {
+export const Cards = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [filteredCards, setFilteredCards] = useState<Card[]>([])
-  const { view } = useSelector((state: GalleryStore) => state.gallery)
+  const { view, searchTerm } = useSelector(
+    (state: GalleryStore) => state.gallery
+  )
   const { cards } = useSelector((state: CardStore) => state.card)
+
+  useEffect(() => {
+    if (searchTerm === "" && cards.length > 0) {
+      setIsLoading(false)
+      setFilteredCards(cards as Card[])
+    }
+  }, [cards])
 
   const cardsPerPage = 50
   const totalCards = filteredCards.length
@@ -26,14 +33,15 @@ export const Cards = ({ searchedTerm }: Props) => {
   const endIndex = Math.min(startIndex + cardsPerPage, totalCards)
 
   useEffect(() => {
-    if (searchedTerm !== "") {
+    if (searchTerm !== "" && cards.length > 0) {
+      setIsLoading(false)
       const filteredCards: Record<string, any>[] = cards.filter((card) =>
-        card.name.toLowerCase().includes(searchedTerm)
+        card.name.toLowerCase().includes(searchTerm)
       )
 
       setFilteredCards(filteredCards as Card[])
     } else setFilteredCards(cards as Card[])
-  }, [searchedTerm])
+  }, [searchTerm])
 
   const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber)
 
@@ -46,7 +54,11 @@ export const Cards = ({ searchedTerm }: Props) => {
 
   return (
     <>
-      {filteredCards.length ? (
+      {isLoading ? (
+        <Flex justify="center" align={"center"} h={"65vh"}>
+          <Loader color={theme.colours.accents.char} size="lg" type="dots" />
+        </Flex>
+      ) : filteredCards.length ? (
         <>
           <Flex justify="space-evenly" wrap="wrap" gap={20}>
             {filteredCards

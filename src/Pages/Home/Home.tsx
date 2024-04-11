@@ -13,7 +13,11 @@ import {
 import { IconSearch } from "@tabler/icons-react"
 import classes from "../../modules/TextInput.module.css"
 import { theme } from "../../theme/theme"
-import { createElement } from "react"
+import { createElement, useState } from "react"
+import { useDispatch } from "react-redux"
+import { setApp, setSearchTerm } from "../../redux/gallery"
+import { updateApp } from "../../redux/root"
+import { Link } from "react-router-dom"
 
 const icon = (
   <IconSearch style={{ width: rem(15), height: rem(15) }} color="white" />
@@ -29,6 +33,19 @@ const styles = {
 }
 
 export const Home = () => {
+  const dispatch = useDispatch()
+  const [input, setInput] = useState<string>("")
+
+  const onSearchInput = (val: string) => {
+    console.log("val", val)
+    setInput(val)
+  }
+
+  const onSearch = () => {
+    dispatch(setSearchTerm(input))
+    dispatch(updateApp("Gallery"))
+  }
+
   return (
     <>
       <Container h={"calc(100% - 75px)"} m={"auto"}>
@@ -71,20 +88,24 @@ export const Home = () => {
                 classNames={{ input: classes.textInput }}
                 w={300}
                 leftSection={icon}
+                onChange={(e: any) => onSearchInput(e.target.value)}
               />
-              <Button
-                variant="filled"
-                bg={theme.colours.accents.char}
-                radius="lg"
-                w={100}
-                styles={{
-                  label: {
-                    color: "white",
-                  },
-                }}
-              >
-                Search
-              </Button>
+              <Link to={"/gallery"} onClick={onSearch}>
+                <Button
+                  variant="filled"
+                  bg={theme.colours.accents.char}
+                  radius="lg"
+                  w={100}
+                  styles={{
+                    label: {
+                      color: "white",
+                    },
+                  }}
+                  disabled={!input}
+                >
+                  Search
+                </Button>
+              </Link>
             </Flex>
           </Flex>
           <Flex

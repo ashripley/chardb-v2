@@ -13,7 +13,7 @@ import { IconSearch } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CardViewSegment } from "../../components/Gallery/Segments/CardView"
-import { setApp, setView } from "../../redux/gallery"
+import { setApp, setSearchTerm, setView } from "../../redux/gallery"
 import { GalleryApp } from "../../config"
 import { GalleryStore } from "../../redux/store"
 import { allAttributes } from "../../api/attributes"
@@ -21,41 +21,43 @@ import { allCards } from "../../api/cards"
 import { allPokemon } from "../../api/pokemon"
 import { Cards } from "../../components/Gallery/Views/Cards"
 import { Pokedex } from "../../components/Gallery/Views/Pokedex"
+import { useLocation } from "react-router-dom"
 
 export const Gallery = () => {
-  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [searchTerm, setSearchTerm] = useState<string>("")
-  const [searchedTerm, setSearchedTerm] = useState<string>("")
-  const { app, view } = useSelector((state: GalleryStore) => state.gallery)
+  const [input, setInput] = useState<string>("")
+  const { app } = useSelector((state: GalleryStore) => state.gallery)
+  const dispatch = useDispatch()
+  const location = useLocation()
+
+  console.log("location", location)
 
   useEffect(() => {
-    console.log("view", view)
     setIsLoading(true)
-    onGalleryChange("cards")
-    setView("card")
 
     try {
+      onGalleryChange("cards")
+      setView("card")
       allCards(dispatch)
       allPokemon(dispatch)
       allAttributes(dispatch)
     } catch (e) {
       console.error(e)
     } finally {
-      setTimeout(() => setIsLoading(false), 500)
+      setIsLoading(false)
     }
-  }, [])
+  }, [location.pathname === "/gallery"])
 
   const onGalleryChange = (name: GalleryApp) => {
     dispatch(setApp(name))
   }
 
-  const onSearchInput = (input: string) => {
-    setSearchTerm(input)
+  const onSearchInput = (val: string) => {
+    setInput(val)
   }
 
   const onSearch = () => {
-    setSearchedTerm(searchTerm)
+    dispatch(setSearchTerm(input))
   }
 
   const icon = (
@@ -138,8 +140,8 @@ export const Gallery = () => {
                       w={"70%"}
                       leftSection={icon}
                       miw={300}
-                      onChange={(event: any) =>
-                        onSearchInput(event.currentTarget.value)
+                      onChange={(e: any) =>
+                        onSearchInput(e.currentTarget.value)
                       }
                     />
                     <Button
@@ -174,9 +176,9 @@ export const Gallery = () => {
                       />
                     </Flex>
                   ) : app === "cards" ? (
-                    <Cards searchedTerm={searchedTerm} />
+                    <Cards />
                   ) : (
-                    <Pokedex searchedTerm={searchedTerm} />
+                    <Pokedex />
                   )}
                 </ScrollArea>
               </Flex>
