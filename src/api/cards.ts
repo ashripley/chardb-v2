@@ -37,6 +37,8 @@ export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
 
 export const addCardMutation = (pokemon: Record<string, any>) => {
   const { type, name, set, setNumber, year, quantity, attribute } = pokemon
+
+  console.log("pokemon", pokemon)
   const pokemonRef = doc(firestore, "cards", "data")
 
   const uniqueId = uuidv4()
