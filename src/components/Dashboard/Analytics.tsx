@@ -2,6 +2,7 @@ import { Card, Flex, Text, Group, Badge, Button, Image } from "@mantine/core"
 import { CardStore, StudioStore } from "../../redux/store"
 import { useSelector } from "react-redux"
 import { dbTypeMap } from "../Studio/Details/DBDetails"
+import { isMobile } from "../../config"
 
 export const Analytics = () => {
   const { attributes, allPokemon } = useSelector(
@@ -19,7 +20,13 @@ export const Analytics = () => {
         gap={25}
         wrap={"wrap"}
       >
-        <Card padding="lg" radius="md" withBorder miw={450} w={"30%"}>
+        <Card
+          padding="lg"
+          radius="md"
+          withBorder
+          miw={isMobile ? "" : 450}
+          w={isMobile ? "100%" : "30%"}
+        >
           <Card.Section>
             <Image
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-2.png"
@@ -55,7 +62,13 @@ export const Analytics = () => {
           </Button>
         </Card>
 
-        <Card padding="lg" radius="md" withBorder miw={450} w={"30%"}>
+        <Card
+          padding="lg"
+          radius="md"
+          withBorder
+          miw={isMobile ? "" : 450}
+          w={isMobile ? "100%" : "30%"}
+        >
           <Card.Section>
             <Image
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-6.png"
@@ -87,7 +100,13 @@ export const Analytics = () => {
           </Button>
         </Card>
 
-        <Card padding="lg" radius="md" withBorder miw={450} w={"30%"}>
+        <Card
+          padding="lg"
+          radius="md"
+          withBorder
+          miw={isMobile ? "" : 450}
+          w={isMobile ? "100%" : "30%"}
+        >
           <Card.Section>
             <Image
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"

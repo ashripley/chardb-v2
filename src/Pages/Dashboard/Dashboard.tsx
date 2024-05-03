@@ -7,10 +7,15 @@ import { allAttributes } from "../../api/attributes"
 import { allCards } from "../../api/cards"
 import { allPokemon } from "../../api/pokemon"
 import { Analytics } from "../../components/Dashboard/Analytics"
+import { isMobile } from "../../config"
 
-const StyledScrollArea = styled(ScrollArea)`
+const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {
     height: 95%;
+  }
+
+  & > div > div {
+    ${({ isMobile }) => isMobile && `display: flex !important;`}
   }
 `
 
@@ -84,6 +89,7 @@ export const Dashboard = () => {
                   </Flex>
                 </Flex>
                 <StyledScrollArea
+                  isMobile={isMobile}
                   h={"90%"}
                   w={"95%"}
                   type="never"
@@ -103,6 +109,7 @@ export const Dashboard = () => {
                       wrap="wrap"
                       gap={20}
                       h={"100%"}
+                      w={isMobile ? "100%" : ""}
                     >
                       <Analytics />
                     </Flex>

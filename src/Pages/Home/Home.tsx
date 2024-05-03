@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux"
 import { setSearchTerm } from "../../redux/gallery"
 import { updateApp } from "../../redux/root"
 import { Link } from "react-router-dom"
+import { isMobile } from "../../config"
 
 const icon = (
   <IconSearch style={{ width: rem(15), height: rem(15) }} color="white" />
@@ -61,6 +62,7 @@ export const Home = () => {
             justify={"center"}
             align={"center"}
             h={"35%"}
+            ta={isMobile ? "center" : "inherit"}
           >
             <Title
               order={1}
@@ -80,10 +82,15 @@ export const Home = () => {
               Welcome to chardb. A collection site for your Pokémon cards.
             </Text>
             <Space h={35} />
-            <Flex w={"auto"} justify={"center"} gap={10} align={"center"}>
+            <Flex
+              w={isMobile ? "80%" : "auto"}
+              justify={"center"}
+              gap={10}
+              align={"center"}
+            >
               <TextInput
                 radius="lg"
-                placeholder="Search for a Pokemon"
+                placeholder={isMobile ? "Charmander.." : "Search for a Pokemon"}
                 variant="filled"
                 classNames={{ input: classes.textInput }}
                 w={300}
@@ -249,7 +256,7 @@ export const Home = () => {
                       style={{
                         position: "relative",
                         top: "25%",
-                        maxWidth: 250,
+                        maxWidth: isMobile ? 150 : 250,
                       }}
                     />
                   </Flex>

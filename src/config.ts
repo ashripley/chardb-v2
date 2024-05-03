@@ -5,3 +5,7 @@ export type DashboardApp = "analytics"
 export type StudioViewType = "create" | "update" | "db"
 export type AppType = "Studio" | "Gallery" | "Home" | "Dashboard"
 export type DBType = "set" | "cardType" | "type" | "condition" | "pokemon"
+
+export const isMobile = window.matchMedia(
+  "only screen and (max-width: 760px)"
+).matches
