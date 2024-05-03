@@ -12,13 +12,14 @@ import { Gallery } from "./pages/Gallery/Gallery"
 import { Studio } from "./pages/Studio/Studio"
 import { Dashboard } from "./pages/Dashboard/Dashboard"
 import { NavigationBar } from "./components/Common/NavigationBar"
+import { isMobile } from "./config"
 
 export default function App() {
   return (
     <MantineProvider theme={theme}>
       <Notifications />
       <Router>
-        <Center h="100vh" w={"100vw"} display={"block"}>
+        <Center h={isMobile ? "100dvh" : "100vh"} w={"100vw"} display={"block"}>
           <Paper
             p="sm"
             m="auto"

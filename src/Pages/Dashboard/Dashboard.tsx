@@ -84,6 +84,7 @@ export const Dashboard = () => {
                         },
                       }}
                       ff={theme.fonts.primary}
+                      fw={500}
                     >
                       Analytics
                     </Button>

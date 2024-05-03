@@ -83,6 +83,7 @@ export const Gallery = () => {
                 direction={"column"}
                 h={"100%"}
                 w={"100%"}
+                gap={isMobile ? "25px" : ""}
               >
                 <Flex
                   w={"95%"}
@@ -112,6 +113,7 @@ export const Gallery = () => {
                         },
                       }}
                       ff={theme.fonts.primary}
+                      fw={500}
                     >
                       Cards
                     </Button>
@@ -128,6 +130,7 @@ export const Gallery = () => {
                         },
                       }}
                       ff={theme.fonts.primary}
+                      fw={500}
                     >
                       Pokedex
                     </Button>
@@ -162,6 +165,7 @@ export const Gallery = () => {
                       onClick={onSearch}
                       disabled={input === ""}
                       ff={theme.fonts.primary}
+                      fw={500}
                     >
                       Search
                     </Button>

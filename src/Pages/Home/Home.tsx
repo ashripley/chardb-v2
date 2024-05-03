@@ -66,7 +66,7 @@ export const Home = () => {
           >
             <Title
               order={1}
-              fw={600}
+              fw={isMobile ? 500 : 600}
               c={theme.colours.fonts.primary}
               ff={theme.fonts.primary}
             >
@@ -110,6 +110,7 @@ export const Home = () => {
                   }}
                   disabled={!input}
                   ff={theme.fonts.primary}
+                  fw={500}
                 >
                   Search
                 </Button>
@@ -121,12 +122,12 @@ export const Home = () => {
             justify={"center"}
             direction={"column"}
             align={"center"}
-            h={"60%"}
+            h={isMobile ? "50%" : "60%"}
           >
             <Card
               h={"auto"}
               mih={isMobile ? "" : 100}
-              w={"70%"}
+              w={isMobile ? "80%" : "70%"}
               bg={theme.colours.accents.squir}
               style={{ ...styles.borderRadius }}
             >
@@ -160,7 +161,7 @@ export const Home = () => {
             <Card
               h={"auto"}
               mih={isMobile ? "" : 100}
-              w={"80%"}
+              w={isMobile ? "90%" : "80%"}
               bg={theme.colours.accents.bulb}
               style={{ ...styles.borderRadius }}
             >
@@ -194,7 +195,7 @@ export const Home = () => {
             <Card
               h={"auto"}
               mih={isMobile ? "" : 100}
-              w={"90%"}
+              w={isMobile ? "100%" : "90%"}
               bg={theme.colours.accents.char}
               style={{ ...styles.borderRadius }}
               pb={0}
