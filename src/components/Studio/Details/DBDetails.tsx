@@ -10,6 +10,13 @@ import { useState } from "react"
 import { addAttributeMutation } from "../../../api/attributes"
 import { setAttributes, updateAttribute } from "../../../redux/studio"
 
+export const dbTypeMap: Record<string, any> = {
+  set: { label: "Set", component: <Sets /> },
+  cardType: { label: "Card Type", component: <CardTypes /> },
+  type: { label: "Type", component: <Types /> },
+  condition: { label: "Condition", component: <Conditions /> },
+}
+
 export const DBDetails = () => {
   const { dbType, attribute, isDirty } = useSelector(
     (state: StudioStore) => state.studio
@@ -17,13 +24,6 @@ export const DBDetails = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const dispatch = useDispatch()
-
-  const dbTypeMap: Record<string, any> = {
-    set: { label: "Set", component: <Sets /> },
-    cardType: { label: "Card Type", component: <CardTypes /> },
-    type: { label: "Type", component: <Types /> },
-    condition: { label: "Condition", component: <Conditions /> },
-  }
 
   const onSave = async () => {
     try {
