@@ -109,6 +109,7 @@ export const Home = () => {
                     },
                   }}
                   disabled={!input}
+                  ff={theme.fonts.primary}
                 >
                   Search
                 </Button>
@@ -124,7 +125,7 @@ export const Home = () => {
           >
             <Card
               h={"auto"}
-              mih={100}
+              mih={isMobile ? "" : 100}
               w={"70%"}
               bg={theme.colours.accents.squir}
               style={{ ...styles.borderRadius }}
@@ -158,7 +159,7 @@ export const Home = () => {
             </Card>
             <Card
               h={"auto"}
-              mih={100}
+              mih={isMobile ? "" : 100}
               w={"80%"}
               bg={theme.colours.accents.bulb}
               style={{ ...styles.borderRadius }}
@@ -192,7 +193,7 @@ export const Home = () => {
             </Card>
             <Card
               h={"auto"}
-              mih={300}
+              mih={isMobile ? "" : 100}
               w={"90%"}
               bg={theme.colours.accents.char}
               style={{ ...styles.borderRadius }}

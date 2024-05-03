@@ -4,13 +4,15 @@ import { theme } from "../../theme/theme"
 import { useDispatch, useSelector } from "react-redux"
 import { RootStore } from "../../redux/store"
 import { updateApp } from "../../redux/root"
-import { AppType } from "../../config"
+import { AppType, isMobile } from "../../config"
 import { upperCaseFirst } from "../../helpers/upperCaseFirst"
 import { Fragment } from "react"
 import { Link } from "react-router-dom"
 
 export const NavigationBar = () => {
-  const apps = ["Gallery", "Studio", "Dashboard"]
+  const apps = isMobile
+    ? ["Gallery", "Dashboard"]
+    : ["Gallery", "Studio", "Dashboard"]
   const { page: app } = useSelector((state: RootStore) => state.root)
   const dispatch = useDispatch()
 

@@ -83,6 +83,7 @@ export const Dashboard = () => {
                           color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
+                      ff={theme.fonts.primary}
                     >
                       Analytics
                     </Button>
@@ -109,7 +110,7 @@ export const Dashboard = () => {
                       wrap="wrap"
                       gap={20}
                       h={"100%"}
-                      w={isMobile ? "100%" : ""}
+                      w={isMobile ? "100%" : "auto"}
                     >
                       <Analytics />
                     </Flex>

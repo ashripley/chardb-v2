@@ -14,7 +14,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CardViewSegment } from "../../components/Gallery/Segments/CardView"
 import { setApp, setSearchTerm, setView } from "../../redux/gallery"
-import { GalleryApp } from "../../config"
+import { GalleryApp, isMobile } from "../../config"
 import { GalleryStore } from "../../redux/store"
 import { allAttributes } from "../../api/attributes"
 import { allCards } from "../../api/cards"
@@ -95,7 +95,7 @@ export const Gallery = () => {
                   <Flex
                     w={"auto"}
                     miw={300}
-                    justify={"flex-start"}
+                    justify={isMobile ? "center" : "flex-start"}
                     gap={10}
                     wrap={"wrap"}
                   >
@@ -111,6 +111,7 @@ export const Gallery = () => {
                           color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
+                      ff={theme.fonts.primary}
                     >
                       Cards
                     </Button>
@@ -126,20 +127,23 @@ export const Gallery = () => {
                           color: theme.colours.bg.bgDarkGray100,
                         },
                       }}
+                      ff={theme.fonts.primary}
                     >
                       Pokedex
                     </Button>
                   </Flex>
                   <Flex w={"auto"} justify={"flex-end"} gap={10}>
-                    {app === "cards" && <CardViewSegment />}
+                    {app === "cards" && !isMobile && <CardViewSegment />}
                     <TextInput
                       radius="lg"
-                      placeholder="Search for a Pokemon"
+                      placeholder={
+                        isMobile ? "Pokemon.." : "Search for a Pokemon"
+                      }
                       variant="filled"
                       classNames={{ input: classes.textInput }}
-                      w={"70%"}
+                      w={isMobile ? "auto" : "70%"}
                       leftSection={icon}
-                      miw={300}
+                      miw={isMobile ? "" : 300}
                       onChange={(e: any) =>
                         onSearchInput(e.currentTarget.value)
                       }
@@ -148,8 +152,8 @@ export const Gallery = () => {
                       variant="filled"
                       bg={"white"}
                       radius="lg"
-                      w={"20%"}
-                      miw={120}
+                      w={isMobile ? "auto" : "20%"}
+                      miw={isMobile ? "fit-content" : 120}
                       styles={{
                         label: {
                           color: theme.colours.bg.bgDarkGray100,
@@ -157,6 +161,7 @@ export const Gallery = () => {
                       }}
                       onClick={onSearch}
                       disabled={input === ""}
+                      ff={theme.fonts.primary}
                     >
                       Search
                     </Button>

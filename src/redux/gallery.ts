@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { GalleryApp, GalleryViewType } from "../config"
+import { GalleryApp, GalleryViewType, isMobile } from "../config"
 
 interface StoreState {
   view: GalleryViewType
@@ -8,7 +8,7 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-  view: "card",
+  view: isMobile ? "tile" : "card",
   app: "cards",
   searchTerm: "",
 }
