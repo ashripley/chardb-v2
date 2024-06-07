@@ -1,3 +1,3 @@
 export const CustomCard = () => {
-  return <div>CustomCard</div>
-}
+  return <div>CustomCard</div>;
+};

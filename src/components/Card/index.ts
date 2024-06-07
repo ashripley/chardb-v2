@@ -1,2 +1,2 @@
-export { BaseCard } from "./BaseCard"
-export { CustomCard } from "./CustomCard"
+export { Card } from './Card';
+export { CustomCard } from './CustomCard';
