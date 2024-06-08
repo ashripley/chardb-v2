@@ -7,16 +7,16 @@ import {
   isOptional,
 } from '../../helpers/validators';
 
-// interface AttributeCardDefinition {}
+interface AttributeCardDefinition {}
 
-// interface PokemonDefinition {}
+interface PokemonDefinition {}
 
 export interface CardDefinition {
   cardId: number;
   quantity: number;
   setNumber: number;
-  // attributes: AttributeCardDefinition;
-  // pokemonData: PokemonDefinition;
+  attributes: AttributeCardDefinition;
+  pokemonData: PokemonDefinition;
   meta?: {
     isGraded: boolean;
     grading?: number;
