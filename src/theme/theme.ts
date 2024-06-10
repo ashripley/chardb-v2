@@ -94,7 +94,7 @@ interface Icons extends BaseTheme {
 }
 
 export interface Theme extends BaseTheme {
-  colours: {
+  colors: {
     status: Status;
     fonts: Fonts;
     bg: Bg;
@@ -106,7 +106,7 @@ export interface Theme extends BaseTheme {
 }
 
 export const theme: Theme = {
-  colours: {
+  colors: {
     status: {
       error: 'rgb(226 54 54)',
       success: 'rgb(130 221 85)',

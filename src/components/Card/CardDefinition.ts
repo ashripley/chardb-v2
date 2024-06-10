@@ -6,10 +6,16 @@ import {
   isObject,
   isOptional,
 } from '../../helpers/validators';
+import { Theme } from '../../theme/theme';
 
-interface AttributeCardDefinition {}
+interface AttributeCardDefinition {
+  type: Theme['colors']['types'];
+}
 
-interface PokemonDefinition {}
+interface PokemonDefinition {
+  name: string;
+  type: string;
+}
 
 export interface CardDefinition {
   cardId: number;

@@ -1,9 +1,9 @@
-import { Grid, Card as MantineCard } from '@mantine/core';
+import { Card as MantineCard } from '@mantine/core';
 import { Types, theme } from '../../theme/theme';
 import { CardShellRenderer } from './cardRenderer';
 
 export const CardShell: CardShellRenderer = (props) => {
-  const { children, type } = props;
+  const { type } = props;
 
   function assertTypeIsKeyofTypes(type: unknown): asserts type is keyof Types {
     if (!(type as keyof Types)) {
@@ -22,8 +22,6 @@ export const CardShell: CardShellRenderer = (props) => {
       bg={
         theme.colours.types[type as keyof Types] ?? theme.colours.bg.bgGray100
       }
-    >
-      <Grid w={'100%'} children={children} />
-    </MantineCard>
+    />
   );
 };
