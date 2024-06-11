@@ -54,8 +54,8 @@ export const GalleryCard = ({ card }: Props) => {
       maw={350}
       radius='xl'
       bg={
-        theme.colours.types[type as keyof Theme['colours']['types']] ??
-        theme.colours.bg.bgGray100
+        theme.colors.types[type as keyof Theme['colors']['types']] ??
+        theme.colors.bg.bgGray100
       }
     >
       <Grid w={'100%'}>
@@ -66,13 +66,13 @@ export const GalleryCard = ({ card }: Props) => {
               <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                 {type ? (
                   createElement(
-                    theme.icons[type as keyof Theme['colours']['types']],
+                    theme.icons[type as keyof Theme['colors']['types']],
                     {
                       style: { width: 20, height: 20 },
                       stroke: 1.5,
                       color:
-                        theme.colours.types[
-                          type as keyof Theme['colours']['types']
+                        theme.colors.types[
+                          type as keyof Theme['colors']['types']
                         ],
                     }
                   )
@@ -82,9 +82,7 @@ export const GalleryCard = ({ card }: Props) => {
                     stroke={1.5}
                     color='var(--mantine-color-white)'
                     fill={
-                      theme.colours.types[
-                        type as keyof Theme['colours']['types']
-                      ]
+                      theme.colors.types[type as keyof Theme['colors']['types']]
                     }
                   />
                 )}
@@ -141,7 +139,7 @@ export const GalleryCard = ({ card }: Props) => {
                     height={25}
                     width={25}
                     stroke={1}
-                    color={theme.colours.bg.bgGray100}
+                    color={theme.colors.bg.bgGray100}
                   />
                 </ActionIcon>
               </Flex>

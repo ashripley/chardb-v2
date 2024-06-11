@@ -1,13 +1,13 @@
-import { Paper, Flex, ScrollArea, Button, Loader } from "@mantine/core"
-import { theme } from "../../theme/theme"
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import styled from "styled-components"
-import { allAttributes } from "../../api/attributes"
-import { allCards } from "../../api/cards"
-import { allPokemon } from "../../api/pokemon"
-import { Analytics } from "../../components/Dashboard/Analytics"
-import { isMobile } from "../../config"
+import { Paper, Flex, ScrollArea, Button, Loader } from '@mantine/core';
+import { theme } from '../../theme/theme';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { allAttributes } from '../../api/attributes';
+import { allCards } from '../../api/cards';
+import { allPokemon } from '../../api/pokemon';
+import { Analytics } from '../../components/Dashboard/Analytics';
+import { isMobile } from '../../config';
 
 const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {
@@ -17,70 +17,70 @@ const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {
     ${({ isMobile }) => isMobile && `display: flex !important;`}
   }
-`
+`;
 
 export const Dashboard = () => {
-  const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     try {
-      setIsLoading(true)
-      allCards(dispatch)
-      allPokemon(dispatch)
-      allAttributes(dispatch)
+      setIsLoading(true);
+      allCards(dispatch);
+      allPokemon(dispatch);
+      allAttributes(dispatch);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [])
+  }, []);
 
   return (
     <>
-      <Flex direction={"row"} w={"100%"} h={"calc(100% - 75px)"} p="xs">
-        <Flex direction={"column"} h={"100%"} w={"100%"} align={"center"}>
+      <Flex direction={'row'} w={'100%'} h={'calc(100% - 75px)'} p='xs'>
+        <Flex direction={'column'} h={'100%'} w={'100%'} align={'center'}>
           <Paper
-            radius="xl"
-            p="lg"
-            m="auto"
-            w="100%"
-            h="100%"
-            bg={theme.colours.bg.bgGray25}
+            radius='xl'
+            p='lg'
+            m='auto'
+            w='100%'
+            h='100%'
+            bg={theme.colors.bg.bgGray25}
           >
-            <Flex w={"100%"} h={"100%"} justify={"center"}>
+            <Flex w={'100%'} h={'100%'} justify={'center'}>
               <Flex
-                justify={"center"}
-                align={"center"}
-                direction={"column"}
-                h={"100%"}
-                w={"100%"}
+                justify={'center'}
+                align={'center'}
+                direction={'column'}
+                h={'100%'}
+                w={'100%'}
               >
                 <Flex
-                  w={"95%"}
-                  h={"auto"}
+                  w={'95%'}
+                  h={'auto'}
                   mih={100}
-                  align={"center"}
-                  justify={"space-between"}
-                  wrap={"wrap"}
+                  align={'center'}
+                  justify={'space-between'}
+                  wrap={'wrap'}
                 >
                   <Flex
-                    w={"auto"}
+                    w={'auto'}
                     miw={300}
-                    justify={"flex-start"}
+                    justify={'flex-start'}
                     gap={10}
-                    wrap={"wrap"}
+                    wrap={'wrap'}
                   >
                     <Button
-                      variant="filled"
-                      bg={"white"}
-                      radius="lg"
-                      w={"40%"}
+                      variant='filled'
+                      bg={'white'}
+                      radius='lg'
+                      w={'40%'}
                       miw={120}
                       onClick={() => {}}
                       styles={{
                         label: {
-                          color: theme.colours.bg.bgDarkGray100,
+                          color: theme.colors.bg.bgDarkGray100,
                         },
                       }}
                       ff={theme.fonts.primary}
@@ -92,26 +92,26 @@ export const Dashboard = () => {
                 </Flex>
                 <StyledScrollArea
                   isMobile={isMobile}
-                  h={"90%"}
-                  w={"95%"}
-                  type="never"
+                  h={'90%'}
+                  w={'95%'}
+                  type='never'
                   style={{ borderRadius: 15 }}
                 >
                   {isLoading ? (
-                    <Flex justify="center" align={"center"} h={"65vh"}>
+                    <Flex justify='center' align={'center'} h={'65vh'}>
                       <Loader
-                        color={theme.colours.accents.char}
-                        size="lg"
-                        type="dots"
+                        color={theme.colors.accents.char}
+                        size='lg'
+                        type='dots'
                       />
                     </Flex>
                   ) : (
                     <Flex
-                      justify="space-evenly"
-                      wrap="wrap"
+                      justify='space-evenly'
+                      wrap='wrap'
                       gap={20}
-                      h={"100%"}
-                      w={isMobile ? "100%" : "auto"}
+                      h={'100%'}
+                      w={isMobile ? '100%' : 'auto'}
                     >
                       <Analytics />
                     </Flex>
@@ -123,5 +123,5 @@ export const Dashboard = () => {
         </Flex>
       </Flex>
     </>
-  )
-}
+  );
+};

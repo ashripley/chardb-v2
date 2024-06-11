@@ -2,14 +2,10 @@ import { Flex, Paper, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { upperCaseFirst } from '../../helpers/upperCaseFirst';
 import { pxToRem } from '../../utils/responsiveSize';
-import { ReactNode, createElement } from 'react';
+import { createElement } from 'react';
 import { Theme, theme } from '../../theme/theme';
 import { IconFlame } from '@tabler/icons-react';
-
-interface Props {
-  name: string;
-  type: string;
-}
+import { CardHeaderRenderer } from './cardRenderer';
 
 const Container = styled(Flex)`
   justify-content: space-between;
@@ -23,10 +19,10 @@ const StyledText = styled(Text)`
 `;
 
 const StyledPaper = styled(Paper)`
-  height: ${pxToRem(30)};
-  width: ${pxToRem(30)}; 
-  background-color: var(--mantine-color-white}; 
-  border-radius: ${pxToRem(35)};
+  height: ${pxToRem('md')};
+  width: ${pxToRem('md')};
+  background-color: var(--mantine-color-white);
+  border-radius: ${pxToRem('md')};
 `;
 
 const ImageContainer = styled(Flex)`
@@ -36,7 +32,7 @@ const ImageContainer = styled(Flex)`
   width: 100%;
 `;
 
-export const CardHeader: (props: Props) => ReactNode = (props) => {
+export const CardHeader: CardHeaderRenderer = (props) => {
   const { name, type } = props;
   return (
     <Container>
@@ -45,13 +41,13 @@ export const CardHeader: (props: Props) => ReactNode = (props) => {
         <ImageContainer>
           {type ? (
             createElement(theme.icons[type as keyof Theme['icons']], {
-              style: { width: 20, height: 20 },
+              style: { width: pxToRem('md'), height: pxToRem('sm') },
               stroke: 1.5,
               color: theme.colors.types[type as keyof Theme['colors']['types']],
             })
           ) : (
             <IconFlame
-              style={{ width: 25, height: 25 }}
+              style={{ width: pxToRem('sm'), height: pxToRem('sm') }}
               stroke={1.5}
               color='var(--mantine-color-white)'
               fill={theme.colors.types[type as keyof Theme['colors']['types']]}

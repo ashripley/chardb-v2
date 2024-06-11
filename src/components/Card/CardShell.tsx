@@ -3,10 +3,10 @@ import { Types, theme } from '../../theme/theme';
 import { CardShellRenderer } from './cardRenderer';
 
 export const CardShell: CardShellRenderer = (props) => {
-  const { type } = props;
+  const { type, children } = props;
 
-  function assertTypeIsKeyofTypes(type: unknown): asserts type is keyof Types {
-    if (!(type as keyof Types)) {
+  function assertTypeIsKeyofTypes(type: unknown): asserts type is string {
+    if (typeof type !== 'string') {
       throw new Error(`Invalid type: "${type}" is not a valid key of Types.`);
     }
   }
@@ -19,9 +19,8 @@ export const CardShell: CardShellRenderer = (props) => {
       mih={450}
       maw={350}
       radius='xl'
-      bg={
-        theme.colours.types[type as keyof Types] ?? theme.colours.bg.bgGray100
-      }
+      bg={theme.colors.types[type as keyof Types] ?? theme.colors.bg.bgGray100}
+      children={children}
     />
   );
 };

@@ -66,7 +66,7 @@ export const Home = () => {
             <Title
               order={1}
               fw={isMobile ? 500 : 600}
-              c={theme.colours.fonts.primary}
+              c={theme.colors.fonts.primary}
               ff={theme.fonts.primary}
             >
               A Place To Store Your Nostalgia
@@ -75,7 +75,7 @@ export const Home = () => {
             <Text
               size='md'
               fw={400}
-              c={theme.colours.fonts.primary}
+              c={theme.colors.fonts.primary}
               ff={theme.fonts.primary}
             >
               Welcome to chardb. A collection site for your Pokémon cards.
@@ -99,7 +99,7 @@ export const Home = () => {
               <Link to={'/gallery'} onClick={onSearch}>
                 <Button
                   variant='filled'
-                  bg={theme.colours.accents.char}
+                  bg={theme.colors.accents.char}
                   radius='lg'
                   w={100}
                   styles={{ label: { color: 'white' } }}
@@ -123,7 +123,7 @@ export const Home = () => {
               h={'auto'}
               mih={isMobile ? '' : 100}
               w={isMobile ? '80%' : '70%'}
-              bg={theme.colours.accents.squir}
+              bg={theme.colors.accents.squir}
               style={{ ...styles.borderRadius }}
             >
               <Flex
@@ -147,7 +147,7 @@ export const Home = () => {
                     {createElement(theme.icons.water, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
-                      color: theme.colours.types.water,
+                      color: theme.colors.types.water,
                     })}
                   </Flex>
                 </Paper>
@@ -157,7 +157,7 @@ export const Home = () => {
               h={'auto'}
               mih={isMobile ? '' : 100}
               w={isMobile ? '90%' : '80%'}
-              bg={theme.colours.accents.bulb}
+              bg={theme.colors.accents.bulb}
               style={{ ...styles.borderRadius }}
             >
               <Flex
@@ -181,7 +181,7 @@ export const Home = () => {
                     {createElement(theme.icons.grass, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
-                      color: theme.colours.types.grass,
+                      color: theme.colors.types.grass,
                     })}
                   </Flex>
                 </Paper>
@@ -191,7 +191,7 @@ export const Home = () => {
               h={'auto'}
               mih={isMobile ? '' : 100}
               w={isMobile ? '100%' : '90%'}
-              bg={theme.colours.accents.char}
+              bg={theme.colors.accents.char}
               style={{ ...styles.borderRadius }}
               pb={0}
             >
@@ -216,7 +216,7 @@ export const Home = () => {
                     {createElement(theme.icons.fire, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
-                      color: theme.colours.types.fire,
+                      color: theme.colors.types.fire,
                     })}
                   </Flex>
                 </Paper>

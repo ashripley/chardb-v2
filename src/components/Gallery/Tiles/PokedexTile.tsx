@@ -1,52 +1,50 @@
-import { Card, Flex, Paper, Space, Text } from "@mantine/core"
-import { Theme, theme } from "../../../theme/theme"
-import { upperCaseFirst } from "../../../helpers/upperCaseFirst"
-import { createElement } from "react"
+import { Card, Flex, Paper, Space, Text } from '@mantine/core';
+import { Theme, theme } from '../../../theme/theme';
+import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { createElement } from 'react';
 
 interface Props {
-  pokemon: Record<string, any>
+  pokemon: Record<string, any>;
 }
 
 export const PokedexTile = ({ pokemon }: Props) => {
   return (
     <>
       <Card
-        w={"200px"}
-        h={"200px"}
-        radius="xl"
-        bg={
-          theme.colours.types[pokemon.type as keyof Theme["colours"]["types"]]
-        }
+        w={'200px'}
+        h={'200px'}
+        radius='xl'
+        bg={theme.colors.types[pokemon.type as keyof Theme['colors']['types']]}
       >
-        <Flex justify="space-between" align="center" w="90%" m="auto">
-          <Text c="white">{upperCaseFirst(pokemon.name)}</Text>
+        <Flex justify='space-between' align='center' w='90%' m='auto'>
+          <Text c='white'>{upperCaseFirst(pokemon.name)}</Text>
           <Paper
             h={25}
             w={25}
-            bg="var(--mantine-color-white)"
-            radius={"xl"}
-            display={"flex"}
-            style={{ justifyContent: "center", alignItems: "center" }}
+            bg='var(--mantine-color-white)'
+            radius={'xl'}
+            display={'flex'}
+            style={{ justifyContent: 'center', alignItems: 'center' }}
           >
-            {createElement(theme.icons[pokemon.type as keyof Theme["icons"]], {
+            {createElement(theme.icons[pokemon.type as keyof Theme['icons']], {
               style: { width: 15, height: 15 },
               stroke: 1.5,
               color:
-                theme.colours.types[
-                  pokemon.type as keyof Theme["colours"]["types"]
+                theme.colors.types[
+                  pokemon.type as keyof Theme['colors']['types']
                 ],
             })}
           </Paper>
         </Flex>
         <Space h={10} />
-        <Card w="90%" h={"90%"} radius="lg" m="auto" p={"sm"}>
-          <Flex direction="column" h={"100%"} justify={"center"}>
+        <Card w='90%' h={'90%'} radius='lg' m='auto' p={'sm'}>
+          <Flex direction='column' h={'100%'} justify={'center'}>
             <Card
-              h="100%"
-              radius="lg"
-              m="auto"
-              display={"flex"}
-              style={{ justifyContent: "center" }}
+              h='100%'
+              radius='lg'
+              m='auto'
+              display={'flex'}
+              style={{ justifyContent: 'center' }}
             >
               <img src={pokemon.image} width={75} height={75} />
             </Card>
@@ -54,17 +52,17 @@ export const PokedexTile = ({ pokemon }: Props) => {
         </Card>
         <Space h={5} />
         <Flex
-          justify="center"
-          align="center"
-          w="90%"
-          m="auto"
-          direction={"row"}
-          c={"white"}
-          fs={"0.8em"}
+          justify='center'
+          align='center'
+          w='90%'
+          m='auto'
+          direction={'row'}
+          c={'white'}
+          fs={'0.8em'}
         >
           #{pokemon.id}
         </Flex>
       </Card>
     </>
-  )
-}
+  );
+};
