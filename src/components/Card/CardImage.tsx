@@ -5,7 +5,7 @@ import { theme } from '../../theme/theme';
 import { CardImageRenderer } from './cardRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils/responsiveSize';
-import { EvolutionDefinition } from './CardDefinition';
+import { EvolutionDefinition } from '../../definitions';
 
 const Container = styled(Card)`
   width: 90%;

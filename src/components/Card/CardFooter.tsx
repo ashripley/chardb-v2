@@ -19,13 +19,13 @@ const StyledText = styled(Text)`
 `;
 
 export const CardFooter: CardFooterRenderer = (props) => {
-  const { id, set, setNumber, year } = props;
+  const { id, set, setNumber } = props;
   const { attributes } = useSelector((state: StudioStore) => state.studio);
 
   return (
     <Container>
       <StyledText>#{id}</StyledText>
-      <StyledText>{year}</StyledText>
+      <StyledText>{set.meta.year}</StyledText>
       <Flex align='center'>
         <Text c='white'>{setNumber}</Text>
         <Text c='white'>

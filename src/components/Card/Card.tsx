@@ -10,8 +10,8 @@ import { CardFooter } from './CardFooter';
 export const Card: CardRenderer = (props) => {
   validateCardDefinition(props.cardDefinition);
 
-  const { type, name, evolutionChain, imageUrl, id } =
-    props.cardDefinition.pokemonData;
+  const { attributes, pokemonData, quantity, setNumber } = props.cardDefinition;
+  const { type, name, evolutionChain, imageUrl, id } = pokemonData;
 
   return (
     <CardShell type={type}>
@@ -24,19 +24,14 @@ export const Card: CardRenderer = (props) => {
         </Grid.Col>
         <Grid.Col span={12}>
           <CardBody
-            {...props.cardDefinition.attributes}
-            isGraded={props.cardDefinition.attributes.isGraded}
-            quantity={props.cardDefinition.quantity}
-            type={props.cardDefinition.pokemonData.type}
+            {...attributes}
+            isGraded={attributes.isGraded}
+            quantity={quantity}
+            type={pokemonData.type}
           />
         </Grid.Col>
         <Grid.Col span={12}>
-          <CardFooter
-            id={id}
-            set={props.cardDefinition.attributes.set}
-            setNumber={props.cardDefinition.setNumber}
-            year={props.cardDefinition.attributes.set.year}
-          />
+          <CardFooter id={id} set={attributes.set} setNumber={setNumber} />
         </Grid.Col>
       </Grid>
     </CardShell>

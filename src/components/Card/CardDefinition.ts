@@ -1,61 +1,36 @@
+import {
+  IdDefinition,
+  PokemonDefinition,
+  SetAttributeDefinition,
+} from '../../definitions';
 import { validate } from '../../helpers/validate';
 import {
   combineValidators,
-  isBoolean,
   isNumber,
   isObject,
   isOptional,
 } from '../../helpers/validators';
 
-export interface AttributeCardDefinition {
-  cardType: string;
-  set: Set;
-  rarity: string;
-  condition: string;
-  isGraded?: boolean;
-  grading: number;
-}
-
-export interface Set {
-  name: string;
-  year: number;
-  totalCards: number;
-}
-
-export interface EvolutionDefinition {
-  name: string;
-  imageUrl: string;
-}
-
-export interface EvolutionChainDefinition {
-  first: EvolutionDefinition;
-  second?: EvolutionDefinition;
-  third?: EvolutionDefinition;
-}
-
-export interface PokemonDefinition {
-  name: string;
-  id: number;
-  evolutionChain: EvolutionChainDefinition;
-  type: string;
-  imageUrl: string;
-  meta?: unknown;
-}
-
 export interface CardDefinition {
-  cardId: number;
+  cardId: IdDefinition;
   quantity: number;
   setNumber: number;
   attributes: AttributeCardDefinition;
   pokemonData: PokemonDefinition;
-  meta?: {
-    isGraded: boolean;
-    grading?: number;
-  };
+  meta?: unknown;
+}
+
+export interface AttributeCardDefinition {
+  cardType: string;
+  set: SetAttributeDefinition;
+  rarity: string;
+  condition: string;
+  isGraded?: boolean;
+  grading: number;
+  meta?: unknown;
 }
 
 const isOptionalObject = combineValidators(isOptional, isObject);
-const isOptionalNumber = combineValidators(isOptional, isNumber);
 
 export function validateCardDefinition(
   cardDefinition: CardDefinition
@@ -68,9 +43,6 @@ export function validateCardDefinition(
   // check for validation on AttributeCardDefinition and PokemonDefinition
 
   if (!cardDefinition.meta) return;
-
-  validate(cardDefinition.meta, 'isGraded', isBoolean);
-  validate(cardDefinition.meta, 'grading', isOptionalNumber);
 }
 
 /*

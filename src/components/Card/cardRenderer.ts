@@ -1,11 +1,10 @@
 import { ReactNode } from 'react';
+import { AttributeCardDefinition, CardDefinition } from './CardDefinition';
 import {
-  AttributeCardDefinition,
-  CardDefinition,
   EvolutionChainDefinition,
   PokemonDefinition,
-  Set,
-} from './CardDefinition';
+  SetAttributeDefinition,
+} from '../../definitions';
 
 interface CardRendererOptions {
   cardDefinition: CardDefinition;
@@ -38,15 +37,12 @@ interface CardBodyRendererOptions {
 
 interface CardFooterRendererOptions {
   id: PokemonDefinition['id'];
-  year: Set['year'];
   setNumber: CardDefinition['setNumber'];
-  set: Set;
+  set: SetAttributeDefinition;
 }
 
 export type CardRenderer = (props: CardRendererOptions) => JSX.Element;
-export type CardShellRenderer = (
-  props: CardShellRendererOptions
-) => JSX.Element;
+export type CardShellRenderer = (props: CardShellRendererOptions) => ReactNode;
 export type CardHeaderRenderer = (
   props: CardHeaderRendererOptions
 ) => JSX.Element;
