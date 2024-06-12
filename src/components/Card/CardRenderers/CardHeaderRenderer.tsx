@@ -1,11 +1,11 @@
 import { Flex, Paper, Text } from '@mantine/core';
 import styled from 'styled-components';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
-import { pxToRem } from '../../utils/responsiveSize';
+import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { pxToRem } from '../../../utils/responsiveSize';
 import { createElement } from 'react';
-import { Theme, theme } from '../../theme/theme';
+import { Theme, theme } from '../../../theme/theme';
 import { IconFlame } from '@tabler/icons-react';
-import { CardHeaderRenderer } from './cardRenderer';
+import { CardRenderer } from '../cardRenderer';
 
 const Container = styled(Flex)`
   justify-content: space-between;
@@ -32,8 +32,8 @@ const ImageContainer = styled(Flex)`
   width: 100%;
 `;
 
-export const CardHeader: CardHeaderRenderer = (props) => {
-  const { name, type } = props;
+export const CardHeaderRenderer: CardRenderer = (props) => {
+  const { name, type } = props.cardDefinition.pokemonData;
   return (
     <Container>
       <StyledText>{upperCaseFirst(name)}</StyledText>

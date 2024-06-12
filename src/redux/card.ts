@@ -1,91 +1,60 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-
-export interface Card {
-  cardId: string
-  cardType: string
-  condition: string
-  evolutions: {
-    first: {
-      image: string
-      name: string
-    }
-    second?: {
-      image: string
-      name: string
-    }
-    third?: {
-      image: string
-      name: string
-    }
-  }
-  id: number
-  image: string
-  name: string
-  pokemonId: string
-  quantity: number
-  set: string
-  setNumber: string
-  type: string
-  year: number
-  isGraded?: boolean
-  grading?: number
-}
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { CardDefinition } from '../api/card';
 
 interface StoreState {
-  tempPokemon: Record<string, any>
-  card: Card | Record<string, any>
-  cards: Card[] | Record<string, any>[]
-  isDirty: boolean
+  tempCard?: CardDefinition;
+  card?: CardDefinition;
+  cards?: CardDefinition[];
+  isDirty: boolean;
 }
 
 const initialState: StoreState = {
-  tempPokemon: {},
-  card: {},
-  cards: [],
   isDirty: false,
-}
+};
 
 export const cardSlice = createSlice({
-  name: "card",
+  name: 'card',
   initialState,
   reducers: {
-    updatePokemon: (
+    initiateTempCard: (
       state,
-      action: PayloadAction<StoreState["tempPokemon"]>
+      action: PayloadAction<StoreState['tempCard']>
     ) => {
-      state.isDirty = true
+      console.log('state.tempCard', state.tempCard);
+      console.log('action.payload', action.payload);
+      state.tempCard = action.payload;
+    },
+    // updatePokemon: (state, action: PayloadAction<StoreState['tempCard']>) => {
+    //   state.isDirty = true;
 
-      console.log("action.payload", action.payload)
+    //   if (!Object.keys(action.payload).length) {
+    //     state.tempCard = {};
+    //     state.isDirty = false;
+    //   }
+    //   state.tempCard = { ...state.tempCard, ...action.payload };
+    // },
+    updateCard: (state, action: PayloadAction<StoreState['card']>) => {
+      state.isDirty = true;
 
       if (!Object.keys(action.payload).length) {
-        state.tempPokemon = {}
-        state.isDirty = false
-      }
-      state.tempPokemon = { ...state.tempPokemon, ...action.payload }
-    },
-    updateCard: (state, action: PayloadAction<StoreState["card"]>) => {
-      state.isDirty = true
-
-      if (!Object.keys(action.payload).length) {
-        state.card = {}
-        state.isDirty = false
+        state.card = {};
+        state.isDirty = false;
       }
 
-      if (!action.payload["cardId"])
-        state.card = { ...state.card, ...action.payload }
-      else state.card = { ...action.payload }
+      if (!action.payload['cardId'])
+        state.card = { ...state.card, ...action.payload };
+      else state.card = { ...action.payload };
     },
-    setCards: (state, action: PayloadAction<StoreState["cards"]>) => {
-      console.log("action.payload", action.payload)
-      state.cards = action.payload
+    setCards: (state, action: PayloadAction<StoreState['cards']>) => {
+      state.cards = action.payload;
     },
-    setIsDirty: (state, action: PayloadAction<StoreState["isDirty"]>) => {
-      state.isDirty = action.payload
+    setIsDirty: (state, action: PayloadAction<StoreState['isDirty']>) => {
+      state.isDirty = action.payload;
     },
   },
-})
+});
 
-export const { updatePokemon, setCards, setIsDirty, updateCard } =
-  cardSlice.actions
+export const { initiateTempCard, setCards, setIsDirty, updateCard } =
+  cardSlice.actions;
 
-export default cardSlice.reducer
+export default cardSlice.reducer;

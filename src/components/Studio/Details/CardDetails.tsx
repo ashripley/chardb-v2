@@ -11,62 +11,70 @@ import {
 import classes from '../../../modules/Select.module.css';
 import numberClasses from '../../../modules/NumberInput.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsDirty, updateCard, updatePokemon } from '../../../redux/card';
-import { CardStore, StudioStore } from '../../../redux/store';
+import { RootStore } from '../../../redux/store';
 import { useEffect, useState } from 'react';
 import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
 import { theme } from '../../../theme/theme';
-import { addCardMutation } from '../../../api/cards';
+import {
+  AttributeCardDefinition,
+  CardDefinition,
+  addCardMutation,
+} from '../../../api/card';
+import { PokemonDefinition } from '../../../api/pokemon';
+import { SetAttributeDefinition } from '../../../api/attribute';
 
 export const CardDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [tempCard, setTempCard] = useState<Partial<CardDefinition>>();
+
+  // useEffect(() => {
+  //   // dispatch(updatePokemon({}));
+  //   dispatch(updateCard({}));
+  // }, []);
 
   useEffect(() => {
-    dispatch(updatePokemon({}));
-    dispatch(updateCard({}));
-  }, []);
+    console.log('temp card updated: ', tempCard);
+  }, [tempCard]);
 
-  const { tempPokemon } = useSelector((state: CardStore) => state.card);
-  const { allPokemon, attributes } = useSelector(
-    (state: StudioStore) => state.studio
-  );
+  const { pokemon, attributes } = useSelector((state: RootStore) => state.root);
 
   const dispatch = useDispatch();
 
-  const pokemonNames = Object.keys(allPokemon)
-    .map((name) => upperCaseFirst(name))
+  const pokemonNames = pokemon
+    .map((pokemon) => upperCaseFirst(pokemon.name))
     .sort();
 
-  const onPokemonChange = (val: any) => {
-    dispatch(updatePokemon({ ...allPokemon[val?.toLowerCase()] }));
-  };
+  // const onPokemonChange = (val: any) => {
+  //   dispatch(updatePokemon({ ...allPokemon[val?.toLowerCase()] }));
+  // };
 
   const onCreate = async () => {
     try {
       setIsLoading(true);
 
-      tempPokemon && (await addCardMutation(tempPokemon));
-    } catch (e) {
-      console.error(e);
+      console.log('tempCard', tempCard);
+      tempCard && (await addCardMutation(tempCard as CardDefinition));
+    } catch (error) {
+      throw new Error(`${error}`);
     } finally {
       setTimeout(() => {
         setIsLoading(false);
-        dispatch(setIsDirty(false));
-        dispatch(updatePokemon({}));
+        // dispatch(setIsDirty(false));
+        // dispatch(updatePokemon({}));
       }, 1000);
     }
   };
 
-  const requiredFields = [
-    'name',
-    'set',
-    'setNumber',
-    'cardType',
-    'quantity',
-    'condition',
-  ];
+  // const requiredFields = [
+  //   'name',
+  //   'set',
+  //   'setNumber',
+  //   'cardType',
+  //   'quantity',
+  //   'condition',
+  // ];
 
-  const isCreateDisabled = !requiredFields.every((field) => tempPokemon[field]);
+  // const isCreateDisabled = temp.every((field) => tempCard[field]);
 
   return (
     <Center h={'100%'} w={'100%'}>
@@ -96,33 +104,48 @@ export const CardDetails = () => {
               required
               variant='filled'
               classNames={{ input: classes.input }}
-              onChange={onPokemonChange}
+              onChange={(val) => {
+                if (val !== null) {
+                  setTempCard({
+                    ...tempCard,
+                    pokemonData: {
+                      ...(tempCard?.pokemonData as PokemonDefinition),
+                      name: val,
+                    },
+                  });
+                }
+              }}
               nothingFoundMessage='No Pokemon found...'
             />
           </Flex>
           <Flex w={'100%'} justify={'space-between'}>
             <Select
               placeholder='Set'
-              data={attributes['set']?.map((att: Record<string, any>) =>
-                upperCaseFirst(att.name)
-              )}
+              // data={attributes['set']?.map((att: Record<string, any>) =>
+              //   upperCaseFirst(att.name)
+              // )}
               searchable
               rightSection
-              value={tempPokemon.set ?? ''}
+              value={tempCard?.attributes?.set?.name ?? ''}
               radius={'lg'}
               variant='filled'
               w={'45%'}
               required
               classNames={{ input: classes.input }}
               onChange={(val) =>
-                dispatch(
-                  updatePokemon({
-                    set: val,
-                    year: attributes['set'].find(
-                      (set: Record<string, any>) => set.name === val
-                    ).year,
-                  })
-                )
+                setTempCard({
+                  ...tempCard,
+                  attributes: {
+                    ...(tempCard?.attributes as AttributeCardDefinition),
+                    set: {
+                      ...(tempCard?.attributes?.set as SetAttributeDefinition),
+                      name: val as string,
+                      // year: cardAttributes['type']['set'].find(
+                      //   (set: Record<string, any>) => set.name === val
+                      // ).year,
+                    },
+                  },
+                })
               }
             />
             <NumberInput
@@ -133,40 +156,58 @@ export const CardDetails = () => {
               classNames={{ input: numberClasses.input }}
               hideControls
               required
-              value={tempPokemon.setNumber ?? ''}
-              onChange={(val) => dispatch(updatePokemon({ setNumber: val }))}
+              value={tempCard?.setNumber ?? ''}
+              onChange={(val) =>
+                setTempCard({ ...tempCard, setNumber: val as number })
+              }
             />
           </Flex>
           <Flex w={'100%'} justify={'space-between'}>
             <Select
               placeholder='Card Type'
-              data={attributes['cardType']?.map((att: Record<string, any>) =>
-                upperCaseFirst(att.name)
-              )}
+              // data={attributes['cardType']?.map((att: Record<string, any>) =>
+              //   upperCaseFirst(att.name)
+              // )}
               searchable
               radius={'lg'}
               w={'45%'}
               rightSection
               variant='filled'
               required
-              value={tempPokemon.cardType ?? ''}
+              value={tempCard?.attributes?.cardType ?? ''}
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ cardType: val }))}
+              onChange={(val) =>
+                setTempCard({
+                  ...tempCard,
+                  attributes: {
+                    ...(tempCard?.attributes as AttributeCardDefinition),
+                    cardType: val as string,
+                  },
+                })
+              }
             />
             <Select
               placeholder='Condition'
-              data={attributes['condition']?.map((att: Record<string, any>) =>
-                upperCaseFirst(att.name)
-              )}
+              // data={attributes['condition']?.map((att: Record<string, any>) =>
+              //   upperCaseFirst(att.name)
+              // )}
               searchable
               radius={'lg'}
               w={'45%'}
               rightSection
               variant='filled'
               required
-              value={tempPokemon.condition ?? ''}
+              value={tempCard?.attributes?.condition ?? ''}
               classNames={{ input: classes.input }}
-              onChange={(val) => dispatch(updatePokemon({ condition: val }))}
+              onChange={(val) =>
+                setTempCard({
+                  ...tempCard,
+                  attributes: {
+                    ...(tempCard?.attributes as AttributeCardDefinition),
+                    condition: val as string,
+                  },
+                })
+              }
             />
           </Flex>
           <Flex w={'100%'} justify={'space-between'}>
@@ -178,8 +219,10 @@ export const CardDetails = () => {
               w={'45%'}
               hideControls
               required
-              value={tempPokemon.quantity ?? ''}
-              onChange={(val) => dispatch(updatePokemon({ quantity: val }))}
+              value={tempCard?.quantity ?? ''}
+              onChange={(val) =>
+                setTempCard({ ...tempCard, quantity: val as number })
+              }
             />
             <Switch
               defaultChecked={false}
@@ -188,15 +231,23 @@ export const CardDetails = () => {
               label='Graded?'
               size='md'
               w={'45%'}
-              value={tempPokemon.isGraded ?? ''}
-              onChange={(val) =>
-                dispatch(updatePokemon({ isGraded: val.target.checked }))
-              }
+              value={tempCard?.attributes?.isGraded?.toString() ?? ''}
+              onChange={(val) => {
+                if (val !== null) {
+                  setTempCard({
+                    ...tempCard,
+                    attributes: {
+                      ...(tempCard?.attributes as AttributeCardDefinition),
+                      isGraded: val.target.checked,
+                    },
+                  });
+                }
+              }}
               h={'100%'}
             />
           </Flex>
           <Flex w={'100%'} justify={'space-between'}>
-            {tempPokemon?.isGraded && (
+            {tempCard?.attributes?.isGraded && (
               <NumberInput
                 variant='filled'
                 radius='lg'
@@ -205,8 +256,16 @@ export const CardDetails = () => {
                 w={'45%'}
                 hideControls
                 required
-                value={tempPokemon.grading ?? ''}
-                onChange={(val) => dispatch(updatePokemon({ grading: val }))}
+                value={tempCard.attributes.grading ?? ''}
+                onChange={(val) =>
+                  setTempCard({
+                    ...tempCard,
+                    attributes: {
+                      ...(tempCard.attributes as AttributeCardDefinition),
+                      grading: val as number,
+                    },
+                  })
+                }
               />
             )}
           </Flex>
@@ -230,7 +289,7 @@ export const CardDetails = () => {
               type: 'dots',
               color: theme.colors.accents.char,
             }}
-            disabled={isCreateDisabled}
+            // disabled={isCreateDisabled}
           >
             Create
           </Button>

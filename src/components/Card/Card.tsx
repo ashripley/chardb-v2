@@ -1,38 +1,35 @@
 import { Grid } from '@mantine/core';
-import { validateCardDefinition } from './CardDefinition';
-import { CardShell } from './CardShell';
 import { CardRenderer } from './cardRenderer';
-import { CardHeader } from './CardHeader';
-import { CardImage } from './CardImage';
-import { CardBody } from './CardBody';
-import { CardFooter } from './CardFooter';
+import { CardHeaderRenderer } from './CardRenderers/CardHeaderRenderer';
+import { CardImageRenderer } from './CardRenderers/CardImageRenderer';
+import { CardBodyRenderer } from './CardRenderers/CardBodyRenderer';
+import { CardFooterRenderer } from './CardRenderers/CardFooterRenderer';
+import { validateCardDefinition } from '../../api/card';
+import styled from 'styled-components';
+import { CardShell } from './CardRenderers';
+
+const Column = styled(Grid.Col)``;
 
 export const Card: CardRenderer = (props) => {
   validateCardDefinition(props.cardDefinition);
 
-  const { attributes, pokemonData, quantity, setNumber } = props.cardDefinition;
-  const { type, name, evolutionChain, imageUrl, id } = pokemonData;
+  const { type } = props.cardDefinition.pokemonData;
 
   return (
     <CardShell type={type}>
       <Grid>
-        <Grid.Col span={12}>
-          <CardHeader type={type} name={name} />
-        </Grid.Col>
-        <Grid.Col span={12}>
-          <CardImage evolutions={evolutionChain} imageUrl={imageUrl} />
-        </Grid.Col>
-        <Grid.Col span={12}>
-          <CardBody
-            {...attributes}
-            isGraded={attributes.isGraded}
-            quantity={quantity}
-            type={pokemonData.type}
-          />
-        </Grid.Col>
-        <Grid.Col span={12}>
-          <CardFooter id={id} set={attributes.set} setNumber={setNumber} />
-        </Grid.Col>
+        <Column span={12}>
+          <CardHeaderRenderer {...props} />
+        </Column>
+        <Column span={12}>
+          <CardImageRenderer {...props} />
+        </Column>
+        <Column span={12}>
+          <CardBodyRenderer {...props} />
+        </Column>
+        <Column span={12}>
+          <CardFooterRenderer {...props} />
+        </Column>
       </Grid>
     </CardShell>
   );

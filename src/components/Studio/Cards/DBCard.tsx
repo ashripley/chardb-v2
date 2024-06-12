@@ -9,10 +9,10 @@ import {
 } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { StudioStore } from '../../../redux/store';
-import { deleteAttributeMutation } from '../../../api/attributes';
 import { setAttributes } from '../../../redux/studio';
 import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
 import { theme } from '../../../theme/theme';
+import { deleteAttributeMutation } from '../../../api/attribute';
 
 export const DBCard = () => {
   const { attributes, dbType } = useSelector(

@@ -1,35 +1,34 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { GalleryApp, GalleryViewType, isMobile } from "../config"
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { GalleryApp, GalleryViewType, isMobile } from '../config';
 
 interface StoreState {
-  view: GalleryViewType
-  app: GalleryApp
-  searchTerm: string
+  view: GalleryViewType;
+  app: GalleryApp;
+  searchTerm: string;
 }
 
 const initialState: StoreState = {
-  view: isMobile ? "tile" : "card",
-  app: "cards",
-  searchTerm: "",
-}
+  view: isMobile ? 'tile' : 'card',
+  app: 'cards',
+  searchTerm: '',
+};
 
 export const gallerySlice = createSlice({
-  name: "gallery",
+  name: 'gallery',
   initialState,
   reducers: {
-    setView: (state, action: PayloadAction<StoreState["view"]>) => {
-      console.log("action.payload", action.payload)
-      state.view = action.payload
+    setView: (state, action: PayloadAction<StoreState['view']>) => {
+      state.view = action.payload;
     },
-    setApp: (state, action: PayloadAction<StoreState["app"]>) => {
-      state.app = action.payload
+    setApp: (state, action: PayloadAction<StoreState['app']>) => {
+      state.app = action.payload;
     },
-    setSearchTerm: (state, action: PayloadAction<StoreState["searchTerm"]>) => {
-      state.searchTerm = action.payload
+    setSearchTerm: (state, action: PayloadAction<StoreState['searchTerm']>) => {
+      state.searchTerm = action.payload;
     },
   },
-})
+});
 
-export const { setView, setApp, setSearchTerm } = gallerySlice.actions
+export const { setView, setApp, setSearchTerm } = gallerySlice.actions;
 
-export default gallerySlice.reducer
+export default gallerySlice.reducer;

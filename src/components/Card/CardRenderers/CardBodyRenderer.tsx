@@ -1,8 +1,8 @@
 import { Group, Text, Space } from '@mantine/core';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
-import { CardBodyRenderer } from './cardRenderer';
+import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { CardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
-import { pxToRem } from '../../utils/responsiveSize';
+import { pxToRem } from '../../../utils/responsiveSize';
 
 const StyledGroup = styled(Group)`
   width: 100%;
@@ -17,8 +17,13 @@ const StyledText = styled(Text)`
   min-height: ${pxToRem('sm')};
 `;
 
-export const CardBody: CardBodyRenderer = (props) => {
-  const { type, set, cardType, condition, quantity, isGraded, grading } = props;
+export const CardBodyRenderer: CardRenderer = (props) => {
+  const {
+    quantity,
+    pokemonData: { type },
+  } = props.cardDefinition;
+  const { set, cardType, condition, isGraded, grading } =
+    props.cardDefinition.attributes;
 
   return (
     <StyledGroup>
@@ -27,7 +32,7 @@ export const CardBody: CardBodyRenderer = (props) => {
       <StyledText>Card Type: {cardType}</StyledText>
       <StyledText>Condition: {condition}</StyledText>
       <StyledText>Quantity: {quantity}</StyledText>
-      {isGraded ? (
+      {isGraded && grading ? (
         <StyledText>Grading: {grading}</StyledText>
       ) : (
         <Space h={25} />

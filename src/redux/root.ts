@@ -1,24 +1,36 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { AppType } from "../config"
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { AppType } from '../config';
+import { PokemonDefinition } from '../api/pokemon';
+import { AttributeCardDefinition } from '../api/card';
+import { AttributeDefinition } from '../api/attribute';
 
 interface StoreState {
-  page: AppType
+  page: AppType;
+  pokemon: PokemonDefinition[];
+  cardAttributes: AttributeCardDefinition[];
+  attributes: AttributeDefinition[];
 }
 
 const initialState: StoreState = {
-  page: "Home",
-}
+  page: 'Home',
+  pokemon: [],
+  cardAttributes: [],
+  attributes: [],
+};
 
 export const rootSlice = createSlice({
-  name: "root",
+  name: 'root',
   initialState,
   reducers: {
-    updateApp: (state, action: PayloadAction<StoreState["page"]>) => {
-      state.page = action.payload
+    updateApp: (state, action: PayloadAction<StoreState['page']>) => {
+      state.page = action.payload;
+    },
+    setPokemon: (state, action: PayloadAction<StoreState['pokemon']>) => {
+      state.pokemon = action.payload;
     },
   },
-})
+});
 
-export const { updateApp } = rootSlice.actions
+export const { updateApp, setPokemon } = rootSlice.actions;
 
-export default rootSlice.reducer
+export default rootSlice.reducer;

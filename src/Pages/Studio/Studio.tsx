@@ -8,13 +8,11 @@ import { StudioStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setView } from '../../redux/studio';
-import { updatePokemon } from '../../redux/card';
 import { CardDetails } from '../../components/Studio/Details/CardDetails';
-import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDetails';
-import { allAttributes } from '../../api/attributes';
 import { allPokemon } from '../../api/pokemon';
 import { DBCard } from '../../components/Studio/Cards/DBCard';
-import { allCards } from '../../api/cards';
+import { allAttributes } from '../../api/attribute';
+import { allCards } from '../../api/card';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
@@ -22,7 +20,7 @@ export const Studio = () => {
 
   useEffect(() => {
     dispatch(setView('create'));
-    dispatch(updatePokemon({}));
+    // dispatch(updatePokemon({}));
     allPokemon(dispatch);
     allAttributes(dispatch);
     allCards(dispatch);
@@ -34,7 +32,7 @@ export const Studio = () => {
       right: <StudioCard />,
     },
     update: {
-      left: <UpdateCardDetails />,
+      // left: <UpdateCardDetails />,
       right: <StudioCard />,
     },
     db: {

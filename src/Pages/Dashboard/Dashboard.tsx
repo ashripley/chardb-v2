@@ -3,11 +3,11 @@ import { theme } from '../../theme/theme';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { allAttributes } from '../../api/attributes';
-import { allCards } from '../../api/cards';
-import { allPokemon } from '../../api/pokemon';
 import { Analytics } from '../../components/Dashboard/Analytics';
 import { isMobile } from '../../config';
+import { allCards } from '../../api/card';
+import { allPokemon } from '../../api/pokemon';
+import { allAttributes } from '../../api/attribute';
 
 const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {

@@ -1,42 +1,44 @@
-import axios from "axios"
-import { v4 as uuidv4 } from "uuid"
-import { addBulkPokemonMutation, addPokemonMutation } from "../api/pokemon"
+import axios from 'axios';
+import {
+  EvolutionsDefinition,
+  PokemonDefinition,
+  addBulkPokemonMutation,
+  addPokemonMutation,
+} from '../api/pokemon';
 
 export const addBulkPokemon = async () => {
-  const uuid = uuidv4()
-
   const hyphenatedPokemonNames = [
-    "deoxys-normal",
-    "shaymin-land",
-    "giratina-altered",
-    "wormadam-plant",
-  ]
+    'deoxys-normal',
+    'shaymin-land',
+    'giratina-altered',
+    'wormadam-plant',
+  ];
 
   try {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon?limit=151"
-    )
-    const { results } = response.data
+      'https://pokeapi.co/api/v2/pokemon?limit=151'
+    );
+    const { results } = response.data;
     const pokemonDetailsPromises = results.map((result: any) =>
       axios.get(result.url)
-    )
+    );
 
-    const pokemonDetailsResponses = await Promise.all(pokemonDetailsPromises)
+    const pokemonDetailsResponses = await Promise.all(pokemonDetailsPromises);
 
     const allPokemon = pokemonDetailsResponses.map((response: any) => {
-      const { data } = response
-      const { name } = data
+      const { data } = response;
+      const { name } = data;
 
-      if (hyphenatedPokemonNames.includes(data.name)) return {}
+      if (hyphenatedPokemonNames.includes(data.name)) return {};
 
       return {
         name,
         image: `https://img.pokemondb.net/sprites/home/normal/${name}.png`,
-      }
-    })
+      };
+    });
 
     for (const pokemon of allPokemon) {
-      if (!pokemon.name) continue
+      if (!pokemon.name) continue;
 
       // if (
       //   currentPokemonDb &&
@@ -45,145 +47,142 @@ export const addBulkPokemon = async () => {
       //   continue
 
       // fetch pokemon blob from pokeapi
-      const data = await fetchPokemon(pokemon.name)
+      const data = await fetchPokemon(pokemon.name);
 
       // fetch evolution chain url from pokeapi
-      const chainUrl = await fetchEvolutionChainUrl(pokemon.name)
+      const chainUrl = await fetchEvolutionUrl(pokemon.name);
 
       // fetch evolution chain from pokeapi
-      const chain = await fetchEvolutionChain(chainUrl.url)
+      const chain = await fetchEvolutions(chainUrl.url);
 
-      const firstEvolution = chain.chain.species
-      const secondEvolution = chain.chain.evolves_to?.[0]?.species
+      const firstEvolution = chain.chain.species;
+      const secondEvolution = chain.chain.evolves_to?.[0]?.species;
       const thirdEvolution =
-        chain.chain.evolves_to?.[0]?.evolves_to?.[0]?.species
+        chain.chain.evolves_to?.[0]?.evolves_to?.[0]?.species;
 
-      const evolutionChainObj = {
+      const evolutions: EvolutionsDefinition = {
         first: {
-          name: firstEvolution.name ?? "",
-          image: firstEvolution.name
+          name: firstEvolution.name ?? '',
+          imageUrl: firstEvolution.name
             ? `https://img.pokemondb.net/sprites/home/normal/${firstEvolution.name}.png`
-            : "",
+            : '',
         },
         second: {
-          name: secondEvolution?.name ?? "",
-          image: secondEvolution?.name
+          name: secondEvolution?.name ?? '',
+          imageUrl: secondEvolution?.name
             ? `https://img.pokemondb.net/sprites/home/normal/${secondEvolution.name}.png`
-            : "",
+            : '',
         },
         third: {
-          name: thirdEvolution?.name ?? "",
-          image: thirdEvolution?.name
+          name: thirdEvolution?.name ?? '',
+          imageUrl: thirdEvolution?.name
             ? `https://img.pokemondb.net/sprites/home/normal/${thirdEvolution.name}.png`
-            : "",
+            : '',
         },
-      }
+      };
 
       // pokemon obj to write
-      const pokemonToAdd = {
-        pokemonId: uuid,
+      const pokemonToAdd: PokemonDefinition = {
         name: data.name,
         id: data.id,
+        evolutions,
         type: data.types[0]?.type.name,
-        image: `https://img.pokemondb.net/sprites/home/normal/${data.name}.png`,
-        evolutions: { ...evolutionChainObj },
-      }
+        imageUrl:
+          'https://img.pokemondb.net/sprites/home/normal/${data.name}.png',
+      };
 
       // write to db
-      await addBulkPokemonMutation(pokemonToAdd, pokemon.name)
+      await addBulkPokemonMutation(pokemonToAdd);
     }
   } catch (error) {
-    console.error("Error fetching pokemon data:", error)
+    throw new Error(`Error fetching pokemon data: ${error}`);
   }
-}
+};
 
-export const addPokemon = async (
-  name: string,
-  pokemonData: Record<string, any>
-) => {
-  const uuid = uuidv4()
-
+export const addPokemon = async (pokemon: PokemonDefinition) => {
   const hyphenatedPokemonNames = [
-    "deoxys-normal",
-    "shaymin-land",
-    "giratina-altered",
-    "wormadam-plant",
-  ]
+    'deoxys-normal',
+    'shaymin-land',
+    'giratina-altered',
+    'wormadam-plant',
+  ];
 
+  const { name } = pokemon;
   // check if pokemon already exists in db
-  if (pokemonData && Object.keys(pokemonData).includes(name)) return
+  if (pokemon && Object.keys(pokemon).includes(name)) return;
 
   // check if pokemon name is in hyphenated array
-  if (hyphenatedPokemonNames.includes(name)) return
+  if (hyphenatedPokemonNames.includes(name)) return;
 
   try {
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${name}`
-    )
-    const { data } = response
+    );
+    const { data } = response;
 
     // fetch evolution chain url from pokeapi
-    const chainUrl = await fetchEvolutionChainUrl(data.name)
+    const chainUrl = await fetchEvolutionUrl(data.name);
 
     // fetch evolution chain from pokeapi
-    const chain = await fetchEvolutionChain(chainUrl.url)
+    const chain = await fetchEvolutions(chainUrl.url);
 
-    const firstEvolution = chain.chain.species
-    const secondEvolution = chain.chain.evolves_to?.[0]?.species
-    const thirdEvolution = chain.chain.evolves_to?.[0]?.evolves_to?.[0]?.species
+    const firstEvolution = chain.chain.species;
+    const secondEvolution = chain.chain.evolves_to?.[0]?.species;
+    const thirdEvolution =
+      chain.chain.evolves_to?.[0]?.evolves_to?.[0]?.species;
 
-    const evolutionChainObj = {
+    const evolutions: EvolutionsDefinition = {
       first: {
-        name: firstEvolution.name ?? "",
-        image: firstEvolution.name
+        name: firstEvolution.name ?? '',
+        imageUrl: firstEvolution.name
           ? `https://img.pokemondb.net/sprites/home/normal/${firstEvolution.name}.png`
-          : "",
+          : '',
       },
       second: {
-        name: secondEvolution?.name ?? "",
-        image: secondEvolution?.name
+        name: secondEvolution?.name ?? '',
+        imageUrl: secondEvolution?.name
           ? `https://img.pokemondb.net/sprites/home/normal/${secondEvolution.name}.png`
-          : "",
+          : '',
       },
       third: {
-        name: thirdEvolution?.name ?? "",
-        image: thirdEvolution?.name
+        name: thirdEvolution?.name ?? '',
+        imageUrl: thirdEvolution?.name
           ? `https://img.pokemondb.net/sprites/home/normal/${thirdEvolution.name}.png`
-          : "",
+          : '',
       },
-    }
+    };
 
     // pokemon obj to write
-    const pokemon = {
-      pokemonId: uuid,
+    const pokemonToAdd: PokemonDefinition = {
       name: data.name,
       id: data.id,
+      evolutions,
       type: data.types[0]?.type.name,
-      image: `https://img.pokemondb.net/sprites/home/normal/${data.name}.png`,
-      evolutions: { ...evolutionChainObj },
-    }
+      imageUrl:
+        'https://img.pokemondb.net/sprites/home/normal/${data.name}.png',
+    };
 
     // write to db
-    await addPokemonMutation(pokemon)
+    await addPokemonMutation(pokemonToAdd);
   } catch (error) {
-    console.error("Error fetching pokemon data:", error)
+    throw new Error(`Error fetching pokemon data: ${error}`);
   }
-}
+};
 
 const fetchPokemon = async (name: string) => {
-  const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-  return response.data
-}
+  const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  return response.data;
+};
 
-const fetchEvolutionChainUrl = async (name: string) => {
+const fetchEvolutionUrl = async (name: string) => {
   const response = await axios.get(
     `https://pokeapi.co/api/v2/pokemon-species/${name}`
-  )
-  const chainUrl = await response.data.evolution_chain
-  return chainUrl
-}
+  );
+  const evolutionUrl = await response.data.evolution_chain;
+  return evolutionUrl;
+};
 
-const fetchEvolutionChain = async (url: string) => {
-  const response = await axios.get(url)
-  return response.data
-}
+const fetchEvolutions = async (url: string) => {
+  const response = await axios.get(url);
+  return response.data;
+};

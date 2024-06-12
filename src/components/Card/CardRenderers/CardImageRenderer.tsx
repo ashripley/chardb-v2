@@ -1,11 +1,11 @@
 import { ActionIcon, Card, Flex } from '@mantine/core';
 import { IconChartBubble } from '@tabler/icons-react';
 import { useState } from 'react';
-import { theme } from '../../theme/theme';
-import { CardImageRenderer } from './cardRenderer';
+import { theme } from '../../../theme/theme';
+import { CardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
-import { pxToRem } from '../../utils/responsiveSize';
-import { EvolutionDefinition } from '../../definitions';
+import { pxToRem } from '../../../utils/responsiveSize';
+import { EvolutionDefinition } from '../../../api/pokemon';
 
 const Container = styled(Card)`
   width: 90%;
@@ -54,8 +54,9 @@ const BubbleContainer = styled(Flex)`
   align-items: center;
 `;
 
-export const CardImage: CardImageRenderer = (props) => {
-  const { evolutions, imageUrl } = props;
+export const CardImageRenderer: CardRenderer = (props) => {
+  const { evolutions: evolutionChain, imageUrl } =
+    props.cardDefinition.pokemonData;
   const [isEvolutions, setIsEvolutions] = useState<boolean>(false);
 
   return (
@@ -64,7 +65,7 @@ export const CardImage: CardImageRenderer = (props) => {
         <StyledCard>
           {isEvolutions ? (
             <CardContainer>
-              {Object.entries(evolutions).map(
+              {Object.entries(evolutionChain).map(
                 ([key, evolution]: [string, EvolutionDefinition]) => {
                   return (
                     evolution?.imageUrl !== '' && (

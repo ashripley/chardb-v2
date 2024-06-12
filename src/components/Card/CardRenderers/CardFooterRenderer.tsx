@@ -1,9 +1,9 @@
-import { CardFooterRenderer } from './cardRenderer';
+import { CardRenderer } from '../cardRenderer';
 import { Flex, Text } from '@mantine/core';
 import styled from 'styled-components';
-import { pxToRem } from '../../utils/responsiveSize';
+import { pxToRem } from '../../../utils/responsiveSize';
 import { useSelector } from 'react-redux';
-import { StudioStore } from '../../redux/store';
+import { StudioStore } from '../../../redux/store';
 
 const Container = styled(Flex)`
   margin: auto;
@@ -18,8 +18,12 @@ const StyledText = styled(Text)`
   width: 100%;
 `;
 
-export const CardFooter: CardFooterRenderer = (props) => {
-  const { id, set, setNumber } = props;
+export const CardFooterRenderer: CardRenderer = (props) => {
+  const {
+    pokemonData: { id },
+    attributes: { set },
+    setNumber,
+  } = props.cardDefinition;
   const { attributes } = useSelector((state: StudioStore) => state.studio);
 
   return (

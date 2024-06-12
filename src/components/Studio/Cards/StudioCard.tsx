@@ -16,9 +16,11 @@ import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
 import { createElement } from 'react';
 
 export const StudioCard = () => {
-  const { tempPokemon, isDirty, card } = useSelector(
-    (state: CardStore) => state.card
-  );
+  const {
+    tempCard: tempPokemon,
+    isDirty,
+    card,
+  } = useSelector((state: CardStore) => state.card);
   const { attributes, view } = useSelector(
     (state: StudioStore) => state.studio
   );

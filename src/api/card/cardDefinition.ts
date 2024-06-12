@@ -1,18 +1,17 @@
-import {
-  IdDefinition,
-  PokemonDefinition,
-  SetAttributeDefinition,
-} from '../../definitions';
 import { validate } from '../../helpers/validate';
 import {
   combineValidators,
+  isBoolean,
   isNumber,
   isObject,
   isOptional,
+  isString,
 } from '../../helpers/validators';
+import { SetAttributeDefinition } from '../attribute';
+import { PokemonDefinition } from '../pokemon';
 
 export interface CardDefinition {
-  cardId: IdDefinition;
+  cardId: string;
   quantity: number;
   setNumber: number;
   attributes: AttributeCardDefinition;
@@ -31,18 +30,26 @@ export interface AttributeCardDefinition {
 }
 
 const isOptionalObject = combineValidators(isOptional, isObject);
+const isOptionalBoolean = combineValidators(isOptional, isBoolean);
+
+export function validateAttributeCardDefinition(
+  attributeCardDefinition: AttributeCardDefinition
+): asserts attributeCardDefinition is AttributeCardDefinition {
+  validate(attributeCardDefinition, 'cardType', isString);
+  validate(attributeCardDefinition, 'rarity', isString);
+  validate(attributeCardDefinition, 'condition', isString);
+  validate(attributeCardDefinition, 'isGraded', isOptionalBoolean);
+  validate(attributeCardDefinition, 'grading', isNumber);
+  validate(attributeCardDefinition, 'meta', isOptionalObject);
+}
 
 export function validateCardDefinition(
   cardDefinition: CardDefinition
 ): asserts cardDefinition is CardDefinition {
-  validate(cardDefinition, 'cardId', isNumber);
+  validate(cardDefinition, 'cardId', isString);
   validate(cardDefinition, 'quantity', isNumber);
   validate(cardDefinition, 'setNumber', isNumber);
   validate(cardDefinition, 'meta', isOptionalObject);
-
-  // check for validation on AttributeCardDefinition and PokemonDefinition
-
-  if (!cardDefinition.meta) return;
 }
 
 /*

@@ -7,7 +7,7 @@ import { Conditions } from '../Sections/Conditions';
 import { StudioStore } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { addAttributeMutation } from '../../../api/attributes';
+import { addAttributeMutation } from '../../../api/attribute';
 import { setAttributes, updateAttribute } from '../../../redux/studio';
 
 export const dbTypeMap: Record<string, any> = {

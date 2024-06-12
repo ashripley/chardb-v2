@@ -1,46 +1,41 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { DBType, StudioViewType } from "../config"
-import { omit } from "../helpers/omit"
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { DBType, StudioViewType } from '../config';
+import { omit } from '../helpers/omit';
 
 interface StoreState {
-  view: StudioViewType
-  allPokemon: Record<string, any>
-  attributes: Record<string, any>
-  dbType: DBType
-  attribute: Record<string, any>
-  isDirty: boolean
-  isCreate: boolean
+  view: StudioViewType;
+  attributes: Record<string, any>;
+  dbType: DBType;
+  attribute: Record<string, any>;
+  isDirty: boolean;
+  isCreate: boolean;
 }
 
 const initialState: StoreState = {
-  view: "create",
-  allPokemon: {},
+  view: 'create',
   attributes: {},
-  dbType: "set",
+  dbType: 'set',
   attribute: {},
   isDirty: false,
   isCreate: false,
-}
+};
 
 export const studioSlice = createSlice({
-  name: "studio",
+  name: 'studio',
   initialState,
   reducers: {
-    setView: (state, action: PayloadAction<StoreState["view"]>) => {
-      state.view = action.payload
+    setView: (state, action: PayloadAction<StoreState['view']>) => {
+      state.view = action.payload;
     },
-    setAllPokemon: (state, action: PayloadAction<StoreState["allPokemon"]>) => {
-      state.allPokemon = action.payload
-    },
-    setAttributes: (state, action: PayloadAction<StoreState["attributes"]>) => {
-      const isCreate = action.payload["isCreate"]
+    setAttributes: (state, action: PayloadAction<StoreState['attributes']>) => {
+      const isCreate = action.payload['isCreate'];
 
-      const payload = omit(["isCreate"], action.payload)
+      const payload = omit(['isCreate'], action.payload);
 
-      const attribute: string = isCreate && Object.keys(payload)[0]
+      const attribute: string = isCreate && Object.keys(payload)[0];
 
       if (!isCreate) {
-        state.attributes = payload
+        state.attributes = payload;
       } else {
         state.attributes = {
           ...state.attributes,
@@ -48,36 +43,35 @@ export const studioSlice = createSlice({
             ...state.attributes[attribute],
             Object.values(payload)[0],
           ],
-        }
+        };
       }
     },
-    setDBType: (state, action: PayloadAction<StoreState["dbType"]>) => {
-      state.dbType = action.payload
+    setDBType: (state, action: PayloadAction<StoreState['dbType']>) => {
+      state.dbType = action.payload;
     },
     updateAttribute: (
       state,
-      action: PayloadAction<StoreState["attribute"]>
+      action: PayloadAction<StoreState['attribute']>
     ) => {
       if (Object.keys(action.payload).length) {
-        state.isDirty = true
-        state.attribute = { ...state.attribute, ...action.payload }
+        state.isDirty = true;
+        state.attribute = { ...state.attribute, ...action.payload };
       } else {
-        state.attribute = {}
+        state.attribute = {};
       }
     },
-    setIsDirty: (state, action: PayloadAction<StoreState["isDirty"]>) => {
-      state.isDirty = action.payload
+    setIsDirty: (state, action: PayloadAction<StoreState['isDirty']>) => {
+      state.isDirty = action.payload;
     },
   },
-})
+});
 
 export const {
   setView,
-  setAllPokemon,
   setDBType,
   updateAttribute,
   setIsDirty,
   setAttributes,
-} = studioSlice.actions
+} = studioSlice.actions;
 
-export default studioSlice.reducer
+export default studioSlice.reducer;

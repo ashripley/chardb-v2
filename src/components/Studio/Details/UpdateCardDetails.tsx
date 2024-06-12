@@ -22,7 +22,7 @@ import { CardStore, StudioStore } from '../../../redux/store';
 import { useEffect, useState } from 'react';
 import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
 import { theme } from '../../../theme/theme';
-import { deleteCardMutation, updateCardMutation } from '../../../api/cards';
+import { deleteCardMutation, updateCardMutation } from '../../../api/card';
 
 interface ActionButtonProps {
   bg: string;
