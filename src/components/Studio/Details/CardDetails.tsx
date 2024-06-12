@@ -37,6 +37,10 @@ export const CardDetails = () => {
   }, [tempCard]);
 
   const { pokemon, attributes } = useSelector((state: RootStore) => state.root);
+  // console.log(
+  //   'attributes',
+  //   attributes.find((att) => att.type === 'set')
+  // );
 
   const dispatch = useDispatch();
 
@@ -121,9 +125,9 @@ export const CardDetails = () => {
           <Flex w={'100%'} justify={'space-between'}>
             <Select
               placeholder='Set'
-              // data={attributes['set']?.map((att: Record<string, any>) =>
-              //   upperCaseFirst(att.name)
-              // )}
+              data={attributes
+                .filter((att) => att.type === 'set')
+                ?.map((att) => upperCaseFirst(att.name))}
               searchable
               rightSection
               value={tempCard?.attributes?.set?.name ?? ''}

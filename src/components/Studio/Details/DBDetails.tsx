@@ -1,20 +1,20 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
 import { theme } from '../../../theme/theme';
-import { Sets } from '../Sections/Sets';
-import { CardTypes } from '../Sections/CardTypes';
-import { Types } from '../Sections/Types';
-import { Conditions } from '../Sections/Conditions';
+import { SetRenderer } from '../SectionsRenderers/SetRenderer';
 import { StudioStore } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { addAttributeMutation } from '../../../api/attribute';
+import {
+  AttributeDefinition,
+  addAttributeMutation,
+} from '../../../api/attribute';
 import { setAttributes, updateAttribute } from '../../../redux/studio';
 
 export const dbTypeMap: Record<string, any> = {
-  set: { label: 'Set', component: <Sets /> },
-  cardType: { label: 'Card Type', component: <CardTypes /> },
-  type: { label: 'Type', component: <Types /> },
-  condition: { label: 'Condition', component: <Conditions /> },
+  // set: { label: 'Set', component: <Sets /> },
+  // cardType: { label: 'Card Type', component: <CardTypes /> },
+  // type: { label: 'Type', component: <Types /> },
+  // condition: { label: 'Condition', component: <Conditions /> },
 };
 
 export const DBDetails = () => {
@@ -22,6 +22,10 @@ export const DBDetails = () => {
     (state: StudioStore) => state.studio
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [passedRendererData, setPassedRendererData] =
+    useState<AttributeDefinition>();
+
+  const rendererData = (val: AttributeDefinition) => setPassedRendererData(val);
 
   const dispatch = useDispatch();
 
@@ -29,12 +33,10 @@ export const DBDetails = () => {
     try {
       setIsLoading(true);
 
-      await addAttributeMutation(dbType, {
-        ...attribute[dbType],
-      });
+      await addAttributeMutation(passedRendererData as AttributeDefinition);
       // clearFields()
-    } catch (e) {
-      console.error('Error saving attribute DB: ', e);
+    } catch (error) {
+      throw new Error(`Error saving attribute DB: ${error}`);
     } finally {
       setTimeout(() => {
         dispatch(updateAttribute({}));
@@ -55,10 +57,11 @@ export const DBDetails = () => {
         m='auto'
       >
         <Title size='h3' fw={600} c={theme.colors.fonts.primary}>
-          Create {dbTypeMap[dbType].label}
+          {/* Create {dbTypeMap[dbType].label} */}
         </Title>
         <Space h={50} />
-        {dbTypeMap[dbType].component}
+        <SetRenderer onChange={rendererData} />
+        {/* {dbTypeMap[dbType].component} */}
         <Space h={50} />
         <Flex h='10%'>
           <Button
@@ -78,7 +81,7 @@ export const DBDetails = () => {
               type: 'dots',
               color: theme.colors.accents.char,
             }}
-            disabled={!isDirty}
+            // disabled={!isDirty}
           >
             Save
           </Button>

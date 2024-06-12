@@ -37,7 +37,7 @@ export const Studio = () => {
     },
     db: {
       left: <DBDetails />,
-      right: <DBCard />,
+      // right: <DBCard />,
     },
   };
 

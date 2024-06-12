@@ -8,62 +8,70 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { firestore } from '../../services/firebase.config';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
-import { setAttributes } from '../../redux/studio';
 import { notifications } from '@mantine/notifications';
 import { upperCaseFirst } from '../../helpers/upperCaseFirst';
+import { AttributeDefinition } from './attributeDefinition';
+import { setAttributes } from '../../redux/root';
 
 export const allAttributes = async (dispatch: Dispatch<UnknownAction>) => {
-  try {
-    const docRef = doc(firestore, 'attributes', 'data');
-    const docSnap = await getDoc(docRef);
-    const fetchedAttributes = docSnap.data() || {};
+  const docRef = doc(firestore, 'attributes', 'data');
+  const docSnap = await getDoc(docRef);
 
-    const res = Object.values(fetchedAttributes);
+  const response = docSnap.data() || {};
 
-    const attributes = res.reduce((acc, att) => {
-      const { attribute, name, ...rest } = att;
+  const attributesToDispatch: AttributeDefinition[] = Object.values(response);
 
-      if (!acc[attribute]) {
-        acc[attribute] = [{ name, attribute, ...rest }];
-      } else {
-        acc[attribute].push({ name, attribute, ...rest });
-      }
-
-      return acc;
-    }, {});
-
-    dispatch(setAttributes({ isCreate: false, ...attributes }));
-  } catch (error) {
-    throw new Error(`Error fetching attributes: ${error}`);
-  }
+  dispatch(setAttributes(attributesToDispatch));
 };
 
-export const addAttributeMutation = async (
-  attribute: string,
-  attributeObj: Record<string, any>
-) => {
+// export const allAttributes = async (dispatch: Dispatch<UnknownAction>) => {
+//   try {
+//     const docRef = doc(firestore, 'attributes', 'data');
+//     const docSnap = await getDoc(docRef);
+//     const fetchedAttributes = docSnap.data() || {};
+
+//     const res = Object.values(fetchedAttributes);
+
+//     const attributes = res.reduce((acc, att) => {
+//       const { attribute, name, ...rest } = att;
+
+//       if (!acc[attribute]) {
+//         acc[attribute] = [{ name, attribute, ...rest }];
+//       } else {
+//         acc[attribute].push({ name, attribute, ...rest });
+//       }
+
+//       return acc;
+//     }, {});
+
+//     dispatch(setAttributes({ isCreate: false, ...attributes }));
+//   } catch (error) {
+//     throw new Error(`Error fetching attributes: ${error}`);
+//   }
+// };
+
+export const addAttributeMutation = async (attribute: AttributeDefinition) => {
   const uuid = uuidv4();
   const attributeRef = doc(firestore, 'attributes', 'data');
 
   try {
     // attribute obj to write
-    const data = {
-      attributeId: uuid,
-      attribute,
-      ...attributeObj,
+    const attributeToAdd = {
+      ...attribute,
+      id: uuid,
     };
 
     // write to db
     setDoc(
       attributeRef,
-      { [`${attribute}_${attributeObj.name}`]: { ...data } },
+      { [attributeToAdd.id]: { ...attributeToAdd } },
       { merge: true }
     );
 
     notifications.show({
       title: 'Successfully Created!',
       message: `${upperCaseFirst(
-        attribute
+        attribute.name
       )} has successfully been created. Please see your attribute in the Gallery and Studio.`,
       color: 'lime',
     });

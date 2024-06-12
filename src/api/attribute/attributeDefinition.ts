@@ -6,8 +6,10 @@ import {
   isString,
 } from '../../helpers/validators';
 
+type Type = 'set' | 'cardType' | 'type' | 'condition' | 'rarity';
+
 export interface AttributeDefinition {
-  type: string;
+  type: Type;
   id: number;
   name: string;
   meta?: unknown;

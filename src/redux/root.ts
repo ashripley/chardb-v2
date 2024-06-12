@@ -28,9 +28,12 @@ export const rootSlice = createSlice({
     setPokemon: (state, action: PayloadAction<StoreState['pokemon']>) => {
       state.pokemon = action.payload;
     },
+    setAttributes: (state, action: PayloadAction<StoreState['attributes']>) => {
+      state.attributes = action.payload;
+    },
   },
 });
 
-export const { updateApp, setPokemon } = rootSlice.actions;
+export const { updateApp, setPokemon, setAttributes } = rootSlice.actions;
 
 export default rootSlice.reducer;
