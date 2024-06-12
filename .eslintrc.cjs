@@ -21,7 +21,7 @@ module.exports = {
     'key-spacing': 'error', // Enforce spacing in object literals keys
     'keyword-spacing': 'error', // Enforce spacing around keywords
     'space-before-blocks': 'error', // Enforce spacing before blocks
-    'space-before-function-paren': ['error', 'never'], // Enforce spacing before function parentheses
+    // 'space-before-function-paren': ['error', 'never'], // Enforce spacing before function parentheses
     'space-in-parens': 'error', // Enforce spacing in parentheses
     'arrow-spacing': 'error', // Enforce spacing around arrow functions
     // 'object-curly-newline': ['error', { multiline: true }], // Enforce new line in object literals
