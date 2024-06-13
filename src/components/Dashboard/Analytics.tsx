@@ -1,7 +1,6 @@
 import { Card, Flex, Text, Group, Badge, Button, Image } from '@mantine/core';
 import { CardStore, StudioStore } from '../../redux/store';
 import { useSelector } from 'react-redux';
-import { dbTypeMap } from '../Studio/Details/DBDetails';
 import { isMobile } from '../../config';
 
 export const Analytics = () => {

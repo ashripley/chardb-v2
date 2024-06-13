@@ -1,23 +1,29 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
-import { theme } from '../../../theme/theme';
-import { SetRenderer } from '../SectionsRenderers/SetRenderer';
-import { StudioStore } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import {
-  AttributeDefinition,
-  addAttributeMutation,
-} from '../../../api/attribute';
-import { setAttributes, updateAttribute } from '../../../redux/studio';
+import { StudioStore } from '../../redux/store';
+import { AttributeDefinition, addAttributeMutation } from '../../api/attribute';
+import { setAttributes, updateAttribute } from '../../redux/studio';
+import { theme } from '../../theme/theme';
+import styled from 'styled-components';
+import Form from '../../components/Form';
+import { camelCaseToTitleCase } from '../../utils';
 
-export const dbTypeMap: Record<string, any> = {
-  // set: { label: 'Set', component: <Sets /> },
-  // cardType: { label: 'Card Type', component: <CardTypes /> },
-  // type: { label: 'Type', component: <Types /> },
-  // condition: { label: 'Condition', component: <Conditions /> },
-};
+const Container = styled(Center)`
+  height: 100%;
+  width: 100%;
+`;
 
-export const DBDetails = () => {
+const Wrapper = styled(Flex)`
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+`;
+
+export const Canvas = () => {
   const { dbType, attribute, isDirty } = useSelector(
     (state: StudioStore) => state.studio
   );
@@ -47,20 +53,14 @@ export const DBDetails = () => {
   };
 
   return (
-    <Center h={'100%'} w={'100%'}>
-      <Flex
-        h='100%'
-        w='100%'
-        direction={'column'}
-        justify={'space-between'}
-        align={'center'}
-        m='auto'
-      >
+    <Container>
+      <Wrapper>
         <Title size='h3' fw={600} c={theme.colors.fonts.primary}>
-          {/* Create {dbTypeMap[dbType].label} */}
+          Create {camelCaseToTitleCase(dbType)}
         </Title>
         <Space h={50} />
-        <SetRenderer onChange={rendererData} />
+        <Form onChange={rendererData} type={dbType} />
+        {/* <Section onChange={rendererData} type={dbType} /> */}
         {/* {dbTypeMap[dbType].component} */}
         <Space h={50} />
         <Flex h='10%'>
@@ -81,12 +81,12 @@ export const DBDetails = () => {
               type: 'dots',
               color: theme.colors.accents.char,
             }}
-            // disabled={!isDirty}
+            disabled={!isDirty}
           >
             Save
           </Button>
         </Flex>
-      </Flex>
-    </Center>
+      </Wrapper>
+    </Container>
   );
 };

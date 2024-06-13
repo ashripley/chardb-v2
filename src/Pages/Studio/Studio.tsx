@@ -2,7 +2,6 @@ import { Paper, Flex } from '@mantine/core';
 import { theme } from '../../theme/theme';
 import { StudioViewSegment } from '../../components/Studio/Segments/StudioView';
 import { StudioCard } from '../../components/Studio/Cards/StudioCard';
-import { DBDetails } from '../../components/Studio/Details/DBDetails';
 import { DBTypeSegment } from '../../components/Studio/Segments/DBType';
 import { StudioStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +12,7 @@ import { allPokemon } from '../../api/pokemon';
 import { DBCard } from '../../components/Studio/Cards/DBCard';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
+import { Canvas } from '../../layouts/Canvas';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
@@ -36,7 +36,7 @@ export const Studio = () => {
       right: <StudioCard />,
     },
     db: {
-      left: <DBDetails />,
+      left: <Canvas />,
       // right: <DBCard />,
     },
   };
