@@ -2,11 +2,7 @@ import { Flex, TextInput } from '@mantine/core';
 import numberClasses from '../../../modules/NumberInput.module.css';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils/responsiveSize';
-import {
-  AttributeDefinition,
-  ConditionAttributeDefinition,
-} from '../../../api/attribute';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { FormRenderer } from '../formRenderer';
 
 const Container = styled(Flex)`
@@ -16,22 +12,21 @@ const Container = styled(Flex)`
 `;
 
 const ConditionFormRenderer: FormRenderer = (props) => {
-  const [attribute, setAttribute] = useState<
-    Partial<ConditionAttributeDefinition>
-  >({
-    type: 'condition',
-  });
+  const { formDefinition, type } = props;
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAttribute({ ...attribute, name: event.currentTarget.value });
-    props.onChange(attribute as AttributeDefinition);
+    props.onChange({
+      ...formDefinition,
+      type: type,
+      name: event.currentTarget.value,
+    });
   };
 
   return (
     <Container>
       <TextInput
         placeholder='Name'
-        value={attribute?.name ?? ''}
+        value={formDefinition?.name ?? ''}
         radius={'lg'}
         w={'100%'}
         rightSection

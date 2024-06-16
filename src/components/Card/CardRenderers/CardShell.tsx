@@ -3,7 +3,7 @@ import { CardShellRenderer } from '../cardRenderer';
 import { theme } from '../../../theme/theme';
 
 export const CardShell: CardShellRenderer = (props) => {
-  const { type, children } = props;
+  const { type } = props;
 
   function assertTypeIsKeyofTypes(type: unknown): asserts type is string {
     if (typeof type !== 'string') {
@@ -20,7 +20,7 @@ export const CardShell: CardShellRenderer = (props) => {
       maw={350}
       radius='xl'
       bg={theme.colors.types[type] ?? theme.colors.bg.bgGray100}
-      children={children}
+      {...props}
     />
   );
 };

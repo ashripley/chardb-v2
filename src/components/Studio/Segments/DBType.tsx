@@ -1,13 +1,14 @@
 import { SegmentedControl, Text } from '@mantine/core';
 import { theme } from '../../../theme/theme';
 import { useDispatch } from 'react-redux';
-import { setDBType } from '../../../redux/studio';
+import { setFormType } from '../../../redux/root';
 
 export const DBTypeSegment = () => {
   const dispatch = useDispatch();
 
   const onChange = (val: any) => {
-    dispatch(setDBType(val));
+    console.log('val', val);
+    dispatch(setFormType(val));
   };
 
   return (

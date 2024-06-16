@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 import { CardDefinition } from '../../api/card';
 import { Types } from '../../theme/theme';
 
@@ -8,8 +8,9 @@ interface CardRendererOptions {
 
 interface CardShellRendererOptions {
   type: keyof Types;
-  children: ReactNode;
 }
 
 export type CardRenderer = (props: CardRendererOptions) => JSX.Element;
-export type CardShellRenderer = (props: CardShellRendererOptions) => ReactNode;
+export type CardShellRenderer = (
+  props: PropsWithChildren<CardShellRendererOptions>
+) => ReactNode;

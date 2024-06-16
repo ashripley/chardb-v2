@@ -6,11 +6,11 @@ import {
   isString,
 } from '../../helpers/validators';
 
-type Type = 'set' | 'cardType' | 'type' | 'condition' | 'rarity';
+export type Type = 'set' | 'cardType' | 'type' | 'condition' | 'rarity';
 
 export interface AttributeDefinition {
   type: Type;
-  id: number;
+  id: string;
   name: string;
   meta?: unknown;
 }
@@ -37,11 +37,6 @@ export interface CardTypeAttributeDefinition extends AttributeDefinition {
 
 export interface RarityAttributeDefinition extends AttributeDefinition {
   type: 'rarity';
-  meta: unknown;
-}
-
-export interface ConditionAttributeDefinition extends AttributeDefinition {
-  type: 'condition';
   meta: unknown;
 }
 

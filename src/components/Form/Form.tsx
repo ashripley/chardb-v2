@@ -2,6 +2,9 @@ import { FormRenderer } from './formRenderer';
 import { useFormRenderer } from './formRenderers';
 
 export const Form: FormRenderer = (props) => {
-  const Form = useFormRenderer(props.type);
-  return <Form onChange={props.onChange} type={props.type} />;
+  const { formDefinition, type, onChange } = props;
+  const Form = useFormRenderer(type);
+  return (
+    <Form onChange={onChange} formDefinition={formDefinition} type={type} />
+  );
 };

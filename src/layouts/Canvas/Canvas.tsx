@@ -1,13 +1,18 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { StudioStore } from '../../redux/store';
-import { AttributeDefinition, addAttributeMutation } from '../../api/attribute';
+import { RootStore, StudioStore } from '../../redux/store';
+import {
+  AttributeDefinition,
+  Type,
+  addAttributeMutation,
+} from '../../api/attribute';
 import { setAttributes, updateAttribute } from '../../redux/studio';
 import { theme } from '../../theme/theme';
 import styled from 'styled-components';
-import Form from '../../components/Form';
+import Form, { FormDefinition } from '../../components/Form';
 import { camelCaseToTitleCase } from '../../utils';
+import { v4 as uuidv4 } from 'uuid';
 
 const Container = styled(Center)`
   height: 100%;
@@ -24,14 +29,14 @@ const Wrapper = styled(Flex)`
 `;
 
 export const Canvas = () => {
-  const { dbType, attribute, isDirty } = useSelector(
-    (state: StudioStore) => state.studio
-  );
+  const { attribute } = useSelector((state: StudioStore) => state.studio);
+  const { formType } = useSelector((state: RootStore) => state.root);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [passedRendererData, setPassedRendererData] =
-    useState<AttributeDefinition>();
-
-  const rendererData = (val: AttributeDefinition) => setPassedRendererData(val);
+  const [formData, setFormData] = useState<FormDefinition>({
+    type: formType as Type,
+    id: uuidv4(),
+    name: '',
+  });
 
   const dispatch = useDispatch();
 
@@ -39,7 +44,7 @@ export const Canvas = () => {
     try {
       setIsLoading(true);
 
-      await addAttributeMutation(passedRendererData as AttributeDefinition);
+      await addAttributeMutation(formData as AttributeDefinition);
       // clearFields()
     } catch (error) {
       throw new Error(`Error saving attribute DB: ${error}`);
@@ -56,12 +61,16 @@ export const Canvas = () => {
     <Container>
       <Wrapper>
         <Title size='h3' fw={600} c={theme.colors.fonts.primary}>
-          Create {camelCaseToTitleCase(dbType)}
+          Create {camelCaseToTitleCase(formType)}
         </Title>
         <Space h={50} />
-        <Form onChange={rendererData} type={dbType} />
-        {/* <Section onChange={rendererData} type={dbType} /> */}
-        {/* {dbTypeMap[dbType].component} */}
+        <Form
+          formDefinition={formData}
+          onChange={(updatedData) => {
+            setFormData({ ...formData, ...updatedData });
+          }}
+          type={formType}
+        />
         <Space h={50} />
         <Flex h='10%'>
           <Button
@@ -81,7 +90,7 @@ export const Canvas = () => {
               type: 'dots',
               color: theme.colors.accents.char,
             }}
-            disabled={!isDirty}
+            disabled={!formData}
           >
             Save
           </Button>

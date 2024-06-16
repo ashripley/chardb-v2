@@ -51,6 +51,7 @@ export const allAttributes = async (dispatch: Dispatch<UnknownAction>) => {
 // };
 
 export const addAttributeMutation = async (attribute: AttributeDefinition) => {
+  console.log('attribute', attribute);
   const uuid = uuidv4();
   const attributeRef = doc(firestore, 'attributes', 'data');
 
