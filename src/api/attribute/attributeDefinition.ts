@@ -1,8 +1,8 @@
 import { validate } from '../../helpers/validate';
 import {
   combineValidators,
-  isNumber,
   isObject,
+  isOptional,
   isString,
 } from '../../helpers/validators';
 
@@ -15,32 +15,7 @@ export interface AttributeDefinition {
   meta?: unknown;
 }
 
-export interface TypeAttributeDefinition extends AttributeDefinition {
-  type: 'type';
-  meta: {
-    color: string;
-  };
-}
-
-export interface SetAttributeDefinition extends AttributeDefinition {
-  type: 'set';
-  meta: {
-    totalCards: number;
-    year: number;
-  };
-}
-
-export interface CardTypeAttributeDefinition extends AttributeDefinition {
-  type: 'cardType';
-  meta: unknown;
-}
-
-export interface RarityAttributeDefinition extends AttributeDefinition {
-  type: 'rarity';
-  meta: unknown;
-}
-
-const isOptionalObject = combineValidators(isString, isObject);
+const isOptionalObject = combineValidators(isOptional, isObject);
 
 export function validateAttributeDefinition(
   attributeDefinition: AttributeDefinition
@@ -49,25 +24,4 @@ export function validateAttributeDefinition(
   validate(attributeDefinition, 'id', isString);
   validate(attributeDefinition, 'name', isString);
   validate(attributeDefinition, 'meta', isOptionalObject);
-}
-
-export function validateTypeAttributeDefinition(
-  typeAttributeDefinition: TypeAttributeDefinition
-): asserts typeAttributeDefinition is TypeAttributeDefinition {
-  validate(typeAttributeDefinition, 'id', isString);
-  validate(typeAttributeDefinition, 'name', isString);
-  validate(typeAttributeDefinition, 'type', isString);
-  validate(typeAttributeDefinition, 'meta', isOptionalObject);
-  validate(typeAttributeDefinition.meta, 'color', isString);
-}
-
-export function validateSetAttributeDefinition(
-  setAttributeDefinition: SetAttributeDefinition
-): asserts setAttributeDefinition is SetAttributeDefinition {
-  validate(setAttributeDefinition, 'id', isString);
-  validate(setAttributeDefinition, 'name', isString);
-  validate(setAttributeDefinition, 'type', isString);
-  validate(setAttributeDefinition, 'meta', isOptionalObject);
-  validate(setAttributeDefinition.meta, 'totalCards', isNumber);
-  validate(setAttributeDefinition.meta, 'year', isNumber);
 }

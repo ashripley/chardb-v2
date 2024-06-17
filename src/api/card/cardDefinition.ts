@@ -1,3 +1,4 @@
+import { SetAttributeDefinition } from '../../components/Form/FormRenderers/Set';
 import { validate } from '../../helpers/validate';
 import {
   combineValidators,
@@ -7,7 +8,6 @@ import {
   isOptional,
   isString,
 } from '../../helpers/validators';
-import { SetAttributeDefinition } from '../attribute';
 import { PokemonDefinition } from '../pokemon';
 
 export interface CardDefinition {
@@ -24,8 +24,8 @@ export interface AttributeCardDefinition {
   set: SetAttributeDefinition;
   rarity: string;
   condition: string;
-  isGraded?: boolean;
   grading: number;
+  isGraded?: boolean;
   meta?: unknown;
 }
 

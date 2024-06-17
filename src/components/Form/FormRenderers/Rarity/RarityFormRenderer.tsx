@@ -1,9 +1,9 @@
 import { Flex, TextInput } from '@mantine/core';
-import numberClasses from '../../../modules/NumberInput.module.css';
+import numberClasses from '../../../../modules/NumberInput.module.css';
 import styled from 'styled-components';
-import { pxToRem } from '../../../utils/responsiveSize';
+import { pxToRem } from '../../../../utils/responsiveSize';
 import { ChangeEvent } from 'react';
-import { FormRenderer } from '../formRenderer';
+import { FormRenderer } from '../../formRenderer';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -11,13 +11,13 @@ const Container = styled(Flex)`
   gap: ${pxToRem('sm')};
 `;
 
-const ConditionFormRenderer: FormRenderer = (props) => {
+export const RarityFormRenderer: FormRenderer = (props) => {
   const { formDefinition, type } = props;
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.onChange({
       ...formDefinition,
-      type: type,
+      type,
       name: event.currentTarget.value,
     });
   };
@@ -37,5 +37,3 @@ const ConditionFormRenderer: FormRenderer = (props) => {
     </Container>
   );
 };
-
-export default ConditionFormRenderer;
