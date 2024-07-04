@@ -1,29 +1,29 @@
 import { useSelector } from 'react-redux';
-import { CardStore, GalleryStore } from '../../../redux/store';
-import { GalleryTile } from '../Tiles/GalleryTile';
-import { GalleryCard } from '../Cards/GalleryCard';
+import { GalleryStore, RootStore } from '../../../redux/store';
 import { Flex, Loader, Space } from '@mantine/core';
 import { CustomPagination } from '../../Common/CustomPagination';
 import { useEffect, useState } from 'react';
-import { Card } from '../../../redux/card';
 import { NoResultsFound } from '../../Common/NoResultsFound';
 import { theme } from '../../../theme/theme';
+import { CardDefinition } from '../../../api/card';
+import { Card } from '../../Card';
+import { Tile } from '../../Tile/Tile';
 
 export const Cards = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [filteredCards, setFilteredCards] = useState<Card[]>([]);
+  const [filteredCards, setFilteredCards] = useState<CardDefinition[]>([]);
   const { view, searchTerm } = useSelector(
     (state: GalleryStore) => state.gallery
   );
-  const { cards } = useSelector((state: CardStore) => state.card);
+  const { cards } = useSelector((state: RootStore) => state.root);
 
   useEffect(() => {
     if (searchTerm === '' && cards.length > 0) {
       setIsLoading(false);
-      setFilteredCards(cards as Card[]);
+      setFilteredCards(cards);
     }
-  }, [cards]);
+  }, [cards, searchTerm]);
 
   const cardsPerPage = 50;
   const totalCards = filteredCards.length;
@@ -35,19 +35,19 @@ export const Cards = () => {
   useEffect(() => {
     if (searchTerm !== '' && cards.length > 0) {
       setIsLoading(false);
-      const filteredCards: Record<string, any>[] = cards.filter((card) =>
-        card.name.toLowerCase().includes(searchTerm)
+      const filteredCards: CardDefinition[] = cards.filter((card) =>
+        card.pokemonData.name.toLowerCase().includes(searchTerm)
       );
 
-      setFilteredCards(filteredCards as Card[]);
-    } else setFilteredCards(cards as Card[]);
-  }, [searchTerm]);
+      setFilteredCards(filteredCards);
+    } else setFilteredCards(cards);
+  }, [searchTerm, cards]);
 
   const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const CardsMap: Record<string, any> = {
-    card: GalleryCard,
-    tile: GalleryTile,
+    card: Card,
+    tile: Tile,
   };
 
   const CardsView = CardsMap[view];
@@ -63,9 +63,9 @@ export const Cards = () => {
           <Flex justify='space-evenly' wrap='wrap' gap={20}>
             {filteredCards
               .slice(startIndex, endIndex)
-              .map((card: Record<string, any>, index: number) => (
-                <CardsView key={index} card={card} />
-              ))}
+              .map((card: CardDefinition, index: number) => {
+                return <CardsView key={index} card={card} />;
+              })}
           </Flex>
 
           <Space h={25} />

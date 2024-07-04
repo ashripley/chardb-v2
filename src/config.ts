@@ -5,7 +5,13 @@ export type DashboardApp = 'analytics';
 export type StudioViewType = 'create' | 'update' | 'db';
 export type AppType = 'Studio' | 'Gallery' | 'Home' | 'Dashboard';
 export type DBType = 'set' | 'cardType' | 'type' | 'condition' | 'pokemon';
-export type FormType = 'set' | 'cardType' | 'type' | 'condition';
+export type FormType =
+  | 'set'
+  | 'cardType'
+  | 'type'
+  | 'condition'
+  | 'card'
+  | 'rarity';
 
 export const isMobile = window.matchMedia(
   'only screen and (max-width: 760px)'

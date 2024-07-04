@@ -3,7 +3,7 @@ import { CardDefinition } from '../../api/card';
 import { Types } from '../../theme/theme';
 
 interface CardRendererOptions {
-  cardDefinition: CardDefinition;
+  card: CardDefinition;
 }
 
 interface CardShellRendererOptions {

@@ -87,8 +87,7 @@ export const addBulkPokemon = async () => {
         id: data.id,
         evolutions,
         type: data.types[0]?.type.name,
-        imageUrl:
-          'https://img.pokemondb.net/sprites/home/normal/${data.name}.png',
+        imageUrl: `https://img.pokemondb.net/sprites/home/normal/${data.name}.png`,
       };
 
       // write to db

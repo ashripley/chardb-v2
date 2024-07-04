@@ -9,7 +9,7 @@ import {
 export type Type = 'set' | 'cardType' | 'type' | 'condition' | 'rarity';
 
 export interface AttributeDefinition {
-  type: Type;
+  type: Type | string;
   id: string;
   name: string;
   meta?: unknown;

@@ -1,32 +1,33 @@
-import { CardRenderer } from '../cardRenderer';
 import { Flex, Text } from '@mantine/core';
+import { TileRenderer } from '../tileRenderer';
 import styled from 'styled-components';
-import { pxToRem } from '../../../utils/responsiveSize';
-import { useSelector } from 'react-redux';
+import { pxToRem } from '../../../utils';
 import { RootStore } from '../../../redux/store';
+import { useSelector } from 'react-redux';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';
 
 const Container = styled(Flex)`
-  margin: auto;
-  width: 100%;
   justify-content: space-between;
-  padding: ${pxToRem('xs')};
   align-items: center;
+  width: 90%;
+  margin: auto;
+  flex-direction: row;
 `;
 
 const StyledText = styled(Text)`
   color: white;
   width: 100%;
-  font-size: ${pxToRem('xs')};
+  font-size: ${pxToRem('font')};
 `;
 
-export const CardFooterRenderer: CardRenderer = (props) => {
+export const TileFooterRenderer: TileRenderer = (props) => {
+  const { attributes } = useSelector((state: RootStore) => state.root);
+
   const {
     pokemonData: { id },
     attributes: { set },
     setNumber,
   } = props.card;
-  const { attributes } = useSelector((state: RootStore) => state.root);
 
   const currentSet = attributes.find((att) => att.name === set);
 
@@ -37,13 +38,13 @@ export const CardFooterRenderer: CardRenderer = (props) => {
   return (
     <Container>
       <StyledText>#{id}</StyledText>
-      <StyledText>{currentSet?.meta?.year}</StyledText>
+      <StyledText>{currentSet?.meta.year}</StyledText>
       <Flex align='center'>
-        <Text fz={pxToRem('xs')} c='white'>
+        <Text c='white' fz={pxToRem('font')}>
           {setNumber}
         </Text>
-        <Text fz={pxToRem('xs')} c='white'>
-          {setNumber && '/' + currentSet?.meta?.totalCards}
+        <Text c='white' fz={pxToRem('font')}>
+          /84
         </Text>
       </Flex>
     </Container>

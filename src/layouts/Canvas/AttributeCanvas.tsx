@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { RootStore } from '../../redux/store';
 import {
-  Type,
+  AttributeDefinition,
   addAttributeMutation,
   validateAttributeDefinition,
 } from '../../api/attribute';
@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { camelCaseToTitleCase } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import Form, { FormDefinition } from '../../components/Form';
+import { FormType } from '../../config';
 
 const Container = styled(Center)`
   height: 100%;
@@ -27,12 +28,12 @@ const Wrapper = styled(Flex)`
   margin: auto;
 `;
 
-export const Canvas = () => {
+export const AttributeCanvas = () => {
   const { formType } = useSelector((state: RootStore) => state.root);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const initialState: FormDefinition = {
-    type: formType as Type,
+    type: formType as FormType,
     id: uuidv4(),
     name: '',
   };
@@ -43,8 +44,8 @@ export const Canvas = () => {
     try {
       setIsLoading(true);
 
-      validateAttributeDefinition(formData);
-      await addAttributeMutation(formData);
+      validateAttributeDefinition(formData as AttributeDefinition);
+      await addAttributeMutation(formData as AttributeDefinition);
       setFormData({ ...initialState });
     } catch (error) {
       throw new Error(`Error saving attribute DB: ${error}`);
@@ -63,9 +64,9 @@ export const Canvas = () => {
         </Title>
         <Space h={50} />
         <Form
-          formDefinition={{ ...formData, type: formType }}
+          formDefinition={{ ...formData, type: formType } as FormDefinition}
           onChange={(updatedData) => {
-            setFormData({ ...formData, ...updatedData });
+            setFormData({ ...formData, ...updatedData } as FormDefinition);
           }}
           type={formType}
         />

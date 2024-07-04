@@ -40,7 +40,7 @@ export const Gallery = () => {
       allPokemon(dispatch);
       allAttributes(dispatch);
     } catch (e) {
-      console.error(e);
+      throw new Error(`Error: ${e}`);
     } finally {
       setIsLoading(false);
     }

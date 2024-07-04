@@ -20,8 +20,6 @@ export const cardSlice = createSlice({
       state,
       action: PayloadAction<StoreState['tempCard']>
     ) => {
-      console.log('state.tempCard', state.tempCard);
-      console.log('action.payload', action.payload);
       state.tempCard = action.payload;
     },
     // updatePokemon: (state, action: PayloadAction<StoreState['tempCard']>) => {
@@ -33,18 +31,18 @@ export const cardSlice = createSlice({
     //   }
     //   state.tempCard = { ...state.tempCard, ...action.payload };
     // },
-    updateCard: (state, action: PayloadAction<StoreState['card']>) => {
-      state.isDirty = true;
+    // updateCard: (state, action: PayloadAction<StoreState['card']>) => {
+    //   state.isDirty = true;
 
-      if (!Object.keys(action.payload).length) {
-        state.card = {};
-        state.isDirty = false;
-      }
+    //   if (!Object.keys(action.payload).length) {
+    //     state.card = {};
+    //     state.isDirty = false;
+    //   }
 
-      if (!action.payload['cardId'])
-        state.card = { ...state.card, ...action.payload };
-      else state.card = { ...action.payload };
-    },
+    //   if (!action.payload['cardId'])
+    //     state.card = { ...state.card, ...action.payload };
+    //   else state.card = { ...action.payload };
+    // },
     setCards: (state, action: PayloadAction<StoreState['cards']>) => {
       state.cards = action.payload;
     },
@@ -54,7 +52,6 @@ export const cardSlice = createSlice({
   },
 });
 
-export const { initiateTempCard, setCards, setIsDirty, updateCard } =
-  cardSlice.actions;
+export const { initiateTempCard, setCards, setIsDirty } = cardSlice.actions;
 
 export default cardSlice.reducer;

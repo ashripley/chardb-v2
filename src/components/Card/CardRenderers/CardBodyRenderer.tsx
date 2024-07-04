@@ -8,27 +8,27 @@ const StyledGroup = styled(Group)`
   width: 100%;
   margin: auto;
   padding: ${pxToRem('xs')};
-  gap: ${pxToRem('xxs')};
+  gap: ${pxToRem('xxxs')};
 `;
 
 const StyledText = styled(Text)`
   color: white;
   width: 100%;
   min-height: ${pxToRem('sm')};
+  font-size: ${pxToRem('xs')};
 `;
 
 export const CardBodyRenderer: CardRenderer = (props) => {
   const {
     quantity,
     pokemonData: { type },
-  } = props.cardDefinition;
-  const { set, cardType, condition, isGraded, grading } =
-    props.cardDefinition.attributes;
+  } = props.card;
+  const { set, cardType, condition, isGraded, grading } = props.card.attributes;
 
   return (
     <StyledGroup>
       <StyledText>Type: {upperCaseFirst(type)}</StyledText>
-      <StyledText>Set: {set.name}</StyledText>
+      <StyledText>Set: {set}</StyledText>
       <StyledText>Card Type: {cardType}</StyledText>
       <StyledText>Condition: {condition}</StyledText>
       <StyledText>Quantity: {quantity}</StyledText>

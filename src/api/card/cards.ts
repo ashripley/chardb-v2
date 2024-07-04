@@ -11,7 +11,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { notifications } from '@mantine/notifications';
 import { upperCaseFirst } from '../../helpers/upperCaseFirst';
 import { CardDefinition } from './cardDefinition';
-import { setCards } from '../../redux/card';
+import { PokemonDefinition } from '../pokemon';
+import { setCards } from '../../redux/root';
 
 export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
   let mappedCardsArray: CardDefinition[] = [];
@@ -40,19 +41,32 @@ export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
   }
 };
 
-export const addCardMutation = (card: CardDefinition) => {
-  // console.log('card', card);
-  // const { type, name, set, setNumber, year, quantity, attribute } = pokemon;
-
+export const addCardMutation = (
+  card: CardDefinition,
+  pokemon: PokemonDefinition[]
+) => {
   const pokemonRef = doc(firestore, 'cards', 'data');
 
-  const uniqueId = uuidv4();
-  // const colour = theme.colors.types.normal;
+  const pokemonData = pokemon
+    .filter((pk) => pk.name === card.pokemonData.name.toLowerCase())
+    .shift();
+
+  const cardId = uuidv4();
+
+  const cardToAdd = {
+    cardId,
+    quantity: card.quantity,
+    setNumber: card.setNumber,
+    attributes: card.attributes,
+    pokemonData: {
+      ...pokemonData,
+    },
+  };
 
   if (!['trainer', 'energy'].includes(card.attributes.cardType)) {
     // write to db
     try {
-      setDoc(pokemonRef, { ...card, cardId: uniqueId }, { merge: true });
+      setDoc(pokemonRef, { [cardId]: cardToAdd }, { merge: true });
 
       notifications.show({
         title: 'Successfully Created!',
@@ -70,28 +84,9 @@ export const addCardMutation = (card: CardDefinition) => {
       throw new Error(`Error adding the pokemon card to the db: ${error}`);
     }
   } else {
-    // setDoc(doc(firestore, 'cards', uniqueId), {
-    //   cardId: uniqueId,
-    //   id: '',
-    //   chainId: '',
-    //   evolutionChain: {},
-    //   name,
-    //   type,
-    //   set,
-    //   setNumber,
-    //   year,
-    //   colour,
-    //   quantity,
-    //   attribute,
-    //   url: {
-    //     front: '',
-    //     back: '',
-    //   },
-    // });
-
-    setDoc(doc(firestore, 'cards', uniqueId), {
+    setDoc(doc(firestore, 'cards', cardId), {
       ...card,
-      cardId: uniqueId,
+      cardId,
     });
   }
 };

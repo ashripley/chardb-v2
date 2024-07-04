@@ -11,9 +11,9 @@ import { CardShell } from './CardRenderers';
 const Column = styled(Grid.Col)``;
 
 export const Card: CardRenderer = (props) => {
-  validateCardDefinition(props.cardDefinition);
+  validateCardDefinition(props.card);
 
-  const { type } = props.cardDefinition.pokemonData;
+  const { type } = props.card.pokemonData;
 
   return (
     <CardShell type={type}>

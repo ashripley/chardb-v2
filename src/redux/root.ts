@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AppType, FormType } from '../config';
 import { PokemonDefinition } from '../api/pokemon';
-import { AttributeCardDefinition } from '../api/card';
+import { AttributeCardDefinition, CardDefinition } from '../api/card';
 import { AttributeDefinition } from '../api/attribute';
 
 interface StoreState {
@@ -9,6 +9,7 @@ interface StoreState {
   pokemon: PokemonDefinition[];
   cardAttributes: AttributeCardDefinition[];
   attributes: AttributeDefinition[];
+  cards: CardDefinition[];
   formType: FormType;
 }
 
@@ -17,6 +18,7 @@ const initialState: StoreState = {
   pokemon: [],
   cardAttributes: [],
   attributes: [],
+  cards: [],
   formType: 'set',
 };
 
@@ -36,10 +38,13 @@ export const rootSlice = createSlice({
     setFormType: (state, action: PayloadAction<StoreState['formType']>) => {
       state.formType = action.payload;
     },
+    setCards: (state, action: PayloadAction<StoreState['cards']>) => {
+      state.cards = action.payload;
+    },
   },
 });
 
-export const { updateApp, setPokemon, setAttributes, setFormType } =
+export const { updateApp, setPokemon, setAttributes, setFormType, setCards } =
   rootSlice.actions;
 
 export default rootSlice.reducer;

@@ -16,6 +16,7 @@ const Container = styled(Flex)`
 
 const StyledText = styled(Text)`
   color: white;
+  font-size: ${pxToRem('xs')};
 `;
 
 const StyledPaper = styled(Paper)`
@@ -33,7 +34,7 @@ const ImageContainer = styled(Flex)`
 `;
 
 export const CardHeaderRenderer: CardRenderer = (props) => {
-  const { name, type } = props.cardDefinition.pokemonData;
+  const { name, type } = props.card.pokemonData;
   return (
     <Container>
       <StyledText>{upperCaseFirst(name)}</StyledText>
@@ -41,7 +42,7 @@ export const CardHeaderRenderer: CardRenderer = (props) => {
         <ImageContainer>
           {type ? (
             createElement(theme.icons[type as keyof Theme['icons']], {
-              style: { width: pxToRem('md'), height: pxToRem('sm') },
+              style: { width: pxToRem('sm'), height: pxToRem('sm') },
               stroke: 1.5,
               color: theme.colors.types[type as keyof Theme['colors']['types']],
             })

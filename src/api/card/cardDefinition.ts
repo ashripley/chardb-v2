@@ -1,4 +1,3 @@
-import { SetAttributeDefinition } from '../../components/Form/FormRenderers/Set';
 import { validate } from '../../helpers/validate';
 import {
   combineValidators,
@@ -21,7 +20,7 @@ export interface CardDefinition {
 
 export interface AttributeCardDefinition {
   cardType: string;
-  set: SetAttributeDefinition;
+  set: string;
   rarity: string;
   condition: string;
   grading: number;
@@ -36,10 +35,11 @@ export function validateAttributeCardDefinition(
   attributeCardDefinition: AttributeCardDefinition
 ): asserts attributeCardDefinition is AttributeCardDefinition {
   validate(attributeCardDefinition, 'cardType', isString);
+  validate(attributeCardDefinition, 'set', isString);
   validate(attributeCardDefinition, 'rarity', isString);
   validate(attributeCardDefinition, 'condition', isString);
-  validate(attributeCardDefinition, 'isGraded', isOptionalBoolean);
   validate(attributeCardDefinition, 'grading', isNumber);
+  validate(attributeCardDefinition, 'isGraded', isOptionalBoolean);
   validate(attributeCardDefinition, 'meta', isOptionalObject);
 }
 
@@ -49,6 +49,8 @@ export function validateCardDefinition(
   validate(cardDefinition, 'cardId', isString);
   validate(cardDefinition, 'quantity', isNumber);
   validate(cardDefinition, 'setNumber', isNumber);
+  validate(cardDefinition, 'attributes', isObject);
+  validate(cardDefinition, 'pokemonData', isObject);
   validate(cardDefinition, 'meta', isOptionalObject);
 }
 
@@ -97,3 +99,18 @@ export function validateCardDefinition(
   }}
 
 */
+
+// {
+//   "type": "card",
+//   "pokemonData": {
+//       "name": "Abra"
+//   },
+//   "attributes": {
+//       "set": "Base",
+//       "cardType": "Holo",
+//       "condition": "Excellent",
+//       "isGraded": ""
+//   },
+//   "setNumber": 2,
+//   "quantity": 2
+// }

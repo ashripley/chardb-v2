@@ -1,13 +1,14 @@
+import { FormType } from '../../config';
 import {
   TypeFormRenderer,
   SetFormRenderer,
   RarityFormRenderer,
   ConditionFormRenderer,
   CardTypeFormRenderer,
+  CardFormRenderer,
 } from './FormRenderers/index';
 import { FormRenderer } from './formRenderer';
 
-type FormType = string;
 export type FormRenderers = Record<FormType, FormRenderer>;
 
 const formRenderers: FormRenderers = {
@@ -16,6 +17,7 @@ const formRenderers: FormRenderers = {
   condition: ConditionFormRenderer,
   type: TypeFormRenderer,
   rarity: RarityFormRenderer,
+  card: CardFormRenderer,
 };
 
 export function useFormRenderer(formType: FormType) {

@@ -7,12 +7,10 @@ import { StudioStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setView } from '../../redux/studio';
-import { CardDetails } from '../../components/Studio/Details/CardDetails';
 import { allPokemon } from '../../api/pokemon';
-import { DBCard } from '../../components/Studio/Cards/DBCard';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
-import { Canvas } from '../../layouts/Canvas';
+import { AttributeCanvas, CardCanvas } from '../../layouts/Canvas';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
@@ -28,7 +26,7 @@ export const Studio = () => {
 
   const viewComponentContent = {
     create: {
-      left: <CardDetails />,
+      left: <CardCanvas />,
       right: <StudioCard />,
     },
     update: {
@@ -36,7 +34,7 @@ export const Studio = () => {
       right: <StudioCard />,
     },
     db: {
-      left: <Canvas />,
+      left: <AttributeCanvas />,
       // right: <DBCard />,
     },
   };

@@ -24,7 +24,7 @@ const Wrapper = styled(Flex)`
 const StyledCard = styled(Card)`
   height: 90%;
   border-radius: ${pxToRem('lg')};
-  top: ${pxToRem('xxs')};
+  top: ${pxToRem('xxxs')};
   align-items: center;
   justify-content: center;
 `;
@@ -55,8 +55,7 @@ const BubbleContainer = styled(Flex)`
 `;
 
 export const CardImageRenderer: CardRenderer = (props) => {
-  const { evolutions: evolutionChain, imageUrl } =
-    props.cardDefinition.pokemonData;
+  const { evolutions: evolutionChain, imageUrl } = props.card.pokemonData;
   const [isEvolutions, setIsEvolutions] = useState<boolean>(false);
 
   return (
@@ -80,20 +79,22 @@ export const CardImageRenderer: CardRenderer = (props) => {
           )}
         </StyledCard>
         <BubbleContainer>
-          <ActionIcon
-            variant='transparent'
-            color='gray'
-            size='sm'
-            aria-label='evolutions'
-            onClick={() => setIsEvolutions(!isEvolutions)}
-          >
-            <IconChartBubble
-              height={25}
-              width={25}
-              stroke={1}
-              color={theme.colors.bg.bgGray100}
-            />
-          </ActionIcon>
+          {evolutionChain.second?.name && (
+            <ActionIcon
+              variant='transparent'
+              color='gray'
+              size='sm'
+              aria-label='evolutions'
+              onClick={() => setIsEvolutions(!isEvolutions)}
+            >
+              <IconChartBubble
+                height={25}
+                width={25}
+                stroke={1}
+                color={theme.colors.bg.bgGray100}
+              />
+            </ActionIcon>
+          )}
         </BubbleContainer>
       </Wrapper>
     </Container>
