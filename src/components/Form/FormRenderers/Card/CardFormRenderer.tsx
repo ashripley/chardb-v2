@@ -91,7 +91,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
             ?.map((att) => upperCaseFirst(att.name))}
           searchable
           rightSection
-          value={formDefinition?.attributes?.set ?? ''}
+          value={formDefinition?.attributes?.set}
           radius={'lg'}
           variant='filled'
           w={'45%'}
@@ -107,7 +107,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           classNames={{ input: numberClasses.input }}
           hideControls
           required
-          value={formDefinition?.setNumber ?? ''}
+          value={formDefinition?.setNumber}
           onChange={(val) => onBaseChange(val, 'setNumber')}
         />
       </Flex>
@@ -123,7 +123,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           rightSection
           variant='filled'
           required
-          value={formDefinition?.attributes?.cardType ?? ''}
+          value={formDefinition?.attributes?.cardType}
           classNames={{ input: classes.input }}
           onChange={(val) => onAttributeChange(val, 'cardType')}
         />
@@ -138,7 +138,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           rightSection
           variant='filled'
           required
-          value={formDefinition?.attributes?.condition ?? ''}
+          value={formDefinition?.attributes?.condition}
           classNames={{ input: classes.input }}
           onChange={(val) => onAttributeChange(val, 'condition')}
         />
@@ -162,7 +162,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           label='Graded?'
           size='md'
           w={'45%'}
-          value={formDefinition?.attributes?.isGraded?.toString() ?? ''}
+          value={formDefinition?.attributes?.isGraded?.toString()}
           onChange={onEventChange}
           h={'100%'}
         />
@@ -177,7 +177,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
             w={'45%'}
             hideControls
             required
-            value={formDefinition.attributes.grading ?? ''}
+            value={formDefinition.attributes.grading}
             onChange={(val) => onAttributeChange(val, 'grading')}
           />
         ) : (

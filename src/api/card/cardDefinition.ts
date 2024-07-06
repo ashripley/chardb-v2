@@ -46,7 +46,10 @@ export function validateAttributeCardDefinition(
 export function validateCardDefinition(
   cardDefinition: CardDefinition
 ): asserts cardDefinition is CardDefinition {
-  validate(cardDefinition, 'cardId', isString);
+  if (cardDefinition.cardId) {
+    validate(cardDefinition, 'cardId', isString);
+  }
+
   validate(cardDefinition, 'quantity', isNumber);
   validate(cardDefinition, 'setNumber', isNumber);
   validate(cardDefinition, 'attributes', isObject);

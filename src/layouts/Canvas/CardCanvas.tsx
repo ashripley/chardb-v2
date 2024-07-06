@@ -1,41 +1,42 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { theme } from '../../theme/theme';
 import Form, { FormDefinition } from '../../components/Form';
-import {
-  CardDefinition,
-  addCardMutation,
-  validateCardDefinition,
-} from '../../api/card';
+import { addCardMutation, validateCardDefinition } from '../../api/card';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
+import styled from 'styled-components';
+
+const Container = styled(Center)`
+  height: 100%;
+  width: 100%;
+`;
+
+const StyledFlex = styled(Flex)`
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+`;
 
 export const CardCanvas = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // const [tempCard] = useState<Partial<CardDefinition>>();
+  const cardId = useId();
 
   const [formData, setFormData] = useState<FormDefinition>();
   const { pokemon } = useSelector((state: RootStore) => state.root);
 
-  // useEffect(() => {
-  //   // dispatch(updatePokemon({}));
-  //   dispatch(updateCard({}));
-  // }, []);
-
-  // console.log(
-  //   'attributes',
-  //   attributes.find((att) => att.type === 'set')
-  // );
-
-  // const onPokemonChange = (val: any) => {
-  //   dispatch(updatePokemon({ ...allPokemon[val?.toLowerCase()] }));
-  // };
-
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      validateCardDefinition(formData as CardDefinition);
-      await addCardMutation(formData as CardDefinition, pokemon);
+
+      if (formData) {
+        const formDataToAdd = { ...formData, cardId };
+        validateCardDefinition(formDataToAdd);
+        await addCardMutation(formDataToAdd, pokemon);
+      }
     } catch (error) {
       throw new Error(`${error}`);
     } finally {
@@ -47,15 +48,8 @@ export const CardCanvas = () => {
   };
 
   return (
-    <Center h={'100%'} w={'100%'}>
-      <Flex
-        h='100%'
-        w='100%'
-        direction={'column'}
-        justify={'center'}
-        align={'center'}
-        m='auto'
-      >
+    <Container>
+      <StyledFlex>
         <Flex h='10%'>
           <Title size='h3' fw={600} c={theme.colors.fonts.primary}>
             Create Your Card
@@ -88,12 +82,12 @@ export const CardCanvas = () => {
               type: 'dots',
               color: theme.colors.accents.char,
             }}
-            // disabled={isCreateDisabled}
+            disabled={!formData}
           >
             Create
           </Button>
         </Flex>
-      </Flex>
-    </Center>
+      </StyledFlex>
+    </Container>
   );
 };

@@ -42,7 +42,10 @@ export const allCards = async (dispatch: Dispatch<UnknownAction>) => {
 };
 
 export const addCardMutation = (
-  card: CardDefinition,
+  card: Pick<
+    CardDefinition,
+    'attributes' | 'meta' | 'pokemonData' | 'quantity' | 'setNumber'
+  >,
   pokemon: PokemonDefinition[]
 ) => {
   const pokemonRef = doc(firestore, 'cards', 'data');
@@ -63,7 +66,10 @@ export const addCardMutation = (
     },
   };
 
-  if (!['trainer', 'energy'].includes(card.attributes.cardType)) {
+  if (
+    !['trainer', 'energy'].includes(cardToAdd.attributes.cardType) &&
+    cardToAdd.pokemonData.name
+  ) {
     // write to db
     try {
       setDoc(pokemonRef, { [cardId]: cardToAdd }, { merge: true });
@@ -71,7 +77,7 @@ export const addCardMutation = (
       notifications.show({
         title: 'Successfully Created!',
         message: `${upperCaseFirst(
-          card.pokemonData.name
+          cardToAdd.pokemonData.name
         )} has successfully been created. Please see your card in the Gallery.`,
         color: 'lime',
       });
