@@ -17,7 +17,8 @@ const formRenderers: FormRenderers = {
   condition: ConditionFormRenderer,
   type: TypeFormRenderer,
   rarity: RarityFormRenderer,
-  card: CardFormRenderer,
+  newCard: CardFormRenderer,
+  exisitingCard: CardFormRenderer,
 };
 
 export function useFormRenderer(formType: FormType) {

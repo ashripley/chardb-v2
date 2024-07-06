@@ -10,7 +10,8 @@ export type FormType =
   | 'cardType'
   | 'type'
   | 'condition'
-  | 'card'
+  | 'newCard'
+  | 'exisitingCard'
   | 'rarity';
 
 export const isMobile = window.matchMedia(

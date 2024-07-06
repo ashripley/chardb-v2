@@ -9,9 +9,13 @@ import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
 
 export const CardFormRenderer: FormRenderer = (props) => {
-  const { formDefinition } = props;
+  const { formDefinition, type } = props;
 
-  const { pokemon, attributes } = useSelector((state: RootStore) => state.root);
+  const { pokemon, attributes, cards } = useSelector(
+    (state: RootStore) => state.root
+  );
+
+  const cardNames = cards.map((card) => upperCaseFirst(card.pokemonData.name));
 
   const pokemonNames = pokemon
     .map((pokemon) => upperCaseFirst(pokemon.name))
@@ -56,12 +60,12 @@ export const CardFormRenderer: FormRenderer = (props) => {
     }
   };
 
-  const onEventChange = (event: ChangeEvent<HTMLInputElement> | undefined) => {
+  const onEventChange = (event: ChangeEvent<HTMLInputElement>) => {
     props.onChange({
       ...formDefinition,
       attributes: {
         ...formDefinition.attributes,
-        isGraded: event?.currentTarget.value as boolean | undefined,
+        isGraded: event?.currentTarget.checked,
       },
     });
   };
@@ -71,7 +75,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
       <Flex w={'100%'}>
         <Select
           placeholder={'Name'}
-          data={pokemonNames}
+          data={type === 'newCard' ? pokemonNames : cardNames}
           searchable
           radius={'lg'}
           w={'100%'}
@@ -156,13 +160,12 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={(val) => onBaseChange(val, 'quantity')}
         />
         <Switch
-          defaultChecked={false}
           color='gray'
           labelPosition='left'
           label='Graded?'
           size='md'
           w={'45%'}
-          value={formDefinition?.attributes?.isGraded?.toString()}
+          checked={formDefinition?.attributes?.isGraded || false}
           onChange={onEventChange}
           h={'100%'}
         />
@@ -177,7 +180,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
             w={'45%'}
             hideControls
             required
-            value={formDefinition.attributes.grading}
+            value={formDefinition?.attributes?.grading}
             onChange={(val) => onAttributeChange(val, 'grading')}
           />
         ) : (

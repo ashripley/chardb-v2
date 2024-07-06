@@ -1,5 +1,4 @@
-import { Paper, Flex } from '@mantine/core';
-import { theme } from '../../theme/theme';
+import { Flex } from '@mantine/core';
 import { StudioViewSegment } from '../../components/Studio/Segments/StudioView';
 import { StudioCard } from '../../components/Studio/Cards/StudioCard';
 import { DBTypeSegment } from '../../components/Studio/Segments/DBType';
@@ -10,7 +9,9 @@ import { setView } from '../../redux/studio';
 import { allPokemon } from '../../api/pokemon';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
-import { AttributeCanvas, CardCanvas } from '../../layouts/Canvas';
+import { AttributeCanvas, Canvas } from '../../layouts/Canvas';
+import { CardForm } from '../../components/Form';
+import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDetails';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
@@ -26,11 +27,11 @@ export const Studio = () => {
 
   const viewComponentContent = {
     create: {
-      left: <CardCanvas />,
+      left: <CardForm />,
       right: <StudioCard />,
     },
     update: {
-      // left: <UpdateCardDetails />,
+      left: <UpdateCardDetails />,
       right: <StudioCard />,
     },
     db: {
@@ -52,42 +53,31 @@ export const Studio = () => {
         >
           <StudioViewSegment />
         </Flex>
-        <Flex direction={'column'} h={'100%'} w={'90%'} align={'center'}>
-          <Paper
-            radius='xl'
-            p='lg'
-            m='auto'
-            w='100%'
-            h={'100%'}
-            bg={theme.colors.bg.bgGray25}
+        <Canvas>
+          <Flex
+            w={'100%'}
+            h='100%'
+            justify={'center'}
+            align={'center'}
+            direction={'row'}
           >
-            <Flex w={'100%'} h='100%' align={'center'} direction={'column'}>
-              <Flex
-                w={'100%'}
-                h='100%'
-                justify={'center'}
-                align={'center'}
-                direction={'row'}
-              >
-                <Flex w={'60%'}>{viewComponentContent[view].left}</Flex>
-                <Flex w={'40%'} h={550}>
-                  {viewComponentContent[view].right}
-                </Flex>
-              </Flex>
-              {view === 'db' && (
-                <Flex
-                  w={'100%'}
-                  h={'auto'}
-                  mih={100}
-                  align={'center'}
-                  justify={'center'}
-                >
-                  <DBTypeSegment />
-                </Flex>
-              )}
+            <Flex w={'60%'}>{viewComponentContent[view].left}</Flex>
+            <Flex w={'40%'} h={550}>
+              {viewComponentContent[view].right}
             </Flex>
-          </Paper>
-        </Flex>
+          </Flex>
+          {view === 'db' && (
+            <Flex
+              w={'100%'}
+              h={'auto'}
+              mih={100}
+              align={'center'}
+              justify={'center'}
+            >
+              <DBTypeSegment />
+            </Flex>
+          )}
+        </Canvas>
       </Flex>
     </>
   );

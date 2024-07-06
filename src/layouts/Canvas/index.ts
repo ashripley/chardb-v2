@@ -1,2 +1,2 @@
 export { AttributeCanvas } from './AttributeCanvas';
-export { CardCanvas } from './CardCanvas';
+export { Canvas } from './Canvas';

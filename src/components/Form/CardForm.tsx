@@ -21,7 +21,7 @@ const StyledFlex = styled(Flex)`
   margin: auto;
 `;
 
-export const CardCanvas = () => {
+export const CardForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const cardId = useId();
 
@@ -61,7 +61,7 @@ export const CardCanvas = () => {
           onChange={(updatedData) => {
             setFormData({ ...formData, ...updatedData } as FormDefinition);
           }}
-          type='card'
+          type='newCard'
         />
         <Space h={50} />
         <Flex h='10%'>

@@ -121,17 +121,17 @@ export const updateCardMutation = async (card: Record<string, any>) => {
   }
 };
 
-export const deleteCardMutation = async (card: Record<string, any>) => {
+export const deleteCardMutation = async (cardId: string) => {
   const cardRef = doc(firestore, 'cards', 'data');
 
   try {
     await updateDoc(cardRef, {
-      [card.cardId]: deleteField(),
+      [cardId]: deleteField(),
     });
 
     notifications.show({
       title: 'Successfully Deleted!',
-      message: `${upperCaseFirst(card.name)} has successfully been deleted.`,
+      message: 'Card has successfully been deleted.',
       color: 'lime',
     });
   } catch (error) {
