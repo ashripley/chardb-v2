@@ -36,11 +36,11 @@ export const CardFooterRenderer: CardRenderer = (props) => {
 
   return (
     <Container>
-      <StyledText>#{id}</StyledText>
-      <StyledText>{currentSet?.meta?.year}</StyledText>
+      <StyledText>#{id || ''}</StyledText>
+      <StyledText>{currentSet?.meta?.year || ''}</StyledText>
       <Flex align='center'>
         <Text fz={pxToRem('xs')} c='white'>
-          {setNumber}
+          {setNumber || ''}
         </Text>
         <Text fz={pxToRem('xs')} c='white'>
           {setNumber && '/' + currentSet?.meta?.totalCards}

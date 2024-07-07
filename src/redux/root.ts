@@ -10,6 +10,7 @@ interface StoreState {
   cardAttributes: AttributeCardDefinition[];
   attributes: AttributeDefinition[];
   cards: CardDefinition[];
+  currentCard: CardDefinition | undefined;
   formType: FormType;
 }
 
@@ -19,6 +20,7 @@ const initialState: StoreState = {
   cardAttributes: [],
   attributes: [],
   cards: [],
+  currentCard: undefined,
   formType: 'set',
 };
 
@@ -41,10 +43,22 @@ export const rootSlice = createSlice({
     setCards: (state, action: PayloadAction<StoreState['cards']>) => {
       state.cards = action.payload;
     },
+    setCurrentCard: (
+      state,
+      action: PayloadAction<StoreState['currentCard']>
+    ) => {
+      state.currentCard = action.payload;
+    },
   },
 });
 
-export const { updateApp, setPokemon, setAttributes, setFormType, setCards } =
-  rootSlice.actions;
+export const {
+  updateApp,
+  setPokemon,
+  setAttributes,
+  setFormType,
+  setCards,
+  setCurrentCard,
+} = rootSlice.actions;
 
 export default rootSlice.reducer;

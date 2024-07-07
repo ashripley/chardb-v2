@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
 import { pxToRem } from '../../../utils/responsiveSize';
 import { createElement } from 'react';
-import { Theme, theme } from '../../../theme/theme';
+import { theme } from '../../../theme/theme';
 import { IconFlame } from '@tabler/icons-react';
 import { CardRenderer } from '../cardRenderer';
 
@@ -37,21 +37,21 @@ export const CardHeaderRenderer: CardRenderer = (props) => {
   const { name, type } = props.card.pokemonData;
   return (
     <Container>
-      <StyledText>{upperCaseFirst(name)}</StyledText>
+      <StyledText>{upperCaseFirst(name) || ''}</StyledText>
       <StyledPaper>
         <ImageContainer>
           {type ? (
-            createElement(theme.icons[type as keyof Theme['icons']], {
+            createElement(theme.icons[type], {
               style: { width: pxToRem('sm'), height: pxToRem('sm') },
               stroke: 1.5,
-              color: theme.colors.types[type as keyof Theme['colors']['types']],
+              color: theme.colors.types[type],
             })
           ) : (
             <IconFlame
               style={{ width: pxToRem('sm'), height: pxToRem('sm') }}
               stroke={1.5}
               color='var(--mantine-color-white)'
-              fill={theme.colors.types[type as keyof Theme['colors']['types']]}
+              fill={theme.colors.types[type] || theme.colors.bg.bgGray100}
             />
           )}
         </ImageContainer>

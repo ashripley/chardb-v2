@@ -8,11 +8,11 @@ import {
   validateAttributeDefinition,
 } from '../../api/attribute';
 import { theme } from '../../theme/theme';
-import styled from 'styled-components';
 import { camelCaseToTitleCase } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import Form, { FormDefinition } from '../../components/Form';
 import { FormType } from '../../config';
+import styled from 'styled-components';
 
 const Container = styled(Center)`
   height: 100%;
@@ -28,7 +28,7 @@ const Wrapper = styled(Flex)`
   margin: auto;
 `;
 
-export const AttributeCanvas = () => {
+export const DataForm = () => {
   const { formType } = useSelector((state: RootStore) => state.root);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

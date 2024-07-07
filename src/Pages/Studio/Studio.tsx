@@ -1,6 +1,6 @@
 import { Flex } from '@mantine/core';
 import { StudioViewSegment } from '../../components/Studio/Segments/StudioView';
-import { StudioCard } from '../../components/Studio/Cards/StudioCard';
+import { BaseCard } from '../../components/Card/BaseCard';
 import { DBTypeSegment } from '../../components/Studio/Segments/DBType';
 import { StudioStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,9 +9,11 @@ import { setView } from '../../redux/studio';
 import { allPokemon } from '../../api/pokemon';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
-import { AttributeCanvas, Canvas } from '../../layouts/Canvas';
+import { Canvas } from '../../layouts/Canvas';
 import { CardForm } from '../../components/Form';
 import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDetails';
+import { DBCard } from '../../components/Studio/Cards/DBCard';
+import { DataForm } from '../../components/Form/DataForm';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
@@ -28,15 +30,15 @@ export const Studio = () => {
   const viewComponentContent = {
     create: {
       left: <CardForm />,
-      right: <StudioCard />,
+      right: <BaseCard />,
     },
     update: {
       left: <UpdateCardDetails />,
-      right: <StudioCard />,
+      right: <BaseCard />,
     },
     db: {
-      left: <AttributeCanvas />,
-      // right: <DBCard />,
+      left: <DataForm />,
+      right: <DBCard />,
     },
   };
 

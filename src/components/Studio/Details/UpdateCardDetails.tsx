@@ -1,10 +1,11 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { useState } from 'react';
 import { theme } from '../../../theme/theme';
 import Form, { FormDefinition } from '../../Form';
 import { deleteCardMutation, updateCardMutation } from '../../../api/card';
+import { setCurrentCard } from '../../../redux/root';
 
 interface ActionButtonProps {
   bg: string;
@@ -21,13 +22,14 @@ export const UpdateCardDetails = () => {
 
   const [formData, setFormData] = useState<FormDefinition>();
 
+  const dispatch = useDispatch();
+
   const { cards } = useSelector((state: RootStore) => state.root);
 
   const onUpdate = async (action: 'update' | 'delete') => {
     try {
       action === 'update' ? setIsUpdating(true) : setIsDeleting(true);
 
-      console.log('formData', formData);
       formData &&
         (action === 'update'
           ? await updateCardMutation(formData)
@@ -77,7 +79,7 @@ export const UpdateCardDetails = () => {
           c.pokemonData.name === updatedData.pokemonData?.name.toLowerCase()
       );
 
-      console.log('cardFormData', cardFormData);
+      dispatch(setCurrentCard(cardFormData));
       setFormData({ ...cardFormData } as FormDefinition);
     }
   };

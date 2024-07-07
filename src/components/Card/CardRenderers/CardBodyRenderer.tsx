@@ -27,13 +27,13 @@ export const CardBodyRenderer: CardRenderer = (props) => {
 
   return (
     <StyledGroup>
-      <StyledText>Type: {upperCaseFirst(type)}</StyledText>
-      <StyledText>Set: {set}</StyledText>
-      <StyledText>Card Type: {cardType}</StyledText>
-      <StyledText>Condition: {condition}</StyledText>
-      <StyledText>Quantity: {quantity}</StyledText>
+      <StyledText>Type: {upperCaseFirst(type) || ''}</StyledText>
+      <StyledText>Set: {set || ''}</StyledText>
+      <StyledText>Card Type: {cardType || ''}</StyledText>
+      <StyledText>Condition: {condition || ''}</StyledText>
+      <StyledText>Quantity: {quantity || ''}</StyledText>
       {isGraded && grading ? (
-        <StyledText>Grading: {grading}</StyledText>
+        <StyledText>Grading: {grading || ''}</StyledText>
       ) : (
         <Space h={25} />
       )}

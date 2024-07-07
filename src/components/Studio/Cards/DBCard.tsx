@@ -8,20 +8,21 @@ import {
   CloseButton,
 } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { StudioStore } from '../../../redux/store';
-import { setAttributes } from '../../../redux/studio';
-import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { RootStore } from '../../../redux/store';
 import { theme } from '../../../theme/theme';
-import { deleteAttributeMutation } from '../../../api/attribute';
+import {
+  AttributeDefinition,
+  deleteAttributeMutation,
+} from '../../../api/attribute';
+import { setAttributes } from '../../../redux/root';
 
 export const DBCard = () => {
-  const { attributes, dbType } = useSelector(
-    (state: StudioStore) => state.studio
+  const { attributes, formType } = useSelector(
+    (state: RootStore) => state.root
   );
   const dispatch = useDispatch();
 
-  const excludedKeys = ['name', 'attribute', 'attributeId'];
-  const keysToGap = ['set', 'type'];
+  // const keysToGap = ['set', 'type'];
 
   const labelMap: Record<string, string> = {
     set: 'Sets',
@@ -33,46 +34,38 @@ export const DBCard = () => {
     year: 'Year',
   };
 
-  const onDelete = (att: Record<string, any>) => {
-    const { attribute, name, attributeId } = att;
+  const onDelete = (att: AttributeDefinition) => {
+    const { id } = att;
 
-    const filteredAttributes = attributes[attribute].filter(
-      (att: Record<string, any>) => att.attributeId !== attributeId
-    );
-    deleteAttributeMutation(`${attribute}_${name}`);
+    deleteAttributeMutation(id);
     dispatch(
       setAttributes({
-        isCreate: false,
         ...attributes,
-        ...{ [attribute]: filteredAttributes },
       })
     );
   };
 
-  console.log('attributes?.[dbType]', attributes?.[dbType]);
+  const attributesToDisplay = () => {
+    const currentAttributes: AttributeDefinition[] = [];
+    for (const attribute of attributes) {
+      if (attribute.type === formType) {
+        currentAttributes.push(attribute);
+      }
+    }
+
+    return currentAttributes;
+  };
+
+  const currentAttributes = attributesToDisplay();
 
   const AttributeCard = () => (
     <>
-      {attributes?.[dbType].map((att: Record<string, any>, index: number) => (
+      {currentAttributes.map((att: AttributeDefinition, index: number) => (
         <Flex justify={'space-between'} w={'100%'} key={index}>
           <Flex w={'80%'} direction={'column'} justify={'center'}>
             <Flex w={'100%'} direction={'row'} gap={5}>
-              <Text fw={600} c={'white'}>
-                Name:{' '}
-              </Text>
-              <Text c={'white'}>{upperCaseFirst(att.name)}</Text>
+              <Text c={'white'}>{att.name}</Text>
             </Flex>
-            {Object.entries(att)?.map(
-              ([key, value]: any, index: number) =>
-                !excludedKeys.includes(key) && (
-                  <Flex w={'100%'} direction={'row'} gap={5} key={index}>
-                    <Text fw={600} c={'white'}>
-                      {labelMap[key]}:
-                    </Text>
-                    <Text c={'white'}>{value}</Text>
-                  </Flex>
-                )
-            )}
           </Flex>
           <Flex w={'10%'} align={'center'}>
             <CloseButton
@@ -113,7 +106,7 @@ export const DBCard = () => {
             display={'contents'}
             c='white'
           >
-            {labelMap[dbType]}
+            {labelMap[formType]}
           </Title>
           <Space h={20} />
           <ScrollArea
@@ -125,7 +118,7 @@ export const DBCard = () => {
             <Flex
               justify={'flex-start'}
               direction={'column'}
-              gap={keysToGap.includes(dbType) ? 15 : 0}
+              // gap={keysToGap.includes(formType) ? 15 : 0}
             >
               <AttributeCard />
             </Flex>

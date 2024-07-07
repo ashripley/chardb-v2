@@ -5,8 +5,6 @@ import { theme } from '../../../theme/theme';
 export const CardShell: CardShellRenderer = (props) => {
   const { type } = props;
 
-  console.log('type', type);
-
   function assertTypeIsKeyofTypes(type: unknown): asserts type is string {
     if (typeof type !== 'string') {
       throw new Error(`Invalid type: "${type}" is not a valid key of Types.`);

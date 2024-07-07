@@ -75,11 +75,11 @@ export const CardImageRenderer: CardRenderer = (props) => {
               )}
             </CardContainer>
           ) : (
-            <Image src={imageUrl} />
+            <Image src={imageUrl || ''} />
           )}
         </StyledCard>
         <BubbleContainer>
-          {evolutionChain.second?.name && (
+          {evolutionChain?.second?.name && (
             <ActionIcon
               variant='transparent'
               color='gray'

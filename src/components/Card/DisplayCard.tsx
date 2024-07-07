@@ -10,7 +10,7 @@ import { CardShell } from './CardRenderers';
 
 const Column = styled(Grid.Col)``;
 
-export const Card: CardRenderer = (props) => {
+export const DisplayCard: CardRenderer = (props) => {
   validateCardDefinition(props.card);
 
   const { type } = props.card.pokemonData;
