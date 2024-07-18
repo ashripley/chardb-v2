@@ -1,3 +1,5 @@
+import { Skeleton as BaseSkeleton } from '@mantine/core';
+
 export function Skeleton() {
-  return <></>;
+  return <BaseSkeleton />;
 }

@@ -1,3 +1,5 @@
+import { Dialog as BaseDialog } from '@mantine/core';
+
 export function Dialog() {
-  return <></>;
+  return <BaseDialog opened />;
 }

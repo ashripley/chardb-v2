@@ -1,3 +1,5 @@
+import { SegmentedControl as BaseSegmentedControl } from '@mantine/core';
+
 export function SegmentedControl() {
-  return <></>;
+  return <BaseSegmentedControl data={[]} />;
 }

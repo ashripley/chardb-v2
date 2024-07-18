@@ -1,3 +1,5 @@
+import { Checkbox as BaseCheckbox } from '@mantine/core';
+
 export function Checkbox() {
-  return <div>Checkbox</div>;
+  return <BaseCheckbox />;
 }
