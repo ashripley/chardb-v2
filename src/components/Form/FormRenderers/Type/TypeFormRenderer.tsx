@@ -1,10 +1,10 @@
 import { Flex, TextInput } from '@mantine/core';
-import numberClasses from '../../../../modules/NumberInput.module.css';
 import { FormRenderer } from '../../formRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils/responsiveSize';
 import { ChangeEvent } from 'react';
 import { validateTypeAttributeDefinition } from './TypeFormDefinition';
+import { NumberInputStyles } from '../../../Base/NumberInput';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -42,19 +42,19 @@ export const TypeFormRenderer: FormRenderer = (props) => {
         <TextInput
           placeholder='Name'
           value={formDefinition?.name ?? ''}
-          radius={'lg'}
+          radius={pxToRem('xs')}
           w={'100%'}
           rightSection
           variant='filled'
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           onChange={onChange}
         />
         <TextInput
           variant='filled'
-          radius='lg'
+          radius={pxToRem('xs')}
           placeholder='Colour (#)'
           value={formDefinition?.meta?.color ?? ''}
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           w={'100%'}
           onChange={onMetaChange}
         />

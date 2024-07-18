@@ -8,7 +8,7 @@ import {
   validateAttributeDefinition,
 } from '../../api/attribute';
 import { theme } from '../../theme/theme';
-import { camelCaseToTitleCase } from '../../utils';
+import { camelCaseToTitleCase, pxToRem } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import Form, { FormDefinition } from '../../components/Form';
 import { FormType } from '../../config';
@@ -75,7 +75,7 @@ export const DataForm = () => {
           <Button
             variant='filled'
             bg={'white'}
-            radius='lg'
+            radius={pxToRem('xs')}
             size='lg'
             miw={250}
             styles={{

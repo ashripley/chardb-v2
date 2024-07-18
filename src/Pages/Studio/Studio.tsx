@@ -44,41 +44,51 @@ export const Studio = () => {
 
   return (
     <>
-      <Flex direction={'row'} w={'100%'} h={'calc(100% - 75px)'} p='xs'>
-        <Flex
-          w={'5%'}
-          h={'95%'}
-          align={'center'}
-          justify={'center'}
-          miw={70}
-          pr={10}
-        >
-          <StudioViewSegment />
-        </Flex>
+      <Flex w={'100%'} h={'calc(100% - 75px)'} p='xs'>
         <Canvas>
-          <Flex
-            w={'100%'}
-            h='100%'
-            justify={'center'}
-            align={'center'}
-            direction={'row'}
-          >
-            <Flex w={'60%'}>{viewComponentContent[view].left}</Flex>
-            <Flex w={'40%'} h={550}>
-              {viewComponentContent[view].right}
-            </Flex>
-          </Flex>
-          {view === 'db' && (
+          <Flex h={'100%'} w={'100%'} align={'center'} justify={'center'}>
             <Flex
-              w={'100%'}
-              h={'auto'}
-              mih={100}
+              w={'5%'}
+              h={'100%'}
               align={'center'}
               justify={'center'}
+              miw={70}
+              pr={10}
             >
-              <DBTypeSegment />
+              <StudioViewSegment />
             </Flex>
-          )}
+            <Flex
+              h={'100%'}
+              w={'100%'}
+              align={'center'}
+              justify={'center'}
+              direction={'column'}
+            >
+              <Flex
+                w={'95%'}
+                h='100%'
+                justify={'center'}
+                align={'center'}
+                direction={'row'}
+              >
+                <Flex w={'60%'}>{viewComponentContent[view].left}</Flex>
+                <Flex w={'40%'} h={550}>
+                  {viewComponentContent[view].right}
+                </Flex>
+              </Flex>
+              {view === 'db' && (
+                <Flex
+                  w={'100%'}
+                  h={'auto'}
+                  mih={100}
+                  align={'center'}
+                  justify={'center'}
+                >
+                  <DBTypeSegment />
+                </Flex>
+              )}
+            </Flex>
+          </Flex>
         </Canvas>
       </Flex>
     </>

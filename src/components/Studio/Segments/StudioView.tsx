@@ -4,6 +4,7 @@ import { theme } from '../../../theme/theme';
 import { useDispatch } from 'react-redux';
 import { setView } from '../../../redux/studio';
 import { StudioViewType } from '../../../config';
+import { pxToRem } from '../../../utils';
 
 export const StudioViewSegment = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export const StudioViewSegment = () => {
       orientation='vertical'
       withItemsBorders={false}
       size='sm'
-      radius='xl'
+      radius={pxToRem('sm')}
       defaultValue='create'
       bg={theme.colors.bg.bgGray75}
       color={theme.colors.bg.bgDarkGray75}

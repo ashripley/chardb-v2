@@ -1,12 +1,14 @@
-import { Flex, NumberInput, Select, Switch } from '@mantine/core';
+import { Flex, NumberInput, Select } from '@mantine/core';
 import classes from '../../../../modules/Select.module.css';
-import numberClasses from '../../../../modules/NumberInput.module.css';
 import { useSelector } from 'react-redux';
 import { FormRenderer } from '../../formRenderer';
 import { RootStore } from '../../../../redux/store';
 import { upperCaseFirst } from '../../../../helpers/upperCaseFirst';
 import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
+import { NumberInputStyles } from '../../../Base/NumberInput';
+import { Checkbox } from '../../../Base';
+import { pxToRem } from '../../../../utils';
 
 export const CardFormRenderer: FormRenderer = (props) => {
   const { formDefinition, type } = props;
@@ -77,7 +79,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           placeholder={'Name'}
           data={type === 'newCard' ? pokemonNames : cardNames}
           searchable
-          radius={'lg'}
+          radius={pxToRem('xs')}
           w={'100%'}
           rightSection
           required
@@ -96,7 +98,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           searchable
           rightSection
           value={formDefinition?.attributes?.set}
-          radius={'lg'}
+          radius={pxToRem('xs')}
           variant='filled'
           w={'45%'}
           required
@@ -105,10 +107,10 @@ export const CardFormRenderer: FormRenderer = (props) => {
         />
         <NumberInput
           variant='filled'
-          radius='lg'
+          radius={pxToRem('xs')}
           w={'45%'}
           placeholder='Set Number'
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           hideControls
           required
           value={formDefinition?.setNumber}
@@ -122,7 +124,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
             .filter((att) => att.type === 'cardType')
             ?.map((att) => upperCaseFirst(att.name))}
           searchable
-          radius={'lg'}
+          radius={pxToRem('xs')}
           w={'45%'}
           rightSection
           variant='filled'
@@ -137,7 +139,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
             .filter((att) => att.type === 'condition')
             ?.map((att) => upperCaseFirst(att.name))}
           searchable
-          radius={'lg'}
+          radius={pxToRem('xs')}
           w={'45%'}
           rightSection
           variant='filled'
@@ -147,22 +149,23 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={(val) => onAttributeChange(val, 'condition')}
         />
       </Flex>
-      <Flex w={'100%'} justify={'space-between'}>
+      <Flex w={'100%'} justify={'space-between'} align={'center'}>
         <NumberInput
           variant='filled'
-          radius='lg'
+          radius={pxToRem('xs')}
           placeholder='Quantity'
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           w={'45%'}
           hideControls
           required
           value={formDefinition?.quantity ?? ''}
           onChange={(val) => onBaseChange(val, 'quantity')}
         />
-        <Switch
+        <Checkbox
           color='gray'
           labelPosition='left'
-          label='Graded?'
+          label='Graded'
+          radius={pxToRem('xxxs')}
           size='md'
           w={'45%'}
           checked={formDefinition?.attributes?.isGraded || false}
@@ -174,9 +177,9 @@ export const CardFormRenderer: FormRenderer = (props) => {
         {formDefinition?.attributes?.isGraded ? (
           <NumberInput
             variant='filled'
-            radius='lg'
+            radius={pxToRem('xs')}
             placeholder='Grading'
-            classNames={{ input: numberClasses.input }}
+            classNames={{ input: NumberInputStyles.input }}
             w={'45%'}
             hideControls
             required

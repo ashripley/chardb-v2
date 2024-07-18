@@ -1,4 +1,4 @@
-import { Paper, Flex, ScrollArea, Button, Loader } from '@mantine/core';
+import { Flex } from '@mantine/core';
 import { theme } from '../../theme/theme';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import { isMobile } from '../../config';
 import { allCards } from '../../api/card';
 import { allPokemon } from '../../api/pokemon';
 import { allAttributes } from '../../api/attribute';
+import { Button, Loader, Paper, ScrollArea } from '../../components/Base';
 
 const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {
@@ -15,7 +16,7 @@ const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   }
 
   & > div > div {
-    ${({ isMobile }) => isMobile && `display: flex !important;`}
+    display: ${({ isMobile }) => isMobile && 'flex !important'};
   }
 `;
 
@@ -30,7 +31,7 @@ export const Dashboard = () => {
       allPokemon(dispatch);
       allAttributes(dispatch);
     } catch (e) {
-      console.error(e);
+      throw new Error(`Error: ${e}`);
     } finally {
       setIsLoading(false);
     }

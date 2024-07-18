@@ -1,6 +1,7 @@
 import { Card, Divider, Flex, Grid, Group, Paper, Space } from '@mantine/core';
 import { IconFlame } from '@tabler/icons-react';
 import { theme } from '../../theme/theme';
+import { pxToRem } from '../../utils';
 
 export const BaseCard = () => {
   return (
@@ -9,7 +10,7 @@ export const BaseCard = () => {
         miw={350}
         mih={450}
         maw={350}
-        radius='xl'
+        radius={pxToRem('sm')}
         bg={theme.colors.bg.bgGray100}
       >
         <Grid w={'100%'}>
@@ -20,7 +21,7 @@ export const BaseCard = () => {
                 h={30}
                 w={30}
                 bg='var(--mantine-color-white)'
-                radius={'xl'}
+                radius={pxToRem('sm')}
               >
                 <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                   <IconFlame

@@ -6,6 +6,7 @@ import { theme } from '../../../theme/theme';
 import Form, { FormDefinition } from '../../Form';
 import { deleteCardMutation, updateCardMutation } from '../../../api/card';
 import { setCurrentCard } from '../../../redux/root';
+import { pxToRem } from '../../../utils';
 
 interface ActionButtonProps {
   bg: string;
@@ -52,7 +53,7 @@ export const UpdateCardDetails = () => {
     <Button
       variant='filled'
       bg={bg}
-      radius='lg'
+      radius={pxToRem('xs')}
       size='lg'
       miw={w}
       styles={{

@@ -1,10 +1,10 @@
 import { Flex, NumberInput, TextInput } from '@mantine/core';
-import numberClasses from '../../../../modules/NumberInput.module.css';
 import { ChangeEvent } from 'react';
 import { FormRenderer } from '../../formRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils/responsiveSize';
 import { validateSetAttributeDefinition } from './SetFormDefinition';
+import { NumberInputStyles } from '../../../Base/NumberInput';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -42,29 +42,29 @@ export const SetFormRenderer: FormRenderer = (props) => {
         <TextInput
           placeholder='Name'
           value={formDefinition?.name ?? ''}
-          radius={'lg'}
+          radius={pxToRem('xs')}
           w={'100%'}
           rightSection
           variant='filled'
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           onChange={handleChange}
         />
         <NumberInput
           variant='filled'
-          radius='lg'
+          radius={pxToRem('xs')}
           placeholder='Total Cards'
           value={formDefinition?.meta?.totalCards ?? ''}
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           w={'100%'}
           hideControls
           onChange={(val) => handleMetaChange('totalCards', val as number)}
         />
         <NumberInput
           variant='filled'
-          radius='lg'
+          radius={pxToRem('xs')}
           placeholder='Year'
           value={formDefinition?.meta?.year ?? ''}
-          classNames={{ input: numberClasses.input }}
+          classNames={{ input: NumberInputStyles.input }}
           w={'100%'}
           hideControls
           onChange={(val) => handleMetaChange('year', val as number)}

@@ -6,6 +6,7 @@ import { addCardMutation, validateCardDefinition } from '../../api/card';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import styled from 'styled-components';
+import { pxToRem } from '../../utils';
 
 const Container = styled(Center)`
   height: 100%;
@@ -68,7 +69,7 @@ export const CardForm = () => {
           <Button
             variant='filled'
             bg={'white'}
-            radius='lg'
+            radius={pxToRem('xs')}
             size='lg'
             miw={250}
             styles={{

@@ -2,12 +2,12 @@ import { SegmentedControl, Text } from '@mantine/core';
 import { theme } from '../../../theme/theme';
 import { useDispatch } from 'react-redux';
 import { setFormType } from '../../../redux/root';
+import { pxToRem } from '../../../utils';
 
 export const DBTypeSegment = () => {
   const dispatch = useDispatch();
 
   const onChange = (val: any) => {
-    console.log('val', val);
     dispatch(setFormType(val));
   };
 
@@ -15,7 +15,7 @@ export const DBTypeSegment = () => {
     <SegmentedControl
       withItemsBorders={false}
       size='sm'
-      radius='xl'
+      radius={pxToRem('sm')}
       defaultValue='set'
       bg={theme.colors.bg.bgGray75}
       color={theme.colors.bg.bgDarkGray75}

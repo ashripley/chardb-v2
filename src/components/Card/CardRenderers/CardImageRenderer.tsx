@@ -23,7 +23,7 @@ const Wrapper = styled(Flex)`
 
 const StyledCard = styled(Card)`
   height: 90%;
-  border-radius: ${pxToRem('lg')};
+  border-radius: ${pxToRem('sm')};
   top: ${pxToRem('xxxs')};
   align-items: center;
   justify-content: center;

@@ -2,11 +2,12 @@ import { Flex, Paper } from '@mantine/core';
 import { theme } from '../../theme/theme';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
+import { pxToRem } from '../../utils';
 
 const StyledFlex = styled(Flex)`
   flex-direction: column;
   height: 100%;
-  width: 90%;
+  width: 100%;
   align-items: center;
 `;
 
@@ -16,7 +17,7 @@ export function Canvas(props: PropsWithChildren) {
   return (
     <StyledFlex>
       <Paper
-        radius='xl'
+        radius={pxToRem('sm')}
         p='lg'
         m='auto'
         w='100%'

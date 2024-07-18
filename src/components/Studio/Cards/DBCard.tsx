@@ -15,6 +15,7 @@ import {
   deleteAttributeMutation,
 } from '../../../api/attribute';
 import { setAttributes } from '../../../redux/root';
+import { pxToRem } from '../../../utils';
 
 export const DBCard = () => {
   const { attributes, formType } = useSelector(
@@ -87,7 +88,7 @@ export const DBCard = () => {
         w={'auto'}
         h={'auto'}
         p={'lg'}
-        radius='xl'
+        radius={pxToRem('sm')}
         bg={theme.colors.bg.bgGray100}
       >
         <Flex

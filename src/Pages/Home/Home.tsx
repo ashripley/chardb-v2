@@ -27,8 +27,8 @@ const icon = (
 
 const styles = {
   borderRadius: {
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+    borderTopLeftRadius: pxToRem('sm'),
+    borderTopRightRadius: pxToRem('sm'),
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
@@ -89,7 +89,7 @@ export const Home = () => {
               align={'center'}
             >
               <TextInput
-                radius='lg'
+                radius={pxToRem('xs')}
                 placeholder={isMobile ? 'Charmander..' : 'Search for a Pokemon'}
                 variant='filled'
                 classNames={{ input: TextInputStyles.textInput }}
@@ -101,7 +101,7 @@ export const Home = () => {
                 <Button
                   variant='filled'
                   bg={theme.colors.accents.char}
-                  radius='lg'
+                  radius={pxToRem('xs')}
                   w={100}
                   styles={{ label: { color: 'white' } }}
                   disabled={!input}
@@ -142,7 +142,7 @@ export const Home = () => {
                   h={35}
                   w={35}
                   bg='var(--mantine-color-white)'
-                  radius={'xl'}
+                  radius={pxToRem('md')}
                 >
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                     {createElement(theme.icons.water, {
@@ -176,7 +176,7 @@ export const Home = () => {
                   h={35}
                   w={35}
                   bg='var(--mantine-color-white)'
-                  radius={'xl'}
+                  radius={pxToRem('md')}
                 >
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                     {createElement(theme.icons.grass, {
@@ -211,7 +211,7 @@ export const Home = () => {
                   h={35}
                   w={35}
                   bg='var(--mantine-color-white)'
-                  radius={'xl'}
+                  radius={pxToRem('md')}
                 >
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                     {createElement(theme.icons.fire, {
@@ -236,7 +236,7 @@ export const Home = () => {
                   w={'100%'}
                   h={'100%'}
                   bg={'white'}
-                  radius={'lg'}
+                  radius={pxToRem('xxs')}
                   style={{ ...styles.borderRadius }}
                 >
                   <Flex
