@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '@mantine/notifications/styles.css';
 import { Notifications } from '@mantine/notifications';
 import { theme } from './theme';
-import { theme as customTheme } from '../src/theme/theme';
+import { theme as customTheme } from './theme/theme';
 import { Home } from './pages/Home/Home';
 import { Gallery } from './pages/Gallery/Gallery';
 import { Studio } from './pages/Studio/Studio';

@@ -1,17 +1,5 @@
-import {
-  Container,
-  Flex,
-  Title,
-  Text,
-  TextInput,
-  rem,
-  Button,
-  Card,
-  Space,
-  Paper,
-} from '@mantine/core';
+import { Flex, Title, Text } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
-import classes from '../../modules/TextInput.module.css';
 import { theme } from '../../theme/theme';
 import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -19,9 +7,22 @@ import { setSearchTerm } from '../../redux/gallery';
 import { updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
+import {
+  Button,
+  Card,
+  Container,
+  Paper,
+  Space,
+  TextInput,
+} from '../../components/Base';
+import { pxToRem } from '../../utils';
+import { TextInputStyles } from '../../components/Base/TextInput';
 
 const icon = (
-  <IconSearch style={{ width: rem(15), height: rem(15) }} color='white' />
+  <IconSearch
+    style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
+    color='white'
+  />
 );
 
 const styles = {
@@ -91,7 +92,7 @@ export const Home = () => {
                 radius='lg'
                 placeholder={isMobile ? 'Charmander..' : 'Search for a Pokemon'}
                 variant='filled'
-                classNames={{ input: classes.textInput }}
+                classNames={{ input: TextInputStyles.textInput }}
                 w={300}
                 leftSection={icon}
                 onChange={(e: any) => onSearchInput(e.target.value)}

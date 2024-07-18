@@ -1,14 +1,5 @@
-import {
-  Paper,
-  Flex,
-  ScrollArea,
-  Button,
-  TextInput,
-  rem,
-  Loader,
-} from '@mantine/core';
+import { Flex } from '@mantine/core';
 import { theme } from '../../theme/theme';
-import classes from '../../modules/TextInput.module.css';
 import { IconSearch } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +13,15 @@ import { allPokemon } from '../../api/pokemon';
 import { Cards } from '../../components/Gallery/Views/Cards';
 import { Pokedex } from '../../components/Gallery/Views/Pokedex';
 import { useLocation } from 'react-router-dom';
+import { TextInputStyles } from '../../components/Base/TextInput';
+import { pxToRem } from '../../utils';
+import {
+  Button,
+  Loader,
+  Paper,
+  ScrollArea,
+  TextInput,
+} from '../../components/Base';
 
 export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -59,7 +59,10 @@ export const Gallery = () => {
   };
 
   const icon = (
-    <IconSearch style={{ width: rem(15), height: rem(15) }} color='white' />
+    <IconSearch
+      style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
+      color='white'
+    />
   );
 
   return (
@@ -139,7 +142,7 @@ export const Gallery = () => {
                         isMobile ? 'Pokemon..' : 'Search for a Pokemon'
                       }
                       variant='filled'
-                      classNames={{ input: classes.textInput }}
+                      classNames={{ input: TextInputStyles.textInput }}
                       w={isMobile ? 'auto' : '70%'}
                       leftSection={icon}
                       miw={isMobile ? '' : 300}

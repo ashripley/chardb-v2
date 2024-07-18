@@ -1,5 +1,7 @@
-import { Card as BaseCard } from '@mantine/core';
+import { Card as BaseCard, CardProps } from '@mantine/core';
 
-export function Card() {
-  return <BaseCard />;
+interface Props extends CardProps {}
+
+export function Card(props: Props) {
+  return <BaseCard {...props} />;
 }

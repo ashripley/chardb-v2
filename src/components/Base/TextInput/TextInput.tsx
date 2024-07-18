@@ -1,5 +1,8 @@
 import { TextInput as BaseTextInput } from '@mantine/core';
+import { ComponentProps } from 'react';
 
-export function TextInput() {
-  return <BaseTextInput />;
+interface Props extends ComponentProps<typeof BaseTextInput> {}
+
+export function TextInput(props: Props) {
+  return <BaseTextInput {...props} />;
 }

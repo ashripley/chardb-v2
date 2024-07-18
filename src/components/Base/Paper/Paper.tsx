@@ -1,5 +1,8 @@
-import { Paper as BasePaper } from '@mantine/core';
+import { Paper as BasePaper, PaperProps } from '@mantine/core';
+import { PropsWithChildren } from 'react';
 
-export function Paper() {
-  return <BasePaper />;
+interface Props extends PaperProps {}
+
+export function Paper(props: PropsWithChildren<Props>) {
+  return <BasePaper {...props} />;
 }
