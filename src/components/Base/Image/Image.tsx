@@ -1,5 +1,7 @@
-import { Image as BaseImage } from '@mantine/core';
+import { Image as BaseImage, ImageProps } from '@mantine/core';
 
-export function Image() {
-  return <BaseImage />;
+interface Props extends ImageProps {}
+
+export function Image(props: Props) {
+  return <BaseImage {...props} />;
 }

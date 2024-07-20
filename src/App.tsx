@@ -42,7 +42,6 @@ export default function App() {
           </StyledPaper>
         </Center>
       </Router>
-      {/* <Index /> */}
     </MantineProvider>
   );
 }

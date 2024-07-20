@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from '@mantine/core';
 import { theme } from '../../theme/theme';
 import { IconSearch } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { CardViewSegment } from '../../components/Gallery/Segments/CardView';
 import { setApp, setSearchTerm, setView } from '../../redux/gallery';
 import { GalleryApp, isMobile } from '../../config';
