@@ -1,13 +1,11 @@
-import { Flex, NumberInput, Select } from '@mantine/core';
-import classes from '../../../../modules/Select.module.css';
+import { Flex } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { FormRenderer } from '../../formRenderer';
 import { RootStore } from '../../../../redux/store';
 import { upperCaseFirst } from '../../../../helpers/upperCaseFirst';
 import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
-import { NumberInputStyles } from '../../../Base/NumberInput';
-import { Checkbox } from '../../../Base';
+import { Checkbox, Select, NumberInput } from '../../../Base';
 import { pxToRem } from '../../../../utils';
 
 export const CardFormRenderer: FormRenderer = (props) => {
@@ -84,7 +82,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
           rightSection
           required
           variant='filled'
-          classNames={{ input: classes.input }}
           onChange={onNameChange}
           nothingFoundMessage='No Pokemon found...'
         />
@@ -102,7 +99,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
           variant='filled'
           w={'45%'}
           required
-          classNames={{ input: classes.input }}
           onChange={(val) => onAttributeChange(val, 'set')}
         />
         <NumberInput
@@ -110,7 +106,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
           radius={pxToRem('xs')}
           w={'45%'}
           placeholder='Set Number'
-          classNames={{ input: NumberInputStyles.input }}
           hideControls
           required
           value={formDefinition?.setNumber}
@@ -130,7 +125,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
           variant='filled'
           required
           value={formDefinition?.attributes?.cardType}
-          classNames={{ input: classes.input }}
           onChange={(val) => onAttributeChange(val, 'cardType')}
         />
         <Select
@@ -145,7 +139,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
           variant='filled'
           required
           value={formDefinition?.attributes?.condition}
-          classNames={{ input: classes.input }}
           onChange={(val) => onAttributeChange(val, 'condition')}
         />
       </Flex>
@@ -154,7 +147,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
           variant='filled'
           radius={pxToRem('xs')}
           placeholder='Quantity'
-          classNames={{ input: NumberInputStyles.input }}
           w={'45%'}
           hideControls
           required
@@ -179,7 +171,6 @@ export const CardFormRenderer: FormRenderer = (props) => {
             variant='filled'
             radius={pxToRem('xs')}
             placeholder='Grading'
-            classNames={{ input: NumberInputStyles.input }}
             w={'45%'}
             hideControls
             required

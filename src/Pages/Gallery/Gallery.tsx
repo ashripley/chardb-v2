@@ -13,7 +13,6 @@ import { allPokemon } from '../../api/pokemon';
 import { Cards } from '../../components/Gallery/Views/Cards';
 import { Pokedex } from '../../components/Gallery/Views/Pokedex';
 import { useLocation } from 'react-router-dom';
-import { TextInputStyles } from '../../components/Base/TextInput';
 import { pxToRem } from '../../utils';
 import { Button, Loader, ScrollArea, TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
@@ -129,7 +128,6 @@ export const Gallery = () => {
                       isMobile ? 'Pokemon..' : 'Search for a Pokemon'
                     }
                     variant='filled'
-                    classNames={{ input: TextInputStyles.textInput }}
                     w={isMobile ? 'auto' : '70%'}
                     leftSection={icon}
                     miw={isMobile ? '' : 300}

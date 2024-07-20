@@ -1,5 +1,16 @@
-import { Select as BaseSelect } from '@mantine/core';
+import { Select as BaseSelect, SelectProps } from '@mantine/core';
+import { SelectStyles } from '.';
 
-export function Select() {
-  return <BaseSelect />;
+interface Props extends SelectProps {}
+
+export function Select(props: Props) {
+  return (
+    <BaseSelect
+      {...props}
+      classNames={{
+        input: SelectStyles.input,
+        dropdown: SelectStyles.dropdown,
+      }}
+    />
+  );
 }

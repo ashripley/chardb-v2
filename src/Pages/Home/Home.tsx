@@ -16,7 +16,6 @@ import {
   TextInput,
 } from '../../components/Base';
 import { pxToRem } from '../../utils';
-import { TextInputStyles } from '../../components/Base/TextInput';
 
 const icon = (
   <IconSearch
@@ -92,7 +91,6 @@ export const Home = () => {
                 radius={pxToRem('xs')}
                 placeholder={isMobile ? 'Charmander..' : 'Search for a Pokemon'}
                 variant='filled'
-                classNames={{ input: TextInputStyles.textInput }}
                 w={300}
                 leftSection={icon}
                 onChange={(e: any) => onSearchInput(e.target.value)}

@@ -1,18 +1,27 @@
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
-import './styles.css';
-import { Center, Flex, MantineProvider, Paper } from '@mantine/core';
+import { Center, Flex, MantineProvider } from '@mantine/core';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import '@mantine/notifications/styles.css';
 import { Notifications } from '@mantine/notifications';
 import { theme } from './theme';
 import { theme as customTheme } from './theme/theme';
-import { Home } from './pages/Home/Home';
-import { Gallery } from './pages/Gallery/Gallery';
-import { Studio } from './pages/Studio/Studio';
-import { Dashboard } from './pages/Dashboard/Dashboard';
+import { Home, Gallery, Studio, Dashboard } from './pages';
 import { NavigationBar } from './components/Common/NavigationBar';
 import { isMobile } from './config';
+import { Paper } from './components/Base';
+import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
+import '@mantine/notifications/styles.css';
+import './styles.css';
+import styled from 'styled-components';
+import { pxToRem } from './utils';
+
+const StyledPaper = styled(Paper)`
+  padding: ${pxToRem('xs')};
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: ${customTheme.colors.bg.bgGray15};
+`;
 
 export default function App() {
   return (
@@ -20,14 +29,7 @@ export default function App() {
       <Notifications />
       <Router>
         <Center h={isMobile ? '100dvh' : '100vh'} w={'100vw'} display={'block'}>
-          <Paper
-            p='sm'
-            m='auto'
-            w={'100%'}
-            h={'100%'}
-            mah={'100%'}
-            bg={customTheme.colors.bg.bgGray15}
-          >
+          <StyledPaper>
             <Flex w={'95%'} h={75} justify='center' align='center' m={'auto'}>
               <NavigationBar />
             </Flex>
@@ -37,7 +39,7 @@ export default function App() {
               <Route path='/studio' element={<Studio />} />
               <Route path='/dashboard' element={<Dashboard />} />
             </Routes>
-          </Paper>
+          </StyledPaper>
         </Center>
       </Router>
       {/* <Index /> */}

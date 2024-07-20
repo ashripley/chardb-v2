@@ -1,6 +1,5 @@
 import { Carousel } from '@mantine/carousel';
 import { Card, Flex, Grid, Group, Text } from '@mantine/core';
-import classes from '../../../modules/Carousel.module.css';
 import styled from 'styled-components';
 import { TileRenderer } from '../tileRenderer';
 import { IconFlame } from '@tabler/icons-react';
@@ -10,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';
 import { pxToRem } from '../../../utils';
+import { CarouselStyles } from '../../Base/Carousel';
 
 const StyledCarousel = styled(Carousel)`
   height: 70%;
@@ -70,7 +70,7 @@ export const TileCarousel: TileRenderer = (props) => {
   }
 
   return (
-    <StyledCarousel controlsOffset='xs' classNames={classes}>
+    <StyledCarousel controlsOffset='xs' classNames={CarouselStyles}>
       <Carousel.Slide>
         <Column span={12} h={'85%'}>
           <MantineContainerCard>
