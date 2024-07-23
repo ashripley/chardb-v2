@@ -3,6 +3,7 @@ import { RootStore } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { isMobile } from '../../config';
 import { Image, Button } from '../Base';
+import { pxToRem } from '../../utils';
 
 export const Analytics = () => {
   const { attributes, pokemon, cards } = useSelector(
@@ -48,7 +49,7 @@ export const Analytics = () => {
       >
         <Card
           padding='lg'
-          radius='md'
+          radius={pxToRem('xs')}
           withBorder
           miw={isMobile ? '' : 450}
           w={isMobile ? '100%' : '30%'}
@@ -93,7 +94,7 @@ export const Analytics = () => {
 
         <Card
           padding='lg'
-          radius='md'
+          radius={pxToRem('xs')}
           withBorder
           miw={isMobile ? '' : 450}
           w={isMobile ? '100%' : '30%'}
@@ -128,7 +129,7 @@ export const Analytics = () => {
 
         <Card
           padding='lg'
-          radius='md'
+          radius={pxToRem('xs')}
           withBorder
           miw={isMobile ? '' : 450}
           w={isMobile ? '100%' : '30%'}

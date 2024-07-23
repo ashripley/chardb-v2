@@ -4,9 +4,14 @@ import { theme } from '../../../theme/theme';
 import { setView } from '../../../redux/gallery';
 import { GalleryViewType } from '../../../config';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 export const CardViewSegment = () => {
   const dispatch = useDispatch();
+  const [tileColor, setTileColor] = useState<string>(
+    theme.colors.bg.bgDarkGray75
+  );
+  const [cardColor, setCardColor] = useState<string>('white');
 
   const iconProps = {
     style: {
@@ -17,8 +22,19 @@ export const CardViewSegment = () => {
     stroke: 1.5,
   };
 
-  const onViewChange = (value: string) =>
+  const onViewChange = (value: string) => {
+    if (value === 'tile') {
+      setTileColor('white');
+      setCardColor(theme.colors.bg.bgDarkGray75);
+    } else if (value === 'card') {
+      setCardColor('white');
+      setTileColor(theme.colors.bg.bgDarkGray75);
+    } else {
+      return;
+    }
+
     dispatch(setView(value as GalleryViewType));
+  };
 
   return (
     <SegmentedControl
@@ -36,7 +52,7 @@ export const CardViewSegment = () => {
           value: 'tile',
           label: (
             <>
-              <IconGridDots color='white' fill='white' {...iconProps} />
+              <IconGridDots color={tileColor} fill={tileColor} {...iconProps} />
               <VisuallyHidden>Tile</VisuallyHidden>
             </>
           ),
@@ -45,7 +61,11 @@ export const CardViewSegment = () => {
           value: 'card',
           label: (
             <>
-              <IconLayoutGrid color='white' fill='white' {...iconProps} />
+              <IconLayoutGrid
+                color={cardColor}
+                fill={cardColor}
+                {...iconProps}
+              />
               <VisuallyHidden>Card</VisuallyHidden>
             </>
           ),

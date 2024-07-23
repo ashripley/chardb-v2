@@ -7,7 +7,7 @@ import { NoResultsFound } from '../../Common/NoResultsFound';
 import { theme } from '../../../theme/theme';
 import { CardDefinition } from '../../../api/card';
 import { Card } from '../../Card';
-import { Tile } from '../../Tile/Tile';
+import { Tile } from '../../Tile';
 
 export const Cards = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

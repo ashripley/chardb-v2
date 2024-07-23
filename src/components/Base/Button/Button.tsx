@@ -1,10 +1,9 @@
 import { Button as BaseButton, ButtonProps } from '@mantine/core';
-import { ComponentProps } from 'react';
 
 interface Props extends ButtonProps {
-  onClick?: ComponentProps<typeof BaseButton>;
+  onClick: () => void;
 }
 
 export function Button(props: Props) {
-  return <BaseButton {...props} onClick={() => props.onClick} />;
+  return <BaseButton {...props} />;
 }

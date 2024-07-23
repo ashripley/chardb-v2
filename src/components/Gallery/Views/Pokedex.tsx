@@ -1,26 +1,25 @@
-import { GalleryStore, StudioStore } from '../../../redux/store';
+import { GalleryStore, RootStore } from '../../../redux/store';
 import { useSelector } from 'react-redux';
-import { PokedexTile } from '../Tiles/PokedexTile';
 import { Flex, Space } from '@mantine/core';
 import { CustomPagination } from '../../Common/CustomPagination';
 import { useEffect, useState } from 'react';
 import { NoResultsFound } from '../../Common/NoResultsFound';
+import { CustomTile } from '../../Tile';
+import { PokemonDefinition } from '../../../api/pokemon';
 
 export const Pokedex = () => {
-  const { pokemon: allPokemon } = useSelector(
-    (state: StudioStore) => state.studio
-  );
+  const { pokemon } = useSelector((state: RootStore) => state.root);
   const { searchTerm } = useSelector((state: GalleryStore) => state.gallery);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [filteredPokedex, setFilteredPokedex] = useState<Record<string, any>[]>(
+  const [filteredPokedex, setFilteredPokedex] = useState<PokemonDefinition[]>(
     []
   );
 
   const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const sortedPokedexById = Object.fromEntries(
-    Object.entries(allPokemon).sort(
+    Object.entries(pokemon).sort(
       ([, { id: idA }], [, { id: idB }]) => idA - idB
     )
   );
@@ -51,8 +50,8 @@ export const Pokedex = () => {
           <Flex justify='space-evenly' wrap='wrap' gap={20}>
             {filteredPokedex
               .slice(startIndex, endIndex)
-              .map((pokemon: Record<string, any>, index: number) => (
-                <PokedexTile pokemon={pokemon} key={index} />
+              .map((pokemon: PokemonDefinition, index: number) => (
+                <CustomTile pokemon={pokemon} key={index} />
               ))}
           </Flex>
           <Space h={25} />
