@@ -29,6 +29,7 @@ export interface AttributeCardDefinition {
 }
 
 const isOptionalObject = combineValidators(isOptional, isObject);
+const isOptionalNumber = combineValidators(isOptional, isNumber);
 const isOptionalBoolean = combineValidators(isOptional, isBoolean);
 
 export function validateAttributeCardDefinition(
@@ -50,10 +51,10 @@ export function validateCardDefinition(
     validate(cardDefinition, 'cardId', isString);
   }
 
-  validate(cardDefinition, 'quantity', isNumber);
-  validate(cardDefinition, 'setNumber', isNumber);
-  validate(cardDefinition, 'attributes', isObject);
-  validate(cardDefinition, 'pokemonData', isObject);
+  validate(cardDefinition, 'quantity', isOptionalNumber);
+  validate(cardDefinition, 'setNumber', isOptionalNumber);
+  validate(cardDefinition, 'attributes', isOptionalObject);
+  validate(cardDefinition, 'pokemonData', isOptionalObject);
   validate(cardDefinition, 'meta', isOptionalObject);
 }
 

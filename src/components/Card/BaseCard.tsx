@@ -2,8 +2,12 @@ import { Card, Divider, Flex, Grid, Group, Paper, Space } from '@mantine/core';
 import { IconFlame } from '@tabler/icons-react';
 import { theme } from '../../theme/theme';
 import { pxToRem } from '../../utils';
+import { useSelector } from 'react-redux';
+import { RootStore } from '../../redux/store';
 
 export const BaseCard = () => {
+  const { currentCard } = useSelector((state: RootStore) => state.root);
+
   return (
     <>
       <Card
@@ -11,7 +15,11 @@ export const BaseCard = () => {
         mih={450}
         maw={350}
         radius={pxToRem('sm')}
-        bg={theme.colors.bg.bgGray100}
+        bg={
+          currentCard
+            ? theme.colors.types[currentCard.pokemonData.type]
+            : theme.colors.bg.bgGray100
+        }
       >
         <Grid w={'100%'}>
           <Grid.Col span={12}>

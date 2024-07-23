@@ -14,9 +14,11 @@ import { CardForm } from '../../components/Form';
 import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDetails';
 import { DBCard } from '../../components/Studio/Cards/DBCard';
 import { DataForm } from '../../components/Form/DataForm';
+// import { DisplayCard } from '../../components/Card/DisplayCard';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
+  // const { currentCard } = useSelector((state: RootStore) => state.root);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +33,7 @@ export const Studio = () => {
     create: {
       left: <CardForm />,
       right: <BaseCard />,
+      //right: currentCard ? <DisplayCard card={currentCard} /> : <BaseCard />,
     },
     update: {
       left: <UpdateCardDetails />,

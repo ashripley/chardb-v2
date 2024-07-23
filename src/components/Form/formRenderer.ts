@@ -5,7 +5,7 @@ import { FormType } from '../../config';
 
 export type FormDefinition = AttributeDefinition & CardDefinition;
 
-interface FormRendererOptions {
+export interface FormRendererOptions {
   formDefinition: FormDefinition;
   type: FormType;
   onChange: (props: Partial<FormDefinition>) => void;

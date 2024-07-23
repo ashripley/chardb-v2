@@ -3,10 +3,12 @@ import { useId, useState } from 'react';
 import { theme } from '../../theme/theme';
 import Form, { FormDefinition } from '../../components/Form';
 import { addCardMutation, validateCardDefinition } from '../../api/card';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils';
+import { FormRendererOptions } from './formRenderer';
+import { setCurrentCard } from '../../redux/root';
 
 const Container = styled(Center)`
   height: 100%;
@@ -24,6 +26,7 @@ const StyledFlex = styled(Flex)`
 
 export const CardForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const cardId = useId();
 
   const [formData, setFormData] = useState<FormDefinition>();
@@ -48,6 +51,13 @@ export const CardForm = () => {
     }
   };
 
+  function onFormChange(
+    updatedData: Parameters<FormRendererOptions['onChange']>[0]
+  ) {
+    setFormData({ ...formData, ...updatedData } as FormDefinition);
+    dispatch(setCurrentCard({ ...formData, ...updatedData } as FormDefinition));
+  }
+
   return (
     <Container>
       <StyledFlex>
@@ -59,9 +69,7 @@ export const CardForm = () => {
         <Space h={50} />
         <Form
           formDefinition={{ ...formData, type: 'card' } as FormDefinition}
-          onChange={(updatedData) => {
-            setFormData({ ...formData, ...updatedData } as FormDefinition);
-          }}
+          onChange={onFormChange}
           type='newCard'
         />
         <Space h={50} />

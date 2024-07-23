@@ -23,11 +23,15 @@ export const CardFormRenderer: FormRenderer = (props) => {
 
   const onNameChange = (val: string | null) => {
     if (val !== null) {
+      const pokemonDataDTO = pokemon.find(
+        (mon) => mon.name === val.toLowerCase()
+      );
+
       props.onChange({
         ...formDefinition,
         pokemonData: {
           ...formDefinition?.pokemonData,
-          name: val,
+          ...pokemonDataDTO,
         },
       });
     }
@@ -100,6 +104,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           w={'45%'}
           required
           onChange={(val) => onAttributeChange(val, 'set')}
+          disabled={!formDefinition?.['pokemonData']}
         />
         <NumberInput
           variant='filled'
@@ -110,6 +115,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           required
           value={formDefinition?.setNumber}
           onChange={(val) => onBaseChange(val, 'setNumber')}
+          disabled={!formDefinition?.['pokemonData']}
         />
       </Flex>
       <Flex w={'100%'} justify={'space-between'}>
@@ -126,6 +132,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           required
           value={formDefinition?.attributes?.cardType}
           onChange={(val) => onAttributeChange(val, 'cardType')}
+          disabled={!formDefinition?.['pokemonData']}
         />
         <Select
           placeholder='Condition'
@@ -140,6 +147,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           required
           value={formDefinition?.attributes?.condition}
           onChange={(val) => onAttributeChange(val, 'condition')}
+          disabled={!formDefinition?.['pokemonData']}
         />
       </Flex>
       <Flex w={'100%'} justify={'space-between'} align={'center'}>
@@ -152,6 +160,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           required
           value={formDefinition?.quantity ?? ''}
           onChange={(val) => onBaseChange(val, 'quantity')}
+          disabled={!formDefinition?.['pokemonData']}
         />
         <Checkbox
           color='gray'
@@ -163,6 +172,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           checked={formDefinition?.attributes?.isGraded || false}
           onChange={onEventChange}
           h={'100%'}
+          disabled={!formDefinition?.['pokemonData']}
         />
       </Flex>
       <Flex w={'100%'} justify={'space-between'}>
@@ -176,6 +186,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
             required
             value={formDefinition?.attributes?.grading}
             onChange={(val) => onAttributeChange(val, 'grading')}
+            disabled={!formDefinition?.['pokemonData']}
           />
         ) : (
           <></>
