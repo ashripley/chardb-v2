@@ -3,6 +3,7 @@ import { AppType, FormType, GalleryApp } from '../config';
 import { PokemonDefinition } from '../api/pokemon';
 import { AttributeCardDefinition, CardDefinition } from '../api/card';
 import { AttributeDefinition } from '../api/attribute';
+import { TempCardDefinition } from '../api/card/cardDefinition';
 
 interface StoreState {
   page: AppType;
@@ -11,7 +12,7 @@ interface StoreState {
   cardAttributes: AttributeCardDefinition[];
   attributes: AttributeDefinition[];
   cards: CardDefinition[];
-  currentCard: CardDefinition | undefined;
+  currentCard: TempCardDefinition | undefined;
   formType: FormType;
 }
 

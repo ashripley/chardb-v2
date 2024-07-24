@@ -39,13 +39,14 @@ export const CardForm = () => {
       if (formData) {
         const formDataToAdd = { ...formData, cardId };
         validateCardDefinition(formDataToAdd);
-        await addCardMutation(formDataToAdd, pokemon);
+        addCardMutation(formDataToAdd, pokemon);
       }
     } catch (error) {
       throw new Error(`${error}`);
     } finally {
       setTimeout(() => {
         setIsLoading(false);
+        dispatch(setCurrentCard(undefined));
         setFormData({} as FormDefinition);
       }, 1000);
     }

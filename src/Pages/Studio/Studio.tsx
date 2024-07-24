@@ -2,7 +2,7 @@ import { Flex } from '@mantine/core';
 import { StudioViewSegment } from '../../components/Studio/Segments/StudioView';
 import { BaseCard } from '../../components/Card/BaseCard';
 import { DBTypeSegment } from '../../components/Studio/Segments/DBType';
-import { StudioStore } from '../../redux/store';
+import { RootStore, StudioStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setView } from '../../redux/studio';
@@ -14,11 +14,11 @@ import { CardForm } from '../../components/Form';
 import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDetails';
 import { DBCard } from '../../components/Studio/Cards/DBCard';
 import { DataForm } from '../../components/Form/DataForm';
-// import { DisplayCard } from '../../components/Card/DisplayCard';
+import { TempDisplayCard } from '../../components/Card/TempDisplayCard';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
-  // const { currentCard } = useSelector((state: RootStore) => state.root);
+  const { currentCard } = useSelector((state: RootStore) => state.root);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,8 +32,11 @@ export const Studio = () => {
   const viewComponentContent = {
     create: {
       left: <CardForm />,
-      right: <BaseCard />,
-      //right: currentCard ? <DisplayCard card={currentCard} /> : <BaseCard />,
+      right: currentCard?.pokemonData?.name ? (
+        <TempDisplayCard card={currentCard} />
+      ) : (
+        <BaseCard />
+      ),
     },
     update: {
       left: <UpdateCardDetails />,
