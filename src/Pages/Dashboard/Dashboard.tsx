@@ -7,6 +7,7 @@ import { Analytics } from './Views';
 import { isMobile } from '../../config';
 import { allCards, allAttributes, allPokemon } from '../../api';
 import { Button, Loader, Paper, ScrollArea } from '../../components/Base';
+import { allImages } from '../../api/images/images';
 
 const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {
@@ -28,6 +29,7 @@ export const Dashboard = () => {
       allCards(dispatch);
       allPokemon(dispatch);
       allAttributes(dispatch);
+      allImages(dispatch);
     } catch (e) {
       throw new Error(`Error: ${e}`);
     } finally {

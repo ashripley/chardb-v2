@@ -11,6 +11,7 @@ import { PokemonDefinition } from '../api/pokemon';
 import { AttributeCardDefinition, CardDefinition } from '../api/card';
 import { AttributeDefinition } from '../api/attribute';
 import { TempCardDefinition } from '../api/card/cardDefinition';
+import { ImagesDefinition } from '../api/images/imagesDefinition';
 
 interface StoreState {
   page: AppType;
@@ -19,6 +20,7 @@ interface StoreState {
   cardAttributes: AttributeCardDefinition[];
   attributes: AttributeDefinition[];
   cards: CardDefinition[];
+  images: ImagesDefinition[];
   currentCard: TempCardDefinition | undefined;
   formType: FormType;
   studioView: StudioViewType;
@@ -33,6 +35,7 @@ const initialState: StoreState = {
   cardAttributes: [],
   attributes: [],
   cards: [],
+  images: [],
   currentCard: undefined,
   formType: 'set',
   studioView: 'create',
@@ -62,6 +65,9 @@ export const rootSlice = createSlice({
     setCards: (state, action: PayloadAction<StoreState['cards']>) => {
       state.cards = action.payload;
     },
+    setImages: (state, action: PayloadAction<StoreState['images']>) => {
+      state.images = action.payload;
+    },
     setCurrentCard: (
       state,
       action: PayloadAction<StoreState['currentCard']>
@@ -90,6 +96,7 @@ export const {
   setAttributes,
   setFormType,
   setCards,
+  setImages,
   setCurrentCard,
   setStudioView,
   setGalleryView,

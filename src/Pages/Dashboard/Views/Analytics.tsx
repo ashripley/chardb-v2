@@ -10,7 +10,7 @@ import { theme } from '../../../styles/theme';
 
 export const Analytics = () => {
   const dispatch = useDispatch();
-  const { attributes, pokemon, cards } = useSelector(
+  const { attributes, pokemon, cards, images } = useSelector(
     (state: RootStore) => state.root
   );
 
@@ -63,10 +63,7 @@ export const Analytics = () => {
           w={isMobile ? '100%' : '30%'}
         >
           <Card.Section>
-            <Image
-              src='https://github.com/giorgosioak/pokemon-wallpapers/blob/master/pokemon/venusaur.jpg?raw=true'
-              h='auto'
-            />
+            <Image src={images[0]?.cards} h='auto' />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
@@ -114,10 +111,7 @@ export const Analytics = () => {
           w={isMobile ? '100%' : '30%'}
         >
           <Card.Section>
-            <Image
-              src='https://github.com/giorgosioak/pokemon-wallpapers/blob/master/pokemon/charizard.jpg?raw=true'
-              h='auto'
-            />
+            <Image src={images[0]?.attributes} h='auto' />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
@@ -161,10 +155,7 @@ export const Analytics = () => {
           w={isMobile ? '100%' : '30%'}
         >
           <Card.Section>
-            <Image
-              src='https://github.com/giorgosioak/pokemon-wallpapers/blob/master/pokemon/blastoise.jpg?raw=true'
-              h='auto'
-            />
+            <Image src={images[0]?.pokemon} h='auto' />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
