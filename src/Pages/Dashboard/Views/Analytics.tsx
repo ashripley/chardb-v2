@@ -1,9 +1,9 @@
 import { Flex, Text, Group, Badge, Card } from '@mantine/core';
-import { RootStore } from '../../redux/store';
+import { RootStore } from '../../../redux/store';
 import { useSelector } from 'react-redux';
-import { isMobile } from '../../config';
-import { Image, Button } from '../Base';
-import { pxToRem } from '../../utils';
+import { isMobile } from '../../../config';
+import { Image, Button } from '../../../components/Base';
+import { pxToRem } from '../../../utils';
 
 export const Analytics = () => {
   const { attributes, pokemon, cards } = useSelector(

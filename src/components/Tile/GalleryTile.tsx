@@ -1,10 +1,10 @@
 import { Card, Flex, Grid, Group, Paper, Text } from '@mantine/core';
 import { IconFlame } from '@tabler/icons-react';
-import { Theme, theme } from '../../../theme/theme';
+import { Theme, theme } from '../../theme/theme';
 import { Carousel } from '@mantine/carousel';
 import classes from '../../../modules/Carousel.module.css';
 import { createElement } from 'react';
-import { upperCaseFirst } from '../../../utils/upperCaseFirst';
+import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import styled from 'styled-components';
 
 interface Props {

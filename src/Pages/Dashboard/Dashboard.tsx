@@ -3,7 +3,7 @@ import { theme } from '../../theme/theme';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Analytics } from '../../components/Dashboard/Analytics';
+import { Analytics } from './Views/Analytics';
 import { isMobile } from '../../config';
 import { allCards } from '../../api/card';
 import { allPokemon } from '../../api/pokemon';

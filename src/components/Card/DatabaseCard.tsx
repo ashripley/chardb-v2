@@ -8,16 +8,16 @@ import {
   CloseButton,
 } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../../../redux/store';
-import { theme } from '../../../theme/theme';
+import { RootStore } from '../../redux/store';
+import { theme } from '../../theme/theme';
 import {
   AttributeDefinition,
   deleteAttributeMutation,
-} from '../../../api/attribute';
-import { setAttributes } from '../../../redux/root';
-import { pxToRem } from '../../../utils';
+} from '../../api/attribute';
+import { setAttributes } from '../../redux/root';
+import { pxToRem } from '../../utils';
 
-export const DBCard = () => {
+export const DatabaseCard = () => {
   const { attributes, formType } = useSelector(
     (state: RootStore) => state.root
   );

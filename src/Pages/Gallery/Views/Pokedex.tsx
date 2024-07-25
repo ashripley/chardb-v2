@@ -1,11 +1,11 @@
-import { RootStore } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { Flex, Space } from '@mantine/core';
-import { CustomPagination } from '../../Common/CustomPagination';
 import { useEffect, useState } from 'react';
-import { NoResultsFound } from '../../Common/NoResultsFound';
-import { CustomTile } from '../../Tile';
+import { RootStore } from '../../../redux/store';
 import { PokemonDefinition } from '../../../api/pokemon';
+import { CustomTile } from '../../../components/Tile';
+import { CustomPagination } from '../../../components/Pagination/CustomPagination';
+import { EmptyState } from '../../../components/EmptyState';
 
 export const Pokedex = () => {
   const { pokemon, searchTerm } = useSelector((state: RootStore) => state.root);
@@ -61,7 +61,7 @@ export const Pokedex = () => {
           />
         </>
       ) : (
-        <NoResultsFound />
+        <EmptyState />
       )}
     </>
   );

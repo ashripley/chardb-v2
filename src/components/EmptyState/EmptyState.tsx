@@ -1,7 +1,7 @@
 import { Card, Flex, Space, Title } from '@mantine/core';
 import { theme } from '../../theme/theme';
 
-export const NoResultsFound = () => {
+export const EmptyState = () => {
   return (
     <>
       <Card m={'auto'} p={'xl'} bg={'none'} h={'100%'} w={'100%'}>

@@ -4,7 +4,7 @@ import { Notifications } from '@mantine/notifications';
 import { theme } from './theme';
 import { theme as customTheme } from './theme/theme';
 import { Home, Gallery, Studio, Dashboard } from './pages';
-import { NavigationBar } from './components/Common/NavigationBar';
+import { NavigationBar } from './components/NavigationBar/NavigationBar';
 import { isMobile } from './config';
 import { Paper } from './components/Base';
 import '@mantine/core/styles.css';

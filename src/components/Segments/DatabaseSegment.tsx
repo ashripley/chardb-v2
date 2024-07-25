@@ -1,10 +1,10 @@
 import { SegmentedControl, Text } from '@mantine/core';
-import { theme } from '../../../theme/theme';
 import { useDispatch } from 'react-redux';
-import { setFormType } from '../../../redux/root';
-import { pxToRem } from '../../../utils';
+import { setFormType } from '../../redux/root';
+import { pxToRem } from '../../utils';
+import { theme } from '../../theme/theme';
 
-export const DBTypeSegment = () => {
+export const DatabaseSegment = () => {
   const dispatch = useDispatch();
 
   const onChange = (val: any) => {

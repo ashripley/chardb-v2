@@ -3,19 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from '@mantine/core';
 import { theme } from '../../theme/theme';
 import { IconSearch } from '@tabler/icons-react';
-import { CardViewSegment } from '../../components/Gallery/Segments/CardView';
+import { CardSegment } from '../../components/Segments/CardSegment';
 import { GalleryApp, isMobile } from '../../config';
 import { RootStore } from '../../redux/store';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
 import { allPokemon } from '../../api/pokemon';
-import { Cards } from '../../components/Gallery/Views/Cards';
-import { Pokedex } from '../../components/Gallery/Views/Pokedex';
 import { useLocation } from 'react-router-dom';
 import { pxToRem } from '../../utils';
 import { Button, Loader, ScrollArea, TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
 import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
+import { Cards, Pokedex } from './Views';
 
 export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -121,7 +120,7 @@ export const Gallery = () => {
                   </Button>
                 </Flex>
                 <Flex w={'auto'} justify={'flex-end'} gap={10}>
-                  {app === 'cards' && !isMobile && <CardViewSegment />}
+                  {app === 'cards' && !isMobile && <CardSegment />}
                   <TextInput
                     radius={pxToRem('xs')}
                     placeholder={

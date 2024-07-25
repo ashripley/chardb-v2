@@ -1,12 +1,12 @@
 import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { IconGridDots, IconLayoutGrid } from '@tabler/icons-react';
-import { theme } from '../../../theme/theme';
-import { GalleryViewType } from '../../../config';
+import { theme } from '../../theme/theme';
+import { GalleryViewType } from '../../config';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { setGalleryView } from '../../../redux/root';
+import { setGalleryView } from '../../redux/root';
 
-export const CardViewSegment = () => {
+export const CardSegment = () => {
   const dispatch = useDispatch();
   const [tileColor, setTileColor] = useState<string>(
     theme.colors.bg.bgDarkGray75

@@ -1,12 +1,12 @@
 import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { IconPlus, IconReload, IconDatabase } from '@tabler/icons-react';
-import { theme } from '../../../theme/theme';
 import { useDispatch } from 'react-redux';
-import { StudioViewType } from '../../../config';
-import { pxToRem } from '../../../utils';
-import { setCurrentCard, setStudioView } from '../../../redux/root';
+import { setCurrentCard, setStudioView } from '../../redux/root';
+import { StudioViewType } from '../../config';
+import { pxToRem } from '../../utils';
+import { theme } from '../../theme/theme';
 
-export const StudioViewSegment = () => {
+export const StudioSegment = () => {
   const dispatch = useDispatch();
 
   const iconProps = {

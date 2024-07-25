@@ -1,16 +1,16 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../../../redux/store';
+import { RootStore } from '../../redux/store';
 import { useState } from 'react';
-import { theme } from '../../../theme/theme';
-import Form, { FormDefinition } from '../../Form';
-import { deleteCardMutation, updateCardMutation } from '../../../api/card';
-import { setCurrentCard } from '../../../redux/root';
-import { pxToRem } from '../../../utils';
+import { theme } from '../../theme/theme';
+import Form, { FormDefinition } from '.';
+import { deleteCardMutation, updateCardMutation } from '../../api/card';
+import { setCurrentCard } from '../../redux/root';
+import { pxToRem } from '../../utils';
 import {
   CardDefinition,
   TempCardDefinition,
-} from '../../../api/card/cardDefinition';
+} from '../../api/card/cardDefinition';
 
 interface ActionButtonProps {
   bg: string;
@@ -21,7 +21,7 @@ interface ActionButtonProps {
   loaderColour: string;
 }
 
-export const UpdateCardDetails = () => {
+export const UpdateCardForm = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 

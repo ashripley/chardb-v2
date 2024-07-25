@@ -1,7 +1,5 @@
 import { Flex } from '@mantine/core';
-import { StudioViewSegment } from '../../components/Studio/Segments/StudioView';
 import { BaseCard } from '../../components/Card/BaseCard';
-import { DBTypeSegment } from '../../components/Studio/Segments/DBType';
 import { RootStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -10,11 +8,12 @@ import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
 import { Canvas } from '../../layouts/Canvas';
 import { CardForm } from '../../components/Form';
-import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDetails';
-import { DBCard } from '../../components/Studio/Cards/DBCard';
+import { UpdateCardForm } from '../../components/Form/UpdateCardForm';
+import { DatabaseCard } from '../../components/Card/DatabaseCard';
 import { DataForm } from '../../components/Form/DataForm';
 import { TempDisplayCard } from '../../components/Card/TempDisplayCard';
 import { setCurrentCard, setStudioView } from '../../redux/root';
+import { DatabaseSegment, StudioSegment } from '../../components/Segments';
 
 export const Studio = () => {
   const { currentCard, studioView } = useSelector(
@@ -40,7 +39,7 @@ export const Studio = () => {
       ),
     },
     update: {
-      left: <UpdateCardDetails />,
+      left: <UpdateCardForm />,
       right: currentCard?.pokemonData?.name ? (
         <TempDisplayCard card={currentCard} />
       ) : (
@@ -49,7 +48,7 @@ export const Studio = () => {
     },
     db: {
       left: <DataForm />,
-      right: <DBCard />,
+      right: <DatabaseCard />,
     },
   };
 
@@ -66,7 +65,7 @@ export const Studio = () => {
               miw={70}
               pr={10}
             >
-              <StudioViewSegment />
+              <StudioSegment />
             </Flex>
             <Flex
               h={'100%'}
@@ -95,7 +94,7 @@ export const Studio = () => {
                   align={'center'}
                   justify={'center'}
                 >
-                  <DBTypeSegment />
+                  <DatabaseSegment />
                 </Flex>
               )}
             </Flex>

@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { Flex, Loader, Space } from '@mantine/core';
-import { CustomPagination } from '../../Common/CustomPagination';
 import { useEffect, useState } from 'react';
-import { NoResultsFound } from '../../Common/NoResultsFound';
 import { theme } from '../../../theme/theme';
 import { CardDefinition } from '../../../api/card';
-import { Card } from '../../Card';
-import { Tile } from '../../Tile';
+import { EmptyState } from '../../../components/EmptyState';
+import { CustomPagination } from '../../../components/Pagination';
+import { Card } from '../../../components/Card';
+import { Tile } from '../../../components/Tile';
 
 export const Cards = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -76,7 +76,7 @@ export const Cards = () => {
           />
         </>
       ) : (
-        <NoResultsFound />
+        <EmptyState />
       )}
     </>
   );
