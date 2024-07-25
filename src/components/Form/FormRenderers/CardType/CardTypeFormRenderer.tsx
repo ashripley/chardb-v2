@@ -1,7 +1,7 @@
 import { Flex, TextInput } from '@mantine/core';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { pxToRem } from '../../../../utils/responsiveSize';
+import { pxToRem } from '../../../../utils';
 import { FormRenderer } from '../../formRenderer';
 import { NumberInputStyles } from '../../../Base/NumberInput';
 import { validateAttributeDefinition } from '../../../../api/attribute';

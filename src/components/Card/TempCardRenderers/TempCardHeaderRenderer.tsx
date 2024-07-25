@@ -1,10 +1,9 @@
 import { Flex, Paper, Text } from '@mantine/core';
 import styled from 'styled-components';
-import { upperCaseFirst } from '../../../utils/upperCaseFirst';
+import { upperCaseFirst } from '../../../utils';
 import { pxToRem } from '../../../utils/responsiveSize';
 import { createElement } from 'react';
 import { theme } from '../../../styles/theme';
-import { IconFlame } from '@tabler/icons-react';
 import { TempCardRenderer } from '../cardRenderer';
 import icons from '../../../assets/icons';
 
@@ -48,7 +47,7 @@ export const TempCardHeaderRenderer: TempCardRenderer = (props) => {
               color: theme.colors.types[type],
             })
           ) : (
-            <IconFlame
+            <icons.fire
               style={{ width: pxToRem('sm'), height: pxToRem('sm') }}
               stroke={1.5}
               color='var(--mantine-color-white)'

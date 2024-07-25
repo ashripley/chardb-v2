@@ -10,7 +10,7 @@ import {
 import { theme } from '../../styles/theme';
 import { camelCaseToTitleCase, pxToRem } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
-import Form, { FormDefinition } from '../../components/Form';
+import { Form, FormDefinition } from '../../components/Form';
 import { FormType } from '../../config';
 import styled from 'styled-components';
 

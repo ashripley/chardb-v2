@@ -1,10 +1,10 @@
 import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
-import { IconGridDots, IconLayoutGrid } from '@tabler/icons-react';
 import { theme } from '../../styles/theme';
 import { GalleryViewType } from '../../config';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { setGalleryView } from '../../redux/root';
+import icons from '../../assets/icons';
 
 export const CardSegment = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ export const CardSegment = () => {
           value: 'tile',
           label: (
             <>
-              <IconGridDots color={tileColor} fill={tileColor} {...iconProps} />
+              <icons.tile color={tileColor} fill={tileColor} {...iconProps} />
               <VisuallyHidden>Tile</VisuallyHidden>
             </>
           ),
@@ -61,11 +61,7 @@ export const CardSegment = () => {
           value: 'card',
           label: (
             <>
-              <IconLayoutGrid
-                color={cardColor}
-                fill={cardColor}
-                {...iconProps}
-              />
+              <icons.grid color={cardColor} fill={cardColor} {...iconProps} />
               <VisuallyHidden>Card</VisuallyHidden>
             </>
           ),

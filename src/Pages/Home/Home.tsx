@@ -1,5 +1,4 @@
 import { Flex, Title, Text } from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
 import { theme } from '../../styles/theme';
 import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,7 +17,7 @@ import { pxToRem } from '../../utils';
 import icons from '../../assets/icons';
 
 const icon = (
-  <IconSearch
+  <icons.search
     style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
     color='white'
   />

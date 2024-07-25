@@ -1,11 +1,11 @@
 import { ActionIcon, Card, Flex } from '@mantine/core';
-import { IconChartBubble } from '@tabler/icons-react';
 import { useState } from 'react';
 import { theme } from '../../../styles/theme';
 import { CardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
-import { pxToRem } from '../../../utils/responsiveSize';
+import { pxToRem } from '../../../utils';
 import { EvolutionDefinition } from '../../../api/pokemon';
+import icons from '../../../assets/icons';
 
 const Container = styled(Card)`
   width: 90%;
@@ -87,7 +87,7 @@ export const CardImageRenderer: CardRenderer = (props) => {
               aria-label='evolutions'
               onClick={() => setIsEvolutions(!isEvolutions)}
             >
-              <IconChartBubble
+              <icons.evolutions
                 height={25}
                 width={25}
                 stroke={1}

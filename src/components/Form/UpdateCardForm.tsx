@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import { useState } from 'react';
 import { theme } from '../../styles/theme';
-import Form, { FormDefinition } from '.';
+import { Form, FormDefinition } from '.';
 import { deleteCardMutation, updateCardMutation } from '../../api/card';
 import { setCurrentCard } from '../../redux/root';
 import { pxToRem } from '../../utils';

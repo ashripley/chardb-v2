@@ -1,10 +1,10 @@
 import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
-import { IconPlus, IconReload, IconDatabase } from '@tabler/icons-react';
 import { useDispatch } from 'react-redux';
 import { setCurrentCard, setStudioView } from '../../redux/root';
 import { StudioViewType } from '../../config';
 import { pxToRem } from '../../utils';
 import { theme } from '../../styles/theme';
+import icons from '../../assets/icons';
 
 export const StudioSegment = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export const StudioSegment = () => {
           value: 'create',
           label: (
             <>
-              <IconPlus color='white' {...iconProps} />
+              <icons.plus color='white' {...iconProps} />
               <VisuallyHidden>Create</VisuallyHidden>
             </>
           ),
@@ -48,7 +48,7 @@ export const StudioSegment = () => {
           value: 'update',
           label: (
             <>
-              <IconReload color='white' {...iconProps} />
+              <icons.reload color='white' {...iconProps} />
               <VisuallyHidden>Update</VisuallyHidden>
             </>
           ),
@@ -57,7 +57,7 @@ export const StudioSegment = () => {
           value: 'db',
           label: (
             <>
-              <IconDatabase color='white' {...iconProps} />
+              <icons.database color='white' {...iconProps} />
               <VisuallyHidden>DB</VisuallyHidden>
             </>
           ),

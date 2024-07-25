@@ -6,7 +6,7 @@ import { theme } from '../../../styles/theme';
 import { CardDefinition } from '../../../api/card';
 import { EmptyState } from '../../../components/EmptyState';
 import { CustomPagination } from '../../../components/Pagination';
-import { Card } from '../../../components/Card';
+import { DisplayCard } from '../../../components/Card';
 import { Tile } from '../../../components/Tile';
 
 export const Cards = () => {
@@ -46,7 +46,7 @@ export const Cards = () => {
   const handlePageChange = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const CardsMap: Record<string, any> = {
-    card: Card,
+    card: DisplayCard,
     tile: Tile,
   };
 

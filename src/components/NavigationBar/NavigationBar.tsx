@@ -1,13 +1,13 @@
 import { ActionIcon, Button, Flex, Paper, Space } from '@mantine/core';
-import { IconFlame } from '@tabler/icons-react';
 import { theme } from '../../styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import { updateApp } from '../../redux/root';
 import { AppType, isMobile } from '../../config';
-import { upperCaseFirst } from '../../utils/upperCaseFirst';
+import { upperCaseFirst } from '../../utils';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import icons from '../../assets/icons';
 
 export const NavigationBar = () => {
   const apps = isMobile
@@ -35,7 +35,7 @@ export const NavigationBar = () => {
           <Flex justify='center' align='flex-start' h={'100%'} w={'100%'}>
             <Link to={'/'} onClick={() => onAppChange('Home' as AppType)}>
               <ActionIcon radius={'xl'} bg={'white'} variant='subtle'>
-                <IconFlame
+                <icons.fire
                   width={25}
                   height={25}
                   fill={theme.colors.accents.char}

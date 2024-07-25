@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { CardDefinition } from '../../api/card';
-import { TempCardDefinition } from '../../api/card/cardDefinition';
+import { CardDefinition, TempCardDefinition } from '../../api/card';
 import { TypesDefinition } from '../../styles/theme/colors';
 
 interface CardRendererOptions {

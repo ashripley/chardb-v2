@@ -18,6 +18,13 @@ import {
   IconSparkles,
   IconEye,
   TablerIconsProps,
+  IconPlus,
+  IconReload,
+  IconDatabase,
+  IconChartBubble,
+  IconGridDots,
+  IconLayoutGrid,
+  IconSearch,
 } from '@tabler/icons-react';
 
 interface IconsDefinition {
@@ -39,6 +46,13 @@ interface IconsDefinition {
   dark: (props: TablerIconsProps) => JSX.Element;
   steel: (props: TablerIconsProps) => JSX.Element;
   fairy: (props: TablerIconsProps) => JSX.Element;
+  plus: (props: TablerIconsProps) => JSX.Element;
+  reload: (props: TablerIconsProps) => JSX.Element;
+  database: (props: TablerIconsProps) => JSX.Element;
+  evolutions: (props: TablerIconsProps) => JSX.Element;
+  tile: (props: TablerIconsProps) => JSX.Element;
+  grid: (props: TablerIconsProps) => JSX.Element;
+  search: (props: TablerIconsProps) => JSX.Element;
 }
 
 const icons: IconsDefinition = {
@@ -60,5 +74,12 @@ const icons: IconsDefinition = {
   dark: IconMoonStars,
   steel: IconComet,
   fairy: IconSparkles,
+  plus: IconPlus,
+  reload: IconReload,
+  database: IconDatabase,
+  evolutions: IconChartBubble,
+  tile: IconGridDots,
+  grid: IconLayoutGrid,
+  search: IconSearch,
 };
 export default icons;

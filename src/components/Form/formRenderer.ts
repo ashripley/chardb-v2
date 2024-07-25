@@ -1,7 +1,9 @@
-import { AttributeDefinition } from '../../api/attribute';
-import { CardDefinition } from '../../api/card';
+import {
+  AttributeDefinition,
+  CardDefinition,
+  TempCardDefinition,
+} from '../../api';
 import { FormType } from '../../config';
-import { TempCardDefinition } from '../../api/card/cardDefinition';
 
 export type FormDefinition = AttributeDefinition &
   CardDefinition &

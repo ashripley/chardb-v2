@@ -1,12 +1,14 @@
 import { Grid } from '@mantine/core';
 import { CardRenderer } from './cardRenderer';
-import { CardHeaderRenderer } from './CardRenderers/CardHeaderRenderer';
-import { CardImageRenderer } from './CardRenderers/CardImageRenderer';
-import { CardBodyRenderer } from './CardRenderers/CardBodyRenderer';
-import { CardFooterRenderer } from './CardRenderers/CardFooterRenderer';
 import { validateCardDefinition } from '../../api/card';
 import styled from 'styled-components';
-import { CardShell } from './CardRenderers';
+import {
+  CardBodyRenderer,
+  CardFooterRenderer,
+  CardHeaderRenderer,
+  CardImageRenderer,
+  CardShell,
+} from './CardRenderers';
 
 const Column = styled(Grid.Col)``;
 

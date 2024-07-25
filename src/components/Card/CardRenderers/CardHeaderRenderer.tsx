@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { pxToRem, upperCaseFirst } from '../../../utils';
 import { createElement } from 'react';
 import { theme } from '../../../styles/theme';
-import { IconFlame } from '@tabler/icons-react';
 import { CardRenderer } from '../cardRenderer';
 import icons from '../../../assets/icons';
 
@@ -47,7 +46,7 @@ export const CardHeaderRenderer: CardRenderer = (props) => {
               color: theme.colors.types[type],
             })
           ) : (
-            <IconFlame
+            <icons.fire
               style={{ width: pxToRem('sm'), height: pxToRem('sm') }}
               stroke={1.5}
               color='var(--mantine-color-white)'

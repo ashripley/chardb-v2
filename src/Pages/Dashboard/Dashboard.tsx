@@ -3,11 +3,9 @@ import { theme } from '../../styles/theme';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Analytics } from './Views/Analytics';
+import { Analytics } from './Views';
 import { isMobile } from '../../config';
-import { allCards } from '../../api/card';
-import { allPokemon } from '../../api/pokemon';
-import { allAttributes } from '../../api/attribute';
+import { allCards, allAttributes, allPokemon } from '../../api';
 import { Button, Loader, Paper, ScrollArea } from '../../components/Base';
 
 const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`

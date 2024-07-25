@@ -2,14 +2,13 @@ import { Carousel } from '@mantine/carousel';
 import { Card, Flex, Grid, Group, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { TileRenderer } from '../tileRenderer';
-import { IconFlame } from '@tabler/icons-react';
 import { theme } from '../../../styles/theme';
-import { upperCaseFirst } from '../../../utils/upperCaseFirst';
+import { upperCaseFirst, pxToRem } from '../../../utils';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';
-import { pxToRem } from '../../../utils';
 import { CarouselStyles } from '../../Base/Carousel';
+import icons from '../../../assets/icons';
 
 const StyledCarousel = styled(Carousel)`
   height: 70%;
@@ -79,7 +78,7 @@ export const TileCarousel: TileRenderer = (props) => {
                 {imageUrl ? (
                   <img src={imageUrl} width={75} height={75} />
                 ) : (
-                  <IconFlame
+                  <icons.fire
                     width={100}
                     height={100}
                     stroke={1}

@@ -1,5 +1,4 @@
 import { Flex } from '@mantine/core';
-import { BaseCard } from '../../components/Card/BaseCard';
 import { RootStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -7,11 +6,9 @@ import { allPokemon } from '../../api/pokemon';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
 import { Canvas } from '../../layouts/Canvas';
-import { CardForm } from '../../components/Form';
+import { CardForm, DataForm } from '../../components/Form';
 import { UpdateCardForm } from '../../components/Form/UpdateCardForm';
-import { DatabaseCard } from '../../components/Card/DatabaseCard';
-import { DataForm } from '../../components/Form/DataForm';
-import { TempDisplayCard } from '../../components/Card/TempDisplayCard';
+import { TempDisplayCard, DatabaseCard, BaseCard } from '../../components/Card';
 import { setCurrentCard, setStudioView } from '../../redux/root';
 import { DatabaseSegment, StudioSegment } from '../../components/Segments';
 

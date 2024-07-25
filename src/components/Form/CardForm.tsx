@@ -1,7 +1,7 @@
 import { Button, Center, Flex, Space, Title } from '@mantine/core';
 import { useId, useState } from 'react';
 import { theme } from '../../styles/theme';
-import Form, { FormDefinition } from '../../components/Form';
+import { Form, FormDefinition } from '../../components/Form';
 import { addCardMutation, validateCardDefinition } from '../../api/card';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';

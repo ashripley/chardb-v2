@@ -2,19 +2,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from '@mantine/core';
 import { theme } from '../../styles/theme';
-import { IconSearch } from '@tabler/icons-react';
-import { CardSegment } from '../../components/Segments/CardSegment';
+import { CardSegment } from '../../components/Segments';
 import { GalleryApp, isMobile } from '../../config';
 import { RootStore } from '../../redux/store';
-import { allAttributes } from '../../api/attribute';
-import { allCards } from '../../api/card';
-import { allPokemon } from '../../api/pokemon';
+import { allAttributes, allCards, allPokemon } from '../../api';
 import { useLocation } from 'react-router-dom';
 import { pxToRem } from '../../utils';
 import { Button, Loader, ScrollArea, TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
 import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
 import { Cards, Pokedex } from './Views';
+import icons from '../../assets/icons';
 
 export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -52,7 +50,7 @@ export const Gallery = () => {
   };
 
   const icon = (
-    <IconSearch
+    <icons.search
       style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
       color='white'
     />
