@@ -3,8 +3,7 @@ import { IconSearch } from '@tabler/icons-react';
 import { theme } from '../../theme/theme';
 import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSearchTerm } from '../../redux/gallery';
-import { updateApp } from '../../redux/root';
+import { setSearchTerm, updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
 import {

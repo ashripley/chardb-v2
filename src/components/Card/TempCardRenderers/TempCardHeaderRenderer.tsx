@@ -1,6 +1,6 @@
 import { Flex, Paper, Text } from '@mantine/core';
 import styled from 'styled-components';
-import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { pxToRem } from '../../../utils/responsiveSize';
 import { createElement } from 'react';
 import { theme } from '../../../theme/theme';

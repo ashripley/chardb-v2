@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { firestore } from '../../services/firebase.config';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { notifications } from '@mantine/notifications';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { AttributeDefinition } from './attributeDefinition';
 import { setAttributes } from '../../redux/root';
 
@@ -23,32 +23,6 @@ export const allAttributes = async (dispatch: Dispatch<UnknownAction>) => {
 
   dispatch(setAttributes(attributesToDispatch));
 };
-
-// export const allAttributes = async (dispatch: Dispatch<UnknownAction>) => {
-//   try {
-//     const docRef = doc(firestore, 'attributes', 'data');
-//     const docSnap = await getDoc(docRef);
-//     const fetchedAttributes = docSnap.data() || {};
-
-//     const res = Object.values(fetchedAttributes);
-
-//     const attributes = res.reduce((acc, att) => {
-//       const { attribute, name, ...rest } = att;
-
-//       if (!acc[attribute]) {
-//         acc[attribute] = [{ name, attribute, ...rest }];
-//       } else {
-//         acc[attribute].push({ name, attribute, ...rest });
-//       }
-
-//       return acc;
-//     }, {});
-
-//     dispatch(setAttributes({ isCreate: false, ...attributes }));
-//   } catch (error) {
-//     throw new Error(`Error fetching attributes: ${error}`);
-//   }
-// };
 
 export const addAttributeMutation = async (attribute: AttributeDefinition) => {
   const uuid = uuidv4();
@@ -90,7 +64,6 @@ export const deleteAttributeMutation = async (attributeId: string) => {
 
   // remove attribute from db
   try {
-    // Remove the field in the data document that matches the name passed in
     await updateDoc(attributeRef, {
       [attributeId]: deleteField(),
     });

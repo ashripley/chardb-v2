@@ -1,6 +1,6 @@
 import { Card, Flex, Paper, Space, Text } from '@mantine/core';
 import { Theme, theme } from '../../../theme/theme';
-import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { createElement } from 'react';
 
 interface Props {

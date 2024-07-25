@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore';
 import { firestore } from '../../services/firebase.config';
 import { notifications } from '@mantine/notifications';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { PokemonDefinition } from './pokemonDefinition';
 import { setPokemon } from '../../redux/root';
 

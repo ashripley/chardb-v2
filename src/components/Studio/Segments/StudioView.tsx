@@ -2,10 +2,9 @@ import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { IconPlus, IconReload, IconDatabase } from '@tabler/icons-react';
 import { theme } from '../../../theme/theme';
 import { useDispatch } from 'react-redux';
-import { setView } from '../../../redux/studio';
 import { StudioViewType } from '../../../config';
 import { pxToRem } from '../../../utils';
-import { setCurrentCard } from '../../../redux/root';
+import { setCurrentCard, setStudioView } from '../../../redux/root';
 
 export const StudioViewSegment = () => {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ export const StudioViewSegment = () => {
   };
 
   function onViewChange(value: string) {
-    dispatch(setView(value as StudioViewType));
+    dispatch(setStudioView(value as StudioViewType));
     dispatch(setCurrentCard(undefined));
   }
 

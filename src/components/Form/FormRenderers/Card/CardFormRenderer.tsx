@@ -2,7 +2,7 @@ import { Flex } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { FormRenderer } from '../../formRenderer';
 import { RootStore } from '../../../../redux/store';
-import { upperCaseFirst } from '../../../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../../../utils/upperCaseFirst';
 import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
 import { Checkbox, Select, NumberInput } from '../../../Base';

@@ -1,7 +1,7 @@
 import { Button as BaseButton, ButtonProps } from '@mantine/core';
 
 interface Props extends ButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export function Button(props: Props) {

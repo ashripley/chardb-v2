@@ -1,10 +1,10 @@
-import { validate } from '../../helpers/validate';
+import { validate } from '../../utils/validation';
 import {
   combineValidators,
   isObject,
   isOptional,
   isString,
-} from '../../helpers/validators';
+} from '../../utils/validation/validators';
 
 export type Type = 'set' | 'cardType' | 'type' | 'condition' | 'rarity';
 

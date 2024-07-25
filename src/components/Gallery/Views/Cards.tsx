@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { GalleryStore, RootStore } from '../../../redux/store';
+import { RootStore } from '../../../redux/store';
 import { Flex, Loader, Space } from '@mantine/core';
 import { CustomPagination } from '../../Common/CustomPagination';
 import { useEffect, useState } from 'react';
@@ -13,10 +13,10 @@ export const Cards = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [filteredCards, setFilteredCards] = useState<CardDefinition[]>([]);
-  const { view, searchTerm } = useSelector(
-    (state: GalleryStore) => state.gallery
+
+  const { cards, galleryView, searchTerm } = useSelector(
+    (state: RootStore) => state.root
   );
-  const { cards } = useSelector((state: RootStore) => state.root);
 
   useEffect(() => {
     if (searchTerm === '' && cards.length > 0) {
@@ -50,7 +50,7 @@ export const Cards = () => {
     tile: Tile,
   };
 
-  const CardsView = CardsMap[view];
+  const CardsView = CardsMap[galleryView];
 
   return (
     <>

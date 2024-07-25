@@ -1,24 +1,24 @@
-import { DashboardApp } from "./../config"
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { DashboardApp } from './../config';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface StoreState {
-  app: DashboardApp
+  app: DashboardApp;
 }
 
 const initialState: StoreState = {
-  app: "analytics",
-}
+  app: 'analytics',
+};
 
 export const dashboardSlice = createSlice({
-  name: "dashboard",
+  name: 'dashboard',
   initialState,
   reducers: {
-    updateApp: (state, action: PayloadAction<StoreState["app"]>) => {
-      state.app = action.payload
+    updateApp: (state, action: PayloadAction<StoreState['app']>) => {
+      state.app = action.payload;
     },
   },
-})
+});
 
-export const { updateApp } = dashboardSlice.actions
+export const { updateApp } = dashboardSlice.actions;
 
-export default dashboardSlice.reducer
+export default dashboardSlice.reducer;

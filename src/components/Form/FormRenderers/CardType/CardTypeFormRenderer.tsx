@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { pxToRem } from '../../../../utils/responsiveSize';
 import { FormRenderer } from '../../formRenderer';
 import { NumberInputStyles } from '../../../Base/NumberInput';
+import { validateAttributeDefinition } from '../../../../api/attribute';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -12,7 +13,7 @@ const Container = styled(Flex)`
 `;
 
 export const CardTypeFormRenderer: FormRenderer = (props) => {
-  // validateAttributeDefinition(props.formDefinition);
+  validateAttributeDefinition(props.formDefinition);
 
   const { formDefinition, type } = props;
 

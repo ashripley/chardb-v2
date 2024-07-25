@@ -1,4 +1,4 @@
-import { Validator, isObject, normaliseValidator } from './validators';
+import { Validator, isObject, normaliseValidator } from './index';
 
 class ValidationError extends Error {}
 

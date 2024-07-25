@@ -1,10 +1,10 @@
 import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { IconGridDots, IconLayoutGrid } from '@tabler/icons-react';
 import { theme } from '../../../theme/theme';
-import { setView } from '../../../redux/gallery';
 import { GalleryViewType } from '../../../config';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { setGalleryView } from '../../../redux/root';
 
 export const CardViewSegment = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const CardViewSegment = () => {
       return;
     }
 
-    dispatch(setView(value as GalleryViewType));
+    dispatch(setGalleryView(value as GalleryViewType));
   };
 
   return (

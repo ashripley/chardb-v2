@@ -9,7 +9,7 @@ import {
 import { firestore } from '../../services/firebase.config';
 import { v4 as uuidv4 } from 'uuid';
 import { notifications } from '@mantine/notifications';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { CardDefinition, TempCardDefinition } from './cardDefinition';
 import { PokemonDefinition } from '../pokemon';
 import { setCards } from '../../redux/root';

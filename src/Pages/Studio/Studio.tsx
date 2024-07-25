@@ -2,10 +2,9 @@ import { Flex } from '@mantine/core';
 import { StudioViewSegment } from '../../components/Studio/Segments/StudioView';
 import { BaseCard } from '../../components/Card/BaseCard';
 import { DBTypeSegment } from '../../components/Studio/Segments/DBType';
-import { RootStore, StudioStore } from '../../redux/store';
+import { RootStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { setView } from '../../redux/studio';
 import { allPokemon } from '../../api/pokemon';
 import { allAttributes } from '../../api/attribute';
 import { allCards } from '../../api/card';
@@ -15,16 +14,16 @@ import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDet
 import { DBCard } from '../../components/Studio/Cards/DBCard';
 import { DataForm } from '../../components/Form/DataForm';
 import { TempDisplayCard } from '../../components/Card/TempDisplayCard';
-import { setCurrentCard } from '../../redux/root';
+import { setCurrentCard, setStudioView } from '../../redux/root';
 
 export const Studio = () => {
-  const { view } = useSelector((state: StudioStore) => state.studio);
-  const { currentCard } = useSelector((state: RootStore) => state.root);
+  const { currentCard, studioView } = useSelector(
+    (state: RootStore) => state.root
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setView('create'));
-    // dispatch(updatePokemon({}));
+    dispatch(setStudioView('create'));
     allPokemon(dispatch);
     allAttributes(dispatch);
     allCards(dispatch);
@@ -83,12 +82,12 @@ export const Studio = () => {
                 align={'center'}
                 direction={'row'}
               >
-                <Flex w={'60%'}>{viewComponentContent[view].left}</Flex>
+                <Flex w={'60%'}>{viewComponentContent[studioView].left}</Flex>
                 <Flex w={'40%'} h={550}>
-                  {viewComponentContent[view].right}
+                  {viewComponentContent[studioView].right}
                 </Flex>
               </Flex>
-              {view === 'db' && (
+              {studioView === 'db' && (
                 <Flex
                   w={'100%'}
                   h={'auto'}

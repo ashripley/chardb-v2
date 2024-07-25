@@ -1,5 +1,5 @@
 import { Group, Text, Space } from '@mantine/core';
-import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { TempCardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils/responsiveSize';

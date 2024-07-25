@@ -1,4 +1,4 @@
-import { validate } from '../../helpers/validate';
+import { validate } from '../../utils/validation';
 import {
   combineValidators,
   isBoolean,
@@ -6,7 +6,7 @@ import {
   isObject,
   isOptional,
   isString,
-} from '../../helpers/validators';
+} from '../../utils/validation/validators';
 import { PokemonDefinition } from '../pokemon';
 
 export interface CardDefinition {
@@ -79,64 +79,3 @@ export function validateTempCardDefinition(
   validate(tempCardDefinition, 'meta', isOptionalObject);
   validate(tempCardDefinition, 'cardId', isOptionalString);
 }
-
-/*
-
-  cardDefinition={{
-    attributes: {
-      cardType: 'holo',
-      condition: 'excellent',
-      grading: 9,
-      rarity: 'rare',
-      set: {
-        name: 'Fossil',
-        totalCards: 84,
-        year: 1999,
-      },
-      isGraded: true,
-    },
-    cardId: 123,
-    pokemonData: {
-      evolutionChain: {
-        first: {
-          name: 'charmander',
-          imageUrl:
-            'https://img.pokemondb.net/sprites/home/normal/charmander.png',
-        },
-        second: {
-          imageUrl:
-            'https://img.pokemondb.net/sprites/home/normal/charmeleon.png',
-          name: 'Charmeleon',
-        },
-        third: {
-          imageUrl:
-            'https://img.pokemondb.net/sprites/home/normal/charizard.png',
-          name: 'Charizard',
-        },
-      },
-      id: 4,
-      imageUrl:
-        'https://img.pokemondb.net/sprites/home/normal/charmander.png',
-      name: 'charmander',
-      type: 'fire',
-    },
-    quantity: 2,
-    setNumber: 4,
-  }}
-
-*/
-
-// {
-//   "type": "card",
-//   "pokemonData": {
-//       "name": "Abra"
-//   },
-//   "attributes": {
-//       "set": "Base",
-//       "cardType": "Holo",
-//       "condition": "Excellent",
-//       "isGraded": ""
-//   },
-//   "setNumber": 2,
-//   "quantity": 2
-// }

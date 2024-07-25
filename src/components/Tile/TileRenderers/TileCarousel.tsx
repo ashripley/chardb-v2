@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { TileRenderer } from '../tileRenderer';
 import { IconFlame } from '@tabler/icons-react';
 import { theme } from '../../../theme/theme';
-import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';

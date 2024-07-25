@@ -1,4 +1,4 @@
-import { GalleryStore, RootStore } from '../../../redux/store';
+import { RootStore } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { Flex, Space } from '@mantine/core';
 import { CustomPagination } from '../../Common/CustomPagination';
@@ -8,8 +8,7 @@ import { CustomTile } from '../../Tile';
 import { PokemonDefinition } from '../../../api/pokemon';
 
 export const Pokedex = () => {
-  const { pokemon } = useSelector((state: RootStore) => state.root);
-  const { searchTerm } = useSelector((state: GalleryStore) => state.gallery);
+  const { pokemon, searchTerm } = useSelector((state: RootStore) => state.root);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [filteredPokedex, setFilteredPokedex] = useState<PokemonDefinition[]>(

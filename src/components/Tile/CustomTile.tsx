@@ -1,7 +1,7 @@
 import { Card, Flex, Paper, Space, Text } from '@mantine/core';
 import { createElement } from 'react';
 import { theme } from '../../theme/theme';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { PokemonDefinition } from '../../api/pokemon';
 
 interface Props {

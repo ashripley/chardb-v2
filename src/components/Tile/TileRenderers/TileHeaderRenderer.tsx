@@ -1,5 +1,5 @@
 import { Flex, Paper, Text } from '@mantine/core';
-import { upperCaseFirst } from '../../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { createElement } from 'react';
 import { theme } from '../../../theme/theme';
 import { IconFlame } from '@tabler/icons-react';

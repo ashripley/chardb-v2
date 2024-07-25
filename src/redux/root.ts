@@ -1,5 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AppType, FormType, GalleryApp } from '../config';
+import {
+  AppType,
+  FormType,
+  GalleryApp,
+  GalleryViewType,
+  isMobile,
+  StudioViewType,
+} from '../config';
 import { PokemonDefinition } from '../api/pokemon';
 import { AttributeCardDefinition, CardDefinition } from '../api/card';
 import { AttributeDefinition } from '../api/attribute';
@@ -14,6 +21,9 @@ interface StoreState {
   cards: CardDefinition[];
   currentCard: TempCardDefinition | undefined;
   formType: FormType;
+  studioView: StudioViewType;
+  galleryView: GalleryViewType;
+  searchTerm: string;
 }
 
 const initialState: StoreState = {
@@ -25,6 +35,9 @@ const initialState: StoreState = {
   cards: [],
   currentCard: undefined,
   formType: 'set',
+  studioView: 'create',
+  galleryView: isMobile ? 'tile' : 'card',
+  searchTerm: '',
 };
 
 export const rootSlice = createSlice({
@@ -55,6 +68,18 @@ export const rootSlice = createSlice({
     ) => {
       state.currentCard = action.payload;
     },
+    setStudioView: (state, action: PayloadAction<StoreState['studioView']>) => {
+      state.studioView = action.payload;
+    },
+    setSearchTerm: (state, action: PayloadAction<StoreState['searchTerm']>) => {
+      state.searchTerm = action.payload;
+    },
+    setGalleryView: (
+      state,
+      action: PayloadAction<StoreState['galleryView']>
+    ) => {
+      state.galleryView = action.payload;
+    },
   },
 });
 
@@ -66,6 +91,9 @@ export const {
   setFormType,
   setCards,
   setCurrentCard,
+  setStudioView,
+  setGalleryView,
+  setSearchTerm,
 } = rootSlice.actions;
 
 export default rootSlice.reducer;

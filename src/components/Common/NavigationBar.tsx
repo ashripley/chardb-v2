@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import { updateApp } from '../../redux/root';
 import { AppType, isMobile } from '../../config';
-import { upperCaseFirst } from '../../helpers/upperCaseFirst';
+import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 

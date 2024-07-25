@@ -1,11 +1,11 @@
 import { AttributeDefinition } from '../../../../api/attribute';
-import { validate } from '../../../../helpers/validate';
+import { validate } from '../../../../utils/validation';
 import {
   combineValidators,
   isNumber,
   isObject,
   isOptional,
-} from '../../../../helpers/validators';
+} from '../../../../utils/validation/validators';
 
 export interface SetAttributeDefinition extends AttributeDefinition {
   type: 'set';

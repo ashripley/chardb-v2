@@ -4,7 +4,6 @@ import { Flex } from '@mantine/core';
 import { theme } from '../../theme/theme';
 import { IconSearch } from '@tabler/icons-react';
 import { CardViewSegment } from '../../components/Gallery/Segments/CardView';
-import { setSearchTerm, setView } from '../../redux/gallery';
 import { GalleryApp, isMobile } from '../../config';
 import { RootStore } from '../../redux/store';
 import { allAttributes } from '../../api/attribute';
@@ -16,7 +15,7 @@ import { useLocation } from 'react-router-dom';
 import { pxToRem } from '../../utils';
 import { Button, Loader, ScrollArea, TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
-import { setApp } from '../../redux/root';
+import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
 
 export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,7 +29,7 @@ export const Gallery = () => {
 
     try {
       onGalleryChange('cards');
-      setView('card');
+      setGalleryView('card');
       allCards(dispatch);
       allPokemon(dispatch);
       allAttributes(dispatch);
