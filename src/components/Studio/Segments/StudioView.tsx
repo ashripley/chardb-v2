@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setView } from '../../../redux/studio';
 import { StudioViewType } from '../../../config';
 import { pxToRem } from '../../../utils';
+import { setCurrentCard } from '../../../redux/root';
 
 export const StudioViewSegment = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,11 @@ export const StudioViewSegment = () => {
     stroke: 1.5,
   };
 
+  function onViewChange(value: string) {
+    dispatch(setView(value as StudioViewType));
+    dispatch(setCurrentCard(undefined));
+  }
+
   return (
     <SegmentedControl
       orientation='vertical'
@@ -28,7 +34,7 @@ export const StudioViewSegment = () => {
       defaultValue='create'
       bg={theme.colors.bg.bgGray75}
       color={theme.colors.bg.bgDarkGray75}
-      onChange={(value) => dispatch(setView(value as StudioViewType))}
+      onChange={onViewChange}
       data={[
         {
           value: 'create',

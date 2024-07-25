@@ -10,7 +10,7 @@ import { firestore } from '../../services/firebase.config';
 import { v4 as uuidv4 } from 'uuid';
 import { notifications } from '@mantine/notifications';
 import { upperCaseFirst } from '../../helpers/upperCaseFirst';
-import { CardDefinition } from './cardDefinition';
+import { CardDefinition, TempCardDefinition } from './cardDefinition';
 import { PokemonDefinition } from '../pokemon';
 import { setCards } from '../../redux/root';
 
@@ -97,17 +97,24 @@ export const addCardMutation = (
   }
 };
 
-export const updateCardMutation = async (card: Record<string, any>) => {
+export const updateCardMutation = async (
+  card: CardDefinition | TempCardDefinition | undefined
+) => {
   const cardRef = doc(firestore, 'cards', 'data');
+
+  if (!card) {
+    throw new Error('Card does not exist');
+    return;
+  }
 
   try {
     await updateDoc(cardRef, {
-      [card.cardId]: card,
+      [card.cardId as string]: card,
     });
     notifications.show({
       title: 'Successfully Updated!',
       message: `${upperCaseFirst(
-        card.name
+        card.pokemonData.name
       )} has successfully been updated. Please see your card in the Gallery.`,
       color: 'lime',
     });
@@ -121,8 +128,12 @@ export const updateCardMutation = async (card: Record<string, any>) => {
   }
 };
 
-export const deleteCardMutation = async (cardId: string) => {
+export const deleteCardMutation = async (cardId: string | undefined) => {
   const cardRef = doc(firestore, 'cards', 'data');
+
+  if (!cardId) {
+    throw new Error('CardId does not exist');
+  }
 
   try {
     await updateDoc(cardRef, {

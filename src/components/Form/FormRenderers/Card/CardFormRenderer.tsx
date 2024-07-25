@@ -15,7 +15,25 @@ export const CardFormRenderer: FormRenderer = (props) => {
     (state: RootStore) => state.root
   );
 
-  const cardNames = cards.map((card) => upperCaseFirst(card.pokemonData.name));
+  function cardNames() {
+    const cardsArray: string[] = [];
+
+    for (const c of cards) {
+      if (cardsArray.includes(upperCaseFirst(c.pokemonData.name))) {
+        cardsArray.push(
+          `${upperCaseFirst(c.pokemonData.name)} - ${
+            cardsArray.filter(
+              (name) => name === upperCaseFirst(c.pokemonData.name)
+            ).length + 1
+          }`
+        );
+      } else {
+        cardsArray.push(upperCaseFirst(c.pokemonData.name));
+      }
+    }
+
+    return cardsArray;
+  }
 
   const pokemonNames = pokemon
     .map((pokemon) => upperCaseFirst(pokemon.name))
@@ -79,7 +97,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
       <Flex w={'100%'}>
         <Select
           placeholder={'Name'}
-          data={type === 'newCard' ? pokemonNames : cardNames}
+          data={type === 'newCard' ? pokemonNames : cardNames()}
           searchable
           radius={pxToRem('xs')}
           w={'100%'}
@@ -87,7 +105,9 @@ export const CardFormRenderer: FormRenderer = (props) => {
           required
           variant='filled'
           onChange={onNameChange}
-          nothingFoundMessage='No Pokemon found...'
+          nothingFoundMessage={`No ${
+            type === 'newCard' ? 'pokemon' : 'cards'
+          } found...`}
         />
       </Flex>
       <Flex w={'100%'} justify={'space-between'}>

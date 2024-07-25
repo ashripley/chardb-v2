@@ -7,6 +7,10 @@ import Form, { FormDefinition } from '../../Form';
 import { deleteCardMutation, updateCardMutation } from '../../../api/card';
 import { setCurrentCard } from '../../../redux/root';
 import { pxToRem } from '../../../utils';
+import {
+  CardDefinition,
+  TempCardDefinition,
+} from '../../../api/card/cardDefinition';
 
 interface ActionButtonProps {
   bg: string;
@@ -21,19 +25,29 @@ export const UpdateCardDetails = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const [formData, setFormData] = useState<FormDefinition>();
+  const [formData, setFormData] = useState<
+    CardDefinition | TempCardDefinition
+  >();
 
   const dispatch = useDispatch();
 
-  const { cards } = useSelector((state: RootStore) => state.root);
+  const { cards, currentCard } = useSelector((state: RootStore) => state.root);
 
   const onUpdate = async (action: 'update' | 'delete') => {
+    const updateCard = async () => {
+      if (currentCard) {
+        await updateCardMutation(currentCard);
+      } else {
+        await updateCardMutation(formData);
+      }
+    };
+
     try {
       action === 'update' ? setIsUpdating(true) : setIsDeleting(true);
 
       formData &&
         (action === 'update'
-          ? await updateCardMutation(formData)
+          ? await updateCard()
           : await deleteCardMutation(formData.cardId));
     } catch (e) {
       throw new Error(`error actioning card update', ${e}`);
@@ -80,7 +94,11 @@ export const UpdateCardDetails = () => {
           c.pokemonData.name === updatedData.pokemonData?.name.toLowerCase()
       );
 
-      dispatch(setCurrentCard(cardFormData));
+      dispatch(
+        setCurrentCard({ ...cardFormData, ...updatedData } as
+          | TempCardDefinition
+          | undefined)
+      );
       setFormData({ ...cardFormData } as FormDefinition);
     }
   };

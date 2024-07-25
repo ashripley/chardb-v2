@@ -15,6 +15,7 @@ import { UpdateCardDetails } from '../../components/Studio/Details/UpdateCardDet
 import { DBCard } from '../../components/Studio/Cards/DBCard';
 import { DataForm } from '../../components/Form/DataForm';
 import { TempDisplayCard } from '../../components/Card/TempDisplayCard';
+import { setCurrentCard } from '../../redux/root';
 
 export const Studio = () => {
   const { view } = useSelector((state: StudioStore) => state.studio);
@@ -27,6 +28,7 @@ export const Studio = () => {
     allPokemon(dispatch);
     allAttributes(dispatch);
     allCards(dispatch);
+    dispatch(setCurrentCard(undefined));
   }, []);
 
   const viewComponentContent = {
@@ -40,7 +42,11 @@ export const Studio = () => {
     },
     update: {
       left: <UpdateCardDetails />,
-      right: <BaseCard />,
+      right: currentCard?.pokemonData?.name ? (
+        <TempDisplayCard card={currentCard} />
+      ) : (
+        <BaseCard />
+      ),
     },
     db: {
       left: <DataForm />,
