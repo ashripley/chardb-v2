@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { CardDefinition } from '../../api/card';
 import { Types } from '../../theme/theme';
 
@@ -13,4 +13,4 @@ interface TileShellRendererOptions {
 export type TileRenderer = (props: TileRendererOptions) => JSX.Element;
 export type TileShellRenderer = (
   props: PropsWithChildren<TileShellRendererOptions>
-) => ReactNode;
+) => JSX.Element;

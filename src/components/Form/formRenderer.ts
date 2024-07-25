@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { AttributeDefinition } from '../../api/attribute';
 import { CardDefinition } from '../../api/card';
 import { FormType } from '../../config';
@@ -14,4 +13,4 @@ export interface FormRendererOptions {
   onChange: (props: Partial<FormDefinition>) => void;
 }
 
-export type FormRenderer = (props: FormRendererOptions) => ReactNode;
+export type FormRenderer = (props: FormRendererOptions) => JSX.Element;

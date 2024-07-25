@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { CardDefinition } from '../../api/card';
 import { Types } from '../../theme/theme';
 import { TempCardDefinition } from '../../api/card/cardDefinition';
@@ -23,7 +23,7 @@ export type CardRenderer = (props: CardRendererOptions) => JSX.Element;
 export type TempCardRenderer = (props: TempCardRendererOptions) => JSX.Element;
 export type CardShellRenderer = (
   props: PropsWithChildren<CardShellRendererOptions>
-) => ReactNode;
+) => JSX.Element;
 export type TempCardShellRenderer = (
   props: PropsWithChildren<TempCardShellRendererOptions>
-) => ReactNode;
+) => JSX.Element;

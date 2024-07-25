@@ -1,11 +1,15 @@
 import { Flex, Text, Group, Badge, Card } from '@mantine/core';
 import { RootStore } from '../../../redux/store';
-import { useSelector } from 'react-redux';
-import { isMobile } from '../../../config';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppType, isMobile } from '../../../config';
 import { Image, Button } from '../../../components/Base';
 import { pxToRem } from '../../../utils';
+import { Link } from 'react-router-dom';
+import { updateApp } from '../../../redux/root';
+import { theme } from '../../../theme/theme';
 
 export const Analytics = () => {
+  const dispatch = useDispatch();
   const { attributes, pokemon, cards } = useSelector(
     (state: RootStore) => state.root
   );
@@ -37,6 +41,10 @@ export const Analytics = () => {
     year: 'Year',
   };
 
+  const onAppChange = (name: AppType) => {
+    dispatch(updateApp(name));
+  };
+
   return (
     <>
       <Flex
@@ -56,14 +64,14 @@ export const Analytics = () => {
         >
           <Card.Section>
             <Image
-              src='https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-2.png'
-              h={160}
+              src='https://github.com/giorgosioak/pokemon-wallpapers/blob/master/pokemon/venusaur.jpg?raw=true'
+              h='auto'
             />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
             <Text fw={500}>Cards</Text>
-            <Badge color='pink'>Gallery</Badge>
+            <Badge color={theme.colors.types.grass}>Gallery</Badge>
           </Group>
 
           <Flex direction={'column'} gap={5}>
@@ -87,9 +95,15 @@ export const Analytics = () => {
               ))}
           </Flex>
 
-          <Button color='blue' fullWidth mt='md' radius='md'>
-            Gallery
-          </Button>
+          <Link
+            to={'/gallery'}
+            onClick={() => onAppChange('Gallery')}
+            style={{ textDecoration: 'none' }}
+          >
+            <Button color='blue' fullWidth mt='md' radius='md'>
+              Gallery
+            </Button>
+          </Link>
         </Card>
 
         <Card
@@ -101,14 +115,14 @@ export const Analytics = () => {
         >
           <Card.Section>
             <Image
-              src='https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-6.png'
-              h={160}
+              src='https://github.com/giorgosioak/pokemon-wallpapers/blob/master/pokemon/charizard.jpg?raw=true'
+              h='auto'
             />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
             <Text fw={500}>Attributes</Text>
-            <Badge color='pink'>Studio</Badge>
+            <Badge color={theme.colors.types.fire}>Studio</Badge>
           </Group>
 
           <Flex direction={'column'}>
@@ -122,9 +136,21 @@ export const Analytics = () => {
             </Text>
           </Flex>
 
-          <Button color='blue' fullWidth mt='md' radius='md'>
-            Studio
-          </Button>
+          {isMobile ? (
+            <Button color='blue' fullWidth mt='md' radius='md' disabled>
+              Studio Only On Desktop
+            </Button>
+          ) : (
+            <Link
+              to={'/studio'}
+              onClick={() => onAppChange('Studio')}
+              style={{ textDecoration: 'none' }}
+            >
+              <Button color='blue' fullWidth mt='md' radius='md'>
+                Studio
+              </Button>
+            </Link>
+          )}
         </Card>
 
         <Card
@@ -136,23 +162,29 @@ export const Analytics = () => {
         >
           <Card.Section>
             <Image
-              src='https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png'
-              h={160}
+              src='https://github.com/giorgosioak/pokemon-wallpapers/blob/master/pokemon/blastoise.jpg?raw=true'
+              h='auto'
             />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
             <Text fw={500}>Pokémon</Text>
-            <Badge color='pink'>Pokédex</Badge>
+            <Badge color={theme.colors.types.water}>Pokédex</Badge>
           </Group>
 
           <Text fw={400} c='dimmed' size='sm'>
             Pokémon: {Object.keys(pokemon).length}
           </Text>
 
-          <Button color='blue' fullWidth mt='md' radius='md'>
-            Pokemondb
-          </Button>
+          <Link
+            to={'https://pokemondb.net/pokedex/national'}
+            onClick={() => onAppChange('Home')}
+            style={{ textDecoration: 'none' }}
+          >
+            <Button color='blue' fullWidth mt='md' radius='md'>
+              Pokemon Database
+            </Button>
+          </Link>
         </Card>
       </Flex>
     </>

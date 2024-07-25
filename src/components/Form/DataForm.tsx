@@ -32,13 +32,15 @@ export const DataForm = () => {
   const { formType } = useSelector((state: RootStore) => state.root);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const initialState: FormDefinition = {
+  const initialState: Partial<FormDefinition> = {
     type: formType as FormType,
     id: uuidv4(),
     name: '',
   };
 
-  const [formData, setFormData] = useState<FormDefinition>({ ...initialState });
+  const [formData, setFormData] = useState<FormDefinition>({
+    ...initialState,
+  } as FormDefinition);
 
   const onSave = async () => {
     try {
@@ -46,7 +48,7 @@ export const DataForm = () => {
 
       validateAttributeDefinition(formData as AttributeDefinition);
       await addAttributeMutation(formData as AttributeDefinition);
-      setFormData({ ...initialState });
+      setFormData({ ...initialState } as FormDefinition);
     } catch (error) {
       throw new Error(`Error saving attribute DB: ${error}`);
     } finally {

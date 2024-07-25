@@ -133,7 +133,7 @@ export const Home = () => {
                 align={'center'}
               >
                 <Title order={3} fw={600} c={'white'} ff={theme.fonts.primary}>
-                  Squirtle
+                  Lapras
                 </Title>
                 <Paper
                   h={35}
@@ -167,7 +167,7 @@ export const Home = () => {
                 align={'center'}
               >
                 <Title order={3} fw={600} c={'white'} ff={theme.fonts.primary}>
-                  Bulbasaur
+                  Vileplume
                 </Title>
                 <Paper
                   h={35}
