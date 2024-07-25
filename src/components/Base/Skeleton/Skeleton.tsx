@@ -1,5 +1,7 @@
-import { Skeleton as BaseSkeleton } from '@mantine/core';
+import { Skeleton as BaseSkeleton, SkeletonProps } from '@mantine/core';
 
-export function Skeleton() {
-  return <BaseSkeleton />;
+interface Props extends SkeletonProps {}
+
+export function Skeleton(props: Props) {
+  return <BaseSkeleton {...props} />;
 }

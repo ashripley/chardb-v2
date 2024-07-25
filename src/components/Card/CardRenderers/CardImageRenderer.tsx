@@ -4,8 +4,8 @@ import { theme } from '../../../styles/theme';
 import { CardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils';
-import { EvolutionDefinition } from '../../../api/pokemon';
 import icons from '../../../assets/icons';
+import { EvolutionDefinition } from '../../../api';
 
 const Container = styled(Card)`
   width: 90%;
@@ -64,15 +64,15 @@ export const CardImageRenderer: CardRenderer = (props) => {
         <StyledCard>
           {isEvolutions ? (
             <CardContainer>
-              {Object.entries(evolutionChain).map(
-                ([key, evolution]: [string, EvolutionDefinition]) => {
+              {Object.entries(evolutionChain)
+                .sort()
+                .map(([key, evolution]: [string, EvolutionDefinition]) => {
                   return (
                     evolution?.imageUrl !== '' && (
                       <EvolutionImage key={key} src={evolution.imageUrl} />
                     )
                   );
-                }
-              )}
+                })}
             </CardContainer>
           ) : (
             <Image src={imageUrl || ''} />

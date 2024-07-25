@@ -64,15 +64,15 @@ export const TempCardImageRenderer: TempCardRenderer = (props) => {
         <StyledCard>
           {isEvolutions ? (
             <CardContainer>
-              {Object.entries(evolutionChain).map(
-                ([key, evolution]: [string, EvolutionDefinition]) => {
+              {Object.entries(evolutionChain)
+                .sort()
+                .map(([key, evolution]: [string, EvolutionDefinition]) => {
                   return (
                     evolution?.imageUrl !== '' && (
                       <EvolutionImage key={key} src={evolution.imageUrl} />
                     )
                   );
-                }
-              )}
+                })}
             </CardContainer>
           ) : (
             <Image src={imageUrl || ''} />
