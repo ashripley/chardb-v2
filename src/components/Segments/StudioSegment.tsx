@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setCurrentCard, setStudioView } from '../../redux/root';
 import { StudioViewType } from '../../config';
 import { pxToRem } from '../../utils';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 
 export const StudioSegment = () => {
   const dispatch = useDispatch();

@@ -1,10 +1,10 @@
-import { Types } from '../../theme/theme';
+import { TypesDefinition } from '../../styles/theme/colors';
 
 export interface PokemonDefinition {
   name: string;
   id: number;
   evolutions: EvolutionsDefinition;
-  type: keyof Types;
+  type: keyof TypesDefinition;
   imageUrl: string;
   meta?: unknown;
 }

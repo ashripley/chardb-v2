@@ -1,7 +1,7 @@
 import { ActionIcon, Card, Flex } from '@mantine/core';
 import { IconChartBubble } from '@tabler/icons-react';
 import { useState } from 'react';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 import { CardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils/responsiveSize';

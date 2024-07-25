@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { CardDefinition } from '../../api/card';
-import { Types } from '../../theme/theme';
 import { TempCardDefinition } from '../../api/card/cardDefinition';
+import { TypesDefinition } from '../../styles/theme/colors';
 
 interface CardRendererOptions {
   card: CardDefinition;
@@ -12,11 +12,11 @@ interface TempCardRendererOptions {
 }
 
 interface CardShellRendererOptions {
-  type: keyof Types;
+  type: keyof TypesDefinition;
 }
 
 interface TempCardShellRendererOptions {
-  type?: keyof Types;
+  type?: keyof TypesDefinition;
 }
 
 export type CardRenderer = (props: CardRendererOptions) => JSX.Element;

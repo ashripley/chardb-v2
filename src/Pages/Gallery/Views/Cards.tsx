@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { Flex, Loader, Space } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 import { CardDefinition } from '../../../api/card';
 import { EmptyState } from '../../../components/EmptyState';
 import { CustomPagination } from '../../../components/Pagination';

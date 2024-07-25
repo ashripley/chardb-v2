@@ -1,5 +1,5 @@
 import { Flex, Paper } from '@mantine/core';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils';

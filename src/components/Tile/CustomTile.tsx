@@ -1,8 +1,9 @@
 import { Card, Flex, Paper, Space, Text } from '@mantine/core';
 import { createElement } from 'react';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { PokemonDefinition } from '../../api/pokemon';
+import icons from '../../assets/icons';
 
 interface Props {
   pokemon: PokemonDefinition;
@@ -27,7 +28,7 @@ export const CustomTile = ({ pokemon }: Props) => {
             display={'flex'}
             style={{ justifyContent: 'center', alignItems: 'center' }}
           >
-            {createElement(theme.icons[pokemon.type], {
+            {createElement(icons[pokemon.type], {
               style: { width: 15, height: 15 },
               stroke: 1.5,
               color: theme.colors.types[pokemon.type],

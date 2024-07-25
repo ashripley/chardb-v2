@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Flex, Paper, Space } from '@mantine/core';
 import { IconFlame } from '@tabler/icons-react';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import { updateApp } from '../../redux/root';

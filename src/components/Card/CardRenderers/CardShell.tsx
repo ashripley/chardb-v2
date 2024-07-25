@@ -1,6 +1,6 @@
 import { Card as MantineCard } from '@mantine/core';
 import { CardShellRenderer } from '../cardRenderer';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../utils';
 
 export const CardShell: CardShellRenderer = (props) => {

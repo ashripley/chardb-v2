@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from '@mantine/core';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { IconSearch } from '@tabler/icons-react';
 import { CardSegment } from '../../components/Segments/CardSegment';
 import { GalleryApp, isMobile } from '../../config';

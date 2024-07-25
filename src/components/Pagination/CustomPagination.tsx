@@ -1,5 +1,5 @@
 import { Container, Flex, Pagination } from '@mantine/core';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import styled from 'styled-components';
 
 interface Props {

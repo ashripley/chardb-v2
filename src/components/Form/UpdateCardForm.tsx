@@ -2,7 +2,7 @@ import { Button, Center, Flex, Space, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import { useState } from 'react';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import Form, { FormDefinition } from '.';
 import { deleteCardMutation, updateCardMutation } from '../../api/card';
 import { setCurrentCard } from '../../redux/root';

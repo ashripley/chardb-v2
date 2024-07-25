@@ -1,5 +1,5 @@
 import { Card, Flex, Space, Title } from '@mantine/core';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 
 export const EmptyState = () => {
   return (

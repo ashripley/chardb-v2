@@ -1,5 +1,5 @@
 import { Flex } from '@mantine/core';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';

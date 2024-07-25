@@ -1,10 +1,10 @@
 import { CardRenderer } from '../cardRenderer';
 import { Flex, Text } from '@mantine/core';
 import styled from 'styled-components';
-import { pxToRem } from '../../../utils/responsiveSize';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';
+import { pxToRem } from '../../../utils';
 
 const Container = styled(Flex)`
   margin: auto;

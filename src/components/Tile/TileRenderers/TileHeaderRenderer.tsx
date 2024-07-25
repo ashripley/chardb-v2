@@ -1,11 +1,12 @@
 import { Flex, Paper, Text } from '@mantine/core';
 import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { createElement } from 'react';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 import { IconFlame } from '@tabler/icons-react';
 import { TileRenderer } from '../tileRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils';
+import icons from '../../../assets/icons';
 
 const Container = styled(Flex)`
   justify-content: space-between;
@@ -37,7 +38,7 @@ export const TileHeaderRenderer: TileRenderer = (props) => {
       <StyledText>{upperCaseFirst(name)}</StyledText>
       <StyledPaper>
         {type ? (
-          createElement(theme.icons[type], {
+          createElement(icons[type], {
             style: { width: 15, height: 15 },
             stroke: 1.5,
             color: theme.colors.types[type],

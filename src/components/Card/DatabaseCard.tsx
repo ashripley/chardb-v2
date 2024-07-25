@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import {
   AttributeDefinition,
   deleteAttributeMutation,

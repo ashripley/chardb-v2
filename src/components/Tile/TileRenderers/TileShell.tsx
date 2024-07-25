@@ -1,5 +1,5 @@
 import { Card as MantineCard } from '@mantine/core';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 import { TileShellRenderer } from '../tileRenderer';
 
 export const TileShell: TileShellRenderer = (props) => {

@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react';
 import { CardDefinition } from '../../api/card';
-import { Types } from '../../theme/theme';
+import { TypesDefinition } from '../../styles/theme/colors';
 
 interface TileRendererOptions {
   card: CardDefinition;
 }
 
 interface TileShellRendererOptions {
-  type: keyof Types;
+  type: keyof TypesDefinition;
 }
 
 export type TileRenderer = (props: TileRendererOptions) => JSX.Element;

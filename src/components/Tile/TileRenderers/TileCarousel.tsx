@@ -3,7 +3,7 @@ import { Card, Flex, Grid, Group, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { TileRenderer } from '../tileRenderer';
 import { IconFlame } from '@tabler/icons-react';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 import { upperCaseFirst } from '../../../utils/upperCaseFirst';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';

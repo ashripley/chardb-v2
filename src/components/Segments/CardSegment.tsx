@@ -1,6 +1,6 @@
 import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { IconGridDots, IconLayoutGrid } from '@tabler/icons-react';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { GalleryViewType } from '../../config';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';

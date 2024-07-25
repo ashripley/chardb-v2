@@ -1,10 +1,12 @@
 import { Card, Flex, Paper, Space, Text } from '@mantine/core';
-import { Theme, theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { createElement } from 'react';
+import { PokemonDefinition } from '../../api/pokemon';
+import icons from '../../assets/icons';
 
 interface Props {
-  pokemon: Record<string, any>;
+  pokemon: PokemonDefinition;
 }
 
 export const PokedexTile = ({ pokemon }: Props) => {
@@ -14,7 +16,7 @@ export const PokedexTile = ({ pokemon }: Props) => {
         w={'200px'}
         h={'200px'}
         radius='xl'
-        bg={theme.colors.types[pokemon.type as keyof Theme['colors']['types']]}
+        bg={theme.colors.types[pokemon.type]}
       >
         <Flex justify='space-between' align='center' w='90%' m='auto'>
           <Text c='white'>{upperCaseFirst(pokemon.name)}</Text>
@@ -26,13 +28,10 @@ export const PokedexTile = ({ pokemon }: Props) => {
             display={'flex'}
             style={{ justifyContent: 'center', alignItems: 'center' }}
           >
-            {createElement(theme.icons[pokemon.type as keyof Theme['icons']], {
+            {createElement(icons[pokemon.type], {
               style: { width: 15, height: 15 },
               stroke: 1.5,
-              color:
-                theme.colors.types[
-                  pokemon.type as keyof Theme['colors']['types']
-                ],
+              color: theme.colors.types[pokemon.type],
             })}
           </Paper>
         </Flex>
@@ -46,7 +45,7 @@ export const PokedexTile = ({ pokemon }: Props) => {
               display={'flex'}
               style={{ justifyContent: 'center' }}
             >
-              <img src={pokemon.image} width={75} height={75} />
+              <img src={pokemon.imageUrl} width={75} height={75} />
             </Card>
           </Flex>
         </Card>

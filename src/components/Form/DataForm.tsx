@@ -7,7 +7,7 @@ import {
   addAttributeMutation,
   validateAttributeDefinition,
 } from '../../api/attribute';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { camelCaseToTitleCase, pxToRem } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 import Form, { FormDefinition } from '../../components/Form';

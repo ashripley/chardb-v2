@@ -6,7 +6,7 @@ import { Image, Button } from '../../../components/Base';
 import { pxToRem } from '../../../utils';
 import { Link } from 'react-router-dom';
 import { updateApp } from '../../../redux/root';
-import { theme } from '../../../theme/theme';
+import { theme } from '../../../styles/theme';
 
 export const Analytics = () => {
   const dispatch = useDispatch();

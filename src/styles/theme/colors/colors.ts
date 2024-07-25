@@ -1,0 +1,47 @@
+import { ColorsDefinition } from './colorsDefinition';
+
+export const colors: ColorsDefinition = {
+  status: {
+    error: 'rgb(226 54 54)',
+    success: 'rgb(130 221 85)',
+    info: 'rgb(74 144 226)',
+  },
+  fonts: { primary: '#595959' },
+  bg: {
+    bgGray0: 'rgba(191, 191, 191, 0)',
+    bgGray15: 'rgba(191, 191, 191, 0.15)',
+    bgGray25: 'rgba(191, 191, 191, 0.25)',
+    bgGray50: 'rgba(191, 191, 191, 0.50)',
+    bgGray75: 'rgba(191, 191, 191, 0.75)',
+    bgGray100: 'rgba(191, 191, 191)',
+    bgDarkGray25: 'rgba(89, 89, 89, 0.25)',
+    bgDarkGray50: 'rgba(89, 89, 89, 0.50)',
+    bgDarkGray75: 'rgba(89, 89, 89, 0.75)',
+    bgDarkGray100: 'rgba(89, 89, 89)',
+  },
+  accents: {
+    char: '#ff8c00',
+    bulb: '#78c84f',
+    squir: '#62bbe0',
+  },
+  types: {
+    normal: '#a8a878',
+    fire: '#f08030',
+    water: '#6790f0',
+    grass: '#78c84f',
+    electric: '#f9cf30',
+    ice: '#98d8d8',
+    fighting: '#c03028',
+    poison: '#9f40a0',
+    ground: '#e0c068',
+    flying: '#a890f0',
+    psychic: '#f85888',
+    bug: '#a8b720',
+    rock: '#b8a039',
+    ghost: '#705898',
+    dragon: '#7038f8',
+    dark: '#705848',
+    steel: '#b8b8d0',
+    fairy: '#f0b6bc',
+  },
+};

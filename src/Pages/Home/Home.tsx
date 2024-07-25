@@ -1,6 +1,6 @@
 import { Flex, Title, Text } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSearchTerm, updateApp } from '../../redux/root';
@@ -15,6 +15,7 @@ import {
   TextInput,
 } from '../../components/Base';
 import { pxToRem } from '../../utils';
+import icons from '../../assets/icons';
 
 const icon = (
   <IconSearch
@@ -142,7 +143,7 @@ export const Home = () => {
                   radius={pxToRem('md')}
                 >
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
-                    {createElement(theme.icons.water, {
+                    {createElement(icons.water, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
                       color: theme.colors.types.water,
@@ -176,7 +177,7 @@ export const Home = () => {
                   radius={pxToRem('md')}
                 >
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
-                    {createElement(theme.icons.grass, {
+                    {createElement(icons.grass, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
                       color: theme.colors.types.grass,
@@ -211,7 +212,7 @@ export const Home = () => {
                   radius={pxToRem('md')}
                 >
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
-                    {createElement(theme.icons.fire, {
+                    {createElement(icons.fire, {
                       style: { width: 25, height: 25 },
                       stroke: 1.5,
                       color: theme.colors.types.fire,

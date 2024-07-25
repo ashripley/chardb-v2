@@ -1,6 +1,6 @@
 import { Card, Divider, Flex, Grid, Group, Paper, Space } from '@mantine/core';
 import { IconFlame } from '@tabler/icons-react';
-import { theme } from '../../theme/theme';
+import { theme } from '../../styles/theme';
 import { pxToRem } from '../../utils';
 
 export const BaseCard = () => {
