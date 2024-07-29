@@ -21,6 +21,7 @@
 
 
   <h1 align="center">chardb</h1>
+  <br />
   <h4 align="center">A place to store your nostalgia, built with <a href="http://reactjs.com](https://react.dev" target="_blank">React</a>.</h4>
 </div>
 
