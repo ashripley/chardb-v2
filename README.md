@@ -16,12 +16,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<!-- <img width="554" style={{borderRadius: '50%'}} alt="Screenshot 2023-09-29 at 1 29 45 pm" src="https://github.com/ashripley/chardb/assets/84573770/d81bcaa5-dfaa-442c-9958-c023b56ec953"> -->
-<img width="287" alt="Screenshot 2024-02-05 at 3 08 51 pm" src="https://github.com/ashripley/chardb/assets/84573770/5c783ecd-6815-4628-a30e-4dbbdea09187">
+  <!-- <img width="554" style={{borderRadius: '50%'}} alt="Screenshot 2023-09-29 at 1 29 45 pm" src="https://github.com/ashripley/chardb/assets/84573770/d81bcaa5-dfaa-442c-9958-c023b56ec953"> -->
+  <img width="287" alt="Screenshot 2024-02-05 at 3 08 51 pm" src="https://github.com/ashripley/chardb/assets/84573770/5c783ecd-6815-4628-a30e-4dbbdea09187">
 
 
   <h1 align="center">chardb</h1>
-  <br />
   <h4 align="center">A place to store your nostalgia, built with <a href="http://reactjs.com](https://react.dev" target="_blank">React</a>.</h4>
 </div>
 
