@@ -30,7 +30,7 @@
 
 </br>
 
-<img width="1680" alt="Screenshot 2024-02-05 at 3 05 46 pm" src="https://github.com/ashripley/chardb/assets/84573770/fdc1e144-c844-4c17-b497-82ed33b0688d">
+<img width="1674" alt="Screenshot 2024-07-29 at 5 29 26 pm" src="https://github.com/user-attachments/assets/8832000e-141e-416e-b51e-b0c1e8e314ba">
 
 
 
