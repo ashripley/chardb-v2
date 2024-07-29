@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "chardb",
-    "public": "build",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
