@@ -84,7 +84,7 @@ export const Home = () => {
                 c={theme.colors.bg.bgDarkGray75}
                 ff={theme.fonts.primary}
               >
-                Store Your Nostalgia.
+                Store your nostalgia.
               </Title>
             </Flex>
             <Space h={35} />
