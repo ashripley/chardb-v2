@@ -1,4 +1,4 @@
-import { Flex, Title, Text } from '@mantine/core';
+import { Flex, Title } from '@mantine/core';
 import { theme } from '../../styles/theme';
 import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -62,23 +62,31 @@ export const Home = () => {
             h={'35%'}
             ta={isMobile ? 'center' : 'inherit'}
           >
-            <Title
-              order={1}
-              fw={isMobile ? 500 : 600}
-              c={theme.colors.fonts.primary}
-              ff={theme.fonts.primary}
+            <Flex
+              m={0}
+              p={0}
+              direction={'row'}
+              wrap={'wrap'}
+              justify={'center'}
             >
-              A Place To Store Your Nostalgia
-            </Title>
-            <Space h={10} />
-            <Text
-              size='md'
-              fw={400}
-              c={theme.colors.fonts.primary}
-              ff={theme.fonts.primary}
-            >
-              Welcome to chardb. A collection site for your Pokémon cards.
-            </Text>
+              <Title
+                order={1}
+                fw={isMobile ? 500 : 600}
+                c={theme.colors.fonts.primary}
+                ff={theme.fonts.primary}
+              >
+                Chardb.
+              </Title>
+              <Space w={5} />
+              <Title
+                order={1}
+                fw={isMobile ? 500 : 600}
+                c={theme.colors.bg.bgDarkGray75}
+                ff={theme.fonts.primary}
+              >
+                Store Your Nostalgia.
+              </Title>
+            </Flex>
             <Space h={35} />
             <Flex
               w={isMobile ? '80%' : 'auto'}
