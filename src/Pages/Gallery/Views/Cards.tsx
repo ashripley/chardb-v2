@@ -61,7 +61,10 @@ export const Cards = () => {
       ) : filteredCards.length ? (
         <>
           <Flex justify='space-evenly' wrap='wrap' gap={20}>
-            {filteredCards
+            {[...filteredCards]
+              .sort((a: CardDefinition, b: CardDefinition) => {
+                return a.pokemonData.name.localeCompare(b.pokemonData.name);
+              })
               .slice(startIndex, endIndex)
               .map((card: CardDefinition, index: number) => {
                 return <CardsView key={index} card={card} />;

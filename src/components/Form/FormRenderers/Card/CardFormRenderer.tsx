@@ -86,7 +86,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
       ...formDefinition,
       attributes: {
         ...formDefinition.attributes,
-        isGraded: event?.currentTarget.checked,
+        isGraded: event.currentTarget.checked,
       },
     });
   };
@@ -188,7 +188,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
           radius={pxToRem('xxxs')}
           size='md'
           w={'45%'}
-          checked={formDefinition?.attributes?.isGraded || false}
+          checked={formDefinition?.attributes?.isGraded}
           onChange={onEventChange}
           h={'100%'}
           disabled={!formDefinition?.['pokemonData']}

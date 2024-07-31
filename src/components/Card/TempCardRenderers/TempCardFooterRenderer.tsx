@@ -40,12 +40,16 @@ export const TempCardFooterRenderer: TempCardRenderer = (props) => {
       <StyledText>#{id || ''}</StyledText>
       <StyledText>{currentSet?.meta?.year || ''}</StyledText>
       <Flex align='center'>
-        <Text fz={pxToRem('xs')} c='white'>
-          {setNumber || ''}
-        </Text>
-        <Text fz={pxToRem('xs')} c='white'>
-          {setNumber && '/' + currentSet?.meta?.totalCards}
-        </Text>
+        {currentSet && (
+          <>
+            <Text fz={pxToRem('xs')} c='white'>
+              {setNumber || ''}
+            </Text>
+            <Text fz={pxToRem('xs')} c='white'>
+              {setNumber && '/' + currentSet?.meta?.totalCards}
+            </Text>
+          </>
+        )}
       </Flex>
     </Container>
   );
