@@ -4,7 +4,7 @@ import { theme } from '../../../styles/theme';
 import { TileRenderer } from '../tileRenderer';
 import styled from 'styled-components';
 import { pxToRem, upperCaseFirst } from '../../../utils';
-import icons from '../../../assets/icons';
+import icons from '../../../assets/icons/icons';
 
 const Container = styled(Flex)`
   justify-content: space-between;

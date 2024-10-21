@@ -6,7 +6,6 @@ import { setSearchTerm, updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
 import {
-  Button,
   Card,
   Container,
   Paper,
@@ -14,7 +13,13 @@ import {
   TextInput,
 } from '../../components/Base';
 import { pxToRem } from '../../utils';
-import icons from '../../assets/icons';
+import icons from '../../assets/icons/icons';
+import { StyledButton } from '../../components';
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const icon = (
   <icons.search
@@ -102,20 +107,20 @@ export const Home = () => {
                 leftSection={icon}
                 onChange={(e: any) => onSearchInput(e.target.value)}
               />
-              <Link to={'/gallery'} onClick={onSearch}>
-                <Button
-                  variant='filled'
-                  bg={theme.colors.accents.char}
-                  radius={pxToRem('xs')}
-                  w={100}
-                  styles={{ label: { color: 'white' } }}
+              <StyledLink to={'/gallery'} onClick={onSearch}>
+                <StyledButton
+                  style={{
+                    backgroundColor: theme.colors.accents.char,
+                    width: 100,
+                    minWidth: 120,
+                    fontWeight: 500,
+                    color: 'white',
+                  }}
                   disabled={!input}
-                  ff={theme.fonts.primary}
-                  fw={500}
                 >
                   Search
-                </Button>
-              </Link>
+                </StyledButton>
+              </StyledLink>
             </Flex>
           </Flex>
           <Flex

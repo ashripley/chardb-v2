@@ -1,7 +1,7 @@
 import { Card, Divider, Flex, Grid, Group, Paper, Space } from '@mantine/core';
 import { theme } from '../../styles/theme';
 import { pxToRem } from '../../utils';
-import icons from '../../assets/icons';
+import icons from '../../assets/icons/icons';
 
 export const BaseCard = () => {
   return (

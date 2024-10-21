@@ -4,7 +4,7 @@ import { GalleryViewType } from '../../config';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { setGalleryView } from '../../redux/root';
-import icons from '../../assets/icons';
+import icons from '../../assets/icons/icons';
 
 export const CardSegment = () => {
   const dispatch = useDispatch();

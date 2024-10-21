@@ -4,7 +4,7 @@ import { theme } from '../../../styles/theme';
 import { CardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils';
-import icons from '../../../assets/icons';
+import icons from '../../../assets/icons/icons';
 import { EvolutionDefinition } from '../../../api';
 
 const Container = styled(Card)`

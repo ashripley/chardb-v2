@@ -4,7 +4,7 @@ import { pxToRem, upperCaseFirst } from '../../../utils';
 import { createElement } from 'react';
 import { theme } from '../../../styles/theme';
 import { CardRenderer } from '../cardRenderer';
-import icons from '../../../assets/icons';
+import icons from '../../../assets/icons/icons';
 
 const Container = styled(Flex)`
   justify-content: space-between;

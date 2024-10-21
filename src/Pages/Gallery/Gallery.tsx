@@ -8,11 +8,12 @@ import { RootStore } from '../../redux/store';
 import { allAttributes, allCards, allPokemon } from '../../api';
 import { useLocation } from 'react-router-dom';
 import { pxToRem } from '../../utils';
-import { Button, Loader, ScrollArea, TextInput } from '../../components/Base';
+import { Loader, ScrollArea, TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
 import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
 import { Cards, Pokedex } from './Views';
-import icons from '../../assets/icons';
+import icons from '../../assets/icons/icons';
+import { StyledButton } from '../../components';
 
 export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -84,38 +85,30 @@ export const Gallery = () => {
                   gap={10}
                   wrap={'wrap'}
                 >
-                  <Button
-                    variant='filled'
-                    bg={app === 'cards' ? 'white' : 'transparent'}
-                    radius={pxToRem('xs')}
-                    w={'40%'}
-                    miw={120}
-                    onClick={() => onGalleryChange('cards')}
-                    styles={{
-                      label: { color: theme.colors.bg.bgDarkGray100 },
+                  <StyledButton
+                    style={{
+                      backgroundColor:
+                        app === 'cards' ? 'white' : 'transparent',
+                      width: '40%',
+                      minWidth: 120,
+                      fontWeight: 500,
                     }}
-                    ff={theme.fonts.primary}
-                    fw={500}
+                    onClick={() => onGalleryChange('cards')}
                   >
                     Cards
-                  </Button>
-                  <Button
-                    variant='filled'
-                    bg={app === 'pokedex' ? 'white' : 'transparent'}
-                    radius={pxToRem('xs')}
-                    w={'40%'}
-                    miw={120}
-                    onClick={() => onGalleryChange('pokedex')}
-                    styles={{
-                      label: {
-                        color: theme.colors.bg.bgDarkGray100,
-                      },
+                  </StyledButton>
+                  <StyledButton
+                    style={{
+                      backgroundColor:
+                        app === 'pokedex' ? 'white' : 'transparent',
+                      width: '40%',
+                      minWidth: 120,
+                      fontWeight: 500,
                     }}
-                    ff={theme.fonts.primary}
-                    fw={500}
+                    onClick={() => onGalleryChange('pokedex')}
                   >
                     Pokedex
-                  </Button>
+                  </StyledButton>
                 </Flex>
                 <Flex w={'auto'} justify={'flex-end'} gap={10}>
                   {app === 'cards' && !isMobile && <CardSegment />}
@@ -130,24 +123,18 @@ export const Gallery = () => {
                     miw={isMobile ? '' : 300}
                     onChange={(e: any) => onSearchInput(e.currentTarget.value)}
                   />
-                  <Button
-                    variant='filled'
-                    bg={'white'}
-                    radius={pxToRem('xs')}
-                    w={isMobile ? 'auto' : '20%'}
-                    miw={isMobile ? 'fit-content' : 120}
-                    styles={{
-                      label: {
-                        color: theme.colors.bg.bgDarkGray100,
-                      },
+                  <StyledButton
+                    style={{
+                      backgroundColor: 'white',
+                      width: isMobile ? 'auto' : '20%',
+                      minWidth: isMobile ? 'fit-content' : 120,
+                      fontWeight: 500,
                     }}
                     onClick={onSearch}
                     disabled={input === ''}
-                    ff={theme.fonts.primary}
-                    fw={500}
                   >
                     Search
-                  </Button>
+                  </StyledButton>
                 </Flex>
               </Flex>
               <ScrollArea

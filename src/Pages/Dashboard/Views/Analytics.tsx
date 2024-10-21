@@ -2,11 +2,12 @@ import { Flex, Text, Group, Badge, Card } from '@mantine/core';
 import { RootStore } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppType, isMobile } from '../../../config';
-import { Image, Button } from '../../../components/Base';
+import { Image } from '../../../components/Base';
 import { pxToRem } from '../../../utils';
 import { Link } from 'react-router-dom';
 import { updateApp } from '../../../redux/root';
 import { theme } from '../../../styles/theme';
+import { StyledButton } from '../../../components';
 
 export const Analytics = () => {
   const dispatch = useDispatch();
@@ -97,9 +98,7 @@ export const Analytics = () => {
             onClick={() => onAppChange('Gallery')}
             style={{ textDecoration: 'none' }}
           >
-            <Button color='blue' fullWidth mt='md' radius='md'>
-              Gallery
-            </Button>
+            <StyledButton style={{ width: '100%' }}>Gallery</StyledButton>
           </Link>
         </Card>
 
@@ -131,18 +130,16 @@ export const Analytics = () => {
           </Flex>
 
           {isMobile ? (
-            <Button color='blue' fullWidth mt='md' radius='md' disabled>
+            <StyledButton style={{ width: '100%' }}>
               Studio Only On Desktop
-            </Button>
+            </StyledButton>
           ) : (
             <Link
               to={'/studio'}
               onClick={() => onAppChange('Studio')}
               style={{ textDecoration: 'none' }}
             >
-              <Button color='blue' fullWidth mt='md' radius='md'>
-                Studio
-              </Button>
+              <StyledButton style={{ width: '100%' }}>Studio</StyledButton>
             </Link>
           )}
         </Card>
@@ -172,9 +169,9 @@ export const Analytics = () => {
             onClick={() => onAppChange('Home')}
             style={{ textDecoration: 'none' }}
           >
-            <Button color='blue' fullWidth mt='md' radius='md'>
+            <StyledButton style={{ width: '100%' }}>
               Pokemon Database
-            </Button>
+            </StyledButton>
           </Link>
         </Card>
       </Flex>

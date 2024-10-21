@@ -4,7 +4,7 @@ import { setCurrentCard, setStudioView } from '../../redux/root';
 import { StudioViewType } from '../../config';
 import { pxToRem } from '../../utils';
 import { theme } from '../../styles/theme';
-import icons from '../../assets/icons';
+import icons from '../../assets/icons/icons';
 
 export const StudioSegment = () => {
   const dispatch = useDispatch();

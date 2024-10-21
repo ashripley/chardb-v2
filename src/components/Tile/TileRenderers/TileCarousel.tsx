@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';
 import { CarouselStyles } from '../../Base/Carousel';
-import icons from '../../../assets/icons';
+import icons from '../../../assets/icons/icons';
 
 const StyledCarousel = styled(Carousel)`
   height: 70%;

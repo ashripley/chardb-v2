@@ -5,7 +5,7 @@ import { TempCardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils/responsiveSize';
 import { EvolutionDefinition } from '../../../api/pokemon';
-import icons from '../../../assets/icons';
+import icons from '../../../assets/icons/icons';
 
 const Container = styled(Card)`
   width: 90%;

@@ -6,8 +6,9 @@ import styled from 'styled-components';
 import { Analytics } from './Views';
 import { isMobile } from '../../config';
 import { allCards, allAttributes, allPokemon } from '../../api';
-import { Button, Loader, Paper, ScrollArea } from '../../components/Base';
+import { Loader, Paper, ScrollArea } from '../../components/Base';
 import { allImages } from '../../api/images/images';
+import { StyledButton } from '../../components';
 
 const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
   & > div > div {
@@ -72,23 +73,16 @@ export const Dashboard = () => {
                     gap={10}
                     wrap={'wrap'}
                   >
-                    <Button
-                      variant='filled'
-                      bg={'white'}
-                      radius='lg'
-                      w={'40%'}
-                      miw={120}
-                      onClick={() => {}}
-                      styles={{
-                        label: {
-                          color: theme.colors.bg.bgDarkGray100,
-                        },
+                    <StyledButton
+                      style={{
+                        width: '40%',
+                        minWidth: 120,
+                        fontWeight: 500,
                       }}
-                      ff={theme.fonts.primary}
-                      fw={500}
+                      onClick={() => {}}
                     >
                       Analytics
-                    </Button>
+                    </StyledButton>
                   </Flex>
                 </Flex>
                 <StyledScrollArea

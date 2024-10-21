@@ -3,7 +3,7 @@ import { theme } from '../../styles/theme';
 import { upperCaseFirst } from '../../utils';
 import { createElement } from 'react';
 import { PokemonDefinition } from '../../api/pokemon';
-import icons from '../../assets/icons';
+import icons from '../../assets/icons/icons';
 
 interface Props {
   pokemon: PokemonDefinition;
