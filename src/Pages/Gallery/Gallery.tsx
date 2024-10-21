@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex } from '@mantine/core';
-import { theme } from '../../styles/theme';
 import { CardSegment } from '../../components/Segments';
 import { GalleryApp, isMobile } from '../../config';
 import { RootStore } from '../../redux/store';
 import { allAttributes, allCards, allPokemon } from '../../api';
 import { useLocation } from 'react-router-dom';
 import { pxToRem } from '../../utils';
-import { Loader, ScrollArea, TextInput } from '../../components/Base';
+import { ScrollArea, TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
 import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
 import { Cards, Pokedex } from './Views';
@@ -145,11 +144,7 @@ export const Gallery = () => {
               >
                 {isLoading ? (
                   <Flex justify='center' align={'center'} h={'65vh'}>
-                    <Loader
-                      color={theme.colors.accents.char}
-                      size='lg'
-                      type='dots'
-                    />
+                    <></>
                   </Flex>
                 ) : app === 'cards' ? (
                   <Cards />

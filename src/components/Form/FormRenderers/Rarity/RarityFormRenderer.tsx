@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { pxToRem } from '../../../../utils';
 import { ChangeEvent } from 'react';
 import { FormRenderer } from '../../formRenderer';
-import { NumberInputStyles } from '../../../Base/NumberInput';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -31,7 +30,6 @@ export const RarityFormRenderer: FormRenderer = (props) => {
         w={'100%'}
         rightSection
         variant='filled'
-        classNames={{ input: NumberInputStyles.input }}
         onChange={onChange}
       />
     </Container>

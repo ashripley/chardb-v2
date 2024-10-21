@@ -5,11 +5,16 @@ import { useDispatch } from 'react-redux';
 import { setSearchTerm, updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
-import { Container, Paper, Space, TextInput } from '../../components/Base';
+import { Paper, Space, TextInput } from '../../components/Base';
 import { pxToRem } from '../../utils';
 import icons from '../../assets/icons/icons';
 import { StyledButton } from '../../components';
 import styled from 'styled-components';
+
+const Container = styled.div`
+  height: calc(100% - 75px);
+  margin: auto;
+`;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -57,7 +62,7 @@ export const Home = () => {
 
   return (
     <>
-      <Container h={'calc(100% - 75px)'} m={'auto'}>
+      <Container>
         <Flex
           direction={'column'}
           m={'auto'}

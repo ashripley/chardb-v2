@@ -4,7 +4,6 @@ import { FormRenderer } from '../../formRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils';
 import { validateSetAttributeDefinition } from './SetFormDefinition';
-import { NumberInputStyles } from '../../../Base/NumberInput';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -46,7 +45,6 @@ export const SetFormRenderer: FormRenderer = (props) => {
           w={'100%'}
           rightSection
           variant='filled'
-          classNames={{ input: NumberInputStyles.input }}
           onChange={handleChange}
         />
         <NumberInput
@@ -54,7 +52,6 @@ export const SetFormRenderer: FormRenderer = (props) => {
           radius={pxToRem('xs')}
           placeholder='Total Cards'
           value={formDefinition?.meta?.totalCards ?? ''}
-          classNames={{ input: NumberInputStyles.input }}
           w={'100%'}
           hideControls
           onChange={(val) => handleMetaChange('totalCards', val as number)}
@@ -64,7 +61,6 @@ export const SetFormRenderer: FormRenderer = (props) => {
           radius={pxToRem('xs')}
           placeholder='Year'
           value={formDefinition?.meta?.year ?? ''}
-          classNames={{ input: NumberInputStyles.input }}
           w={'100%'}
           hideControls
           onChange={(val) => handleMetaChange('year', val as number)}

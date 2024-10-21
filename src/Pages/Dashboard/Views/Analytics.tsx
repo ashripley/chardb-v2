@@ -2,7 +2,6 @@ import { Flex, Text, Group, Badge, Card } from '@mantine/core';
 import { RootStore } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppType, isMobile } from '../../../config';
-import { Image } from '../../../components/Base';
 import { pxToRem } from '../../../utils';
 import { Link } from 'react-router-dom';
 import { updateApp } from '../../../redux/root';
@@ -64,7 +63,7 @@ export const Analytics = () => {
           w={isMobile ? '100%' : '30%'}
         >
           <Card.Section>
-            <Image src={images[0]?.cards} h='auto' />
+            <img src={images[0]?.cards} />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
@@ -110,7 +109,7 @@ export const Analytics = () => {
           w={isMobile ? '100%' : '30%'}
         >
           <Card.Section>
-            <Image src={images[0]?.attributes} h='auto' />
+            <img src={images[0]?.attributes} />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>
@@ -152,7 +151,7 @@ export const Analytics = () => {
           w={isMobile ? '100%' : '30%'}
         >
           <Card.Section>
-            <Image src={images[0]?.pokemon} h='auto' />
+            <img src={images[0]?.pokemon} />
           </Card.Section>
 
           <Group justify='space-between' mt='md' mb='xs'>

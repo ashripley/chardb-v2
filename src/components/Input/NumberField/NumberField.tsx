@@ -1,14 +1,12 @@
 import { InputHTMLAttributes, useId } from 'react';
 import styled from 'styled-components';
-import { pxToRem } from '../../utils';
+import { pxToRem } from '../../../utils';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
 }
 
-export const StyledCheckbox = styled(Checkbox)`
-  height: 24px;
-  width: 24px;
+export const StyledNumberField = styled(NumberField)`
   border: none;
   border-radius: 10px;
   display: flex;
@@ -16,10 +14,25 @@ export const StyledCheckbox = styled(Checkbox)`
   justify-content: center;
   flex-shrink: 0;
   margin: 0 auto;
+
+  /* Remove the steppers in WebKit browsers (Chrome, Safari) */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Remove steppers in Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: ${pxToRem('xxs')};
 `;
 
@@ -28,15 +41,16 @@ const Label = styled.label<{ isDisabled: boolean | undefined }>`
   color: ${({ isDisabled }) => (isDisabled ? '#BFBFBF' : 'inherit')};
 `;
 
-export function Checkbox(props: Props) {
+export function NumberField(props: Props) {
   const { label } = props;
   const id = useId();
+
   return (
     <Container>
       <Label isDisabled={props.disabled} htmlFor={id}>
-        {label}:{' '}
+        {label}
       </Label>
-      <input type='checkbox' {...props} />
+      <input type='number' {...props} />
     </Container>
   );
 }

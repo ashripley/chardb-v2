@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Analytics } from './Views';
 import { isMobile } from '../../config';
 import { allCards, allAttributes, allPokemon } from '../../api';
-import { Loader, Paper, ScrollArea } from '../../components/Base';
+import { Paper, ScrollArea } from '../../components/Base';
 import { allImages } from '../../api/images/images';
 import { StyledButton } from '../../components';
 
@@ -94,11 +94,7 @@ export const Dashboard = () => {
                 >
                   {isLoading ? (
                     <Flex justify='center' align={'center'} h={'65vh'}>
-                      <Loader
-                        color={theme.colors.accents.char}
-                        size='lg'
-                        type='dots'
-                      />
+                      <></>
                     </Flex>
                   ) : (
                     <Flex

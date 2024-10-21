@@ -3,7 +3,6 @@ import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils';
 import { FormRenderer } from '../../formRenderer';
-import { NumberInputStyles } from '../../../Base/NumberInput';
 import { validateAttributeDefinition } from '../../../../api/attribute';
 
 const Container = styled(Flex)`
@@ -34,7 +33,6 @@ export const CardTypeFormRenderer: FormRenderer = (props) => {
         w={'100%'}
         rightSection
         variant='filled'
-        classNames={{ input: NumberInputStyles.input }}
         onChange={onChange}
       />
     </Container>

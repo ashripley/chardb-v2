@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { pxToRem } from '../../../../utils';
 import { ChangeEvent } from 'react';
 import { validateTypeAttributeDefinition } from './TypeFormDefinition';
-import { NumberInputStyles } from '../../../Base/NumberInput';
 
 const Container = styled(Flex)`
   height: 80%;
@@ -46,7 +45,6 @@ export const TypeFormRenderer: FormRenderer = (props) => {
           w={'100%'}
           rightSection
           variant='filled'
-          classNames={{ input: NumberInputStyles.input }}
           onChange={onChange}
         />
         <TextInput
@@ -54,7 +52,6 @@ export const TypeFormRenderer: FormRenderer = (props) => {
           radius={pxToRem('xs')}
           placeholder='Colour (#)'
           value={formDefinition?.meta?.color ?? ''}
-          classNames={{ input: NumberInputStyles.input }}
           w={'100%'}
           onChange={onMetaChange}
         />

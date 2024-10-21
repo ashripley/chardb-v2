@@ -5,8 +5,8 @@ import { RootStore } from '../../../../redux/store';
 import { upperCaseFirst, pxToRem } from '../../../../utils';
 import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
-import { Select, NumberInput } from '../../../Base';
-import { StyledCheckbox } from '../../../Checkbox';
+import { Select } from '../../../Base';
+import { StyledCheckbox, StyledNumberField } from '../../../Input';
 
 export const CardFormRenderer: FormRenderer = (props) => {
   const { formDefinition, type } = props;
@@ -56,7 +56,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
   };
 
   const onBaseChange = (
-    val: string | number | undefined,
+    val: ChangeEvent<HTMLInputElement>,
     key: keyof CardDefinition
   ) => {
     if (val !== null) {
@@ -68,7 +68,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
   };
 
   const onAttributeChange = (
-    val: string | number | null,
+    val: ChangeEvent<HTMLInputElement> | string | null,
     key: keyof CardDefinition['attributes']
   ) => {
     if (val !== null) {
@@ -126,12 +126,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={(val) => onAttributeChange(val, 'set')}
           disabled={!formDefinition?.['pokemonData']}
         />
-        <NumberInput
-          variant='filled'
-          radius={pxToRem('xs')}
-          w={'45%'}
-          placeholder='Set Number'
-          hideControls
+        <StyledNumberField
+          label='Set Number: '
           required
           value={formDefinition?.setNumber}
           onChange={(val) => onBaseChange(val, 'setNumber')}
@@ -171,12 +167,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
         />
       </Flex>
       <Flex w={'100%'} justify={'space-between'} align={'center'}>
-        <NumberInput
-          variant='filled'
-          radius={pxToRem('xs')}
-          placeholder='Quantity'
-          w={'45%'}
-          hideControls
+        <StyledNumberField
+          label='Quantity: '
           required
           value={formDefinition?.quantity ?? ''}
           onChange={(val) => onBaseChange(val, 'quantity')}
@@ -191,12 +183,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
       </Flex>
       <Flex w={'100%'} justify={'space-between'}>
         {formDefinition?.attributes?.isGraded ? (
-          <NumberInput
-            variant='filled'
-            radius={pxToRem('xs')}
-            placeholder='Grading'
-            w={'45%'}
-            hideControls
+          <StyledNumberField
+            label='Grading: '
             required
             value={formDefinition?.attributes?.grading}
             onChange={(val) => onAttributeChange(val, 'grading')}
