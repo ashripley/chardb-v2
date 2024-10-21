@@ -7,7 +7,7 @@ import { upperCaseFirst, pxToRem } from '../../../utils';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
 import { validateSetAttributeDefinition } from '../../Form/FormRenderers/Set/SetFormDefinition';
-import { CarouselStyles } from '../../Base/Carousel';
+// import { CarouselStyles } from '../../Base/Carousel';
 import icons from '../../../assets/icons/icons';
 
 const StyledCarousel = styled(Carousel)`
@@ -69,7 +69,7 @@ export const TileCarousel: TileRenderer = (props) => {
   }
 
   return (
-    <StyledCarousel controlsOffset='xs' classNames={CarouselStyles}>
+    <StyledCarousel controlsOffset='xs'>
       <Carousel.Slide>
         <Column span={12} h={'85%'}>
           <MantineContainerCard>

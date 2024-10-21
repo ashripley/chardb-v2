@@ -5,7 +5,8 @@ import { RootStore } from '../../../../redux/store';
 import { upperCaseFirst, pxToRem } from '../../../../utils';
 import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
-import { Checkbox, Select, NumberInput } from '../../../Base';
+import { Select, NumberInput } from '../../../Base';
+import { StyledCheckbox } from '../../../Checkbox';
 
 export const CardFormRenderer: FormRenderer = (props) => {
   const { formDefinition, type } = props;
@@ -181,16 +182,10 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={(val) => onBaseChange(val, 'quantity')}
           disabled={!formDefinition?.['pokemonData']}
         />
-        <Checkbox
-          color='gray'
-          labelPosition='left'
+        <StyledCheckbox
           label='Graded'
-          radius={pxToRem('xxxs')}
-          size='md'
-          w={'45%'}
           checked={formDefinition?.attributes?.isGraded}
           onChange={onEventChange}
-          h={'100%'}
           disabled={!formDefinition?.['pokemonData']}
         />
       </Flex>

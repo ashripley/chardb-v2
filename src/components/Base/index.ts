@@ -1,5 +1,3 @@
-export { Card } from './Card';
-export { Checkbox } from './Checkbox';
 export { Collapse } from './Collapse';
 export { Container } from './Container';
 export { Dialog } from './Dialog';

@@ -5,13 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setSearchTerm, updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
-import {
-  Card,
-  Container,
-  Paper,
-  Space,
-  TextInput,
-} from '../../components/Base';
+import { Container, Paper, Space, TextInput } from '../../components/Base';
 import { pxToRem } from '../../utils';
 import icons from '../../assets/icons/icons';
 import { StyledButton } from '../../components';
@@ -19,6 +13,17 @@ import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+const Card = styled.div<{ width: string; bg: string }>`
+  height: 'auto';
+  min-height: ${isMobile ? '' : 100};
+  width: ${({ width }) => width};
+  background-color: ${({ bg }) => bg};
+  border-top-left-radius: ${pxToRem('sm')};
+  border-top-right-radius: ${pxToRem('sm')};
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 `;
 
 const icon = (
@@ -131,11 +136,8 @@ export const Home = () => {
             h={isMobile ? '50%' : '60%'}
           >
             <Card
-              h={'auto'}
-              mih={isMobile ? '' : 100}
-              w={isMobile ? '80%' : '70%'}
+              width={isMobile ? '80%' : '70%'}
               bg={theme.colors.accents.squir}
-              style={{ ...styles.borderRadius }}
             >
               <Flex
                 justify={'space-between'}
@@ -165,11 +167,8 @@ export const Home = () => {
               </Flex>
             </Card>
             <Card
-              h={'auto'}
-              mih={isMobile ? '' : 100}
-              w={isMobile ? '90%' : '80%'}
+              width={isMobile ? '90%' : '80%'}
               bg={theme.colors.accents.bulb}
-              style={{ ...styles.borderRadius }}
             >
               <Flex
                 justify={'space-between'}
@@ -199,12 +198,9 @@ export const Home = () => {
               </Flex>
             </Card>
             <Card
-              h={'auto'}
-              mih={isMobile ? '' : 100}
-              w={isMobile ? '100%' : '90%'}
+              width={isMobile ? '100%' : '90%'}
               bg={theme.colors.accents.char}
-              style={{ ...styles.borderRadius }}
-              pb={0}
+              style={{ paddingBottom: 0 }}
             >
               <Flex
                 justify={'space-between'}
