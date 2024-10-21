@@ -1,4 +1,3 @@
-import { Button, Center, Flex, Space, Title } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { RootStore } from '../../redux/store';

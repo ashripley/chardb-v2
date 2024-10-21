@@ -1,4 +1,3 @@
-import { Group, Text, Space } from '@mantine/core';
 import { TempCardRenderer } from '../cardRenderer';
 import styled from 'styled-components';
 import { pxToRem, upperCaseFirst } from '../../../utils';

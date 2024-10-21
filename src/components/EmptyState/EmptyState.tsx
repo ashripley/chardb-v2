@@ -1,4 +1,3 @@
-import { Card, Flex, Space, Title } from '@mantine/core';
 import { theme } from '../../styles/theme';
 
 export const EmptyState = () => {

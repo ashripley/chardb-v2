@@ -1,4 +1,3 @@
-import { Flex, Text, Group, Badge, Card } from '@mantine/core';
 import { RootStore } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppType, isMobile } from '../../../config';

@@ -1,4 +1,3 @@
-import { Grid } from '@mantine/core';
 import { CardRenderer } from './cardRenderer';
 import { validateCardDefinition } from '../../api/card';
 import styled from 'styled-components';

@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { Flex, Space } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { RootStore } from '../../../redux/store';
 import { PokemonDefinition } from '../../../api/pokemon';

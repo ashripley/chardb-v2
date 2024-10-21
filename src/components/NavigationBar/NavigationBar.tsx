@@ -1,4 +1,3 @@
-import { ActionIcon, Button, Flex, Paper, Space } from '@mantine/core';
 import { theme } from '../../styles/theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';

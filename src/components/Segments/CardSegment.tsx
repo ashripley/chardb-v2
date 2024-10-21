@@ -1,4 +1,3 @@
-import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { theme } from '../../styles/theme';
 import { GalleryViewType } from '../../config';
 import { useDispatch } from 'react-redux';

@@ -1,4 +1,3 @@
-import { Flex, Paper, Text } from '@mantine/core';
 import { createElement } from 'react';
 import { theme } from '../../../styles/theme';
 import { TileRenderer } from '../tileRenderer';

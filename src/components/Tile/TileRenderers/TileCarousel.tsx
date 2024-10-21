@@ -1,5 +1,3 @@
-import { Carousel } from '@mantine/carousel';
-import { Card, Flex, Grid, Group, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { TileRenderer } from '../tileRenderer';
 import { theme } from '../../../styles/theme';

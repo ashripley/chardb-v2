@@ -8,7 +8,6 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { firestore } from '../../services/firebase.config';
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
-import { notifications } from '@mantine/notifications';
 import { upperCaseFirst } from '../../utils/upperCaseFirst';
 import { AttributeDefinition } from './attributeDefinition';
 import { setAttributes } from '../../redux/root';

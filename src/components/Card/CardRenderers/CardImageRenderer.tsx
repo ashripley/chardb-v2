@@ -1,4 +1,3 @@
-import { ActionIcon, Card, Flex } from '@mantine/core';
 import { useState } from 'react';
 import { theme } from '../../../styles/theme';
 import { CardRenderer } from '../cardRenderer';

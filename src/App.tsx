@@ -1,14 +1,9 @@
-import { Center, Flex, MantineProvider } from '@mantine/core';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Notifications } from '@mantine/notifications';
 import { theme } from './theme';
 import { theme as customTheme } from './styles/theme';
 import { Home, Gallery, Studio, Dashboard } from './pages';
 import { NavigationBar } from './components/NavigationBar/NavigationBar';
 import { isMobile } from './config';
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
-import '@mantine/notifications/styles.css';
 import './styles.css';
 import styled from 'styled-components';
 import { pxToRem } from './utils';

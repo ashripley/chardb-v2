@@ -1,4 +1,3 @@
-import { Flex } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { FormRenderer } from '../../formRenderer';
 import { RootStore } from '../../../../redux/store';
@@ -7,6 +6,19 @@ import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
 import { Select } from '../../../Select';
 import { StyledCheckbox, StyledNumberField } from '../../../Input';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: ${pxToRem('sm')};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
 export const CardFormRenderer: FormRenderer = (props) => {
   const { formDefinition, type } = props;
@@ -93,8 +105,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
   };
 
   return (
-    <Flex h='80%' direction={'column'} gap={25}>
-      <Flex w={'100%'}>
+    <Container>
+      <Wrapper>
         <Select
           placeholder={'Name'}
           data={type === 'newCard' ? pokemonNames : cardNames()}
@@ -109,8 +121,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
             type === 'newCard' ? 'pokemon' : 'cards'
           } found...`}
         />
-      </Flex>
-      <Flex w={'100%'} justify={'space-between'}>
+      </Wrapper>
+      <Wrapper style={{ justifyContent: 'space-between' }}>
         <Select
           placeholder='Set'
           data={attributes
@@ -133,8 +145,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={(val) => onBaseChange(val, 'setNumber')}
           disabled={!formDefinition?.['pokemonData']}
         />
-      </Flex>
-      <Flex w={'100%'} justify={'space-between'}>
+      </Wrapper>
+      <Wrapper style={{ justifyContent: 'space-between' }}>
         <Select
           placeholder='Card Type'
           data={attributes
@@ -165,8 +177,10 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={(val) => onAttributeChange(val, 'condition')}
           disabled={!formDefinition?.['pokemonData']}
         />
-      </Flex>
-      <Flex w={'100%'} justify={'space-between'} align={'center'}>
+      </Wrapper>
+      <Wrapper
+        style={{ justifyContent: 'space-between', alignItems: 'center' }}
+      >
         <StyledNumberField
           label='Quantity: '
           required
@@ -180,8 +194,8 @@ export const CardFormRenderer: FormRenderer = (props) => {
           onChange={onEventChange}
           disabled={!formDefinition?.['pokemonData']}
         />
-      </Flex>
-      <Flex w={'100%'} justify={'space-between'}>
+      </Wrapper>
+      <Wrapper style={{ justifyContent: 'space-between' }}>
         {formDefinition?.attributes?.isGraded ? (
           <StyledNumberField
             label='Grading: '
@@ -193,7 +207,7 @@ export const CardFormRenderer: FormRenderer = (props) => {
         ) : (
           <></>
         )}
-      </Flex>
-    </Flex>
+      </Wrapper>
+    </Container>
   );
 };

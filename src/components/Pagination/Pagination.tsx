@@ -1,12 +1,26 @@
-import { Container, Flex, Pagination } from '@mantine/core';
 import { theme } from '../../styles/theme';
 import styled from 'styled-components';
+import { pxToRem } from '../../utils';
 
 interface Props {
   total: number;
   currentPage: number;
   handlePageChange: (page: number) => void;
 }
+
+const Container = styled.div`
+  display: flex;
+  padding: ${pxToRem('xl')};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: ${pxToRem('lg')};
+  border-radius: 15px;
+  background-color: rgba(191, 191, 191, 0.3);
+`;
 
 const PaginationWrapper = styled.div`
   position: fixed;
@@ -32,18 +46,10 @@ export const CustomPagination = ({
   };
 
   return (
-    <Container p={'xl'}>
+    <Container>
       <PaginationWrapper>
         <BackgroundContainer>
-          <Flex
-            justify={'center'}
-            m={'auto'}
-            p={'md'}
-            style={{
-              borderRadius: 15,
-              backgroundColor: 'rgba(191, 191, 191, 0.3)',
-            }}
-          >
+          <Wrapper>
             <Pagination
               total={total}
               value={currentPage}
@@ -53,7 +59,7 @@ export const CustomPagination = ({
               size={'sm'}
               ff={theme.fonts.primary}
             />
-          </Flex>
+          </Wrapper>
         </BackgroundContainer>
       </PaginationWrapper>
     </Container>

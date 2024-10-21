@@ -1,4 +1,3 @@
-import { Select as BaseSelect, SelectProps } from '@mantine/core';
 import { SelectStyles } from '.';
 
 interface Props extends SelectProps {}

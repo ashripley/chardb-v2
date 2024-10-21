@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Flex } from '@mantine/core';
 import { CardSegment } from '../../components/Segments';
 import { GalleryApp, isMobile } from '../../config';
 import { RootStore } from '../../redux/store';

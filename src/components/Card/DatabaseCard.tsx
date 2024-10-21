@@ -1,12 +1,3 @@
-import {
-  Card,
-  Flex,
-  Text,
-  ScrollArea,
-  Title,
-  Space,
-  CloseButton,
-} from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store';
 import { theme } from '../../styles/theme';

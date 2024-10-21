@@ -1,4 +1,3 @@
-import { Flex } from '@mantine/core';
 import { RootStore } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';

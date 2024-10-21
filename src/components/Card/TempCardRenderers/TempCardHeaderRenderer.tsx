@@ -1,4 +1,3 @@
-import { Flex, Paper, Text } from '@mantine/core';
 import styled from 'styled-components';
 import { upperCaseFirst } from '../../../utils';
 import { pxToRem } from '../../../utils/responsiveSize';

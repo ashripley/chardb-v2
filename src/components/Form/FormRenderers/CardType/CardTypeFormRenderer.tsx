@@ -1,4 +1,3 @@
-import { Flex, TextInput } from '@mantine/core';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils';

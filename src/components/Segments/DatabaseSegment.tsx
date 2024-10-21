@@ -1,4 +1,3 @@
-import { SegmentedControl, Text } from '@mantine/core';
 import { useDispatch } from 'react-redux';
 import { setFormType } from '../../redux/root';
 import { pxToRem } from '../../utils';

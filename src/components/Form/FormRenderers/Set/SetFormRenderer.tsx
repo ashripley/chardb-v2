@@ -1,4 +1,3 @@
-import { Flex, NumberInput, TextInput } from '@mantine/core';
 import { ChangeEvent } from 'react';
 import { FormRenderer } from '../../formRenderer';
 import styled from 'styled-components';

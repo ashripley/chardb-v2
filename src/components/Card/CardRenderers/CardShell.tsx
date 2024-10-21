@@ -1,4 +1,3 @@
-import { Card as MantineCard } from '@mantine/core';
 import { CardShellRenderer } from '../cardRenderer';
 import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../utils';

@@ -1,4 +1,3 @@
-import { SegmentedControl, VisuallyHidden, rem } from '@mantine/core';
 import { useDispatch } from 'react-redux';
 import { setCurrentCard, setStudioView } from '../../redux/root';
 import { StudioViewType } from '../../config';

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../redux/store';
-import { Flex, Loader, Space } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { theme } from '../../../styles/theme';
 import { CardDefinition } from '../../../api/card';

@@ -1,4 +1,3 @@
-import { Flex, Text } from '@mantine/core';
 import { TileRenderer } from '../tileRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils';

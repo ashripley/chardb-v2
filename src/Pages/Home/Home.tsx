@@ -1,4 +1,3 @@
-import { Flex, Title } from '@mantine/core';
 import { theme } from '../../styles/theme';
 import { createElement, useState } from 'react';
 import { useDispatch } from 'react-redux';

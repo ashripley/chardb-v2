@@ -1,4 +1,3 @@
-import { Card, Flex, Paper, Space, Text } from '@mantine/core';
 import { createElement } from 'react';
 import { theme } from '../../styles/theme';
 import { upperCaseFirst } from '../../utils';

@@ -1,4 +1,3 @@
-import { Flex, TextInput } from '@mantine/core';
 import { FormRenderer } from '../../formRenderer';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils';
