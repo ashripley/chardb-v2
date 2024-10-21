@@ -5,7 +5,7 @@ import { RootStore } from '../../../../redux/store';
 import { upperCaseFirst, pxToRem } from '../../../../utils';
 import { CardDefinition } from '../../../../api/card';
 import { ChangeEvent } from 'react';
-import { Select } from '../../../Base';
+import { Select } from '../../../Select';
 import { StyledCheckbox, StyledNumberField } from '../../../Input';
 
 export const CardFormRenderer: FormRenderer = (props) => {

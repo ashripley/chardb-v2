@@ -1,1 +1,1 @@
-export { CustomPagination } from './CustomPagination';
+export * from './Pagination';

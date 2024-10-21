@@ -6,14 +6,12 @@ import { GalleryApp, isMobile } from '../../config';
 import { RootStore } from '../../redux/store';
 import { allAttributes, allCards, allPokemon } from '../../api';
 import { useLocation } from 'react-router-dom';
-import { pxToRem } from '../../utils';
-import { TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
 import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
 import { Cards, Pokedex } from './Views';
-import icons from '../../assets/icons/icons';
 import { StyledButton } from '../../components';
 import styled from 'styled-components';
+import { StyledTextField } from '../../components/Input/TextField';
 
 const ScrollableDiv = styled.div`
   height: 90%;
@@ -57,12 +55,12 @@ export const Gallery = () => {
     dispatch(setSearchTerm(input));
   };
 
-  const icon = (
-    <icons.search
-      style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
-      color='white'
-    />
-  );
+  // const icon = (
+  //   <icons.search
+  //     style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
+  //     color='white'
+  //   />
+  // );
 
   return (
     <>
@@ -119,15 +117,10 @@ export const Gallery = () => {
                 </Flex>
                 <Flex w={'auto'} justify={'flex-end'} gap={10}>
                   {app === 'cards' && !isMobile && <CardSegment />}
-                  <TextInput
-                    radius={pxToRem('xs')}
+                  <StyledTextField
                     placeholder={
                       isMobile ? 'Pokemon..' : 'Search for a Pokemon'
                     }
-                    variant='filled'
-                    w={isMobile ? 'auto' : '70%'}
-                    leftSection={icon}
-                    miw={isMobile ? '' : 300}
                     onChange={(e: any) => onSearchInput(e.currentTarget.value)}
                   />
                   <StyledButton

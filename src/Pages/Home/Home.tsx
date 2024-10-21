@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import { setSearchTerm, updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
-import { Space, TextInput } from '../../components/Base';
 import { pxToRem } from '../../utils';
 import icons from '../../assets/icons/icons';
 import { StyledButton } from '../../components';
 import styled from 'styled-components';
+import { StyledTextField } from '../../components/Input/TextField';
 
 const Container = styled.div`
   height: calc(100% - 75px);
@@ -49,12 +49,12 @@ const Card = styled.div<{ width: string; bg: string }>`
   border-bottom-right-radius: 0;
 `;
 
-const icon = (
-  <icons.search
-    style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
-    color='white'
-  />
-);
+// const icon = (
+//   <icons.search
+//     style={{ width: pxToRem('xs'), height: pxToRem('xs') }}
+//     color='white'
+//   />
+// );
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ export const Home = () => {
               >
                 Chardb.
               </Title>
-              <Space w={5} />
+              <div style={{ width: 5 }} />
               <Title
                 order={1}
                 fw={isMobile ? 500 : 600}
@@ -111,19 +111,15 @@ export const Home = () => {
                 Store your nostalgia.
               </Title>
             </Flex>
-            <Space h={35} />
+            <div style={{ height: 35 }} />
             <Flex
               w={isMobile ? '80%' : 'auto'}
               justify={'center'}
               gap={10}
               align={'center'}
             >
-              <TextInput
-                radius={pxToRem('xs')}
+              <StyledTextField
                 placeholder={isMobile ? 'Charmander..' : 'Search for a Pokemon'}
-                variant='filled'
-                w={300}
-                leftSection={icon}
                 onChange={(e: any) => onSearchInput(e.target.value)}
               />
               <StyledLink to={'/gallery'} onClick={onSearch}>
@@ -227,7 +223,7 @@ export const Home = () => {
                   </Flex>
                 </IconContainer>
               </Flex>
-              <Space h={20} />
+              <div style={{ height: 20 }} />
               <Flex
                 w={'100%'}
                 justify={'center'}

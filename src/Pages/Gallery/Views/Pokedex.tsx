@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { RootStore } from '../../../redux/store';
 import { PokemonDefinition } from '../../../api/pokemon';
 import { CustomTile } from '../../../components/Tile';
-import { CustomPagination } from '../../../components/Pagination/CustomPagination';
+import { CustomPagination } from '../../../components/Pagination/Pagination';
 import { EmptyState } from '../../../components/EmptyState';
 
 export const Pokedex = () => {
