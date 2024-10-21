@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setSearchTerm, updateApp } from '../../redux/root';
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../config';
-import { Paper, Space, TextInput } from '../../components/Base';
+import { Space, TextInput } from '../../components/Base';
 import { pxToRem } from '../../utils';
 import icons from '../../assets/icons/icons';
 import { StyledButton } from '../../components';
@@ -18,6 +18,24 @@ const Container = styled.div`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+const IconContainer = styled.div`
+  height: ${pxToRem('md')};
+  width: ${pxToRem('md')};
+  background-color: white;
+  border-radius: ${pxToRem('md')};
+`;
+
+const ImageContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: ${pxToRem('xxs')};
+  border-top-left-radius: ${pxToRem('sm')};
+  border-top-right-radius: ${pxToRem('sm')};
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 `;
 
 const Card = styled.div<{ width: string; bg: string }>`
@@ -37,15 +55,6 @@ const icon = (
     color='white'
   />
 );
-
-const styles = {
-  borderRadius: {
-    borderTopLeftRadius: pxToRem('sm'),
-    borderTopRightRadius: pxToRem('sm'),
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-};
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -155,12 +164,7 @@ export const Home = () => {
                 <Title order={3} fw={600} c={'white'} ff={theme.fonts.primary}>
                   Lapras
                 </Title>
-                <Paper
-                  h={35}
-                  w={35}
-                  bg='var(--mantine-color-white)'
-                  radius={pxToRem('md')}
-                >
+                <IconContainer>
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                     {createElement(icons.water, {
                       style: { width: 25, height: 25 },
@@ -168,7 +172,7 @@ export const Home = () => {
                       color: theme.colors.types.water,
                     })}
                   </Flex>
-                </Paper>
+                </IconContainer>
               </Flex>
             </Card>
             <Card
@@ -186,12 +190,7 @@ export const Home = () => {
                 <Title order={3} fw={600} c={'white'} ff={theme.fonts.primary}>
                   Vileplume
                 </Title>
-                <Paper
-                  h={35}
-                  w={35}
-                  bg='var(--mantine-color-white)'
-                  radius={pxToRem('md')}
-                >
+                <IconContainer>
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                     {createElement(icons.grass, {
                       style: { width: 25, height: 25 },
@@ -199,7 +198,7 @@ export const Home = () => {
                       color: theme.colors.types.grass,
                     })}
                   </Flex>
-                </Paper>
+                </IconContainer>
               </Flex>
             </Card>
             <Card
@@ -218,12 +217,7 @@ export const Home = () => {
                 <Title order={3} fw={600} c={'white'} ff={theme.fonts.primary}>
                   Charmander
                 </Title>
-                <Paper
-                  h={35}
-                  w={35}
-                  bg='var(--mantine-color-white)'
-                  radius={pxToRem('md')}
-                >
+                <IconContainer>
                   <Flex justify='center' align='center' h={'100%'} w={'100%'}>
                     {createElement(icons.fire, {
                       style: { width: 25, height: 25 },
@@ -231,7 +225,7 @@ export const Home = () => {
                       color: theme.colors.types.fire,
                     })}
                   </Flex>
-                </Paper>
+                </IconContainer>
               </Flex>
               <Space h={20} />
               <Flex
@@ -243,13 +237,7 @@ export const Home = () => {
                 pb={0}
                 pt={0}
               >
-                <Paper
-                  w={'100%'}
-                  h={'100%'}
-                  bg={'white'}
-                  radius={pxToRem('xxs')}
-                  style={{ ...styles.borderRadius }}
-                >
+                <ImageContainer>
                   <Flex
                     w={'100%'}
                     h={'100%'}
@@ -269,7 +257,7 @@ export const Home = () => {
                       }}
                     />
                   </Flex>
-                </Paper>
+                </ImageContainer>
               </Flex>
             </Card>
           </Flex>

@@ -6,18 +6,24 @@ import styled from 'styled-components';
 import { Analytics } from './Views';
 import { isMobile } from '../../config';
 import { allCards, allAttributes, allPokemon } from '../../api';
-import { Paper, ScrollArea } from '../../components/Base';
 import { allImages } from '../../api/images/images';
 import { StyledButton } from '../../components';
+import { pxToRem } from '../../utils';
 
-const StyledScrollArea = styled(ScrollArea)<{ isMobile: boolean }>`
-  & > div > div {
-    height: 95%;
-  }
+const ScrollableDiv = styled.div`
+  height: 90%;
+  width: 95%;
+  border-radius: 15;
+  overflow: auto;
+`;
 
-  & > div > div {
-    display: ${({ isMobile }) => isMobile && 'flex !important'};
-  }
+const Container = styled.div`
+  border-radius: ${pxToRem('xl')};
+  padding: ${pxToRem('lg')};
+  margin: 'auto';
+  width: 100%;
+  height: 100%;
+  background-color: ${theme.colors.bg.bgGray25};
 `;
 
 export const Dashboard = () => {
@@ -42,14 +48,7 @@ export const Dashboard = () => {
     <>
       <Flex direction={'row'} w={'100%'} h={'calc(100% - 75px)'} p='xs'>
         <Flex direction={'column'} h={'100%'} w={'100%'} align={'center'}>
-          <Paper
-            radius='xl'
-            p='lg'
-            m='auto'
-            w='100%'
-            h='100%'
-            bg={theme.colors.bg.bgGray25}
-          >
+          <Container>
             <Flex w={'100%'} h={'100%'} justify={'center'}>
               <Flex
                 justify={'center'}
@@ -85,13 +84,7 @@ export const Dashboard = () => {
                     </StyledButton>
                   </Flex>
                 </Flex>
-                <StyledScrollArea
-                  isMobile={isMobile}
-                  h={'90%'}
-                  w={'95%'}
-                  type='never'
-                  style={{ borderRadius: 15 }}
-                >
+                <ScrollableDiv>
                   {isLoading ? (
                     <Flex justify='center' align={'center'} h={'65vh'}>
                       <></>
@@ -107,10 +100,10 @@ export const Dashboard = () => {
                       <Analytics />
                     </Flex>
                   )}
-                </StyledScrollArea>
+                </ScrollableDiv>
               </Flex>
             </Flex>
-          </Paper>
+          </Container>
         </Flex>
       </Flex>
     </>

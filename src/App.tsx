@@ -6,7 +6,6 @@ import { theme as customTheme } from './styles/theme';
 import { Home, Gallery, Studio, Dashboard } from './pages';
 import { NavigationBar } from './components/NavigationBar/NavigationBar';
 import { isMobile } from './config';
-import { Paper } from './components/Base';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/notifications/styles.css';
@@ -14,7 +13,7 @@ import './styles.css';
 import styled from 'styled-components';
 import { pxToRem } from './utils';
 
-const StyledPaper = styled(Paper)`
+const Container = styled.div`
   padding: ${pxToRem('xs')};
   margin: auto;
   width: 100%;
@@ -29,7 +28,7 @@ export default function App() {
       <Notifications />
       <Router>
         <Center h={isMobile ? '100dvh' : '100vh'} w={'100vw'} display={'block'}>
-          <StyledPaper>
+          <Container>
             <Flex w={'95%'} h={75} justify='center' align='center' m={'auto'}>
               <NavigationBar />
             </Flex>
@@ -39,7 +38,7 @@ export default function App() {
               <Route path='/studio' element={<Studio />} />
               <Route path='/dashboard' element={<Dashboard />} />
             </Routes>
-          </StyledPaper>
+          </Container>
         </Center>
       </Router>
     </MantineProvider>

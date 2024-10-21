@@ -1,7 +1,3 @@
-export { Pagination } from './Pagination';
-export { Paper } from './Paper';
-export { Rating } from './Rating';
-export { ScrollArea } from './ScrollArea';
 export { SegmentedControl } from './SegmentedControl';
 export { Select } from './Select';
 export { Skeleton } from './Skeleton';

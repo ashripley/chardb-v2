@@ -7,12 +7,20 @@ import { RootStore } from '../../redux/store';
 import { allAttributes, allCards, allPokemon } from '../../api';
 import { useLocation } from 'react-router-dom';
 import { pxToRem } from '../../utils';
-import { ScrollArea, TextInput } from '../../components/Base';
+import { TextInput } from '../../components/Base';
 import { Canvas } from '../../layouts/Canvas';
 import { setApp, setGalleryView, setSearchTerm } from '../../redux/root';
 import { Cards, Pokedex } from './Views';
 import icons from '../../assets/icons/icons';
 import { StyledButton } from '../../components';
+import styled from 'styled-components';
+
+const ScrollableDiv = styled.div`
+  height: 90%;
+  width: 95%;
+  border-radius: 35;
+  overflow: auto;
+`;
 
 export const Gallery = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -136,12 +144,7 @@ export const Gallery = () => {
                   </StyledButton>
                 </Flex>
               </Flex>
-              <ScrollArea
-                h={'90%'}
-                w={'95%'}
-                type='never'
-                style={{ borderRadius: 35 }}
-              >
+              <ScrollableDiv>
                 {isLoading ? (
                   <Flex justify='center' align={'center'} h={'65vh'}>
                     <></>
@@ -151,7 +154,7 @@ export const Gallery = () => {
                 ) : (
                   <Pokedex />
                 )}
-              </ScrollArea>
+              </ScrollableDiv>
             </Flex>
           </Canvas>
         </Flex>
